@@ -1,9 +1,9 @@
 // NAVIGATION
 export const NAV_LINKS = [
-  { href: "/", key: "home", label: "Home" },
-  { href: "/", key: "how_hilink_work", label: "How Hilink Work?" },
-  { href: "/", key: "services", label: "Services" },
-  { href: "/", key: "pricing ", label: "Pricing " },
+  { href: "/", key: "home", label: "Best Sellers" },
+  { href: "/", key: "how_hilink_work", label: "Makeup" },
+  { href: "/", key: "services", label: "Skin Care" },
+  { href: "/", key: "pricing ", label: "Hair Care " },
   { href: "/", key: "contact_us", label: "Contact Us" },
 ];
 

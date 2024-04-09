@@ -3,37 +3,15 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { NAV_LINKS } from "@/constants";
-import { FaRegUserCircle } from "react-icons/fa";
-import { HiOutlineShoppingBag } from "react-icons/hi2";
-import { BsSearch } from "react-icons/bs";
-import {
-  Card,
-  Typography,
-  List,
-  ListItem,
-  ListItemPrefix,
-  ListItemSuffix,
-  Chip,
-  Accordion,
-  AccordionHeader,
-  AccordionBody,
-} from "@material-tailwind/react";
-import {
-  PresentationChartBarIcon,
-  ShoppingBagIcon,
-  UserCircleIcon,
-  Cog6ToothIcon,
-  InboxIcon,
-  PowerIcon,
-} from "@heroicons/react/24/solid";
-import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import CartSidebar from "../Cart/CartSidebar";
+import SearchSidebar from "../Search/SearchSidebar";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenSearch, setIsOpenSearch] = useState(false);
 
   return (
-    <nav className="shadow-md  top-0 z-50 bg-white">
+    <nav className="shadow-md sticky top-0 z-50 bg-white">
       {/* nav top */}
       <section className="py-2 bg-primary text-center md-py-3">
         <p className="text-white text-xs md:text-sm">
@@ -42,7 +20,8 @@ const Navbar = () => {
       </section>
 
       {/* main nav  */}
-      <section className="flexBetween max-container padding-container">
+      <section className="flexBetween max-container px-4 lg:px-0">
+        {/* logo  */}
         <Link href="/" className="order-2 lg:order-1">
           <Image
             src="/logo.png"
@@ -53,21 +32,49 @@ const Navbar = () => {
           />
         </Link>
 
-        {/* search bar  */}
-        <div className="hidden  relative w-full max-sm:w-[300px] md:w-[70%] md:block md:order-2">
-          <input
-            type="text"
-            placeholder="Search..."
-            className="border-gray-10 border p-2 px-4 rounded-lg w-full"
-          />
+        {/*desktop nav bottom */}
+        <section className="hidden  w-full lg:flexCenter lg:order-2 ">
+          <ul className="h-full gap-12 lg:flex">
+            {NAV_LINKS.map((link) => (
+              <Link
+                href={link.href}
+                key={link.key}
+                class="group  transition-all duration-300 ease-in-out normal-case"
+              >
+                <span class="bg-left-bottom font-medium bg-gradient-to-r from-pink-500 to-pink-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">
+                  {link.label}
+                </span>
+              </Link>
+            ))}
+          </ul>
+        </section>
 
-          <BsSearch className="absolute right-0 top-0 mr-3 mt-3 text-gray-800" />
-        </div>
+        <div className="order-3 flex items-center gap-4">
+          <div className="hidden lg:block relative h-4 w-4 lg:h-7 lg:w-7 cursor-pointer">
+            <Image src="/tracking.svg" alt="logo" priority={true} fill={true} />
+          </div>
+          <div
+            className="relative h-4 w-4 lg:h-5 lg:w-5 cursor-pointer"
+            onClick={() => setIsOpenSearch(true)}
+          >
+            <Image src="/search.svg" alt="logo" priority={true} fill={true} />
+          </div>
+          <div className="hidden lg:block relative h-4 w-4 lg:h-5 lg:w-5 cursor-pointer">
+            <Image src="/user.svg" alt="logo" priority={true} fill={true} />
+          </div>
 
-        <div className="order-3 flex items-center gap-2">
-          <FaRegUserCircle size={25} />
-          <HiOutlineShoppingBag size={25} onClick={() => setIsOpen(true)} />
+          <div
+            className="relative h-4 w-4 lg:h-5 lg:w-5 cursor-pointer"
+            onClick={() => setIsOpen(true)}
+          >
+            <Image src="/cart.svg" alt="logo" priority={true} fill={true} />
+            <div className="h-4 w-4 bg-primary rounded-full absolute top-0 -right-2 text-white text-[10px] font-semibold text-center">
+              2
+            </div>
+          </div>
+
           <CartSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+          <SearchSidebar isOpen={isOpenSearch} setIsOpen={setIsOpenSearch} />
         </div>
 
         {/* mobile menu  */}
@@ -78,32 +85,6 @@ const Navbar = () => {
           height={32}
           className="order-1 h-6 inline-block cursor-pointer lg:hidden"
         />
-      </section>
-
-      {/* mobile search  */}
-      <div className="w-[90%] relative mx-auto lg:hidden pb-3">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="border-gray-10 border-2 p-2 px-4 rounded-lg w-full"
-        />
-
-        <BsSearch className="absolute right-0 top-0 mr-3 mt-3 text-gray-800" />
-      </div>
-
-      {/*desktop nav bottom */}
-      <section className="flexCenter w-full ">
-        <ul className="hidden h-full gap-12 lg:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              href={link.href}
-              key={link.key}
-              className="text-gray-400 flexCenter cursor-pointer pb-1.5 transition-all hover:font-bold"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </ul>
       </section>
     </nav>
   );

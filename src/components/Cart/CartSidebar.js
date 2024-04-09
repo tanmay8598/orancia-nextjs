@@ -54,7 +54,7 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
   const count = 2;
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetContent className="bg-white">
+      <SheetContent className="bg-white lg:max-w-[500px] ">
         <SheetHeader>
           <SheetTitle className="text-left mb-12">
             My Shopping Cart({count})
