@@ -11,7 +11,7 @@ const Product = ({ product }) => {
   return (
     <Link className="group" href={`/product/${product.slug}`}>
       <div className="drop-shadow-md rounded-md bg-white border-red-500 h-[300px] mb-3 p-4 overflow-hidden relative md:h-[328px]">
-        <div className="bg-primary/30 w-full h-full group-hover:bg-primary/10 transition-all duration-300 flex justify-center items-center">
+        <div className=" w-full h-full group-hover:bg-primary/10 transition-all duration-300 flex justify-center items-center">
           <div className="absolute top-8 left-8 bg-accent text-white px-3 text-sm uppercase font-medium ">
             Best Seller
           </div>
@@ -28,7 +28,7 @@ const Product = ({ product }) => {
         </div> */}
       </div>
 
-      <p className="text-md font-medium text-left">{short}</p>
+      <p className="text-sm font-medium text-left">{short}</p>
       <p className="text-sm text-gray-400 font-normal  text-left">
         {product.category.name}
       </p>

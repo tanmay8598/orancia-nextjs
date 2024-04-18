@@ -91,8 +91,8 @@ const data = [
 
 const BestSellers = () => {
   return (
-    <section className="py-12 lg:py-24 bg-button">
-      <div className="container md:p-2">
+    <section>
+      <div className="mx-auto max-w-screen-3xl px-4 py-10">
         <h2 className="text-center font-medium">Best Sellers</h2>
 
         <p className="text-center mb-[30px]">

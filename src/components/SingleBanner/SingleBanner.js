@@ -5,7 +5,7 @@ const SingleBanner = ({ data }) => {
   return (
     <div className="mb-2">
       <Image
-        src={data.img}
+        src={data}
         alt="single-banner"
         height={2000}
         width={2000}

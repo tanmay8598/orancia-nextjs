@@ -4,6 +4,7 @@ import BlogHero from "@/components/Blog/BlogHero";
 import Heading from "@/components/Heading/Heading";
 import Hero from "@/components/Hero/Hero";
 import ImageGallery from "@/components/ImageGallery/ImageGallery";
+import ShopbyCategory from "@/components/ShopbyCategory/ShopbyCategory";
 import SingleBanner from "@/components/SingleBanner/SingleBanner";
 
 const data = [
@@ -27,10 +28,10 @@ export default function Home() {
       {/* <div className="max-container"> */}
       <Banner />
       <BestSellers />
-      {/* <SingleBanner data={data} />
-      <SingleBanner data={data2} /> */}
-      <ImageGallery data={data} />
-      <Hero />
+      <SingleBanner data="https://discoverpilgrim.com/cdn/shop/files/Buy_any_2_699_App_Banner_1120x876_4.jpg?v=1712293794&width=800" />
+      <ShopbyCategory />
+      {/* <ImageGallery data={data} /> */}
+      {/* <Hero /> */}
       <BlogHero />
     </div>
   );

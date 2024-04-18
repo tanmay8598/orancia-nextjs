@@ -10,18 +10,6 @@ import {
 } from "@material-tailwind/react";
 import { ReviewSection } from "@/components/ReviewSection/ReviewSection";
 
-const data = {
-  _id: "1",
-  name: "COCOS FRESH",
-  category: {
-    id: "1",
-    name: "Skin care",
-  },
-  price: "899",
-  discount: "10",
-  description: "",
-};
-
 function Icon({ id, open }) {
   return (
     <svg
