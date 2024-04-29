@@ -2,7 +2,7 @@ import React from "react";
 
 export const ReviewSection = () => {
   return (
-    <div class="w-full bg-gray-50 md:w-[90%] lg:w-[65%] md:mx-auto ">
+    <div class="w-full bg-gray-50  md:mx-auto ">
       <div class="my-2 mx-auto max-w-screen-md px-10 py-16">
         <div class="flex w-full flex-col">
           <div class="flex flex-col sm:flex-row">

@@ -12,6 +12,7 @@ const data = [
       name: "Skin care",
     },
     image: ["https://files.stbotanica.com/site-images/400x400/STBOT470-01.jpg"],
+    slug: "morocacan-argan-conditioner-dry-hair",
   },
   {
     id: 1,

@@ -59,9 +59,12 @@ const Navbar = () => {
           >
             <Image src="/search.svg" alt="logo" priority={true} fill={true} />
           </div>
-          <div className="hidden lg:block relative h-4 w-4 lg:h-5 lg:w-5 cursor-pointer">
+          <Link
+            href="/account"
+            className="hidden lg:block relative h-4 w-4 lg:h-5 lg:w-5 cursor-pointer"
+          >
             <Image src="/user.svg" alt="logo" priority={true} fill={true} />
-          </div>
+          </Link>
 
           <div
             className="relative h-4 w-4 lg:h-5 lg:w-5 cursor-pointer"

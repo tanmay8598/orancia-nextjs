@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const ShopbyCategory = () => {
@@ -7,9 +8,9 @@ const ShopbyCategory = () => {
         <h2 className="text-center font-medium">Shop by category</h2>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-10  lg:mt-10 px-3 lg:px-0 place-items-center place-content-center">
-          <div className="w-full">
+          <Link className="w-full" href={`/category/skincare`}>
             <div className="h-[150px] lg:h-[300px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md w-full bg-[url('https://discoverpilgrim.com/cdn/shop/files/Hair-Care-400x560-1.png?v=1706684077&width=300')] bg-cover bg-center bg-no-repeat"></div>
-          </div>
+          </Link>
           <div className="w-full">
             <div className="h-[150px] lg:h-[300px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md w-full bg-[url('https://discoverpilgrim.com/cdn/shop/files/Hair-Serums-400x560-2.png?v=1706684170&width=300')] bg-cover bg-center bg-no-repeat"></div>
           </div>

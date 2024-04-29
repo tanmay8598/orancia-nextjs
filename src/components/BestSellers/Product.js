@@ -32,18 +32,20 @@ const Product = ({ product }) => {
       <p className="text-sm text-gray-400 font-normal  text-left">
         {product.category.name}
       </p>
-      <div className="text-lg font-semibold text-accent text-left">
+
+      <div className="flex flex-row gap-1 mt-2 items-center">
+        <div className="flex flex-row gap-1 text-white bg-green-700 p-1.5 rounded-sm">
+          <FaStar color="#ffffff" size={10} />{" "}
+          <p className="text-[10px]">4.72</p>
+        </div>
+
+        <p className="text-[12px]  font-medium">(7519)</p>
+      </div>
+
+      <div className="text-lg font-semibold  text-left mt-2">
         ₹{product.price}
       </div>
-      <div className="flex flex-row gap-1 mt-2">
-        <FaStar color="#f7c707" />
-        <FaStar color="#f7c707" />
-        <FaStar color="#f7c707" />
-        <FaStar color="#f7c707" />
-        <FaStar color="#f7c707" />
-        <p className="text-sm ml-1 font-medium">(27)</p>
-      </div>
-      <AddtoCartBtn btnStyles="btn btn-accent w-full mt-2 rounded-md" />
+      <AddtoCartBtn btnStyles="hidden lg:block btn btn-accent w-full mt-4 rounded-md" />
     </Link>
   );
 };

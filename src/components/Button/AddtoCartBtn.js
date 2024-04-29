@@ -1,8 +1,8 @@
 import React from "react";
 
-const AddtoCartBtn = ({ btnStyles, textStyles }) => {
+const AddtoCartBtn = ({ btnStyles, textStyles, onClick }) => {
   return (
-    <button className={`${btnStyles}`}>
+    <button className={`${btnStyles}`} onClick={onClick}>
       <p className={`${textStyles}`}>Add to cart</p>
     </button>
   );

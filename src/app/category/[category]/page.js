@@ -102,7 +102,7 @@ const page = () => {
         <div className="w-[20%] lg:w-[25%] hidden md:inline-flex h-full">
           <ShopSideNav />
         </div>
-        <div className="w-full md:w-[80%] lg:w-[75%] h-full flex flex-col gap-10">
+        <div className="w-full md:w-[80%] lg:w-[75%] h-full flex flex-col gap-10 px-3">
           <div className="grid grid-cols-2  lg:grid-cols-3 gap-5 lg:gap-10">
             {data.map((product) => {
               return <Product product={product} />;
