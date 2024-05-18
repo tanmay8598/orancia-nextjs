@@ -4,7 +4,7 @@ import MultiLevelDropdown from "./MultiNavItems";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "lucide-react";
 import NavbarDroupdown from "./NavbarDroupdown";
-import MegaMenu from "./MegaMenu";
+
 const NavbarItems = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -59,9 +59,7 @@ const NavbarItems = () => {
         <li>
           <MultiLevelDropdown isOpen={isDropdownOpen} />
         </li>
-        {/* <li>
-          <MegaMenu isOpen={isDropdownOpen} />
-        </li> */}
+
         <li>
           <Menu className="relative inline-block text-left">
             <Menu.Button

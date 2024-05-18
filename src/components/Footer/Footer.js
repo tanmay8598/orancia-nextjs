@@ -97,10 +97,10 @@ const Footer = () => {
         <div className="p-6 lg:p-14 lg:pr-3">
           <div className="flex p-1">
             <div className="m-2">
-              <div className="bg-red-500 rounded-[29px] p-2 w-[56px] ">
+              <div className="bg-red-500 rounded-[29px] object-center p-2 w-[56px] ">
                 <Image
-                  src="/van.png"
-                  className="w-full h-[40px] object-contain rounded-full"
+                  src="/free-delivery.png"
+                  className="w-full h-[40px]   rounded-full"
                   height={40}
                   width={40}
                 />
@@ -108,7 +108,7 @@ const Footer = () => {
             </div>
             <div className="m-2">
               <div className="pb-1">Free Shipping</div>
-              <hr className="py-1 " />
+
               <div>On Orders Above ₹ 299</div>
             </div>
           </div>
@@ -129,7 +129,7 @@ const Footer = () => {
             </div>
             <div className="m-2">
               <div className="pb-1">15-Day Return Policy</div>
-              <hr className="py-1 " />
+
               <div>EASY RETURNS</div>
             </div>
           </div>
@@ -150,7 +150,6 @@ const Footer = () => {
             </div>
             <div className="m-2">
               <div className="pb-1">100% AUTHENTIC</div>
-              <hr className="py-1" />
               <div>Products Sourced Directly</div>
             </div>
           </div>
@@ -171,7 +170,7 @@ const Footer = () => {
             </div>
             <div className="m-2">
               <div className="pb-1">1900+ BRANDS</div>
-              <hr className="py-1 " />
+
               <div>1.2 Lakh+ Products</div>
             </div>
           </div>

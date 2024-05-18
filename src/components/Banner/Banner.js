@@ -6,6 +6,8 @@ import Slider from "react-slick";
 
 const Banner = () => {
   const [banner, setBanner] = useState([]);
+  const [error, setError] = useState([]);
+
   var settings = {
     dots: false,
     infinite: true,

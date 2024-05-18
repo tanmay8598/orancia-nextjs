@@ -80,12 +80,7 @@ const Navbar = () => {
               priority={true}
               fill={true}
             />
-            {/* <div
-              className="h-4 w-4 bg-primary rounded-full absolute bottom-2 -right-2 text-white md:text-sm lg:text-base font-light text-center"
-              style={{ fontSize: "10px" }}
-            >
-              2
-            </div> */}
+
             <div
               class="h-4 w-4 relative inline-flex bg-primary items-center -right-2 bottom-1 -top-4 justify-center text-white font-light text-center bg-heading-color font-heading text-sm md:text-base lg:text-lg   rounded-full h-21 w-21"
               style={{ fontSize: "10px" }}
