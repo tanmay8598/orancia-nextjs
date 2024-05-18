@@ -5,9 +5,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { Navigation, Pagination } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import Product from "./Product";
 import { useCallback, useRef } from "react";
+import NewProducts from "./NewProducts";
+import BestSallerCard from "./BestSallerCard";
 
 const BestSellerCarousel = ({ products }) => {
   const sliderRef = useRef(null);
@@ -51,19 +53,18 @@ const BestSellerCarousel = ({ products }) => {
         breakpoints={{
           640: { slidesPerView: 1 },
           768: { slidesPerView: 2 },
-          960: { slidesPerView: 3 },
+          960: { slidesPerView: 4 },
           1440: { slidesPerView: 4 },
         }}
-        // pagination={{
-        //   clickable: true,
-        // }}
         modules={[Pagination]}
         className="popular-bike-slider mb-8 "
       >
         {products.map((product) => {
           return (
             <SwiperSlide key={product.id}>
-              <Product product={product} />
+              {/* <Product product={product} /> */}
+              {/* <NewProducts product={product} /> */}
+              <BestSallerCard product={product} />
             </SwiperSlide>
           );
         })}

@@ -1,10 +1,12 @@
 import React from "react";
+import BlogCard from "./BlogCard";
+import Link from "next/link";
 
 const BlogHero = () => {
   return (
-    <div class="mt-10 max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
+    <div class="  max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
       <div class="border-b mb-5 flex justify-between text-sm">
-        <div class="text-indigo-600 flex items-center pb-2 pr-2 border-b-2 border-indigo-600 uppercase">
+        <div class="text-red-600 flex items-center pb-2 pr-2 border-b-2 border-red-600 uppercase">
           {/* <svg
             class="h-6 mr-3"
             version="1.1"
@@ -42,73 +44,23 @@ const BlogHero = () => {
             </g>
           </svg> */}
           <a href="#" class="font-semibold inline-block">
-            Cooking BLog
+            Blog
           </a>
         </div>
-        <a href="#">See All</a>
+
+        {/* <a href="myblog">See All</a> */}
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-        {/* card  */}
-        <div class="rounded overflow-hidden shadow-lg flex flex-col">
-          <a href="#"></a>
-          <div class="relative">
-            <a href="#">
-              <img
-                class="w-full"
-                src="https://images.pexels.com/photos/61180/pexels-photo-61180.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500"
-                alt="Sunset in the mountains"
-              />
-              <div class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
-            </a>
-            <a href="#!">
-              <div class="text-xs absolute top-0 right-0 bg-indigo-600 px-4 py-2 text-white mt-3 mr-3 hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out">
-                Cooking
-              </div>
-            </a>
-          </div>
-          <div class="px-6 py-4 mb-auto">
-            <a
-              href="#"
-              class="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
-            >
-              Simplest Salad Recipe ever
-            </a>
-            <p class="text-gray-500 text-sm">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
-            </p>
-          </div>
-          <div class="px-6 py-3 flex flex-row items-center justify-between bg-gray-100">
-            <span
-              href="#"
-              class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center"
-            >
-              <span class="ml-1">6 mins ago</span>
-            </span>
-
-            <span
-              href="#"
-              class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center"
-            >
-              <svg
-                class="h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-                ></path>
-              </svg>
-              <span class="ml-1">39 Comments</span>
-            </span>
-          </div>
-        </div>
+        <BlogCard />
+        <BlogCard />
+        <BlogCard />
       </div>
+      <Link href="/myblog">
+        <button className="btn btn-accent rounded-lg mx-auto mt-8">
+          See all
+        </button>
+      </Link>
     </div>
   );
 };

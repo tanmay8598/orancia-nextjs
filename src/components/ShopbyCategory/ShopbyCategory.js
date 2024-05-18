@@ -1,36 +1,51 @@
+"use client";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import React from "react";
+import ShopCategoryCard from "./ShopCategoryCard";
+import apiClient from "@/api/client";
 
 const ShopbyCategory = () => {
-  return (
-    <section className="py-12 lg:py-24">
-      <div className="max-w-screen-lg mx-auto ">
-        <h2 className="text-center font-medium">Shop by category</h2>
+  const [categories, setCategories] = useState([]);
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-10  lg:mt-10 px-3 lg:px-0 place-items-center place-content-center">
-          <Link className="w-full" href={`/category/skincare`}>
-            <div className="h-[150px] lg:h-[300px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md w-full bg-[url('https://discoverpilgrim.com/cdn/shop/files/Hair-Care-400x560-1.png?v=1706684077&width=300')] bg-cover bg-center bg-no-repeat"></div>
-          </Link>
-          <div className="w-full">
-            <div className="h-[150px] lg:h-[300px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md w-full bg-[url('https://discoverpilgrim.com/cdn/shop/files/Hair-Serums-400x560-2.png?v=1706684170&width=300')] bg-cover bg-center bg-no-repeat"></div>
-          </div>
-          <div className="w-full">
-            <div className="h-[150px] lg:h-[300px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md w-full bg-[url('https://discoverpilgrim.com/cdn/shop/files/Face-Care-400x560-1_067de600-03b6-402f-9920-5408dfa24165.png?v=1706683823&width=300')] bg-cover bg-center bg-no-repeat"></div>
-          </div>
-          <div className="w-full">
-            <div className="h-[150px] lg:h-[300px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md w-full bg-[url('https://discoverpilgrim.com/cdn/shop/files/Conditioners-400x560-5.png?v=1706684077&width=300')] bg-cover bg-center bg-no-repeat"></div>
-          </div>
-          <div className="w-full">
-            <div className="h-[150px] lg:h-[300px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md w-full bg-[url('https://discoverpilgrim.com/cdn/shop/files/Conditioners-400x560-5.png?v=1706684077&width=300')] bg-cover bg-center bg-no-repeat"></div>
-          </div>
-          <div className="w-full">
-            <div className="h-[150px] lg:h-[300px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md w-full bg-[url('https://discoverpilgrim.com/cdn/shop/files/Conditioners-400x560-5.png?v=1706684077&width=300')] bg-cover bg-center bg-no-repeat"></div>
-          </div>
-          <div className="w-full">
-            <div className="h-[150px] lg:h-[300px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md w-full bg-[url('https://discoverpilgrim.com/cdn/shop/files/Conditioners-400x560-5.png?v=1706684077&width=300')] bg-cover bg-center bg-no-repeat"></div>
-          </div>
+  useEffect(() => {
+    // Fetch category data from the API
+    const fetchCategories = async () => {
+      try {
+        const response = await apiClient.get("/variation/category/get");
+        if (response.ok) {
+          // const data = await response.json();
+          const data = response.data;
+          setCategories(data);
+        } else {
+          console.error("Failed to fetch categories:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  return (
+    <section>
+      <div className="max-w-screen-lg mx-auto">
+        {/* <h3 className="text-center text-3xl md:text-4xl mb-11 mt-11 font-medium"> */}
+        <h3 className="h3  text-center md:text-4xl mb-11 mt-11">
+          Shop by category
+        </h3>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-10 lg:mt-10 px-3 lg:px-0 place-items-center place-content-center">
+          {/* {categories.map((category) => (
+            <ShopCategoryCard key={category.id} category={category} />
+          ))} */}
+          <ShopCategoryCard categories={categories} />
         </div>
       </div>
+      <Link href="/category">
+        <button className="btn btn-accent rounded-lg mx-auto mt-10">
+          See all
+        </button>
+      </Link>
     </section>
   );
 };

@@ -28,11 +28,15 @@ function Icon({ id, open }) {
     </svg>
   );
 }
-
-const SubCategory = () => {
+const SubCategory = ({ subcategories }) => {
   const [open, setOpen] = useState(0);
 
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
+
+  const uniqueSubcategories = Array.from(
+    new Set(subcategories?.map((subcategory) => subcategory.name))
+  );
+
   return (
     <div>
       <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
@@ -43,8 +47,10 @@ const SubCategory = () => {
           Subcategory
         </AccordionHeader>
         <AccordionBody className="text-sm font-poppins lg:text-md leading-7 mt-2 flex flex-col">
-          <Checkbox label="Face Creams" />
-          <Checkbox label="Face Moisturizers" />
+          {/* Render Checkbox for each unique subcategory */}
+          {uniqueSubcategories?.map((subcategory, index) => (
+            <Checkbox key={index} label={subcategory} />
+          ))}
         </AccordionBody>
       </Accordion>
     </div>
