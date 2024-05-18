@@ -46,7 +46,7 @@ const BestSallerCard = ({ product }) => {
                     ? product.image[0]
                     : "https://files.stbotanica.com/site-images/400x400/STBOT470-01.jpg"
                 }
-                className="w-full h-60 md:h-52"
+                className="w-full h-full object-contain"
                 alt=""
                 width={228}
                 height={212}
@@ -60,11 +60,11 @@ const BestSallerCard = ({ product }) => {
               {product.category.name}
             </p>
             <div className="flex flex-row gap-1 mt-2 items-center">
-              <div className="flex flex-row gap-1 text-white bg-green-700 p-0 px-2   rounded-md">
+              <div className="flex flex-row gap-1 text-white bg-green-700 px-2 rounded-md">
                 <span className=" pt-1">
-                  <FaStar color="#ffffff text-base" size={15} />
+                  <FaStar color="#ffffff text-base" size={12} />
                 </span>
-                <span className="text-base">{product?.rating}</span>
+                <span className="text-sm">{product?.rating}</span>
               </div>
 
               <p className="text-xs  font-medium">
