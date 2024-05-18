@@ -14,24 +14,18 @@ import SingleBanner from "@/components/SingleBanner/SingleBanner";
 import WhatClient from "@/components/whatClientSays/WhatClient";
 
 export default function Home() {
-  const { user } = useAuth();
-  // console.log("user", user);
   return (
     <div>
-      {/* <div className="max-container"> */}
       <Banner />
       <Marquees />
       <BestSellers />
-      <SingleBanner data="https://discoverpilgrim.com/cdn/shop/files/Buy_any_2_699_App_Banner_1120x876_4.jpg?v=1712293794&width=800" />
+      <SingleBanner data="https://discoverpilgrim.com/cdn/shop/files/Buy_Any_3_At_999_Homepage_Desktop_Banner_1920x520_82bb6c8a-800c-481b-8a2c-fdfa2e1315ba.jpg?v=1715843796&width=2000" />
       <ShopbyCategory />
-      {/* <ImageGallery data={data} /> */}
+      {/* <ImageGallery /> */}
       {/* <Hero /> */}
-
       <NewArrivals />
-
       <WhatClient />
       <DiffrenceBnner />
-
       <BlogHero />
     </div>
   );
