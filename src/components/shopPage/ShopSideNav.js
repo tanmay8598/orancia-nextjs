@@ -49,9 +49,9 @@ const ShopSideNav = ({
   const min = 0;
   const max = 250000000;
   const price = true;
-  const minprice = price ? min : 0;
-  const maxprice = price ? max : 250000000;
-
+  // const minprice = price ? min : 0;
+  // const maxprice = price ? max : 250000000;
+  console.log(selectedSubcategory, "selectedSubcategory");
   return (
     <div className="w-full flex flex-col gap-6">
       <p className="text-2xl font-medium">Filters </p>

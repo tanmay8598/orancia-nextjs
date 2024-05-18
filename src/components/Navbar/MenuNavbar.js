@@ -196,7 +196,7 @@ const MenuNavbar = () => {
                   <div className="flex px-4 pb-2 pt-5">
                     <button
                       type="button"
-                      className="relative -m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400"
+                      className="relative -m-2 inline-flex items-center justify-center rounded-md p-2 pt-5 text-gray-400"
                       onClick={() => setOpen(false)}
                     >
                       <span className="absolute -inset-0.5" />
@@ -320,10 +320,7 @@ const MenuNavbar = () => {
               🎁 Buy Any 3 Products for Rs 1395 Only!
             </p>
           </section>
-          <nav
-            aria-label="Top"
-            className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
-          >
+          <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-  ">
             <div className="border-b border-gray-200">
               <div className="flex justify-between items-center h-24">
                 <button
@@ -339,7 +336,7 @@ const MenuNavbar = () => {
                   />
                 </button>
                 {/* Logo */}
-                <div className="ml-4 flex lg:ml-0">
+                <div className="ml-2 flex lg:ml-0">
                   <a href="/" className="order-2 lg:order-1">
                     {/* <span className="sr-only">Your Company</span> */}
                     {/* <Image

@@ -45,13 +45,15 @@ const Category = ({ categories }) => {
           Category
         </AccordionHeader>
         <AccordionBody className="text-sm font-poppins lg:text-md leading-7 mt-2">
-          {categories?.length === 0 ? (
-            <p>No Category available</p>
-          ) : (
+          {
+            // categories?.length === 0 ? (
+            //   <p>No Category available</p>
+            // ) : (
             firstCategory && (
               <Checkbox label={firstCategory.name} defaultChecked />
             )
-          )}
+            // )
+          }
         </AccordionBody>
       </Accordion>
     </div>

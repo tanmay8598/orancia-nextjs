@@ -10,7 +10,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 const NewProducts = ({ product }) => {
-  const short = product.name.replace(/(.{33})..+/, "$1");
   const dispatch = useDispatch();
   const handleAddToCart = () => {
     dispatch(add({ product }));
@@ -29,6 +28,9 @@ const NewProducts = ({ product }) => {
     event.target.src =
       "https://files.stbotanica.com/site-images/400x400/STBOT470-01.jpg";
   };
+  // const short = product.name.replace(/(.{33})..+/, "$1");
+  const short =
+    product.name.length > 24 ? product.name.slice(0, 24) + "..." : product.name;
 
   return (
     <div>

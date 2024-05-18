@@ -128,7 +128,7 @@ const Page = () => {
                 {isOpenSearch ? "Hide" : "Show"} Filters
               </button>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-5">
               {products.length === 0 ? (
                 <p className="text-center justify-center flex align-middle">
                   No products found
@@ -136,6 +136,7 @@ const Page = () => {
               ) : (
                 products.map((product) => (
                   // <Product key={product.id} product={product} />
+                  // or if you prefer to use NewProducts
                   <NewProducts key={product.id} product={product} />
                 ))
               )}
