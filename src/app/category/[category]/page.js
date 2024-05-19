@@ -30,14 +30,13 @@ const Page = () => {
 
   const fetchProducts = async () => {
     try {
-      console.log(minprice, maxprice, "maxprice");
       const response = await apiClient.get("/product/get", {
         category: params.category,
         subcategory: selectedSubcategory._id,
         min: minprice,
         max: maxprice,
       });
-      console.log(response.data, "response");
+
       if (response.ok) {
         setProducts(response.data.products);
       } else {
@@ -87,8 +86,6 @@ const Page = () => {
     setRange(newValue);
     setMinprice(newValue[0]);
     setMaxprice(newValue[1]);
-    console.log(newValue[0]);
-    console.log(newValue[1]);
   };
 
   return (
