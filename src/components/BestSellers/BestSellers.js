@@ -28,7 +28,7 @@ const BestSellers = () => {
 
   return (
     <section>
-      <div className="mx-auto max-w-screen-3xl px-4 md:py-10">
+      <div className="mx-auto max-w-screen-3xl px-4 pb-4 md:py-10">
         {/* <h3 className="text-center text-3xl mb-1 md:text-4xl font-medium"> */}
         <h3 className="h3  text-center md:text-4xl mb-11 mt-11">
           Best Sellers
@@ -40,7 +40,7 @@ const BestSellers = () => {
         <BestSellerCarousel products={product} />
 
         <Link href="/best-sellers">
-          <button className="btn btn-accent rounded-lg mx-auto mt-8">
+          <button className="btn btn-accent rounded-lg mx-auto mt-2 sm:mt-8">
             See all
           </button>
         </Link>
