@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import AddtoCartBtn from "../Button/AddtoCartBtn";
 import { add } from "@/redux/features/cart/cartSlice";
@@ -11,8 +11,9 @@ import Link from "next/link";
 
 const NewProducts = ({ product }) => {
   const dispatch = useDispatch();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const handleAddToCart = () => {
-    dispatch(add({ product }));
+    dispatch(add({ product, quantity: 1 }));
     toast.success("Success. Check your cart!", {
       position: "bottom-right",
       autoClose: 5000,
@@ -32,6 +33,15 @@ const NewProducts = ({ product }) => {
   const short =
     product.name.length > 24 ? product.name.slice(0, 24) + "..." : product.name;
 
+  const handleMouseEnter = () => {
+    if (product.image && product.image.length > 1) {
+      setCurrentImageIndex(1);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setCurrentImageIndex(0);
+  };
   return (
     <div>
       <div className="rounded-xl m-2 shadow-lg">
@@ -41,14 +51,20 @@ const NewProducts = ({ product }) => {
 
         <div className=" flex-col  flex">
           <Link className="group" href={`/product/${product._id}`}>
-            <div className="overflow-hidden rounded-t-lg">
+            <div
+              className="overflow-hidden rounded-t-lg"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
               <Image
                 src={
                   product.image && product.image.length > 0
-                    ? product.image[0]
+                    ? product.image[currentImageIndex]
                     : "https://files.stbotanica.com/site-images/400x400/STBOT470-01.jpg"
                 }
-                className="w-full h-40 md:w-60 md:h-48"
+                className="w-full 
+                "
+                // h-40  md:h-48
                 alt=""
                 width={228}
                 height={212}

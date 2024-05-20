@@ -60,7 +60,7 @@ const MenuNavbar = () => {
                 leaveTo="-translate-x-full"
               >
                 <Dialog.Panel className="relative flex w-full mt-24 max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl">
-                  <div className="flex px-4 pb-2 pt-5">
+                  {/* <div className="flex px-4 pb-2 pt-5">
                     <button
                       type="button"
                       className="relative -m-2 inline-flex items-center justify-center rounded-md p-2 pt-5 text-gray-400"
@@ -70,11 +70,11 @@ const MenuNavbar = () => {
                       <span className="sr-only">Close menu</span>
                       <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
-                  </div>
+                  </div> */}
 
                   {/* Links */}
 
-                  <div className="space-y-6 border-t border-gray-200 px-4 py-6">
+                  <div className="space-y-6 border-t pt-9 border-gray-200 px-4 py-6">
                     <MobNavbarItems />
                   </div>
 

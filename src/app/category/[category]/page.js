@@ -25,9 +25,6 @@ const Page = () => {
     fetchProducts();
   }, [params.category, selectedSubcategory, maxprice, minprice]);
 
-  // console.log(setMinprice(minprice), "minprice");
-  // console.log(setMaxprice(maxprice), "max");
-
   const fetchProducts = async () => {
     try {
       console.log(minprice, maxprice, "maxprice");

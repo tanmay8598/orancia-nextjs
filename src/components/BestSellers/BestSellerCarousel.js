@@ -8,7 +8,6 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import Product from "./Product";
 import { useCallback, useRef } from "react";
-import NewProducts from "./NewProducts";
 import BestSallerCard from "./BestSallerCard";
 
 const BestSellerCarousel = ({ products }) => {

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { add } from "@/redux/features/cart/cartSlice";
 import { useDispatch } from "react-redux";
@@ -10,10 +10,11 @@ import Link from "next/link";
 import AddtoCartBtn from "../Button/AddtoCartBtn";
 
 const BestSallerCard = ({ product }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const short = product.name.replace(/(.{33})..+/, "$1");
   const dispatch = useDispatch();
   const handleAddToCart = () => {
-    dispatch(add({ product }));
+    dispatch(add({ product, quantity: 1 }));
     toast.success("Success. Check your cart!", {
       position: "bottom-right",
       autoClose: 5000,
@@ -29,6 +30,15 @@ const BestSallerCard = ({ product }) => {
     event.target.src =
       "https://files.stbotanica.com/site-images/400x400/STBOT470-01.jpg";
   };
+  const handleMouseEnter = () => {
+    if (product.image && product.image.length > 1) {
+      setCurrentImageIndex(1);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setCurrentImageIndex(0);
+  };
 
   return (
     <div>
@@ -39,11 +49,15 @@ const BestSallerCard = ({ product }) => {
 
         <div className=" flex-col  flex">
           <Link className="group" href={`/product/${product._id}`}>
-            <div className="overflow-hidden rounded-t-lg">
+            <div
+              className="overflow-hidden rounded-t-lg"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
               <Image
                 src={
                   product.image && product.image.length > 0
-                    ? product.image[0]
+                    ? product.image[currentImageIndex]
                     : "https://files.stbotanica.com/site-images/400x400/STBOT470-01.jpg"
                 }
                 className="w-full h-full object-contain"

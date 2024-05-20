@@ -13,9 +13,9 @@ import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 
 const CartSidebar = ({ isOpen, setIsOpen }) => {
-  const selector = useSelector((state) => state.cart);
+  const products = useSelector((state) => state.cart.cart);
 
-  const cartLength = selector.cart?.length;
+  const cartLength = products?.length;
 
   const router = useRouter();
 
@@ -23,12 +23,13 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
     router.push(`/checkout`);
     setIsOpen(false);
   };
-  const selectorss = useSelector((state) => state.cart);
-
-  const totalValue = selectorss.cart.reduce((total, item) => {
-    return total + item?.quantity * item?.product?.price;
+  const totalValue = products.reduce((total, item) => {
+    return total + item?.quantity * item?.product?.sell_price;
   }, 0);
+  // console.log(totalValue, "total");
   // console.log(selector.cart, "selector.cart");
+  // console.log(products);
+  // console.log(products, "products");
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetContent className="bg-white lg:max-w-[500px] ">
@@ -46,8 +47,8 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
             </div>
           ) : (
             <ScrollArea className="h-[70vh] xl:h-[74vh]  mb-4">
-              {selector.cart &&
-                selector.cart.map((item, index) => (
+              {products &&
+                products.map((item, index) => (
                   <CartItem item={item} key={index} />
                 ))}
             </ScrollArea>
