@@ -173,6 +173,7 @@ const MenuNavbar = () => {
                       />
                     </div>
                   )}
+
                   <div
                     className="pr-4 cursor-pointer"
                     onClick={() => setIsOpen(true)}

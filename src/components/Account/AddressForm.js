@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,43 +7,42 @@ import SelectField from "./SelectField";
 import { useRouter } from "next/navigation";
 import { SheetHeader, SheetTitle } from "../ui/sheet";
 import LogoInformation from "./LogoInformation";
+import apiClient from "@/api/client";
+import useAuth from "@/auth/useAuth";
+import { User } from "lucide-react";
 
 const AddressForm = ({ setIsLogin, isOpen, setIsOpen }) => {
   const [formData, setFormData] = useState({
-    fName: "",
-    last_name: "",
-    // plan: "",
+    address: "",
+    street: "",
     email: "",
-    phone_number: "",
-    streetName: "",
-    city: "",
-    pin_code: "",
+    mobileNumber: "",
+    area: "",
+    pincode: "",
     landmark: "",
-    // gender: "",
-    state: "",
-    // isDefault: false,
   });
   const [errors, setErrors] = useState({});
+  const user = useAuth();
+  const router = useRouter();
+  console.log(router, "router");
 
   const schema = Yup.object().shape({
-    fName: Yup.string()
-      .required("First name is required")
-      .min(3, "First name must be at least 3 characters"),
-    last_name: Yup.string()
-      .required("Last name is required")
-      .min(3, "Last name must be at least 3 characters"),
+    address: Yup.string()
+      .required("Enter Address is required")
+      .min(3, "Enter Address must be at least 3 characters"),
+
+    street: Yup.string()
+      .required("Enter Street is required")
+      .min(3, "Enter Street must be at least 3 characters"),
     // email: Yup.string().required("Email is required"),
-    phone_number: Yup.string()
+    mobileNumber: Yup.string()
       .required("Phone Number is required")
       .matches(/^\d{10}$/, "Phone Number must be exactly 10 digits"),
-    streetName: Yup.string().required("Full Address is required"),
-    city: Yup.string().required("City is required"),
-    pin_code: Yup.string()
+    email: Yup.string().required("Email is required"),
+    area: Yup.string().required("area is required"),
+    pincode: Yup.string()
       .required("Pin Code is required")
       .matches(/^\d{6}$/, "Pin Code must be exactly 6 digits"),
-    // gender: Yup.string().required("gender is required"),
-    state: Yup.string().required("State is required"),
-    // plan: Yup.string().required("Plan is required"),
   });
 
   const handleInputChange = (e) => {
@@ -73,27 +72,46 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = await validate();
-    if (isValid) {
-      console.log("Form data:", formData);
-      setFormData({
-        fName: "",
-        last_name: "",
-        // plan: "",
-        phone_number: "",
-        streetName: "",
-        city: "",
-        pin_code: "",
-        landmark: "",
-        // gender: "",
-        state: "",
-        // isDefault: false,
-      });
-      toast.success("Form submitted successfully!");
-      setIsOpen(false);
-    } else {
+    if (!isValid) {
       toast.error("Please correct the errors before submitting.");
+      return;
+    }
+
+    try {
+      const response = await apiClient.post("/user/saveShippingAddress", {
+        userId: user.id,
+        shippingAddress: {
+          address,
+          street,
+          mobileNumber,
+          email,
+          pincode,
+          landmark,
+          area,
+        },
+      });
+      console.log(response, "resa");
+      if (response.ok) {
+        setFormData({
+          address: "",
+          street: "",
+          mobileNumber: "",
+          email: "",
+          area: "",
+          pincode: "",
+          landmark: "",
+        });
+        setIsOpen(false);
+        toast.success("Address added successfully!");
+      } else {
+        toast.error("An error occurred while saving the address.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast.error("An error occurred while submitting the form.");
     }
   };
+
   const handleInputNumber = (e) => {
     const inputValue = e.target.value.replace(/\D/g, "");
     e.target.value = inputValue;
@@ -105,39 +123,39 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen }) => {
       <form onSubmit={handleSubmit}>
         <div className="mb-4 grid grid-cols-2 gap-2 relative">
           <InputField
-            id="fName"
-            label="First name"
-            value={formData.fName}
+            id="address"
+            label="Address"
+            value={formData.address}
             onChange={handleInputChange}
-            error={errors.fName}
+            error={errors.address}
             placeholder=" "
           />
           <InputField
-            id="last_name"
-            label="Last name"
-            value={formData.last_name}
+            id="street"
+            label="Street"
+            value={formData.street}
             onChange={handleInputChange}
-            error={errors.last_name}
+            error={errors.street}
             placeholder=" "
           />
         </div>
 
         <InputField
-          id="phone_number"
+          id="mobileNumber"
           label="Phone Number"
-          value={formData.phone_number}
+          value={formData.mobileNumber}
           onChange={handleInputChange}
-          error={errors.phone_number}
+          error={errors.mobileNumber}
           maxLength={10}
           onInput={handleInputNumber}
           placeholder=" "
         />
         <InputField
-          id="streetName"
-          label="Full Address"
-          value={formData.streetName}
+          id="email"
+          label="Email"
+          value={formData.email}
           onChange={handleInputChange}
-          error={errors.streetName}
+          error={errors.email}
           placeholder=" "
         />
         <InputField
@@ -149,95 +167,24 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen }) => {
         />
         <div className="mb-4 grid grid-cols-2 gap-2 relative">
           <InputField
-            id="city"
-            label="City"
-            value={formData.city}
+            id="area"
+            label="area"
+            value={formData.area}
             onChange={handleInputChange}
-            error={errors.city}
+            error={errors.area}
             placeholder=" "
           />
           <InputField
-            id="pin_code"
+            id="pincode"
             label="PIN Code"
-            value={formData.pin_code}
+            value={formData.pincode}
             onChange={handleInputChange}
-            error={errors.pin_code}
+            error={errors.pincode}
             maxLength={6}
             onInput={handleInputNumber}
             placeholder=" "
           />
         </div>
-        {/* <SelectField
-          id="gender"
-          label="gender"
-          value={formData.gender}
-          onChange={handleInputChange}
-          error={errors.gender}
-        >
-          <option value="">Select a gender...</option>
-          <option value="India">Male</option>
-          <option value="India">Female</option>
-          <option value="India">Other</option>
-        </SelectField> */}
-        <SelectField
-          id="state"
-          label="State"
-          value={formData.state}
-          onChange={handleInputChange}
-          error={errors.state}
-        >
-          <option value="">Select a state...</option>
-          <option value="Andhra Pradesh">Andhra Pradesh</option>
-          <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-          <option value="Assam">Assam</option>
-          <option value="Bihar">Bihar</option>
-          <option value="Chhattisgarh">Chhattisgarh</option>
-          <option value="Goa">Goa</option>
-          <option value="Gujarat">Gujarat</option>
-          <option value="Haryana">Haryana</option>
-          <option value="Himachal Pradesh">Himachal Pradesh</option>
-          <option value="Jharkhand">Jharkhand</option>
-          <option value="Karnataka">Karnataka</option>
-          <option value="Kerala">Kerala</option>
-          <option value="Madhya Pradesh">Madhya Pradesh</option>
-          <option value="Maharashtra">Maharashtra</option>
-          <option value="Manipur">Manipur</option>
-          <option value="Meghalaya">Meghalaya</option>
-          <option value="Mizoram">Mizoram</option>
-          <option value="Nagaland">Nagaland</option>
-          <option value="Odisha">Odisha</option>
-          <option value="Punjab">Punjab</option>
-          <option value="Rajasthan">Rajasthan</option>
-          <option value="Sikkim">Sikkim</option>
-          <option value="Tamil Nadu">Tamil Nadu</option>
-          <option value="Telangana">Telangana</option>
-          <option value="Tripura">Tripura</option>
-          <option value="Uttar Pradesh">Uttar Pradesh</option>
-          <option value="Uttarakhand">Uttarakhand</option>
-          <option value="West Bengal">West Bengal</option>
-        </SelectField>
-        {/* <SelectField
-          id="plan"
-          label="plan"
-          value={formData.plan}
-          onChange={handleInputChange}
-          error={errors.plan}
-        >
-          <option value="">Select a plan...</option>
-          <option value="India">Plan A</option>
-          <option value="India">Plan B</option>
-          <option value="India">Plan C</option>
-        </SelectField> */}
-        {/* <div className="mb-4 flex items-center">
-          <input
-            type="checkbox"
-            id="isDefault"
-            checked={formData.isDefault}
-            onChange={handleInputChange}
-            className="mr-2"
-          />
-          <label htmlFor="isDefault">Set as default</label>
-        </div> */}
 
         <button
           className="bg-red-500 text-white w-full font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"

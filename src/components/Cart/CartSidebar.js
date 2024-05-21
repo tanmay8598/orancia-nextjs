@@ -11,8 +11,12 @@ import { ScrollArea } from "../ui/scroll-area";
 import CartItem from "./CartItem";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
+import useAuth from "@/auth/useAuth";
+import LoginForm from "../Account/LoginForm";
+import AccountSidebar from "./AccountSidebar";
 
 const CartSidebar = ({ isOpen, setIsOpen }) => {
+  const [isOpenAccount, setIsOpenAccount] = useState(false);
   const products = useSelector((state) => state.cart.cart);
 
   const cartLength = products?.length;
@@ -20,9 +24,14 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/checkout`);
-    setIsOpen(false);
+    if (!user) {
+      setIsOpenAccount(true);
+    } else {
+      router.push(`/checkout`);
+      setIsOpen(false);
+    }
   };
+  const { user } = useAuth();
   const totalValue = products.reduce((total, item) => {
     return total + item?.quantity * item?.product?.sell_price;
   }, 0);
@@ -30,6 +39,7 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
   // console.log(selector.cart, "selector.cart");
   // console.log(products);
   // console.log(products, "products");
+
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetContent className="bg-white lg:max-w-[500px] ">
@@ -57,10 +67,12 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
         {cartLength > 0 && (
           <div className="mt-12">
             <div className="flex justify-between font-semibold">
-              <div className="uppercase mb-5">Total : ₹{totalValue}.00</div>
+              <div className="uppercase  mb-5 sm:mb-0 sm:pt-1">
+                Total : ₹{totalValue}.00
+              </div>
               <div className="mb-2">
                 <button
-                  className="bg-red-400 rounded-xl text-white font-medium text-xs py-2 px-4 sm:px-8 w-full sm:w-auto"
+                  className="bg-red-400 rounded-xl text-white sm:font-medium text-base py-2  px-14 md:px-24 w-full sm:w-auto"
                   onClick={handleClick}
                 >
                   Checkout
@@ -69,6 +81,7 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
             </div>
           </div>
         )}
+        <AccountSidebar isOpen={isOpenAccount} setIsOpen={setIsOpenAccount} />
       </SheetContent>
     </Sheet>
   );

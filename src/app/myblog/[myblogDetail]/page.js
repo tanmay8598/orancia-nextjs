@@ -3,11 +3,8 @@ import BlogContent from "@/components/Blog/BlogContent";
 // import { useParams } from "next/navigation";
 
 export async function generateMetadata({ params }) {
-  // const params = useParams();
-  console.log(params, "params");
   const blogid = params.myblogDetail;
   const { data } = await apiclient.get(`/blog/blogbyid/${blogid}`);
-  console.log(blogid, "blog");
 
   return {
     title: data?.mtitle,
@@ -21,9 +18,8 @@ export async function generateMetadata({ params }) {
 }
 
 const page = ({ params }) => {
-  // console.log(params, "data ");
   const blogid = params.myblogDetail;
-  console.log(blogid, "blog");
+
   return (
     <>
       {/* vimal */}
