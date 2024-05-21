@@ -95,12 +95,15 @@ const Footer = () => {
         {/* Section 1 */}
 
         <div className="p-6 lg:p-14 lg:pr-3">
-          <div className="flex p-1">
+          <div className="flex p-1 justify-center sm:justify-normal">
             <div className="m-2">
-              <div className="bg-red-500 rounded-[29px] object-center p-2 w-[56px] ">
+              <div
+                className="bg-red-500 rounded-[29px] object-center p-3 sm:p-2 
+              w-[50px] sm:w-[56px] "
+              >
                 <Image
                   src="/free-delivery.png"
-                  className="w-full h-[40px]   rounded-full"
+                  className="w-full sm:h-[40px]   rounded-full"
                   height={40}
                   width={40}
                 />
@@ -109,26 +112,26 @@ const Footer = () => {
             <div className="m-2">
               <div className="pb-1">Free Shipping</div>
 
-              <div>On Orders Above ₹ 299</div>
+              <div>Order Above ₹ 299</div>
             </div>
           </div>
         </div>
         {/* Section 1 */}
 
         <div className="p-6 lg:p-14 lg:pr-3">
-          <div className="flex p-1">
+          <div className="flex p-1 justify-center sm:justify-normal">
             <div className="m-2">
-              <div className="bg-red-500 rounded-[29px] p-2 w-[56px] ">
+              <div className="bg-red-500 rounded-[29px] p-2 w-[50px] sm:w-[56px] ">
                 <Image
                   src="returns.png"
-                  className="w-full h-[40px] object-contain rounded-full"
+                  className="w-full sm:h-[40px] object-contain rounded-full"
                   height={40}
                   width={40}
                 />
               </div>
             </div>
             <div className="m-2">
-              <div className="pb-1">15-Day Return Policy</div>
+              <div className="pb-1">15Day Return Policy</div>
 
               <div>EASY RETURNS</div>
             </div>
@@ -137,12 +140,12 @@ const Footer = () => {
         {/* Section 2 */}
 
         <div className="p-6 lg:p-14 lg:pr-3">
-          <div className="flex p-1 ">
+          <div className="flex p-1 justify-center sm:justify-normal ">
             <div className="m-2 ">
-              <div className="bg-red-500 rounded-[29px] p-2 w-[56px] ">
+              <div className="bg-red-500 rounded-[29px] p-2 sm:w-[56px] w-[50px] ">
                 <Image
                   src="/brand.png"
-                  className="w-full h-[40px] object-contain rounded-full"
+                  className="w-full sm:h-[40px] object-contain rounded-full"
                   height={40}
                   width={40}
                 />
@@ -150,19 +153,19 @@ const Footer = () => {
             </div>
             <div className="m-2">
               <div className="pb-1">100% AUTHENTIC</div>
-              <div>Products Sourced Directly</div>
+              <div>Products Directly</div>
             </div>
           </div>
         </div>
         {/* Section 1 */}
 
         <div className="p-6 lg:p-14 lg:pr-3">
-          <div className="flex p-1">
+          <div className="flex p-1 justify-center sm:justify-normal">
             <div className="m-2">
-              <div className="bg-red-500 rounded-[29px] p-2 w-[56px] ">
+              <div className="bg-red-500 rounded-[29px] p-2 sm:w-[56px]  w-[50px]">
                 <Image
                   src="brand-image.png"
-                  className="w-full h-[40px] object-contain rounded-full"
+                  className="w-full sm:h-[40px] object-contain rounded-full"
                   height={40}
                   width={40}
                 />
@@ -178,8 +181,10 @@ const Footer = () => {
         {/* Section 1 */}
 
         <div className="p-6 lg:p-14 lg:pr-10">
-          <div className="flex p-1">Show us some love ❤ on social media</div>
-          <div className="mt-2 flex gap-2">
+          <div className="flex p-1 justify-center sm:justify-normal">
+            Show us some love ❤ on social media
+          </div>
+          <div className="mt-2 flex gap-2 justify-center">
             <BsFacebook size={30} className="cursor-pointer" />
             <RiInstagramFill size={30} className="cursor-pointer" />
             <BsWhatsapp size={30} className="cursor-pointer" />

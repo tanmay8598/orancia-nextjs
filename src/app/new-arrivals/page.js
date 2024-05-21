@@ -12,7 +12,7 @@ import BestSideNav from "@/components/BestSellers/BestSideNav";
 
 const Page = () => {
   const [isOpenSearch, setIsOpenSearch] = useState(false);
-  const [products, setProducts] = useState([]);
+  const [product, setProducts] = useState([]);
   const [subcat, setSubcat] = useState([]);
   const [selectedSubcategory, setSelectedSubcategory] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -40,7 +40,7 @@ const Page = () => {
       });
       console.log(response.data, "response");
       if (response.ok) {
-        setProducts(response.data.products);
+        setProducts(response.data.product);
       } else {
         setError(response.statusText);
       }
@@ -99,7 +99,7 @@ const Page = () => {
           <ShopMobNav
             isOpen={isOpenSearch}
             setIsOpen={setIsOpenSearch}
-            productsss={products}
+            productsss={product}
             subCatgary={subcat}
             selectedSubcategory={selectedSubcategory}
             handleSubcategory={handleSubcategory}
@@ -119,7 +119,7 @@ const Page = () => {
               range={range}
             /> */}
             <BestSideNav
-              productsss={products}
+              productsss={product}
               subCatgary={subcat}
               selectedSubcategory={selectedSubcategory}
               handleSubcategory={handleSubcategory}
@@ -137,13 +137,13 @@ const Page = () => {
                 {isOpenSearch ? "Hide" : "Show"} Filters
               </button>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-              {products.length === 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+              {product.length === 0 ? (
                 <p className="text-center justify-center flex align-middle">
                   No products found
                 </p>
               ) : (
-                products.map((product) => (
+                product.map((product) => (
                   // <Product key={product.id} product={product} />
                   <NewProducts key={product.id} product={product} />
                 ))

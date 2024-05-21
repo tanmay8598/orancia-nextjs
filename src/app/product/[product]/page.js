@@ -44,7 +44,7 @@ function Icon({ id, open }) {
   );
 }
 
-const products = [
+const relproducts = [
   {
     id: 0,
     name: "Moroccan Argan Conditioner For Dry Hair",
@@ -132,39 +132,13 @@ const products = [
   },
 ];
 
-const data = [
-  {
-    id: "1",
-    attributes: {
-      url:
-        "https://discoverpilgrim.com/cdn/shop/files/AdvancedHairGrowthSerum_50ml_1080x1080_White-background.jpg?v=1712322873&width=800",
-      name: "abc",
-    },
-  },
-  {
-    id: "2",
-    attributes: {
-      url:
-        "https://discoverpilgrim.com/cdn/shop/files/AdvancedHairGrowthSerum_50ml_1080x1080_Claim-with-yami.jpg?v=1712322873&width=800",
-      name: "abc2",
-    },
-  },
-  {
-    id: "3",
-    attributes: {
-      url:
-        "https://discoverpilgrim.com/cdn/shop/files/AdvancedHairGrowthSerum_50ml_1080x1080_Clinically-Tested-Results.jpg?v=1712322873&width=800",
-      name: "abc2",
-    },
-  },
-];
-
 const page = () => {
   const router = useParams();
   // console.log(router, "ro");
   const productId = router.product;
 
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState();
+
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
@@ -178,6 +152,7 @@ const page = () => {
         const response = await apiClient.get(`/product/get-by-id`, {
           productId,
         });
+        console.log(response, "res");
         if (!response.ok) {
           throw new Error("Failed to fetch product");
         }
@@ -209,9 +184,11 @@ const page = () => {
       setQuantity(quantity + 1);
     }
   };
+  console.log(product, "products");
 
   const notify = () => {
-    dispatch(add({ product: products[0], quantity }));
+    // dispatch(add({ product: products[0], quantity }));
+    dispatch(add({ product, quantity }));
     toast.success("Success. Check your cart!", {
       position: "bottom-right",
       autoClose: 5000,
@@ -231,7 +208,7 @@ const page = () => {
         <div className="flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]">
           {/* desktop image  */}
           <div className="w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
-            <ProductDetailsCarousel images={product.image} />
+            <ProductDetailsCarousel images={product?.image} />
           </div>
 
           {/* right  */}
@@ -354,7 +331,7 @@ const page = () => {
               <div className="mb-2">
                 <p className="text-md   md:text-md">Product Details</p>
 
-                <div dangerouslySetInnerHTML={{ __html: product.details }} />
+                <div dangerouslySetInnerHTML={{ __html: product?.details }} />
               </div>
               {/* <div dangerouslySetInnerHTML={{ __html: product.description }} /> */}
               {/* <ul className="md:text-md text-gray-500 ">
@@ -400,7 +377,7 @@ const page = () => {
                 <p className="text-md md:text-md">Product Description</p>
 
                 <div
-                  dangerouslySetInnerHTML={{ __html: product.description }}
+                  dangerouslySetInnerHTML={{ __html: product?.description }}
                 />
               </div>
 
@@ -458,9 +435,9 @@ const page = () => {
             </div>
           </div>
         </div>
-        <RelatedProducts products={products} />
+        <RelatedProducts products={relproducts} />
         <div>
-          <ReviewSection reviews={product.reviews} />
+          <ReviewSection reviews={product?.reviews} />
         </div>
       </Wrapper>
     </section>

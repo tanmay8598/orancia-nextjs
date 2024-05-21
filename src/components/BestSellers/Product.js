@@ -14,7 +14,7 @@ const Product = ({ product }) => {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    dispatch(add({ product }));
+    dispatch(add({ product, quantity: 1 }));
     toast.success("Success. Check your cart!", {
       position: "bottom-right",
       autoClose: 5000,
