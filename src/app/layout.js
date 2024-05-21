@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar/Navbar";
+// import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import MenuNavbar from "@/components/Navbar/MenuNavbar";
 import { Providers } from "@/redux/provider";
@@ -11,7 +11,6 @@ import { store } from "@/redux/store";
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import AuthContext from "@/auth/context";
-
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",

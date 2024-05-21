@@ -112,7 +112,7 @@ const Footer = () => {
             <div className="m-2">
               <div className="pb-1">Free Shipping</div>
 
-              <div>On Orders Above ₹ 299</div>
+              <div>Order Above ₹ 299</div>
             </div>
           </div>
         </div>
@@ -131,7 +131,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="m-2">
-              <div className="pb-1">15-Day Return Policy</div>
+              <div className="pb-1">15Day Return Policy</div>
 
               <div>EASY RETURNS</div>
             </div>
@@ -153,7 +153,7 @@ const Footer = () => {
             </div>
             <div className="m-2">
               <div className="pb-1">100% AUTHENTIC</div>
-              <div>Products Sourced Directly</div>
+              <div>Products Directly</div>
             </div>
           </div>
         </div>
@@ -184,7 +184,7 @@ const Footer = () => {
           <div className="flex p-1 justify-center sm:justify-normal">
             Show us some love ❤ on social media
           </div>
-          <div className="mt-2 flex gap-2">
+          <div className="mt-2 flex gap-2 justify-center">
             <BsFacebook size={30} className="cursor-pointer" />
             <RiInstagramFill size={30} className="cursor-pointer" />
             <BsWhatsapp size={30} className="cursor-pointer" />

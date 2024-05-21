@@ -29,19 +29,17 @@ const BlogHero = () => {
     } catch (error) {
       setError(error.message);
       console.log(error);
-    } finally {
-      setIsLoading(false);
     }
   };
   const allblogs = blogList.blogs;
-  if (isLoading) {
-    return (
-      <div>
-        <Loader />
-      </div>
-    );
-  }
-  console.log(blogList, "blo");
+  // if (isLoading) {
+  //   return (
+  //     <div>
+  //       <Loader />
+  //     </div>
+  //   );
+  // }
+  // console.log(blogList, "blo");
 
   return (
     <div class="  max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">

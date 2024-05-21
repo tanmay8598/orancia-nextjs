@@ -93,7 +93,8 @@ const MenuNavbar = () => {
           </section>
           <nav
             aria-label="Top"
-            className="mx-auto max-w-7xl px-4 sm:px-2 lg:px-2 md:px-0 "
+            // className="mx-auto max-w-7xl px-4 sm:px-2 lg:px-2 md:px-0 "
+            className="   "
           >
             <div className="border-b border-gray-200">
               <div className="flex justify-between items-center h-24">
@@ -133,6 +134,7 @@ const MenuNavbar = () => {
                   </div>
                 </Popover.Group>
 
+                {/* <div className="flex items-center space-x-4 lg:ml-auto"> */}
                 <div className="flex items-center space-x-4 lg:ml-auto">
                   <div
                     className="relative h-4 w-4 text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer"
@@ -145,8 +147,6 @@ const MenuNavbar = () => {
                       fill={true}
                     />
                   </div>
-
-                  {/* Cart */}
 
                   {!user ? (
                     <div
@@ -173,9 +173,8 @@ const MenuNavbar = () => {
                       />
                     </div>
                   )}
-
                   <div
-                    className="relative h-4 w-4 text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer"
+                    className="pr-4 cursor-pointer"
                     onClick={() => setIsOpen(true)}
                   >
                     <img
@@ -184,14 +183,19 @@ const MenuNavbar = () => {
                       priority={true}
                       fill={true}
                     />
+                    <span
+                      className="absolute bg-primary -mt-8 right-2 text-white p-1    "
+                      style={{
+                        fontSize: "10px",
 
-                    <div
-                      class="h-4 w-4 relative inline-flex bg-primary items-center -right-2 bottom-1 -top-8 justify-center text-white font-light text-center bg-heading-color font-heading text-sm md:text-base lg:text-lg   rounded-full h-21 w-21"
-                      style={{ fontSize: "10px" }}
+                        borderRadius: "30px",
+                        height: "22px",
+                        width: "22px",
+                        textAlign: "center",
+                      }}
                     >
-                      {/* {selector.cart.length > 0 ? selector.cart.length : ""} */}
                       {cartLength > 0 ? cartLength : "0"}
-                    </div>
+                    </span>
                   </div>
                 </div>
               </div>
