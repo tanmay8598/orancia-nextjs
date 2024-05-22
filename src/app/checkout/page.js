@@ -10,8 +10,9 @@ import { useSelector } from "react-redux";
 const page = () => {
   const [isOpenAccount, setIsOpenAccount] = useState(false);
   const selector = useSelector((state) => state.cart);
+  console.log(selector, "select");
   const totalValue = selector.cart.reduce((total, item) => {
-    return total + item.quantity * item.product.price;
+    return total + item.quantity * item.product.sell_price;
   }, 0);
 
   return (
@@ -46,22 +47,28 @@ const page = () => {
             <h2 className="text-lg font-semibold mb-4">Your Products</h2>
             {/* Product list goes here */}
             <div className="flex flex-col space-y-4">
-              <div>
-                {selector.cart &&
+              <div className="h-64 overflow-y-scroll">
+                {selector.cart ? (
                   selector.cart.map((item, index) => (
                     <OrderImagecard item={item} key={index} />
-                  ))}
+                  ))
+                ) : (
+                  <p>Loading...</p>
+                )}
               </div>
-
-              <CoopanForm />
-              <CoopanBox />
+              <div>
+                <CoopanForm />
+              </div>
+              <div>
+                <CoopanBox />
+              </div>
             </div>
 
             <div className="flex my-4 justify-between items-center">
               <div className="flex-1 ">
                 <p className="text-sm text-gray-600">Subtotal</p>
               </div>
-              <p className="text-black font-semibold  ">₹{totalValue}.00</p>
+              <p className="text-black font-semibold  ">₹ {totalValue}.00</p>
             </div>
             <div className="flex my-4 justify-between items-center">
               <div className="flex-1 ">
@@ -73,15 +80,15 @@ const page = () => {
               <div className="flex-1 ">
                 <p className="text-black text-2xl font-semibold">Total</p>
               </div>
-              <span className="text-sm text-gray-600">INR </span>
+              {/* <span className="text-sm text-gray-600">INR </span> */}
               <p className="text-black text-2xl font-semibold  ">
-                ₹{totalValue}.00
+                ₹ {totalValue}.00
               </p>
             </div>
             <div className="flex my-4 justify-between items-center">
               <div className="flex-1 ">
                 <p className="text-sm text-gray-600">
-                  Including ₹103.21 in taxes
+                  Including ₹ 103.21 in taxes
                 </p>
               </div>
             </div>

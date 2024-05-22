@@ -51,7 +51,7 @@ const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
     if (isValid) {
       try {
         const response = await apiClient.post("/user/login", formData);
-        // const data = await response.json();
+
         if (response.ok) {
           toast.success("Login successful!");
           logIn(response.data.token);
