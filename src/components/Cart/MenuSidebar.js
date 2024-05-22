@@ -1,27 +1,69 @@
 "use client";
-import React from "react";
-import * as Yup from "yup";
+import React, { useState } from "react";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import NavbarItems from "../Navbar/NavbarItems";
-const SHEET_SIDES = ["left"];
+import MobNavbarItems from "../Navbar/MobNavbarItems";
+import AccountSidebar from "./AccountSidebar";
+import { useRouter } from "next/navigation";
+import useAuth from "@/auth/useAuth";
+
 const MenuSidebar = ({ isOpen, setIsOpen }) => {
+  const [isOpenAccount, setIsOpenAccount] = useState(false);
+  const router = useRouter();
+  const { user } = useAuth();
+  const handleRedirect = () => {
+    router.push("/account/");
+  };
   return (
     <div>
-      {SHEET_SIDES.map((side) => (
-        <Sheet key={side} open={isOpen} onOpenChange={setIsOpen} side={side}>
-          <SheetContent className="bg-white lg:max-w-[500px]">
-            <SheetHeader>
-              <SheetTitle className="text-left mb-8">My Account</SheetTitle>
-            </SheetHeader>
-            <NavbarItems />
-          </SheetContent>
-        </Sheet>
-      ))}
+      <Sheet open={isOpen} onOpenChange={setIsOpen} side="left">
+        <SheetContent className="bg-white lg:max-w-[500px]">
+          <SheetHeader>
+            <SheetTitle className="text-left mb-8">
+              {!user ? (
+                <div
+                  className="relative h-4 w-4 text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer"
+                  onClick={() => setIsOpenAccount(true)}
+                >
+                  <div className="flex items-center gap-x-2 text-base">
+                    <img
+                      src="/user.svg"
+                      alt="user icon"
+                      priority={true}
+                      fill={true}
+                      className="w-6 h-6"
+                    />
+                    <span>Account</span>
+                  </div>
+                </div>
+              ) : (
+                <div
+                  className="relative h-4 w-4 text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer"
+                  onClick={handleRedirect}
+                >
+                  <div className="flex items-center gap-x-2">
+                    <img
+                      src="/user.svg"
+                      alt="user icon"
+                      priority={true}
+                      fill={true}
+                      className="w-6 h-6"
+                    />
+                    <span>Account</span>
+                  </div>
+                </div>
+              )}
+            </SheetTitle>
+          </SheetHeader>
+          {/* Your content goes here */}
+          <MobNavbarItems />
+          <AccountSidebar isOpen={isOpenAccount} setIsOpen={setIsOpenAccount} />
+        </SheetContent>
+      </Sheet>
     </div>
   );
 };

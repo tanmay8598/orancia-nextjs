@@ -75,7 +75,7 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
                   className="bg-red-400 rounded-xl text-white sm:font-medium text-base py-2  px-14 md:px-24 w-full sm:w-auto"
                   onClick={handleClick}
                 >
-                  Checkout
+                  CHECKOUT
                 </button>
               </div>
             </div>
