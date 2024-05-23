@@ -49,7 +49,7 @@ const MenuNavbar = () => {
             className="   "
           >
             <div className="border-b border-gray-200">
-              <div className="flex justify-between items-center h-24">
+              <div className="flex justify-between ">
                 <button
                   type="button"
                   className="relative rounded-md bg-white p-2 text-gray-400 lg:hidden"

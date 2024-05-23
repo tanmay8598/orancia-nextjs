@@ -38,9 +38,9 @@ const DiffrenceBnner = () => {
         </div>
         {/* <Link href="/best-sellers"> */}
         <div className="flex justify-center mt-10 sm:mt-14">
-          <button className="bg-red-400 px-10 py-3 text-white font-medium z-10 sm:z-0 rounded-lg mx-auto mt-8 ">
+          {/* <button className="bg-red-400 px-10 py-3 text-white font-medium z-10 sm:z-0 rounded-lg mx-auto mt-8 ">
             See all
-          </button>
+          </button> */}
         </div>
         {/* </Link> */}
         <div className=" absolute top-1 -left-12 sm:bottom-0 sm:left-0 opacity-50 sm:opacity-100 ">

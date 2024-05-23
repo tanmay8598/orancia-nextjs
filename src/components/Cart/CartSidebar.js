@@ -65,12 +65,12 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
           )}
         </>
         {cartLength > 0 && (
-          <div className="mt-12">
+          <div className="mt-10 sm:mb-6">
             <div className="flex justify-between font-semibold">
-              <div className="uppercase  mb-5 sm:mb-0 sm:pt-1">
+              <div className="uppercase  my-2 sm:mb-0 sm:pt-1">
                 Total : ₹{totalValue}.00
               </div>
-              <div className="mb-2">
+              <div className="mb-4">
                 <button
                   className="bg-red-400 rounded-xl text-white sm:font-medium text-base py-2  px-14 md:px-24 w-full sm:w-auto"
                   onClick={handleClick}
