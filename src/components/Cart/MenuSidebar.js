@@ -26,19 +26,41 @@ const MenuSidebar = ({ isOpen, setIsOpen }) => {
             <SheetTitle className="text-left mb-8">
               {!user ? (
                 <div
-                  className="relative h-4 w-4 text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer"
+                  className=" flex justify-between pt-4 relative  text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer"
                   onClick={() => setIsOpenAccount(true)}
                 >
-                  <div className="flex items-center gap-x-2 text-base">
-                    <img
-                      src="/user.svg"
-                      alt="user icon"
-                      priority={true}
-                      fill={true}
-                      className="w-6 h-6"
-                    />
-                    <span>Account</span>
+                  <div>
+                    <div className="flex items-center gap-x-2 text-base">
+                      <img
+                        src="/user.svg"
+                        alt="user icon"
+                        priority={true}
+                        fill={true}
+                        className="w-4 h-4"
+                      />
+                      <span>Account</span>
+                    </div>
                   </div>
+                  <div>
+                    <div className="flex items-center gap-x-2 text-base">
+                      {/* <img
+                        src="/user.svg"
+                        alt="user icon"
+                        priority={true}
+                        fill={true}
+                        className="w-6 h-6"
+                      /> */}
+                      <img
+                        src="/tracking.svg"
+                        alt="track order"
+                        priority={true}
+                        fill={true}
+                        className="w-6 h-6"
+                      />
+                      <span>Track Order</span>
+                    </div>
+                  </div>
+                  {/* </div> */}
                 </div>
               ) : (
                 <div
