@@ -43,13 +43,6 @@ const MenuSidebar = ({ isOpen, setIsOpen }) => {
                   </div>
                   <div>
                     <div className="flex items-center gap-x-2 text-base">
-                      {/* <img
-                        src="/user.svg"
-                        alt="user icon"
-                        priority={true}
-                        fill={true}
-                        className="w-6 h-6"
-                      /> */}
                       <img
                         src="/tracking.svg"
                         alt="track order"
