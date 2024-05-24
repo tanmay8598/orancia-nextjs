@@ -8,7 +8,7 @@ import {
 import AddressForm from "../Account/AddressForm";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 
-const AddressSidebar = ({ isOpen, setIsOpen }) => {
+const AddressSidebar = ({ isOpen, setIsOpen, existingAddress }) => {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetHeader>
@@ -20,7 +20,11 @@ const AddressSidebar = ({ isOpen, setIsOpen }) => {
           </SheetHeader>
           {/* Wrap the content in a div with a fixed height and overflow-y:auto */}
           <div style={{ maxHeight: "calc(100vh - 200px)", overflowY: "auto" }}>
-            <AddressForm isOpen={isOpen} setIsOpen={setIsOpen} />
+            <AddressForm
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+              existingAddress={existingAddress}
+            />
           </div>
         </SheetContent>
       </SheetHeader>
