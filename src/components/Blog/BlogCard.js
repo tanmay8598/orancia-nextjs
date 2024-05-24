@@ -12,7 +12,7 @@ const BlogCard = ({ blogData }) => {
     <>
       <div className="rounded overflow-hidden shadow-lg flex flex-col">
         <div className="relative">
-          <Link href={`/myblog/${blogData?._id}`}>
+          <Link href={`/blogs/${blogData?._id}`}>
             <img
               className="w-full"
               src={blogData?.image[0]}
@@ -28,7 +28,7 @@ const BlogCard = ({ blogData }) => {
         </div>
         <div className="px-6 py-4 mb-auto">
           <Link
-            href={`/myblog/${blogData?._id}`}
+            href={`/blogs/${blogData?._id}`}
             className="font-medium text-lg  hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
           >
             {blogData?.mtitle}

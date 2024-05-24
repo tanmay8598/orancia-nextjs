@@ -32,6 +32,10 @@ const SearchSidebar = ({ isOpen, setIsOpen }) => {
       setResults(results);
     }
   };
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetContent className="bg-white lg:max-w-[500px] ">
@@ -47,37 +51,41 @@ const SearchSidebar = ({ isOpen, setIsOpen }) => {
             onChange={(e) => handleSearch(e.target.value)}
           />
         </div>
-
+        <div></div>
         {results.length === 0 && search?.length > 0 && (
           <div className="text-center h-screen flex flex-col items-center justify-center text-lg">
             No results could be found
           </div>
         )}
-
+        {results.length > 0 && (
+          <div className="mt-3 underline font-semibold ">Products</div>
+        )}
         {results.length > 0 && (
           <ScrollArea>
             {results.map((result) => (
               <>
                 <div key={result._id}>
-                  <ul className="mt-3 text-[15px]">
+                  <ul className="mt-1 text-[15px]">
                     <li>
-                      <div className="flex w-full items-center gap-2">
-                        <div
-                          className="h-[80px] w-[80px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md bg-cover bg-center bg-no-repeat"
-                          style={{
-                            backgroundImage: `url(${result.image})`,
-                          }}
-                        ></div>
+                      <Link
+                        href={`/product/${result._id}`}
+                        className="  "
+                        onClick={handleCloseModal}
+                      >
+                        <div className="flex w-full items-center gap-2 py-2">
+                          <div
+                            className="h-[80px] w-[80px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md bg-cover bg-center bg-no-repeat"
+                            style={{
+                              backgroundImage: `url(${result.image})`,
+                            }}
+                          ></div>
 
-                        <div className="flex-1">
-                          <Link
-                            href={`/product/${result._id}`}
-                            className="block p-2 ml-2 rounded-lg transition ease-in-out duration-300 text-gray-800 font-semibold  "
-                          >
-                            {result.name}
-                          </Link>
+                          <div className="block p-2 ml-2 rounded-lg transition  ease-in-out duration-300 text-gray-800 font-semibold">
+                            <div className="p-1">{result.name}</div>
+                            <div className="p-1">{result.sell_price}</div>
+                          </div>
                         </div>
-                      </div>
+                      </Link>
                     </li>
                   </ul>
                 </div>

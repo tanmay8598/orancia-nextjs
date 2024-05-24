@@ -24,7 +24,7 @@ const Banner = () => {
   const bannerHandler = async () => {
     try {
       const response = await apiClient.get("variation/banner/get");
-
+      console.log(response, "resp");
       if (response.ok) {
         setBanner(response.data);
       } else {

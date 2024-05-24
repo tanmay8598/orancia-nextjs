@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+    <url>
+      <loc>http://localhost:3000/</loc>
+      <lastmod>2024-05-24T11:29:55.593Z</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>0.7</priority>
+    </url>
+  
+    <url>
+      <loc>http://localhost:3000/product</loc>
+      <lastmod>2024-05-24T11:29:55.595Z</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>0.7</priority>
+    </url>
+  
+    <url>
+      <loc>http://localhost:3000/product/product</loc>
+      <lastmod>2024-05-24T11:29:55.595Z</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>0.7</priority>
+    </url>
+  
+    <url>
+      <loc>http://localhost:3000/product/sw3</loc>
+      <lastmod>2024-05-24T11:29:55.595Z</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>0.7</priority>
+    </url>
+  
+    <url>
+      <loc>http://localhost:3000/product/xyz</loc>
+      <lastmod>2024-05-24T11:29:55.595Z</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>0.7</priority>
+    </url>
+  
+    <url>
+      <loc>http://localhost:3000/product/new product</loc>
+      <lastmod>2024-05-24T11:29:55.595Z</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>0.7</priority>
+    </url>
+  
+    <url>
+      <loc>http://localhost:3000/product/Dissolves water-proof makeup without drying the skin</loc>
+      <lastmod>2024-05-24T11:29:55.595Z</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>0.7</priority>
+    </url>
+  
+    <url>
+      <loc>http://localhost:3000/product/mekup</loc>
+      <lastmod>2024-05-24T11:29:55.595Z</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>0.7</priority>
+    </url>
+  
+</urlset>

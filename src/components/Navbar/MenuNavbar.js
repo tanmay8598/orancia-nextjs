@@ -137,7 +137,7 @@ const MenuNavbar = () => {
                   </div>
 
                   <div
-                    className="pr-4 cursor-pointer"
+                    className="relative pr-4 cursor-pointer"
                     onClick={() => setIsOpen(true)}
                   >
                     <img
@@ -145,12 +145,14 @@ const MenuNavbar = () => {
                       alt="cart icon"
                       priority={true}
                       fill={true}
+                      style={{ display: "block" }}
                     />
                     <span
-                      className="     right-5   absolute bg-primary -mt-8 sm:right-1 lg:right-12  text-white p-1    "
+                      className="     right-5   absolute bg-primary -mt-1 sm:right-1 lg:right-12  text-white p-1    "
                       style={{
                         fontSize: "10px",
-
+                        top: "-10px",
+                        right: "2px",
                         borderRadius: "30px",
                         height: "22px",
                         width: "22px",
