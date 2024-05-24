@@ -250,7 +250,7 @@ const MainmenuNavbar = () => {
             </li>
             <li className="relative group px-3 py-2">
               <a href="#" className="hover:opacity-50 cursor-default">
-                Blog
+                Blogs
               </a>
             </li>
           </ul>
