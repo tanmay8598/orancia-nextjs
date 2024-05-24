@@ -1,4 +1,5 @@
 import apiClient from "@/api/client";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const CategoriesDroupdown = () => {
@@ -23,7 +24,7 @@ const CategoriesDroupdown = () => {
   }, []);
   return (
     <>
-      <div className="absolute top-0 -left-[243px] w-screen transition group-hover:translate-y-5 translate-y-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible duration-500 ease-in-out group-hover:transform z-50 transform">
+      <div className="absolute top-0 -left-[502px] w-screen transition group-hover:translate-y-5 translate-y-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible duration-500 ease-in-out group-hover:transform z-50 transform">
         <div className="relative top-[47px] p-6 bg-white  shadow-xl w-full">
           <div className="relative z-10">
             <div className="grid grid-cols-4 gap-6 py-6 pl-20 pr-10">
@@ -41,12 +42,13 @@ const CategoriesDroupdown = () => {
                           ></div>
 
                           <div className="flex-1">
-                            <a
-                              href="#"
+                            <Link
+                              // href="#"
+                              href={`/category/${catData._id}`}
                               className="block p-2 ml-2 rounded-lg hover:bg-red-400 hover:from-indigo-50 hover:to-pink-50 hover:via-red-50 transition ease-in-out duration-300 text-gray-800 font-semibold hover:text-white"
                             >
                               {catData.name}
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </li>

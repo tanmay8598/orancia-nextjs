@@ -51,9 +51,11 @@ const ShopSideNav = ({
   const price = true;
   // const minprice = price ? min : 0;
   // const maxprice = price ? max : 250000000;
-  console.log(selectedSubcategory, "selectedSubcategory");
+  const firstCategory = categories?.length > 0 ? categories[0] : null;
+  console.log(categories, "selectedSubcategory");
   return (
     <div className="w-full flex flex-col gap-6">
+      <div className="text-xs font-medium">Home / {firstCategory?.name} </div>
       <p className="text-2xl font-medium">Filters </p>
       <div>
         <Accordion open={opens === 1} icon={<Icon id={1} open={opens} />}>

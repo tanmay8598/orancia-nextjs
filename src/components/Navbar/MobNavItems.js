@@ -6,6 +6,7 @@ import {
   AccordionBody,
 } from "@material-tailwind/react";
 import apiClient from "@/api/client";
+import Link from "next/link";
 
 function Icon({ id, open }) {
   return (
@@ -63,12 +64,6 @@ const MobNavItems = () => {
         <AccordionBody className="text-base font-poppins lg:text-md leading-7 mt-2">
           {/* <ul className="text-gray-500 "> */}
           {categories.map((catData) => (
-            // <div key={catData._id}>
-            //   <ul className="text-gray-500">
-            //     <li>{catData?.name}</li>
-            //   </ul>
-            //   {/* <li >{catData?.name}</li> */}
-            // </div>
             <div key={catData._id}>
               <ul className="mt-3 text-[15px]">
                 <li>
@@ -81,12 +76,12 @@ const MobNavItems = () => {
                     ></div>
 
                     <div className="flex-1">
-                      <a
-                        href="#"
+                      <Link
+                        href={`/category/${catData._id}`}
                         className="block p-2 ml-2 rounded-lg hover:bg-red-400 hover:from-indigo-50 hover:to-pink-50 hover:via-red-50 transition ease-in-out duration-300 text-gray-800 font-semibold hover:text-white"
                       >
                         {catData.name}
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </li>

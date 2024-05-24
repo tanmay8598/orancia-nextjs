@@ -1,9 +1,11 @@
 import React from "react";
 import CategoriesDroupdown from "./CategoriesDroupdown";
+import Link from "next/link";
 
 const MainmenuNavbar = () => {
   return (
     <>
+      {/* <header className="container mx-auto px-4 py-6 flex items-center justify-between"> */}
       <header className="container mx-auto px-4 py-6 flex items-center justify-between">
         <nav>
           <ul className="flex items-center justify-center font-semibold">
@@ -249,9 +251,9 @@ const MainmenuNavbar = () => {
               </div>
             </li>
             <li className="relative group px-3 py-2">
-              <a href="#" className="hover:opacity-50 cursor-default">
+              <Link href="/myblog" className="hover:opacity-50 cursor-default">
                 Blog
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>

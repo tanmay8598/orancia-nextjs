@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import MenuSidebar from "../Cart/MenuSidebar";
 import MainmenuNavbar from "./MainmenuNavbar";
+import Link from "next/link";
 
 const MenuNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,11 +46,10 @@ const MenuNavbar = () => {
           </section>
           <nav
             aria-label="Top"
-            // className="mx-auto max-w-7xl px-4 sm:px-2 lg:px-2 md:px-0 "
-            className="   "
+            className="mx-auto max-w-7xl px-4 sm:px-2 lg:px-2 md:px-0 "
           >
             <div className="border-b border-gray-200">
-              <div className="flex justify-between ">
+              <div className="flex justify-between items-center h-24 mx-auto">
                 <button
                   type="button"
                   className="relative rounded-md bg-white p-2 text-gray-400 lg:hidden"
@@ -81,7 +81,22 @@ const MenuNavbar = () => {
                 </Popover.Group>
 
                 {/* <div className="flex items-center space-x-4 lg:ml-auto"> */}
-                <div className="flex items-center space-x-4 lg:ml-auto">
+                <div
+                  className="flex items-center space-x-4 
+                "
+                >
+                  {/* lg:ml-auto */}
+                  <div className="hidden sm:block relative h-4 w-4 lg:h-6 lg:w-6 text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer">
+                    <Link href="/track-order">
+                      <img
+                        src="/tracking.svg"
+                        alt="track order"
+                        priority={true}
+                        fill={true}
+                        // className="w-8 h-6"
+                      />
+                    </Link>
+                  </div>
                   <div
                     className="relative h-4 w-4 text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer"
                     onClick={() => setIsOpenSearch(true)}
@@ -132,7 +147,7 @@ const MenuNavbar = () => {
                       fill={true}
                     />
                     <span
-                      className="absolute bg-primary -mt-8 right-2 text-white p-1    "
+                      className="     right-5   absolute bg-primary -mt-8 sm:right-1 lg:right-12  text-white p-1    "
                       style={{
                         fontSize: "10px",
 
