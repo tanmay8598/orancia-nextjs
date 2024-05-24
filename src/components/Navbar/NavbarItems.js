@@ -15,8 +15,7 @@ const NavbarItems = () => {
     },
     { name: "data along with built-in type casting", link: "#" },
     {
-      name:
-        "Node.js that supports routing, middleware, view system… Mongoose is a promise-based Node.js ODM for MongoDB that provides a straight-forward, schema-based solution to model our application ,",
+      name: "Node.js that supports routing, middleware, view system… Mongoose is a promise-based Node.js ODM for MongoDB that provides a straight-forward, schema-based solution to model our application ,",
       link: "#",
     },
   ];

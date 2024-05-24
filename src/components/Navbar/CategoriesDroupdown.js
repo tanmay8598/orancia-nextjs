@@ -5,10 +5,11 @@ import React, { useEffect, useState } from "react";
 const CategoriesDroupdown = () => {
   const [error, setError] = useState(null);
   const [categories, setCategories] = useState([]);
+
   const fetchData = async () => {
     try {
       const response = await apiClient.get("/variation/category/get");
-      console.log(response, "res");
+
       if (response.ok) {
         setCategories(response.data);
       } else {
@@ -19,9 +20,11 @@ const CategoriesDroupdown = () => {
       setError(error.message);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, []);
+
   return (
     <>
       <div className="absolute top-0 -left-[502px] w-screen transition group-hover:translate-y-5 translate-y-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible duration-500 ease-in-out group-hover:transform z-50 transform">

@@ -24,17 +24,19 @@ const MenuNavbar = () => {
   const [isOpenAccount, setIsOpenAccount] = useState(false);
   const [isOpenSibebar, setIsOpenSidebar] = useState(false);
 
-  const [open, setOpen] = useState(false);
   const [cartLength, setCartLength] = useState(0);
   const selector = useSelector((state) => state.cart);
   const router = useRouter();
   const { user } = useAuth();
+
   useEffect(() => {
     setCartLength(selector.cart.length);
   }, [selector.cart]);
+
   const handleRedirect = () => {
     router.push("/account/");
   };
+
   return (
     <>
       <div className="shadow-md sticky top-0 z-50 bg-white ">
