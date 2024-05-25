@@ -181,10 +181,12 @@ const page = () => {
     if (type === "dec") {
       quantity > 1 && setQuantity(quantity - 1);
     } else {
-      setQuantity(quantity + 1);
+      if (quantity < product?.countInStock.qty) {
+        setQuantity(quantity + 1);
+      }
+      // setQuantity(quantity + 1);
     }
   };
-  console.log(product, "products");
 
   const notify = () => {
     // dispatch(add({ product: products[0], quantity }));
@@ -202,7 +204,7 @@ const page = () => {
   };
 
   return (
-    <section className="pt-5 pb-10">
+    <section className="pt-10 pb-10">
       <ToastContainer />
       <Wrapper>
         <div className="flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]">
@@ -249,7 +251,7 @@ const page = () => {
                 </span>
               </p>
               {/* counter  */}
-              <div className="md:flex md:w-full md:h-12 md:justify-between">
+              <div className="md:flex md:w-full md:h-12 md:justify-between mt-6">
                 <div class="py-2 px-2      inline-block bg-white border border-gray-200 rounded-lg">
                   <div class="flex items-center justify-between  gap-x-1.5">
                     <button

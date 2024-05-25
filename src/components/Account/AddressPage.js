@@ -1,8 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddressSidebar from "../Cart/AddressSidebar";
+import useAuth from "@/auth/useAuth";
+import Loader from "../loader/Loader";
 
 const AddressPage = () => {
   const [isOpenAccount, setIsOpenAccount] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [shippingAddress, setShippingAddress] = useState(null);
+  const { user } = useAuth();
+  console.log(user, "user");
+  useEffect(() => {
+    if (user && user.shippingAddress) {
+      setShippingAddress(user.shippingAddress);
+    }
+    setIsLoading(false);
+  }, [user]);
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <>
       <div className="container mx-auto p-8">
@@ -10,7 +25,7 @@ const AddressPage = () => {
         <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md border border-gray-300 flex flex-col sm:flex-row">
           <div className="flex-1 flex-grow border-b sm:border-b-0 border-gray-300">
             <div className="p-6">
-              <h5 className="text-sm font-semibold text-gray-700">
+              {/* <h5 className="text-sm font-semibold text-gray-700">
                 DEFAULT ADDRESS
               </h5>
               <p className="text-gray-600 mt-1">
@@ -23,7 +38,19 @@ const AddressPage = () => {
                 677543 lko AN
                 <br />
                 India
-              </p>
+              </p> */}
+              {shippingAddress ? (
+                <>
+                  <p>
+                    {shippingAddress.landmark}, {shippingAddress.street},{" "}
+                    {shippingAddress.address}, {shippingAddress.pincode},
+                  </p>
+                  <p>Mobile No: {shippingAddress.mobileNumber}</p>
+                  <p>Email: {shippingAddress.email}</p>
+                </>
+              ) : (
+                <p>Loading...</p>
+              )}
               <div className="mt-3 justify-between flex space-x-2">
                 <button className="text-blue-500 hover:underline">Edit</button>
                 <button className="text-red-500 hover:underline">Delete</button>

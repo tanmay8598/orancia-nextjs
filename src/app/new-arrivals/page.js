@@ -38,9 +38,9 @@ const Page = () => {
         min: minprice,
         max: maxprice,
       });
-      console.log(response.data, "response");
+      // console.log(response.data.products, "response");
       if (response.ok) {
-        setProducts(response.data.product);
+        setProducts(response.data.products);
       } else {
         setError(response.statusText);
       }
@@ -50,7 +50,7 @@ const Page = () => {
       setIsLoading(false);
     }
   };
-
+  // console.log(product, "product");
   const fetchSubcategories = async () => {
     try {
       const response = await apiClient.get(
@@ -76,7 +76,7 @@ const Page = () => {
   }
 
   if (error) {
-    console.log(error, "eeee");
+    // console.log(error, "eeee");
     return <div>Error: {error}</div>;
   }
 
@@ -88,8 +88,8 @@ const Page = () => {
     setRange(newValue);
     setMinprice(newValue[0]);
     setMaxprice(newValue[1]);
-    console.log(newValue[0]);
-    console.log(newValue[1]);
+    // console.log(newValue[0]);
+    // console.log(newValue[1]);
   };
 
   return (
@@ -138,12 +138,12 @@ const Page = () => {
               </button>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 lg:gap-5">
-              {product.length === 0 ? (
+              {product?.length === 0 ? (
                 <p className="text-center justify-center flex align-middle">
                   No products found
                 </p>
               ) : (
-                product.map((product) => (
+                product?.map((product) => (
                   // <Product key={product.id} product={product} />
                   <NewProducts key={product.id} product={product} />
                 ))
@@ -151,7 +151,7 @@ const Page = () => {
             </div>
           </div>
         </div>
-        <Pagination />
+        {/* <Pagination /> */}
       </div>
     </>
   );
