@@ -55,7 +55,7 @@ const BlogsDetails = () => {
       >
         <BlogBanner
           title="Blog"
-          subtitle="Insights and news shaping the future of travel."
+          // subtitle="Insights and news shaping the future of travel."
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mb-12 gap-10">
           {allblogs && allblogs.length > 0 ? (

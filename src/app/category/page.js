@@ -22,9 +22,7 @@ const Page = () => {
       } catch (error) {
         console.error("Error fetching categories:", error);
       } finally {
-        setTimeout(() => {
-          setLoading(false);
-        }, 2000);
+        setLoading(false);
       }
     };
 

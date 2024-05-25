@@ -1,6 +1,7 @@
 "use client";
 import useAuth from "@/auth/useAuth";
 import AddressSidebar from "@/components/Cart/AddressSidebar";
+import Loader from "@/components/loader/Loader";
 import CoopanBox from "@/components/orderPage/CoopanBox";
 import CoopanForm from "@/components/orderPage/CoopanForm";
 import OrderImagecard from "@/components/orderPage/OrderImagecard";
@@ -12,15 +13,21 @@ const page = () => {
   const [isOpenAccount, setIsOpenAccount] = useState(false);
   const selector = useSelector((state) => state.cart);
   const [shippingAddress, setShippingAddress] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const totalValue = selector.cart.reduce((total, item) => {
     return total + item.quantity * item.product.sell_price;
   }, 0);
   const { user } = useAuth();
+  console.log(user, "user");
   useEffect(() => {
     if (user && user.shippingAddress) {
       setShippingAddress(user.shippingAddress);
     }
+    setIsLoading(false);
   }, [user]);
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <>
       <div className="container mx-auto px-4 py-8">

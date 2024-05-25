@@ -235,19 +235,6 @@ const page = () => {
               <p className="text-3xl mt-2 font-medium md:hidden">
                 ₹ {product?.sell_price}
               </p>
-              {/* mobile images  */}
-              {/* <div className="mt-5 w-full object-contain relative block md:hidden ">
-                <Image
-                  src="https://hellobody.eu/cdn/shop/products/HB_Cocos-Fresh_1530x2040px.jpg?v=1681475509&width=1206"
-                  width={473}
-                  height={290}
-                  priority
-                  alt=""
-                />
-                <div className="bg-accent absolute top-3 left-3 px-2 py-1 rounded-sm">
-                  <p className="text-sm font-medium text-white">Top Seller</p>
-                </div>
-              </div> */}
             </div>
 
             {/* add to cart  */}
@@ -324,114 +311,15 @@ const page = () => {
                 />
               </div>
             </div>
-
-            {/* details */}
-
-            <div className="mt-5 md:mt-5  bg-detailsBg py-5 md:p-1 md:bg-transparent order-2 md:order-1 md:w-[90%]  md:text-sm ">
-              <div className="mb-2">
-                <p className="text-md   md:text-md">Product Details</p>
-
-                <div dangerouslySetInnerHTML={{ __html: product?.details }} />
-              </div>
-              {/* <div dangerouslySetInnerHTML={{ __html: product.description }} /> */}
-              {/* <ul className="md:text-md text-gray-500 ">
-                <li className="text-md mt-1 flex flex-row mb-2">
-                  <img
-                    src="https://cdn.shopify.com/s/files/1/0713/4140/8532/files/Vector_15.svg"
-                    className="mr-2 h-4 w-4 mt-1"
-                  />
-                  <p className="leading-7">
-                    Gently removes excess sebum and daily makeup
-                  </p>
-                </li>
-                <li className="text-md mt-1 flex flex-row mb-2 ">
-                  <img
-                    src="https://cdn.shopify.com/s/files/1/0713/4140/8532/files/Vector_15.svg"
-                    className="mr-2 h-4 w-4 mt-1"
-                  />
-                  <p className="leading-7">
-                    Contains natural mild cleansing agents like coco-glucoside
-                    and sodium cocoyl glutamate
-                  </p>
-                </li>
-                <li className="text-md mt-1 flex flex-row mb-2">
-                  <img
-                    src="https://cdn.shopify.com/s/files/1/0713/4140/8532/files/Vector_15.svg"
-                    className="mr-2 h-4 w-4 mt-1"
-                  />
-                  <p className="leading-7">
-                    Glycerin and urea keep the skin moisturised
-                  </p>
-                </li>
-                <li className="text-md mt-1 flex flex-row mb-2">
-                  <img
-                    src="https://cdn.shopify.com/s/files/1/0713/4140/8532/files/Vector_15.svg"
-                    className="mr-2 h-4 w-4 mt-1"
-                  />
-                  <p className="leading-7">
-                    Glycerin and urea keep the skin moisturised
-                  </p>
-                </li>
-              </ul> */}
-              <div className="mb-2">
-                <p className="text-md md:text-md">Product Description</p>
-
-                <div
-                  dangerouslySetInnerHTML={{ __html: product?.description }}
-                />
-              </div>
-
-              <div>
-                <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
-                  <AccordionHeader
-                    onClick={() => handleOpen(1)}
-                    className="text-sm font-poppins lg:text-md font-medium"
-                  >
-                    Application
-                  </AccordionHeader>
-                  <AccordionBody className="text-sm font-poppins lg:text-md leading-7">
-                    In the morning and evening, apply the foam to wet skin and
-                    massage your face and neck, using circular motions. Rinse
-                    with warm water and wipe your face gently.
-                  </AccordionBody>
-                </Accordion>
-                <Accordion open={open === 2} icon={<Icon id={2} open={open} />}>
-                  <AccordionHeader
-                    onClick={() => handleOpen(2)}
-                    className="text-sm font-poppins lg:text-md font-medium"
-                  >
-                    Why it works?
-                  </AccordionHeader>
-                  <AccordionBody className="text-sm font-poppins lg:text-md leading-7">
-                    Our cleansing foam with a creamy texture gently cleanses
-                    your face deeply. Composed of cleansing agents that are
-                    particularly effective and gentle on skin, ridding it of
-                    impurities and excess sebum without drying it out.
-                  </AccordionBody>
-                </Accordion>
-                <Accordion open={open === 3} icon={<Icon id={3} open={open} />}>
-                  <AccordionHeader
-                    onClick={() => handleOpen(3)}
-                    className="text-sm font-poppins lg:text-md font-medium"
-                  >
-                    Ingredients
-                  </AccordionHeader>
-                  <AccordionBody className="text-sm font-poppins lg:text-md leading-7">
-                    KEY INGREDIENTS Glycerin: moisturising properties, helps to
-                    strengthen the skin's protective barrier. Coco-glucoside: a
-                    natural mild cleanser. Peat extract: purifies the skin.
-                    Aqua, Sodium Cocoamphoacetate, Coco-Glucoside, Glycerin,
-                    Lauryl Glucoside, Parfum (natural), Sodium Chloride, Sodium
-                    Cocoyl Glutamate, Sodium Lauryl Glucose Carboxylate, Lactic
-                    Acid, Hydroxypropyl Oxidized Starch PG-Trimonium Chloride,
-                    Potassium Sorbate, Sodium Benzoate, Starch
-                    Hydroxypropyltrimonium Chloride, Levulinic Acid, Panthenol,
-                    Allantoin, Sodium Levulinate, Isopropyl Alcohol, Sodium
-                    Lactate, Urea, Moor (Peat) Extract, Sodium Carbonate, Cocoyl
-                    Proline, Rosa Canina Extract*, P-Anisic Acid. * Organic
-                  </AccordionBody>
-                </Accordion>
-              </div>
+          </div>
+        </div>
+        <div className="mt-5 md:mt-5  bg-detailsBg py-5 md:p-1 md:bg-transparent order-2 md:order-1 md:w-[90%]  md:text-sm ">
+          <div className="mb-2">
+            <p className="text-xl font-semibold mb-4 md:text-md">
+              Product Description
+            </p>
+            <div className=" ">
+              <div dangerouslySetInnerHTML={{ __html: product?.description }} />
             </div>
           </div>
         </div>

@@ -17,6 +17,11 @@ const MenuSidebar = ({ isOpen, setIsOpen }) => {
   const { user } = useAuth();
   const handleRedirect = () => {
     router.push("/account/");
+    setIsOpen(false);
+  };
+  const handleShipping = () => {
+    router.push("/track-order/");
+    setIsOpen(false);
   };
   return (
     <div>
@@ -25,11 +30,8 @@ const MenuSidebar = ({ isOpen, setIsOpen }) => {
           <SheetHeader>
             <SheetTitle className="text-left mb-8">
               {!user ? (
-                <div
-                  className=" flex justify-between pt-4 relative  text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer"
-                  onClick={() => setIsOpenAccount(true)}
-                >
-                  <div>
+                <div className=" flex justify-between pt-4 relative  text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer">
+                  <div onClick={() => setIsOpenAccount(true)}>
                     <div className="flex items-center gap-x-2 text-base">
                       <img
                         src="/user.svg"
@@ -41,8 +43,8 @@ const MenuSidebar = ({ isOpen, setIsOpen }) => {
                       <span>Account</span>
                     </div>
                   </div>
-                  <div>
-                    <div className="flex items-center gap-x-2 text-base">
+                  <div onClick={handleShipping}>
+                    <div className="flex items-center gap-x-2 text-base px-1">
                       <img
                         src="/tracking.svg"
                         alt="track order"
@@ -56,26 +58,36 @@ const MenuSidebar = ({ isOpen, setIsOpen }) => {
                   {/* </div> */}
                 </div>
               ) : (
-                <div
-                  className="relative h-4 w-4 text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer"
-                  onClick={handleRedirect}
-                >
-                  <div className="flex items-center gap-x-2">
-                    <img
-                      src="/user.svg"
-                      alt="user icon"
-                      priority={true}
-                      fill={true}
-                      className="w-6 h-6"
-                    />
-                    <span>Account</span>
+                <div className=" flex justify-between pt-4 relative  text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer">
+                  <div onClick={handleRedirect}>
+                    <div className="flex items-center gap-x-2 text-base">
+                      <img
+                        src="/user.svg"
+                        alt="user icon"
+                        priority={true}
+                        fill={true}
+                        className="w-4 h-4"
+                      />
+                      <span>Account</span>
+                    </div>
+                  </div>
+                  <div onClick={handleShipping}>
+                    <div className="flex items-center gap-x-2 text-base">
+                      <img
+                        src="/tracking.svg"
+                        alt="track order"
+                        priority={true}
+                        fill={true}
+                        className="w-6 h-6"
+                      />
+                      <span>Track Order</span>
+                    </div>
                   </div>
                 </div>
               )}
             </SheetTitle>
           </SheetHeader>
-          {/* Your content goes here */}
-          <MobNavbarItems />
+          <MobNavbarItems setIsOpen={setIsOpen} />
           <AccountSidebar isOpen={isOpenAccount} setIsOpen={setIsOpenAccount} />
         </SheetContent>
       </Sheet>
