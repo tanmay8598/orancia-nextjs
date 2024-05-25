@@ -60,7 +60,7 @@ const BestSellerCarousel = ({ products }) => {
       >
         {products.map((product) => {
           return (
-            <SwiperSlide key={product.id}>
+            <SwiperSlide key={product._id}>
               {/* <Product product={product} /> */}
               {/* <NewProducts product={product} /> */}
               <BestSallerCard product={product} />

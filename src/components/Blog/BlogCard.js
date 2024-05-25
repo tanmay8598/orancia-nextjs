@@ -2,7 +2,6 @@ import Link from "next/link";
 import React from "react";
 
 const BlogCard = ({ blogData }) => {
-  console.log(blogData?._id, "blogData");
   const short =
     blogData?.content.length > 200
       ? blogData?.content.slice(0, 200) + "..."
@@ -22,19 +21,21 @@ const BlogCard = ({ blogData }) => {
           </Link>
           <Link href="#!">
             <div className="text-xs absolute top-0 right-0 bg-red-600 rounded-md px-4 py-2 text-white mt-3 mr-3 hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out">
-              {blogData?.heading}
+              {/* {blogData?.heading} */}
+              Blog
             </div>
           </Link>
         </div>
-        <div className="px-6 py-4 mb-auto">
+        <div className="p-4 mb-auto">
           <Link
             href={`/blogs/${blogData?._id}`}
-            className="font-medium text-lg  hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
+            className="font-medium text-lg  hover:text-red-400 transition duration-500 ease-in-out inline-block mb-2"
           >
-            {blogData?.mtitle}
+            {/* {blogData?.mtitle} */}
+            {blogData?.heading}
           </Link>
 
-          <p dangerouslySetInnerHTML={{ __html: short }}></p>
+          {/* <p dangerouslySetInnerHTML={{ __html: short }}></p> */}
         </div>
       </div>
     </>

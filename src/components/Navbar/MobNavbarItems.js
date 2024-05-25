@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import Price from "../shopPage/shopBy/Price";
 import Category from "../shopPage/shopBy/Category";
@@ -6,15 +8,94 @@ import MobNavItems from "./MobNavItems";
 import AccountSidebar from "../Cart/AccountSidebar";
 import { useRouter } from "next/navigation";
 import useAuth from "@/auth/useAuth";
+import Link from "next/link";
 
-const MobNavbarItems = () => {
+const MobNavbarItems = ({ setIsOpen }) => {
+  const closeModal = () => {
+    setIsOpen(false);
+  };
   return (
-    <div className="w-full flex flex-col gap-6">
+    <div className="w-full flex flex-col  ">
       {/* <p className="text-2xl font-medium">Filters </p> */}
-
-      <MobNavItems />
-      <MobNavItems />
-      <MobNavItems />
+      <div>
+        <MobNavItems />
+      </div>
+      <div>
+        <div>
+          <ul className="mt-3 text-[15px]">
+            <li className=" pt-[6px]">
+              <div className="flex w-full items-center">
+                <div className="flex-1">
+                  <Link
+                    href="#"
+                    onClick={closeModal}
+                    className="block  transition ease-in-out duration-300 text-black font-semibold hover:text-black"
+                  >
+                    Makeup
+                    <hr className="mt-4 border-gray-300" />
+                  </Link>
+                </div>
+              </div>
+            </li>
+            <li className=" pt-[6px]">
+              <div className="flex w-full items-center">
+                <div className="flex-1">
+                  <Link
+                    href="#"
+                    onClick={closeModal}
+                    className="block py-2       transition ease-in-out duration-300 text-black font-semibold hover:text-black"
+                  >
+                    Skin Care
+                    <hr className="mt-4 border-gray-300" />
+                  </Link>
+                </div>
+              </div>
+            </li>
+            <li className=" pt-[6px]">
+              <div className="flex w-full items-center">
+                <div className="flex-1">
+                  <Link
+                    href="#"
+                    onClick={closeModal}
+                    className="block py-2       transition ease-in-out duration-300 text-black font-semibold hover:text-black"
+                  >
+                    Hair Care
+                    <hr className="mt-4 border-gray-300" />
+                  </Link>
+                </div>
+              </div>
+            </li>
+            <li className=" pt-[6px]">
+              <div className="flex w-full items-center">
+                <div className="flex-1">
+                  <Link
+                    href="#"
+                    onClick={closeModal}
+                    className="block py-2       transition ease-in-out duration-300 text-black font-semibold hover:text-black"
+                  >
+                    Bestsellers
+                    <hr className="mt-4 border-gray-300" />
+                  </Link>
+                </div>
+              </div>
+            </li>
+            <li className=" pt-[6px]">
+              <div className="flex w-full items-center">
+                <div className="flex-1">
+                  <Link
+                    href="/blogs"
+                    onClick={closeModal}
+                    className="block py-2  hover:text-black     transition ease-in-out duration-300 text-black font-semibold  "
+                  >
+                    Blog
+                    <hr className="mt-4 border-gray-300" />
+                  </Link>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

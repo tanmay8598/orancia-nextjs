@@ -1,10 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import BlogCard from "./BlogCard";
-import BlogBanner from "./BlogBanner";
 import apiClient from "@/api/client";
-import Loader from "../loader/Loader";
-import { Pagination } from "@mui/material";
 import Link from "next/link";
 
 const BlogHero = () => {
@@ -42,10 +39,10 @@ const BlogHero = () => {
   // console.log(blogList, "blo");
 
   return (
-    <div class="  max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-      <div class="border-b mb-5 flex justify-between text-sm">
-        <div class="text-red-600 flex items-center pb-2 pr-2 border-b-2 border-red-600 uppercase">
-          <a href="#" class="font-semibold inline-block">
+    <div className="  max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
+      <div className="border-b mb-5 flex justify-between text-sm">
+        <div className="text-red-600 flex items-center pb-2 pr-2 border-b-2 border-red-600 uppercase">
+          <a href="#" className="font-semibold inline-block">
             Blog
           </a>
         </div>
@@ -53,7 +50,7 @@ const BlogHero = () => {
         {/* <a href="myblog">See All</a> */}
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
         {allblogs && allblogs.length > 0 ? (
           allblogs
             .slice(0, 3)
@@ -64,7 +61,7 @@ const BlogHero = () => {
           <p>No blogs available</p>
         )}
       </div>
-      <Link href="/myblog">
+      <Link href="/blogs">
         <button className="btn btn-accent rounded-lg mx-auto mt-8">
           See all
         </button>

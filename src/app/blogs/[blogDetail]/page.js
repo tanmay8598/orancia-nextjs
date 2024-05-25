@@ -3,7 +3,7 @@ import BlogContent from "@/components/Blog/BlogContent";
 // import { useParams } from "next/navigation";
 
 export async function generateMetadata({ params }) {
-  const blogid = params.myblogDetail;
+  const blogid = params.blogDetails;
   const { data } = await apiclient.get(`/blog/blogbyid/${blogid}`);
 
   return {
@@ -18,11 +18,10 @@ export async function generateMetadata({ params }) {
 }
 
 const page = ({ params }) => {
-  const blogid = params.myblogDetail;
+  const blogid = params;
 
   return (
     <>
-      {/* vimal */}
       <BlogContent blogid={blogid} />
     </>
   );

@@ -40,7 +40,6 @@ const MobNavItems = () => {
       if (response.ok) {
         setCategories(response.data);
       } else {
-        //   console.log(error)
         setError(error.status);
       }
     } catch (error) {
@@ -51,7 +50,7 @@ const MobNavItems = () => {
     fetchData();
   }, []);
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
-  console.log(categories, "catData");
+
   return (
     <div>
       <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
@@ -88,6 +87,7 @@ const MobNavItems = () => {
               </ul>
             </div>
           ))}
+
           {/* </ul> */}
         </AccordionBody>
       </Accordion>

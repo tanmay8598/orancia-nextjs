@@ -3,7 +3,6 @@ import React from "react";
 
 const MyProfile = () => {
   const { user } = useAuth();
-  console.log(user, "sssss");
   return (
     <>
       <div className="container mx-auto p-8">
