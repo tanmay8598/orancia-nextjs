@@ -3,10 +3,11 @@ import AddressPage from "@/components/Account/AddressPage";
 import MyProfile from "@/components/Account/MyProfile";
 import OrderPage from "@/components/Account/OrderPage";
 import React, { useState } from "react";
+import useAuth from "../../auth/useAuth";
 
 const Page = () => {
   const [activeTab, setActiveTab] = useState("orders"); // Default active tab is "orders"
-
+  const { logOut } = useAuth();
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
@@ -43,7 +44,9 @@ const Page = () => {
           className={`cursor-pointer ${
             activeTab === "logout" ? "text-blue-500" : "text-gray-500"
           }`}
-          onClick={() => handleTabClick("logout")}
+          onClick={() => {
+            logOut();
+          }}
         >
           Logout
         </div>
