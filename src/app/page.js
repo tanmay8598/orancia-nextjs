@@ -14,6 +14,8 @@ import SingleBanner from "@/components/SingleBanner/SingleBanner";
 import WhatClient from "@/components/whatClientSays/WhatClient";
 
 export default function Home() {
+  const { user } = useAuth();
+  // console.log("user", user);
   return (
     <div>
       <Banner />

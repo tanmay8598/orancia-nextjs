@@ -13,6 +13,7 @@ const useAuth = () => {
   };
 
   const logOut = () => {
+    console.log("hit");
     setUser(null);
     sessionStorage.removeItem("token");
   };

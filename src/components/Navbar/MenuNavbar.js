@@ -13,6 +13,7 @@ import Image from "next/image";
 import MenuSidebar from "../Cart/MenuSidebar";
 import MainmenuNavbar from "./MainmenuNavbar";
 import Link from "next/link";
+import CategoriesDroupdown from "./CategoriesDroupdown";
 
 const MenuNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -166,7 +167,7 @@ const MenuNavbar = () => {
         <CartSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
         <AccountSidebar isOpen={isOpenAccount} setIsOpen={setIsOpenAccount} />
         <SearchSidebar isOpen={isOpenSearch} setIsOpen={setIsOpenSearch} />
-        <MenuSidebar isOpen={isOpenSidebar} setIsOpen={setIsOpenSidebar} />
+        <MenuSidebar isOpen={isOpenSibebar} setIsOpen={setIsOpenSidebar} />
       </div>
     </>
   );

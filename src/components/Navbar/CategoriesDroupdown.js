@@ -25,21 +25,23 @@ const CategoriesDroupdown = () => {
   }, []);
 
   return (
-    <div className="absolute top-0 -left-[502px] w-screen transition group-hover:translate-y-5 translate-y-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible duration-500 ease-in-out group-hover:transform z-50 transform">
-      <div className="relative top-[47px] p-6 bg-white  shadow-xl w-full">
-        <div className="relative z-10">
-          <div className="grid grid-cols-4 gap-6 py-6 pl-20 pr-10">
-            {categories.map((catData) => (
-              <div key={catData._id}>
-                <ul className="mt-3 text-[15px]">
-                  <li>
-                    <div className="flex w-full items-center">
-                      <div
-                        className="h-[40px] w-[40px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md bg-cover bg-center bg-no-repeat"
-                        style={{
-                          backgroundImage: `url(${catData.image})`,
-                        }}
-                      ></div>
+    <>
+      <div className="mt-1 hidden lg:block w-full transition group-hover:translate-y-5 translate-y-0 opacity-100 lg:visible duration-500 ease-in-out group-hover:transform z-50 transform">
+        <div className="relative p-6 bg-white  shadow-xl w-full">
+          <div className="relative z-10">
+            <div className="grid grid-cols-4 gap-6 py-6 pl-20 pr-10">
+              {categories.map((catData) => (
+                <>
+                  <div key={catData._id}>
+                    <ul className="mt-3 text-[15px]">
+                      <li>
+                        <div className="flex w-full items-center">
+                          <div
+                            className="h-[40px] w-[40px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md bg-cover bg-center bg-no-repeat"
+                            style={{
+                              backgroundImage: `url(${catData.image})`,
+                            }}
+                          ></div>
 
                       <div className="flex-1">
                         <Link
