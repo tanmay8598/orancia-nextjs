@@ -8,7 +8,8 @@ import OrderImagecard from "@/components/orderPage/OrderImagecard";
 
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
+import { MdAddIcCall } from "react-icons/md";
+import { IoMdMailUnread } from "react-icons/io";
 const page = () => {
   const [isOpenAccount, setIsOpenAccount] = useState(false);
   const selector = useSelector((state) => state.cart);
@@ -35,15 +36,28 @@ const page = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-white shadow-md rounded-lg p-6">
             <h2 className="text-lg font-semibold mb-4">Address </h2>
-            <div className="bg-blue-gray-100 mb-6 rounded-lg p-4">
+            <div
+              className="bg-blue-gray-100 mb-6 rounded-lg p-4"
+              style={{
+                background: "var(--Colors-Prime-Gray-Prime-Gray-50, #F9FAFB)",
+              }}
+            >
               {shippingAddress ? (
                 <>
                   <p>
-                    {shippingAddress.landmark}, {shippingAddress.street},{" "}
-                    {shippingAddress.address}, {shippingAddress.pincode},
+                    {shippingAddress.address},{shippingAddress.street},
+                    {shippingAddress.landmark}, {shippingAddress.area},
+                    {shippingAddress.pincode},{shippingAddress.state}
                   </p>
-                  <p>Mobile No: {shippingAddress.mobileNumber}</p>
-                  <p>Email: {shippingAddress.email}</p>
+
+                  <p className="flex py-1 ">
+                    <MdAddIcCall className="mr-1 mt-1" />{" "}
+                    {shippingAddress.mobileNumber}
+                  </p>
+                  <p className="flex pb-1 ">
+                    <IoMdMailUnread className="mr-1 mt-1" />{" "}
+                    {shippingAddress.email}
+                  </p>
                 </>
               ) : (
                 <p>Loading...</p>

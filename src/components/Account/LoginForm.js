@@ -53,7 +53,7 @@ const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
         const response = await apiClient.post("/user/login", formData);
 
         if (response.ok) {
-          toast.success("Login successful!");
+          // toast.success("Login successful!");
           logIn(response.data.token);
           setIsOpen(false);
         } else {

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import AddressSidebar from "../Cart/AddressSidebar";
 import useAuth from "@/auth/useAuth";
 import Loader from "../loader/Loader";
-
+import { MdAddIcCall } from "react-icons/md";
+import { IoMdMailUnread } from "react-icons/io";
 const AddressPage = () => {
   const [isOpenAccount, setIsOpenAccount] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -25,28 +26,22 @@ const AddressPage = () => {
         <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md border border-gray-300 flex flex-col sm:flex-row">
           <div className="flex-1 flex-grow border-b sm:border-b-0 border-gray-300">
             <div className="p-6">
-              {/* <h5 className="text-sm font-semibold text-gray-700">
-                DEFAULT ADDRESS
-              </h5>
-              <p className="text-gray-600 mt-1">
-                vimal raj
-                <br />
-                lucknow
-                <br />
-                school
-                <br />
-                677543 lko AN
-                <br />
-                India
-              </p> */}
               {shippingAddress ? (
                 <>
                   <p>
-                    {shippingAddress.landmark}, {shippingAddress.street},{" "}
-                    {shippingAddress.address}, {shippingAddress.pincode},
+                    {shippingAddress.address},{shippingAddress.street},
+                    {shippingAddress.landmark}, {shippingAddress.area},
+                    {shippingAddress.pincode},{shippingAddress.state}
                   </p>
-                  <p>Mobile No: {shippingAddress.mobileNumber}</p>
-                  <p>Email: {shippingAddress.email}</p>
+
+                  <p className="flex py-1 ">
+                    <MdAddIcCall className="mr-1 mt-1" />{" "}
+                    {shippingAddress.mobileNumber}
+                  </p>
+                  <p className="flex pb-1 ">
+                    <IoMdMailUnread className="mr-1 mt-1" />{" "}
+                    {shippingAddress.email}
+                  </p>
                 </>
               ) : (
                 <p>Loading...</p>
@@ -80,7 +75,11 @@ const AddressPage = () => {
           </div>
         </div>
       </div>
-      <AddressSidebar isOpen={isOpenAccount} setIsOpen={setIsOpenAccount} />
+      <AddressSidebar
+        isOpen={isOpenAccount}
+        setIsOpen={setIsOpenAccount}
+        existingAddress={shippingAddress}
+      />
     </>
   );
 };

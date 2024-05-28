@@ -1,12 +1,23 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { BsFacebook, BsWhatsapp } from "react-icons/bs";
 import { MdEmail, MdLocalPhone, MdLocationPin } from "react-icons/md";
 import { RiInstagramFill } from "react-icons/ri";
 import logo from "../../../public/oranica.png";
 import { FaYoutube } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
+import Link from "next/link";
+import AccountSidebar from "../Cart/AccountSidebar";
+import useAuth from "@/auth/useAuth";
+import { useRouter } from "next/navigation";
+
 const Footer = () => {
+  const router = useRouter();
+  const { user } = useAuth();
+  const [isOpenAccount, setIsOpenAccount] = useState(false);
+  const handleRedirect = () => {
+    router.push("/account/");
+  };
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-5 bg-[#8c8d94]  font-sans   font-normal text-xs  text-white mt-12 drop-shadow">
@@ -47,13 +58,47 @@ const Footer = () => {
         {/* Section 2 */}
         <div className="p-6 lg:p-14">
           <p className="font-medium text-xl">Useful Links</p>
-          <ul className="mt-4 text-sm">
-            <li className="mb-3">Home</li>
-            <li className="mb-3">My Account</li>
-            <li className="mb-3">About Us</li>
-            <li className="mb-3">Contact Us</li>
-            <li className="mb-3">T&C</li>
-            <li className="mb-3">Privacy Policy</li>
+          <ul className="mt-4 text-xs">
+            <li className="cursor-pointer mb-3">
+              <Link href="/">Home</Link>
+            </li>
+            <li className="cursor-pointer mb-3">
+              <Link href="/contact-us">Contact Us</Link>
+            </li>
+            <li className="cursor-pointer mb-3">
+              <Link href="/about-us">About Us</Link>
+            </li>
+            <li className="cursor-pointer mb-3">
+              {/* <Link href="/contact-us">Contact Us
+              
+              
+              </Link> */}
+              <Link href="#">
+                {!user ? (
+                  <div
+                    // className="relative h-4 w-4 text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer"
+                    onClick={() => setIsOpenAccount(true)}
+                  >
+                    {/* <Link> */}
+                    MY ACCOUNT
+                    {/* </Link> */}
+                  </div>
+                ) : (
+                  <div
+                    // className="relative h-4 w-4 text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer"
+                    onClick={handleRedirect}
+                  >
+                    MY ACCOUNT
+                  </div>
+                )}
+              </Link>
+            </li>
+            <li className="cursor-pointer mb-3">
+              <Link href="/terms-and-conditions">T&C</Link>
+            </li>
+            <li className="cursor-pointer mb-3">
+              <Link href="/privacy-policy">Privacy Policy</Link>
+            </li>
           </ul>
         </div>
 
@@ -193,6 +238,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <AccountSidebar isOpen={isOpenAccount} setIsOpen={setIsOpenAccount} />
     </>
   );
 };

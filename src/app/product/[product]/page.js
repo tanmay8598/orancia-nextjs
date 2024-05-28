@@ -246,66 +246,62 @@ const page = () => {
               </p>
               <p className="text-3xl mt-2 mb-2 font-semibold hidden md:block md-6 ">
                 ₹ {product?.sell_price}
-                <span className="text-sm ml-1 font-medium ">
-                  Size : {product?.size?.name}
-                </span>
               </p>
               {/* counter  */}
-              <div className="md:flex md:w-full md:h-12 md:justify-between mt-6">
-                <div class="py-2 px-2      inline-block bg-white border border-gray-200 rounded-lg">
-                  <div class="flex items-center justify-between  gap-x-1.5">
-                    <button
-                      onClick={() => handleQuantity("dec")}
-                      type="button"
-                      class="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
-                      data-hs-input-number-decrement=""
+              <div class="py-2 px-2 mt-2      inline-block bg-white border border-gray-200 rounded-lg">
+                <div class="flex items-center  w-[150px] justify-between  gap-x-1.5">
+                  <button
+                    onClick={() => handleQuantity("dec")}
+                    type="button"
+                    class="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                    data-hs-input-number-decrement=""
+                  >
+                    <svg
+                      class="flex-shrink-0 size-3.5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
                     >
-                      <svg
-                        class="flex-shrink-0 size-3.5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path d="M5 12h14"></path>
-                      </svg>
-                    </button>
-                    <input
-                      class="p-0 w-6 bg-transparent border-0 text-gray-800 text-center focus:ring-0"
-                      type="text"
-                      value={quantity}
-                      data-hs-input-number-input=""
-                    />
-                    <button
-                      onClick={() => handleQuantity("inc")}
-                      type="button"
-                      class="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
-                      data-hs-input-number-increment=""
+                      <path d="M5 12h14"></path>
+                    </svg>
+                  </button>
+                  <input
+                    class="p-0 w-6 bg-transparent border-0 text-gray-800 text-center focus:ring-0"
+                    type="text"
+                    value={quantity}
+                    data-hs-input-number-input=""
+                  />
+                  <button
+                    onClick={() => handleQuantity("inc")}
+                    type="button"
+                    class="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                    data-hs-input-number-increment=""
+                  >
+                    <svg
+                      class="flex-shrink-0 size-3.5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
                     >
-                      <svg
-                        class="flex-shrink-0 size-3.5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path d="M5 12h14"></path>
-                        <path d="M12 5v14"></path>
-                      </svg>
-                    </button>
-                  </div>
+                      <path d="M5 12h14"></path>
+                      <path d="M12 5v14"></path>
+                    </svg>
+                  </button>
                 </div>
-
+              </div>
+              <div className="md:flex md:w-full md:h-12 md:justify-between mt-6">
                 <AddtoCartBtn
                   btnStyles="btn btn-primary w-full   mt-2 md:mt-0 sm:w-3/4  md:6 rounded-md"
                   textStyles="text-md font-regular"
@@ -315,13 +311,25 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div className="mt-5 md:mt-5  bg-detailsBg py-5 md:p-1 md:bg-transparent order-2 md:order-1 md:w-[90%]  md:text-sm ">
-          <div className="mb-2">
-            <p className="text-xl font-semibold mb-4 md:text-md">
+        {/* Description */}
+        <div className="mt-5 md:mt-5  bg-detailsBg py-5 md:p-1 md:bg-transparent gap-3 order-2  md:order-1 md:w-[90%]  md:text-sm ">
+          <div className="mb-8 bg-[#FFF6F6] rounded border-blue-gray-100 spa p-4">
+            <p className="text-xl font-semibold mb- md:text-md">
               Product Description
             </p>
-            <div className=" ">
+            <span className="text-sm   font-medium ">
+              Size : {product?.size?.name}
+            </span>
+            <div className="  ">
               <div dangerouslySetInnerHTML={{ __html: product?.description }} />
+            </div>
+          </div>
+          <div className="mb-8 bg-[#FFF6F6] rounded border-blue-gray-100 p-4">
+            <p className="text-xl font-semibold mb-2 md:text-md">
+              Product Details
+            </p>
+            <div className=" ">
+              <div dangerouslySetInnerHTML={{ __html: product?.details }} />
             </div>
           </div>
         </div>

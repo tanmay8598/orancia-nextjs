@@ -9,7 +9,7 @@ import Loader from "@/components/loader/Loader";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import NewProducts from "@/components/BestSellers/NewProducts";
 import BestSideNav from "@/components/BestSellers/BestSideNav";
-
+import { BsFilterRight } from "react-icons/bs";
 const Page = () => {
   const [isOpenSearch, setIsOpenSearch] = useState(false);
   const [products, setProducts] = useState([]);
@@ -131,10 +131,12 @@ const Page = () => {
           <div className="w-full md:w-[85%] lg:w-[80%] h-full flex flex-col gap-10 px-0">
             <div className="mb-2">
               <button
-                className="block md:hidden ml-1 toggle-button bg-red-500 text-white p-2 rounded-md absolute"
+                className="block flex md:hidden ml-1 toggle-button bg-red-500 text-white p-2 rounded-md absolute"
                 onClick={() => setIsOpenSearch(!isOpenSearch)}
               >
-                {isOpenSearch ? "Hide" : "Show"} Filters
+                <BsFilterRight className="mt-1 mx-1 " />
+                {/* {isOpenSearch ? "Hide" : "Show"} */}
+                Filters
               </button>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:gap-5">

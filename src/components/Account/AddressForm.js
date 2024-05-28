@@ -6,6 +6,7 @@ import InputField from "./InputField";
 import { useRouter } from "next/navigation";
 import apiClient from "@/api/client";
 import useAuth from "@/auth/useAuth";
+import SelectField from "./SelectField";
 
 const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
   const [formData, setFormData] = useState({
@@ -16,6 +17,7 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
     area: "",
     pincode: "",
     landmark: "",
+    state: "",
   });
   const [errors, setErrors] = useState({});
   const { user, logIn } = useAuth();
@@ -39,6 +41,7 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
       .required("Email is required")
       .email("Invalid email format"),
     area: Yup.string().required("Area is required"),
+    state: Yup.string().required("State is required"),
     pincode: Yup.string()
       .required("Pin Code is required")
       .matches(/^\d{6}$/, "Pin Code must be exactly 6 digits"),
@@ -86,6 +89,7 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
           pincode: formData.pincode,
           landmark: formData.landmark,
           area: formData.area,
+          state: formData.state,
         },
       });
       if (response.status === 200) {
@@ -98,6 +102,7 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
           area: "",
           pincode: "",
           landmark: "",
+          state: "",
         });
         setIsOpen(false);
         toast.success("Address added successfully!");
@@ -182,6 +187,43 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
             placeholder=" "
           />
         </div>
+        <SelectField
+          id="state"
+          label="State"
+          value={formData.state}
+          onChange={handleInputChange}
+          error={errors.state}
+        >
+          <option value="">Select a state...</option>
+          <option value="Andhra Pradesh">Andhra Pradesh</option>
+          <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+          <option value="Assam">Assam</option>
+          <option value="Bihar">Bihar</option>
+          <option value="Chhattisgarh">Chhattisgarh</option>
+          <option value="Goa">Goa</option>
+          <option value="Gujarat">Gujarat</option>
+          <option value="Haryana">Haryana</option>
+          <option value="Himachal Pradesh">Himachal Pradesh</option>
+          <option value="Jharkhand">Jharkhand</option>
+          <option value="Karnataka">Karnataka</option>
+          <option value="Kerala">Kerala</option>
+          <option value="Madhya Pradesh">Madhya Pradesh</option>
+          <option value="Maharashtra">Maharashtra</option>
+          <option value="Manipur">Manipur</option>
+          <option value="Meghalaya">Meghalaya</option>
+          <option value="Mizoram">Mizoram</option>
+          <option value="Nagaland">Nagaland</option>
+          <option value="Odisha">Odisha</option>
+          <option value="Punjab">Punjab</option>
+          <option value="Rajasthan">Rajasthan</option>
+          <option value="Sikkim">Sikkim</option>
+          <option value="Tamil Nadu">Tamil Nadu</option>
+          <option value="Telangana">Telangana</option>
+          <option value="Tripura">Tripura</option>
+          <option value="Uttar Pradesh">Uttar Pradesh</option>
+          <option value="Uttarakhand">Uttarakhand</option>
+          <option value="West Bengal">West Bengal</option>
+        </SelectField>
         <button
           className="bg-red-500 text-white w-full font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"

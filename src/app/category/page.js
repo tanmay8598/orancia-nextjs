@@ -34,7 +34,7 @@ const Page = () => {
       <div className="pt-5 max-w-screen-xl mx-auto p-5 sm:p-10 md:pb-16 md:pr-16 md:pl-16 md:pt-1">
         <BlogBanner
           title="SHOP BY CATEGORY"
-          subtitle="Insights and news shaping the future of travel."
+          // subtitle="Insights and news shaping the future of travel."
         />
         {loading ? (
           <div>

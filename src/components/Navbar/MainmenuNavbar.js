@@ -1,8 +1,13 @@
 import React from "react";
 import CategoriesDroupdown from "./CategoriesDroupdown";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const MainmenuNavbar = () => {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push("/blogs");
+  };
   return (
     <>
       {/* <header className="container mx-auto px-4 py-6 flex items-center justify-between"> */}
@@ -196,7 +201,7 @@ const MainmenuNavbar = () => {
                           href="#"
                           className="text-gray-600 hover:text-gray-800 py-1 block font-normal"
                         >
-                          Blog
+                          Blogs
                         </a>
                       </li>
                       <li>
@@ -251,9 +256,12 @@ const MainmenuNavbar = () => {
               </div>
             </li>
             <li className="relative group px-3 py-2">
-              <Link href="/blogs" className="hover:opacity-50 cursor-default">
+              <button
+                onClick={handleClick}
+                className="hover:opacity-50 cursor-default "
+              >
                 Blog
-              </Link>
+              </button>
             </li>
           </ul>
         </nav>

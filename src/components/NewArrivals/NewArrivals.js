@@ -31,9 +31,9 @@ const NewArrivals = () => {
           New Arrivals
         </h3>
 
-        <p className="text-center mb-[20px] ">
+        {/* <p className="text-center mb-[20px] ">
           The World's Premium Brands In One Destination
-        </p>
+        </p> */}
         <BestSellerCarousel products={product} />
 
         <Link href="/new-arrivals">

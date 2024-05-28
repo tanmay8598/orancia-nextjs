@@ -32,25 +32,25 @@ const MenuSidebar = ({ isOpen, setIsOpen }) => {
               {!user ? (
                 <div className=" flex justify-between pt-4 relative  text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer">
                   <div onClick={() => setIsOpenAccount(true)}>
-                    <div className="flex items-center gap-x-2 text-base">
+                    <div className="flex items-center gap-x-2 text-xs">
                       <img
                         src="/user.svg"
                         alt="user icon"
                         priority={true}
                         fill={true}
-                        className="w-4 h-4"
+                        className="w-3 h-3"
                       />
                       <span>Account</span>
                     </div>
                   </div>
                   <div onClick={handleShipping}>
-                    <div className="flex items-center gap-x-2 text-base px-1">
+                    <div className="flex items-center gap-x-2 text-xs px-1">
                       <img
                         src="/tracking.svg"
                         alt="track order"
                         priority={true}
                         fill={true}
-                        className="w-6 h-6"
+                        className="w-4 h-4"
                       />
                       <span>Track Order</span>
                     </div>
@@ -60,25 +60,25 @@ const MenuSidebar = ({ isOpen, setIsOpen }) => {
               ) : (
                 <div className=" flex justify-between pt-4 relative  text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer">
                   <div onClick={handleRedirect}>
-                    <div className="flex items-center gap-x-2 text-base">
+                    <div className="flex items-center gap-x-2 text-xs">
                       <img
                         src="/user.svg"
                         alt="user icon"
                         priority={true}
                         fill={true}
-                        className="w-4 h-4"
+                        className="w-3 h-3"
                       />
                       <span>Account</span>
                     </div>
                   </div>
                   <div onClick={handleShipping}>
-                    <div className="flex items-center gap-x-2 text-base">
+                    <div className="flex items-center gap-x-2 text-xs">
                       <img
                         src="/tracking.svg"
                         alt="track order"
                         priority={true}
                         fill={true}
-                        className="w-6 h-6"
+                        className="w-4 h-4"
                       />
                       <span>Track Order</span>
                     </div>
