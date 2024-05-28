@@ -18,7 +18,7 @@ const MobNavbarItems = ({ setIsOpen }) => {
     <div className="w-full flex flex-col  ">
       {/* <p className="text-2xl font-medium">Filters </p> */}
       <div>
-        <MobNavItems />
+        <MobNavItems setIsOpen={setIsOpen} />
       </div>
       <div>
         <div>

@@ -11,11 +11,25 @@ import Marquees from "@/components/Marquee/Marquees";
 import NewArrivals from "@/components/NewArrivals/NewArrivals";
 import ShopbyCategory from "@/components/ShopbyCategory/ShopbyCategory";
 import SingleBanner from "@/components/SingleBanner/SingleBanner";
+import Loader from "@/components/loader/Loader";
 import WhatClient from "@/components/whatClientSays/WhatClient";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  // const { user } = useAuth();
-  // console.log("user", user);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <div>
       <Banner />

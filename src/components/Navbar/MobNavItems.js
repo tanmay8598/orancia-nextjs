@@ -29,7 +29,7 @@ function Icon({ id, open }) {
   );
 }
 
-const MobNavItems = () => {
+const MobNavItems = ({ setIsOpen }) => {
   const [open, setOpen] = useState(0);
   const [error, setError] = useState(null);
   const [categories, setCategories] = useState([]);
@@ -50,7 +50,9 @@ const MobNavItems = () => {
     fetchData();
   }, []);
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
-
+  const closeModal = () => {
+    setIsOpen(false);
+  };
   return (
     <div>
       <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
@@ -66,7 +68,10 @@ const MobNavItems = () => {
             <div key={catData._id}>
               <ul className="mt-3 text-[15px]">
                 <li>
-                  <div className="flex w-full items-center">
+                  <div
+                    className="flex w-full items-center"
+                    onClick={closeModal}
+                  >
                     <div
                       className="h-[30px] w-[30px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md bg-cover bg-center bg-no-repeat"
                       style={{
