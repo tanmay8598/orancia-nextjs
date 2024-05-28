@@ -30,8 +30,9 @@ const AddressPage = () => {
                 <>
                   <p>
                     {shippingAddress.address},{shippingAddress.street},
-                    {shippingAddress.landmark}, {shippingAddress.area},
-                    {shippingAddress.pincode},{shippingAddress.state}
+                    {shippingAddress.city},{shippingAddress.landmark},{" "}
+                    {shippingAddress.area},{shippingAddress.pincode},
+                    {shippingAddress.state}
                   </p>
 
                   <p className="flex py-1 ">

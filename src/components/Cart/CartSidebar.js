@@ -44,7 +44,7 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetContent className="bg-white lg:max-w-[500px] ">
         <SheetHeader>
-          <SheetTitle className="text-left mb-12">
+          <SheetTitle className="text-left mb-8">
             My Shopping Cart({cartLength > 0 ? cartLength : "0"})
           </SheetTitle>
         </SheetHeader>
@@ -68,11 +68,11 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
           <div className="mt-10 sm:mb-6">
             <div className="flex justify-between font-semibold">
               <div className="uppercase  my-2 sm:mb-0 sm:pt-1">
-                Total : ₹{totalValue}.00
+                ₹{totalValue}.00
               </div>
-              <div className="mb-4">
+              <div className="mb-4 mx-2">
                 <button
-                  className="bg-red-400 rounded-xl text-white sm:font-medium text-base py-2  px-14 md:px-24 w-full sm:w-auto"
+                  className="bg-red-400 rounded-xl text-white sm:font-medium text-base py-2  px-8 md:px-24 w-full sm:w-auto"
                   onClick={handleClick}
                 >
                   CHECKOUT

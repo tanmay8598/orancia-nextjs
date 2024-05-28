@@ -25,53 +25,52 @@ const CartItem = ({ item }) => {
     dispatch(decrementQuantity(item.product?._id));
   };
   return (
-    <div className="flex w-full justify-between mb-4 items-center h-[120px] border-b">
-      {/* image  */}
-      <div className="w-[90px] h-[90px] lg:w-[110px] lg:h-[110px] relative ">
-        <Image
-          // src="https://files.stbotanica.com/site-images/400x400/STBOT470-01.jpg"
-          src={item.product?.image[0]}
-          fill
-          priority
-          sizes="(max-width: 110px) 110px, 110px"
-          className="object-contain"
-          alt=""
-        />
-      </div>
-
-      {/* info  */}
-      <div className="w-full max-w-[220px] lg:max-w-[320px] flex flex-col justify-center gap-4 ">
-        <div className="flex items-center justify-between">
-          <p className="text-xs lg:text-sm font-medium w-3/4">
-            {item.product?.name}
-          </p>
-          <button
-            className="cursor-pointer"
-            // onClick={handleRemoveItemsss}
-            onClick={handleRemoveItem}
-          >
-            <MdClose />
-          </button>
+    <>
+      <div className="flex w-full justify-between mb-4 items-center h-[120px] border-b">
+        <div className="w-[90px] h-[90px] lg:w-[110px] lg:h-[110px] relative p-2 ">
+          <Image
+            // src="https://files.stbotanica.com/site-images/400x400/STBOT470-01.jpg"
+            src={item.product?.image[0]}
+            fill
+            priority
+            sizes="(max-width: 110px) 110px, 110px"
+            className="object-contain"
+            alt=""
+          />
         </div>
 
-        {/* qty  */}
-        <div className="flex items-center justify-between">
-          <div className="flex gap-4 border-2 px-2 rounded-sm">
+        <div className="w-full max-w-[220px] lg:max-w-[320px] flex flex-col justify-center px-3 gap-4 ">
+          <div className="flex items-center justify-between  ">
+            <p className="text-xs lg:text-sm font-medium w-3/4">
+              {item.product?.name}
+            </p>
             <button
-              // onClick={() => handleQuantity("dec")}
-              onClick={handleDecrement}
+              className="cursor-pointer"
+              // onClick={handleRemoveItemsss}
+              onClick={handleRemoveItem}
             >
-              <FaMinus className="text-[10px]" />
-            </button>
-            <div className="text-sm">{item.quantity}</div>
-            <button onClick={handleIncrement}>
-              <FaPlus className="text-[10px]" />
+              <MdClose />
             </button>
           </div>
-          <div>₹{total}</div>
+
+          <div className="flex items-center justify-between  ">
+            <div className="flex gap-4 border-2 px-2 rounded-sm">
+              <button
+                // onClick={() => handleQuantity("dec")}
+                onClick={handleDecrement}
+              >
+                <FaMinus className="text-[10px]" />
+              </button>
+              <div className="text-sm">{item.quantity}</div>
+              <button onClick={handleIncrement}>
+                <FaPlus className="text-[10px]" />
+              </button>
+            </div>
+            <div>₹{total}</div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

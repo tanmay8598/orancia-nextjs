@@ -45,9 +45,10 @@ const page = () => {
               {shippingAddress ? (
                 <>
                   <p>
-                    {shippingAddress.address},{shippingAddress.street},
-                    {shippingAddress.landmark}, {shippingAddress.area},
-                    {shippingAddress.pincode},{shippingAddress.state}
+                    {shippingAddress.address},{shippingAddress.street} ,{" "}
+                    {shippingAddress.city},{shippingAddress.landmark},{" "}
+                    {shippingAddress.area},{shippingAddress.pincode},
+                    {shippingAddress.state}
                   </p>
 
                   <p className="flex py-1 ">

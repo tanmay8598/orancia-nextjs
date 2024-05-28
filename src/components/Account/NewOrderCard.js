@@ -4,7 +4,13 @@ import OrderCardHeader from "./OrderCardHeader";
 import Image from "next/image";
 import { MdOutlineStar } from "react-icons/md";
 import { IoDownloadOutline } from "react-icons/io5";
+import { useRouter } from "next/navigation";
+
 const NewOrderCard = () => {
+  const router = useRouter();
+  const handleOrder = () => {
+    router.push("/order-details");
+  };
   return (
     <>
       <div className="bg-white  flex justify-center mb-5 items-center">
@@ -74,11 +80,14 @@ const NewOrderCard = () => {
                 </div>
               </div>
               <div className="grid   col-span-2   ">
-                <div className="flex  sm:justify-end text-[#4F46E5]">
-                  <div>
+                <div
+                  className="flex cursor-pointer sm:justify-end text-[#4F46E5]"
+                  onClick={handleOrder}
+                >
+                  {/* <div>
                     <IoDownloadOutline className="mt-[3px]" />{" "}
-                  </div>
-                  <div> Download Invoice</div>
+                  </div> */}
+                  <div> View Order Detail</div>
                 </div>
               </div>
             </div>

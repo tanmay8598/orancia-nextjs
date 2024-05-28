@@ -11,6 +11,7 @@ import SelectField from "./SelectField";
 const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
   const [formData, setFormData] = useState({
     address: "",
+    city: "",
     street: "",
     email: "",
     mobileNumber: "",
@@ -31,6 +32,9 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
     address: Yup.string()
       .required("Enter Address is required")
       .min(3, "Enter Address must be at least 3 characters"),
+    city: Yup.string()
+      .required("Enter City is required")
+      .min(3, "Enter City must be at least 3 characters"),
     street: Yup.string()
       .required("Enter Street is required")
       .min(3, "Enter Street must be at least 3 characters"),
@@ -83,6 +87,7 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
         userId: user.id,
         shippingAddress: {
           address: formData.address,
+          city: formData.city,
           street: formData.street,
           mobileNumber: formData.mobileNumber,
           email: formData.email,
@@ -96,6 +101,7 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
         logIn(response.data.token);
         setFormData({
           address: "",
+          city: "",
           street: "",
           mobileNumber: "",
           email: "",
@@ -133,6 +139,7 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
             error={errors.address}
             placeholder=" "
           />
+
           <InputField
             id="street"
             label="Street"
@@ -142,16 +149,26 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
             placeholder=" "
           />
         </div>
-        <InputField
-          id="mobileNumber"
-          label="Phone Number"
-          value={formData.mobileNumber}
-          onChange={handleInputChange}
-          error={errors.mobileNumber}
-          maxLength={10}
-          onInput={handleInputNumber}
-          placeholder=" "
-        />
+        <div className="mb-4 grid grid-cols-2 gap-2">
+          <InputField
+            id="city"
+            label="city"
+            value={formData.city}
+            onChange={handleInputChange}
+            error={errors.city}
+            placeholder=" "
+          />
+          <InputField
+            id="mobileNumber"
+            label="Phone Number"
+            value={formData.mobileNumber}
+            onChange={handleInputChange}
+            error={errors.mobileNumber}
+            maxLength={10}
+            onInput={handleInputNumber}
+            placeholder=" "
+          />
+        </div>
         <InputField
           id="email"
           label="Email"
