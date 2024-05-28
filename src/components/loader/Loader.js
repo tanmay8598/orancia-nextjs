@@ -26,12 +26,6 @@ const Loader = () => {
           </span>
         </div>
       </div>
-      {/* <div
-        style={{ ...styles, position: "absolute", textAlign: "center" }}
-        className="text-red-500"
-      >
-        Loading...
-      </div> */}
     </>
   );
 };

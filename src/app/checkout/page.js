@@ -10,25 +10,65 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { MdAddIcCall } from "react-icons/md";
 import { IoMdMailUnread } from "react-icons/io";
+import apiClient from "@/api/client";
+
 const page = () => {
   const [isOpenAccount, setIsOpenAccount] = useState(false);
   const selector = useSelector((state) => state.cart);
   const [shippingAddress, setShippingAddress] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const products = selector.cart;
   const totalValue = selector.cart.reduce((total, item) => {
     return total + item.quantity * item.product.sell_price;
   }, 0);
+
   const { user } = useAuth();
-  console.log(user, "user");
+
+  //order items
+  const orderItems = [];
+
   useEffect(() => {
     if (user && user.shippingAddress) {
       setShippingAddress(user.shippingAddress);
     }
     setIsLoading(false);
   }, [user]);
+
   if (isLoading) {
     return <Loader />;
   }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    products?.map((item) => {
+      orderItems.push({
+        name: item?.product?.name,
+        qty: item?.quantity,
+        image: item?.product?.image[0],
+        price: item?.product?.sell_price,
+        product: item.product._id,
+        // discount: item?.product?.
+      });
+    });
+
+    const result = await apiClient.post("/orders/create-order", {
+      orderItems,
+      shippingAddress,
+      paymentMethod: "COD",
+      itemsPrice: totalValue,
+      totalPrice: totalValue,
+      deliveryStatus: "Processing",
+      userId: user.id,
+      isPaid: true,
+    });
+    if (result.ok) {
+      alert("success");
+    } else {
+      alert("error retry");
+    }
+  };
+
   return (
     <>
       <div className="container mx-auto px-4 py-8">
@@ -127,6 +167,12 @@ const page = () => {
                 </p>
               </div>
             </div>
+            <button
+              className="text-white w-full bg-primary p-2"
+              onClick={handleSubmit}
+            >
+              Complete transcation
+            </button>
           </div>
           <AddressSidebar
             isOpen={isOpenAccount}
