@@ -7,13 +7,16 @@ import CoopanForm from "@/components/orderPage/CoopanForm";
 import OrderImagecard from "@/components/orderPage/OrderImagecard";
 
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MdAddIcCall } from "react-icons/md";
 import { IoMdMailUnread } from "react-icons/io";
 import apiClient from "@/api/client";
-
+import { ToastContainer, toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { clear } from "@/redux/features/cart/cartSlice";
 const page = () => {
   const [isOpenAccount, setIsOpenAccount] = useState(false);
+  const dispatch = useDispatch();
   const selector = useSelector((state) => state.cart);
   const [shippingAddress, setShippingAddress] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +26,7 @@ const page = () => {
   }, 0);
 
   const { user } = useAuth();
-
+  const router = useRouter();
   //order items
   const orderItems = [];
 
@@ -62,10 +65,14 @@ const page = () => {
       userId: user.id,
       isPaid: true,
     });
+
     if (result.ok) {
-      alert("success");
+      dispatch(clear());
+      console.log(result.data._id, "dd");
+      toast.success("Transcation successfull !");
+      router.push(`/account/${result.data._id}`);
     } else {
-      alert("error retry");
+      toast.error("Error Retry");
     }
   };
 
@@ -169,7 +176,7 @@ const page = () => {
               </div>
             </div>
             <button
-              className="text-white w-full bg-primary p-2"
+              className="text-white w-full bg-primary p-2 rounded"
               onClick={handleSubmit}
             >
               Complete transcation
@@ -182,6 +189,17 @@ const page = () => {
           />
         </div>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };

@@ -1,15 +1,46 @@
 "use client";
+import apiClient from "@/api/client";
+import useAuth from "@/auth/useAuth";
+import OrderAddress from "@/components/OrderAddress";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import React from "react";
+import { useParams, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import { IoIosCart } from "react-icons/io";
 
 const page = () => {
+  const { user } = useAuth();
+  const [myOrder, setMyOrder] = useState([]);
+  const [error, setError] = useState(null);
   const router = useRouter();
+  const params = useParams();
+  useEffect(() => {
+    if (user) {
+      getMyOrder();
+    }
+  }, [user]);
+
+  const getMyOrder = async () => {
+    try {
+      const response = await apiClient.get("/orders/myorders1", {
+        userId: user.id,
+      });
+
+      if (response.ok) {
+        setMyOrder(response.data);
+      } else {
+        setError(response.statusText);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  console.log(myOrder, "myOrder");
 
   const handleBackClick = () => {
     router.back();
   };
+  console.log(params, "params");
   return (
     <>
       <div className="shadow-lg m-8 rounded-md   pb-2  p-6 shadow-blue-gray-300 bg-white">
@@ -31,34 +62,9 @@ const page = () => {
           </div>
         </div>
         {/* odrder details */}
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 ">
-          <div class=" ">
-            <div className="border-b-2 p-3-b-2 mb-4 font-semibold text-gray-600 text-xl">
-              Order Details
-            </div>
-            <div className="font-semibold text-gray-600 text-lg">
-              <div className="mb-2">Order Id : 7</div>
-              <div className="mb-2">Tracking Id/No.: funda-FgocLv9kYR</div>
-              <div className="mb-2">Order Date : 18-05-2024 11:42 AM</div>
-              <div className="mb-2">Payment Mode : Pay by Paypal</div>
-            </div>
-            <div className="border p-3-2 text-lg p-2 text-green-600">
-              Order Status Message : IN PROGRESS
-            </div>
-          </div>
-          <div class=" ">
-            <div className="border-b-2 p-3-b-2 mb-4 font-semibold text-gray-600 text-xl">
-              User Details
-            </div>
-            <div className="font-semibold text-gray-600 text-lg">
-              <div className="mb-2">Full Name : Vimal Raj</div>
-              <div className="mb-2">Email Id : vimal@gmail.com</div>
-              <div className="mb-2">Phone No.: 8172848306</div>
-              <div className="mb-2">Address : Gomati Nagar Lucknow</div>
-              <div className="mb-2">Pin code : 226141</div>
-            </div>
-          </div>
-        </div>
+        {myOrder.map((mydata) => (
+          <OrderAddress mydata={mydata} />
+        ))}
         {/* order item */}
         <div className="mb-4">
           <div className="grid grid-cols-1   mb-2  ">

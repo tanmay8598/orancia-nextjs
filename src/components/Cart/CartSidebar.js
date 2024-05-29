@@ -35,10 +35,6 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
   const totalValue = products.reduce((total, item) => {
     return total + item?.quantity * item?.product?.sell_price;
   }, 0);
-  // console.log(totalValue, "total");
-  // console.log(selector.cart, "selector.cart");
-  // console.log(products);
-  // console.log(products, "products");
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -65,7 +61,7 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
           )}
         </>
         {cartLength > 0 && (
-          <div className="mt-10 sm:mb-6">
+          <div className="mt-14 sm:mb-6">
             <div className="flex justify-between font-semibold">
               <div className="uppercase  my-2 sm:mb-0 sm:pt-1">
                 ₹{totalValue}.00

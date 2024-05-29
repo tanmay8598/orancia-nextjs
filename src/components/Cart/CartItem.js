@@ -55,10 +55,7 @@ const CartItem = ({ item }) => {
 
           <div className="flex items-center justify-between  ">
             <div className="flex gap-4 border-2 px-2 rounded-sm">
-              <button
-                // onClick={() => handleQuantity("dec")}
-                onClick={handleDecrement}
-              >
+              <button onClick={handleDecrement}>
                 <FaMinus className="text-[10px]" />
               </button>
               <div className="text-sm">{item.quantity}</div>

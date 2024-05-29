@@ -134,7 +134,17 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
         </button>
       </form>
 
-      <ToastContainer />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };
