@@ -29,6 +29,12 @@ const page = () => {
   const router = useRouter();
   //order items
   const orderItems = [];
+  console.log(products.length, "lenght");
+  useEffect(() => {
+    if (!products.length) {
+      router.push("/");
+    }
+  }, [products]);
 
   useEffect(() => {
     if (user && user.shippingAddress) {
