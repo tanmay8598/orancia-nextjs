@@ -29,12 +29,6 @@ const page = () => {
   const router = useRouter();
   //order items
   const orderItems = [];
-  console.log(products.length, "lenght");
-  useEffect(() => {
-    if (!products.length) {
-      router.push("/");
-    }
-  }, [products]);
 
   useEffect(() => {
     if (user && user.shippingAddress) {
@@ -43,9 +37,11 @@ const page = () => {
     setIsLoading(false);
   }, [user]);
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  useEffect(() => {
+    if (!products.length) {
+      router.push("/");
+    }
+  }, [products]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -81,7 +77,9 @@ const page = () => {
       toast.error("Error Retry");
     }
   };
-
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <>
       <div className="container mx-auto px-4 py-8">
