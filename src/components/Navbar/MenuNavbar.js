@@ -13,8 +13,7 @@ import Image from "next/image";
 import MenuSidebar from "../Cart/MenuSidebar";
 import MainmenuNavbar from "./MainmenuNavbar";
 import Link from "next/link";
-import CategoriesDroupdown from "./CategoriesDroupdown";
-import CategoryDroupdown from "./CategoryDroupdown";
+
 import CategoryDropdown from "./CategoryDroupdown";
 
 const MenuNavbar = () => {
@@ -86,17 +85,18 @@ const MenuNavbar = () => {
                 <Popover.Group className="hidden lg:ml-8 z-50 lg:block lg:self-stretch">
                   <div className="flex h-full space-x-8">
                     <div className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">
-                      {/* <MainmenuNavbar /> */}
                       <header className="container mx-auto px-4 py-6 flex items-center justify-between">
                         <nav>
                           <ul className="flex items-center justify-center font-semibold">
                             <li className="relative group px-3 py-2">
-                              <button className="hover:opacity-50 cursor-default">
+                              <button
+                                className="hover:opacity-50 cursor-default"
+                                onMouseEnter={() => setCategoryDropdown(false)}
+                              >
                                 Makeup
                               </button>
                               <div className="absolute top-0 -left-2 transition group-hover:translate-y-5 translate-y-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible duration-500 ease-in-out group-hover:transform z-50 min-w-[260px] transform">
                                 <div className="relative top-[47px] p-6 bg-white  shadow-xl w-full">
-                                  {/* <div className="w-10 h-10 bg-white transform rotate-45 absolute top-0 z-0 -translate-x-4 transition-transform group-hover:translate-x-3 duration-500 ease-in-out rounded-sm"></div> */}
                                   <div className="relative z-10">
                                     <p className="uppercase tracking-wider text-gray-500 font-medium text-[13px]">
                                       Use cases
@@ -148,32 +148,25 @@ const MenuNavbar = () => {
                               </div>
                             </li>
                             <li className="relative group px-3 py-2">
-                              {/* <button
-                                className="hover:opacity-50 cursor-default"
-                                // onClick={() => setCategoryDroup(true)}
-                                onClick={toggleDropdown}
-                              >
-                                Categories
-                              </button> */}
                               <button
                                 className="hover:opacity-50 cursor-default"
                                 onClick={() =>
                                   setCategoryDropdown(!categoryDropdown)
                                 }
-                                onMouseEnter={() => setCategoryDropdown(true)} // Show dropdown on hover
+                                onMouseEnter={() => setCategoryDropdown(true)}
                               >
                                 Categories
                               </button>
-                              {/* <CategoriesDroupdown /> */}
                             </li>
                             <li className="relative group px-3 py-2">
-                              <button className="hover:opacity-50 cursor-default">
+                              <button
+                                className="hover:opacity-50 cursor-default"
+                                onMouseEnter={() => setCategoryDropdown(false)}
+                              >
                                 Skin Care
                               </button>
                               <div className="absolute top-0 -left-48 transition group-hover:translate-y-5 translate-y-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible duration-500 ease-in-out group-hover:transform z-50 min-w-[560px] transform">
                                 <div className="relative top-[47px] p-6 bg-white  shadow-xl w-full">
-                                  {/* <div className="w-10 h-10 bg-white transform rotate-45 absolute top-0 z-0 translate-x-0 transition-transform group-hover:translate-x-[12.65rem] duration-500 ease-in-out rounded-sm"></div> */}
-
                                   <div className="relative z-10">
                                     <a
                                       href="#"
@@ -269,12 +262,14 @@ const MenuNavbar = () => {
                               </div>
                             </li>
                             <li className="relative group px-3 py-2">
-                              <button className="hover:opacity-50 cursor-default">
+                              <button
+                                className="hover:opacity-50 cursor-default"
+                                onMouseEnter={() => setCategoryDropdown(false)}
+                              >
                                 Hair Care
                               </button>
                               <div className="absolute top-0 -left-2 transition group-hover:translate-y-5 translate-y-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible duration-500 ease-in-out group-hover:transform z-50 min-w-[200px] transform">
                                 <div className="relative top-[47px] p-6 bg-white  shadow-xl w-full">
-                                  {/* <div className="w-10 h-10 bg-white transform rotate-45 absolute top-0 z-0 -translate-x-4 transition-transform group-hover:translate-x-3 duration-500 ease-in-out rounded-sm"></div> */}
                                   <div className="relative z-10">
                                     <ul className="text-[15px]">
                                       <li>
@@ -323,7 +318,10 @@ const MenuNavbar = () => {
                               </div>
                             </li>
                             <li className="relative group px-3 py-2">
-                              <button className="hover:opacity-50 cursor-default">
+                              <button
+                                className="hover:opacity-50 cursor-default"
+                                onMouseEnter={() => setCategoryDropdown(false)}
+                              >
                                 Bestsellers
                               </button>
                               {/*  */}
@@ -347,6 +345,7 @@ const MenuNavbar = () => {
                             <li className="relative group px-3 py-2">
                               <button
                                 onClick={handleClick}
+                                onMouseEnter={() => setCategoryDropdown(false)}
                                 className="hover:opacity-50 cursor-default "
                               >
                                 Blog

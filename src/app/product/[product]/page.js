@@ -152,7 +152,7 @@ const page = () => {
         const response = await apiClient.get(`/product/get-by-id`, {
           productId,
         });
-        console.log(response, "res");
+
         if (!response.ok) {
           throw new Error("Failed to fetch product");
         }
@@ -312,11 +312,22 @@ const page = () => {
                 </div>
               </div>
               <div className="md:flex md:w-full md:h-12 md:justify-between mt-6">
-                <AddtoCartBtn
-                  btnStyles="btn btn-primary w-full   mt-2 md:mt-0 sm:w-3/4  md:6 rounded-md"
-                  textStyles="text-md font-regular"
-                  onClick={() => notify()}
-                />
+                {product?.countInStock?.qty === 0 ? (
+                  <div className="md:flex md:w-full md:h-12 md:justify-between mt-6">
+                    {/* <div className="btn btn-primary w-full mt-2 md:mt-0 sm:w-3/4 md:6 rounded-md"> */}
+                    <div className="btn btn-primary   mt-2 md:mt-0 sm:w-3/4 md:6 rounded-md w-full text-center bg-red-200 text-white py-2  font-semibold   hover:bg-red-300 focus:scale-95 transition-all">
+                      Out of Stock
+                    </div>
+                  </div>
+                ) : (
+                  <div className="md:flex md:w-full md:h-12 md:justify-between mt-6">
+                    <AddtoCartBtn
+                      btnStyles="btn btn-primary w-full mt-2 md:mt-0 sm:w-3/4 md:6 rounded-md"
+                      textStyles="text-md font-regular"
+                      onClick={() => notify()}
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>

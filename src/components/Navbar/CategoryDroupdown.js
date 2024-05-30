@@ -45,7 +45,10 @@ const CategoryDropdown = ({ isOpen, setIsOpen }) => {
                             backgroundImage: `url(${catData.image})`,
                           }}
                         ></div>
-                        <div className="flex-1">
+                        <div
+                          className="flex-1"
+                          onClick={() => setIsOpen(false)}
+                        >
                           <Link
                             href={`/category/${catData._id}`}
                             className="block p-2 ml-2 rounded-lg hover:bg-red-400 hover:from-indigo-50 hover:to-pink-50 hover:via-red-50 transition ease-in-out duration-300 text-gray-800 font-semibold hover:text-white"

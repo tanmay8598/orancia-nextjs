@@ -16,7 +16,7 @@ const CartItem = ({ item }) => {
   const handleRemoveItem = () => {
     dispatch(remove(item.product?._id));
   };
-
+  console.log(item, "item");
   const handleIncrement = () => {
     dispatch(incrementQuantity(item.product?._id));
   };
@@ -24,6 +24,17 @@ const CartItem = ({ item }) => {
   const handleDecrement = () => {
     dispatch(decrementQuantity(item.product?._id));
   };
+
+  // const handleQuantity = (type) => {
+  //   if (type === "dec") {
+  //     quantity > 1 && setQuantity(quantity - 1);
+  //   } else {
+  //     if (quantity < product?.countInStock.qty) {
+  //       setQuantity(quantity + 1);
+  //     }
+  //     // setQuantity(quantity + 1);
+  //   }
+  // };
   return (
     <>
       <div className="flex w-full justify-between mb-4 items-center h-[120px] border-b">

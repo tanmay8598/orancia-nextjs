@@ -22,7 +22,7 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
   });
   const [errors, setErrors] = useState({});
   const { user, logIn } = useAuth();
-  console.log(user, "user");
+
   useEffect(() => {
     if (existingAddress) {
       setFormData(existingAddress);

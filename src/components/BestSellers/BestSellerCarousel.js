@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { useEffect, useRef, useState } from "react";
 import BestSallerCard from "./BestSallerCard";
-import "./style.css";
+
 import Slider from "react-slick";
 const BestSellerCarousel = ({ products }) => {
   const [isMobileView, setIsMobileView] = useState(false);
