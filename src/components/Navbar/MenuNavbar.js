@@ -88,7 +88,7 @@ const MenuNavbar = () => {
                       <header className="container mx-auto px-4 py-6 flex items-center justify-between">
                         <nav>
                           <ul className="flex items-center justify-center font-semibold">
-                            <li className="relative group px-3 py-2">
+                            <li className="relative group px-3 py-2 cursor-pointer">
                               <button
                                 className="hover:opacity-50 cursor-default"
                                 onMouseEnter={() => setCategoryDropdown(false)}
@@ -147,18 +147,18 @@ const MenuNavbar = () => {
                                 </div>
                               </div>
                             </li>
-                            <li className="relative group px-3 py-2">
+                            <li className="relative group px-3 py-2 cursor-pointer">
                               <button
-                                className="hover:opacity-50 cursor-default"
-                                onClick={() =>
-                                  setCategoryDropdown(!categoryDropdown)
-                                }
+                                className="hover:opacity-50   cursor-pointer"
+                                // onClick={() =>
+                                //   setCategoryDropdown(!categoryDropdown)
+                                // }
                                 onMouseEnter={() => setCategoryDropdown(true)}
                               >
                                 Categories
                               </button>
                             </li>
-                            <li className="relative group px-3 py-2">
+                            <li className="relative group px-3 py-2 cursor-pointer">
                               <button
                                 className="hover:opacity-50 cursor-default"
                                 onMouseEnter={() => setCategoryDropdown(false)}
@@ -261,7 +261,7 @@ const MenuNavbar = () => {
                                 </div>
                               </div>
                             </li>
-                            <li className="relative group px-3 py-2">
+                            <li className="relative group px-3 py-2 cursor-pointer">
                               <button
                                 className="hover:opacity-50 cursor-default"
                                 onMouseEnter={() => setCategoryDropdown(false)}
@@ -317,7 +317,7 @@ const MenuNavbar = () => {
                                 </div>
                               </div>
                             </li>
-                            <li className="relative group px-3 py-2">
+                            <li className="relative group px-3 py-2 cursor-pointer">
                               <button
                                 className="hover:opacity-50 cursor-default"
                                 onMouseEnter={() => setCategoryDropdown(false)}
@@ -342,7 +342,7 @@ const MenuNavbar = () => {
                                 </div>
                               </div>
                             </li>
-                            <li className="relative group px-3 py-2">
+                            <li className="relative group px-3 py-2 cursor-pointer">
                               <button
                                 onClick={handleClick}
                                 onMouseEnter={() => setCategoryDropdown(false)}

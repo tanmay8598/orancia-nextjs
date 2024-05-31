@@ -106,10 +106,6 @@ const NewProducts = ({ product }) => {
                 />
               </div>
             )}
-            {/* <AddtoCartBtn
-              onClick={handleAddToCart}
-              btnStyles="w-full text-center bg-red-400 text-white py-2 rounded-lg font-semibold mt-4 hover:bg-red-300 focus:scale-95 transition-all"
-            /> */}
           </div>
         </div>
       </div>

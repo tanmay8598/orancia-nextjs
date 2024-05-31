@@ -29,7 +29,7 @@ function Icon({ id, open }) {
 
 const Category = ({ categories }) => {
   const [open, setOpen] = useState(0);
-  // console.log(categories, "vvvv");
+
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
   // Extract the first category

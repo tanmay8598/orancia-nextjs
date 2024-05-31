@@ -128,10 +128,10 @@ const page = () => {
                             />
                           </div>
                         </td>
-                        <td className="border p-3 border-gray-300">
+                        <td className="border p-3 text-center border-gray-300">
                           {data?.qty}
                         </td>
-                        <td className="border p-3 border-gray-300">
+                        <td className="border p-3 text-center border-gray-300">
                           ₹{data?.price}
                         </td>
                       </tr>

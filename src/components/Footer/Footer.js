@@ -43,15 +43,43 @@ const Footer = () => {
           </div>
         </div>
         {/* Section  */}
+
         <div className="p-6 lg:p-14">
           <p className="font-medium text-xl">Help</p>
           <ul className="mt-4 text-sm">
-            <li className="mb-3">Contact Us</li>
-            <li className="mb-3">Frequently asked questions </li>
-            <li className="mb-3">Store Locatorut </li>
-            <li className="mb-3">Cancellation & Returntact </li>
-            <li className="mb-3">Shipping & Delivery</li>
-            <li className="mb-3">Sell on Orancia</li>
+            <li className="mb-3">
+              {" "}
+              <Link href="/contact-us/" className="normal-case font-normal">
+                Contact Us
+              </Link>
+            </li>
+            <li className="mb-3">
+              <Link href="#" className="normal-case font-normal">
+                Frequently asked questions
+              </Link>{" "}
+            </li>
+            <li className="mb-3">
+              {" "}
+              <Link href="#" className="normal-case font-normal">
+                Store Locatorut
+              </Link>
+            </li>
+            <li className="mb-3">
+              <Link href="#" className="normal-case font-normal">
+                Cancellation & Returntact
+              </Link>
+            </li>
+            <li className="mb-3">
+              {" "}
+              <Link href="#" className="normal-case font-normal">
+                Shipping & Delivery
+              </Link>
+            </li>
+            <li className="mb-3">
+              <Link href="#" className="normal-case font-normal">
+                Sell on Orancia
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="p-6 lg:p-14">
@@ -82,7 +110,7 @@ const Footer = () => {
                     onClick={() => setIsOpenAccount(true)}
                   >
                     {/* <Link> */}
-                    MY ACCOUNT
+                    My Account
                     {/* </Link> */}
                   </div>
                 ) : (
@@ -90,7 +118,7 @@ const Footer = () => {
                     // className="relative h-4 w-4 text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer"
                     onClick={handleRedirect}
                   >
-                    MY ACCOUNT
+                    My Account
                   </div>
                 )}
               </Link>{" "}
@@ -134,12 +162,39 @@ const Footer = () => {
         <div className="p-6 lg:p-14">
           <p className="font-medium text-xl">My SHOP</p>
           <ul className="mt-4 text-sm">
-            <li className="mb-3">MAKEUP</li>
-            <li className="mb-3">Body Care</li>
-            <li className="mb-3">Hair Care</li>
-            <li className="mb-3">Men's Care</li>
-            <li className="mb-3">Wellness</li>
-            <li className="mb-3">Gifting</li>
+            <li className="mb-3">
+              {" "}
+              <Link href="/best-sellers" className="normal-case font-normal">
+                Makeup
+              </Link>
+            </li>
+            <li className="mb-3">
+              <Link href="/best-sellers" className="normal-case font-normal">
+                Body Care
+              </Link>{" "}
+            </li>
+            <li className="mb-3">
+              {" "}
+              <Link href="/best-sellers" className="normal-case font-normal">
+                Hair Care
+              </Link>
+            </li>
+            <li className="mb-3">
+              <Link href="/best-sellers" className="normal-case font-normal">
+                Men's Care
+              </Link>
+            </li>
+            <li className="mb-3">
+              {" "}
+              <Link href="/best-sellers" className="normal-case font-normal">
+                Wellness
+              </Link>
+            </li>
+            <li className="mb-3">
+              <Link href="/best-sellers" className="normal-case font-normal">
+                Gifting
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import BlogCard from "./BlogCard";
 import apiClient from "@/api/client";
 import Link from "next/link";
+import Loader from "../loader/Loader";
 
 const BlogHero = () => {
   const [error, setError] = useState();
@@ -26,17 +27,18 @@ const BlogHero = () => {
     } catch (error) {
       setError(error.message);
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
   const allblogs = blogList.blogs;
-  // if (isLoading) {
-  //   return (
-  //     <div>
-  //       <Loader />
-  //     </div>
-  //   );
-  // }
-  // console.log(blogList, "blo");
+  if (isLoading) {
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className="  max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
@@ -46,8 +48,6 @@ const BlogHero = () => {
             Blog
           </a>
         </div>
-
-        {/* <a href="myblog">See All</a> */}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">

@@ -28,7 +28,7 @@ const SearchSidebar = ({ isOpen, setIsOpen }) => {
           product.name.toLowerCase().includes(value)
         );
       });
-      console.log(results, "res");
+
       setResults(results);
     }
   };
@@ -75,7 +75,7 @@ const SearchSidebar = ({ isOpen, setIsOpen }) => {
                             <div
                               className="h-[80px] w-[80px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md bg-cover bg-center bg-no-repeat"
                               style={{
-                                backgroundImage: `url(${result.image})`,
+                                backgroundImage: `url(${result.image[0]})`,
                               }}
                             ></div>
 

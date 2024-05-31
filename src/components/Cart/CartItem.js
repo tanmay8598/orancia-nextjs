@@ -9,8 +9,8 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { useDispatch } from "react-redux";
 const CartItem = ({ item }) => {
-  console.log(item.product, "item");
-
+  // console.log(item.product.countInStock.qty, "item");
+  const [quantity, setQuantity] = useState(1);
   let total = item.product?.sell_price * item.quantity;
   const dispatch = useDispatch();
   const handleRemoveItem = () => {
@@ -25,16 +25,16 @@ const CartItem = ({ item }) => {
     dispatch(decrementQuantity(item.product?._id));
   };
 
-  // const handleQuantity = (type) => {
-  //   if (type === "dec") {
-  //     quantity > 1 && setQuantity(quantity - 1);
-  //   } else {
-  //     if (quantity < product?.countInStock.qty) {
-  //       setQuantity(quantity + 1);
-  //     }
-  //     // setQuantity(quantity + 1);
-  //   }
-  // };
+  const handleQuantity = (type) => {
+    if (type === "dec") {
+      quantity > 1 && setQuantity(quantity - 1);
+    } else {
+      if (quantity < item?.product?.countInStock?.qty) {
+        setQuantity(quantity + 1);
+      }
+      // setQuantity(quantity + 1);
+    }
+  };
   return (
     <>
       <div className="flex w-full justify-between mb-4 items-center h-[120px] border-b">
@@ -64,7 +64,7 @@ const CartItem = ({ item }) => {
             </button>
           </div>
 
-          <div className="flex items-center justify-between  ">
+          {/* <div className="flex items-center justify-between  ">
             <div className="flex gap-4 border-2 px-2 rounded-sm">
               <button onClick={handleDecrement}>
                 <FaMinus className="text-[10px]" />
@@ -75,6 +75,59 @@ const CartItem = ({ item }) => {
               </button>
             </div>
             <div>₹{total}</div>
+          </div> */}
+          <div className="py-2 px-3 mt-2    bg-white border border-gray-200 w-44 rounded-lg">
+            <div className="flex items-center  w-[150px] justify-between  gap-x-1.5">
+              <button
+                onClick={() => handleQuantity("dec")}
+                type="button"
+                className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                data-hs-input-number-decrement=""
+              >
+                <svg
+                  className="flex-shrink-0 size-3.5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14"></path>
+                </svg>
+              </button>
+              <input
+                className="p-0 w-6 bg-transparent border-0 text-gray-800 text-center focus:ring-0"
+                type="text"
+                value={quantity}
+                data-hs-input-number-input=""
+              />
+              <button
+                onClick={() => handleQuantity("inc")}
+                type="button"
+                className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                data-hs-input-number-increment=""
+              >
+                <svg
+                  className="flex-shrink-0 size-3.5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5v14"></path>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>

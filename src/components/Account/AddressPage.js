@@ -48,8 +48,13 @@ const AddressPage = () => {
                 <p>Loading...</p>
               )}
               <div className="mt-3 justify-between flex space-x-2">
-                <button className="text-blue-500 hover:underline">Edit</button>
-                <button className="text-red-500 hover:underline">Delete</button>
+                <button
+                  className="text-blue-500 hover:underline"
+                  onClick={() => setIsOpenAccount(true)}
+                >
+                  Edit
+                </button>
+                {/* <button className="text-red-500 hover:underline">Delete</button> */}
               </div>
             </div>
           </div>

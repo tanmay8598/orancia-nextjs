@@ -13,7 +13,7 @@ const Page = () => {
 
   return (
     <>
-      <div className="mx-auto sm:w-1/2">
+      <div className="mx-auto lg:w-1/2">
         <div className="grid grid-cols-1 gap-3 text-center">
           <div className="p-4 m-4 font-bold">
             <h1 className="text-2xl">Track my order</h1>
@@ -22,9 +22,9 @@ const Page = () => {
         <div className="shadow-lg m-8 rounded-md pt-4 pb-2 px-2 shadow-blue-gray-300 bg-white">
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 sm:py-2 sm:px-3">
-              <div className="text-sm flex justify-between md:justify-normal md:mb-2 pb-3 md:px-3   gap-1 sm:pr-3">
+              <div className="text-sm flex flex-col sm:flex-row justify-between md:justify-normal md:mb-2 pb-3 md:px-3 gap-1 sm:pr-3">
                 <div>Search By :</div>
-                <div className="flex items-center gap-1 sm:px-3 ">
+                <div className="flex items-center gap-1 sm:px-3">
                   <input
                     type="radio"
                     value="orderID"
@@ -44,6 +44,7 @@ const Page = () => {
                 </div>
               </div>
             </div>
+
             <div className="grid grid-cols-1 sm:py-2 sm:px-3 sm:grid-cols-6 text-center">
               <div className="sm:col-span-4">
                 <input

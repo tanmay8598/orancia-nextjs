@@ -34,8 +34,8 @@ const BlogContent = ({ blogid }) => {
   };
 
   return (
-    <div className="mx-auto max-w-screen-2x1 py-5 px-3 lg:h-full lg:mb-10 lg:mt-5">
-      {loading ? ( // Display loader if loading
+    <div className="mx-auto max-w-screen-2x1 py-5 px-7 lg:h-full lg:mb-10 lg:mt-5">
+      {loading ? (
         <Loader />
       ) : (
         <div className="mx-auto">
@@ -43,17 +43,17 @@ const BlogContent = ({ blogid }) => {
             <Image
               src={data.image[0]}
               alt="logo"
-              height={2000}
+              height={3000}
               width={2000}
-              className="w-full md:h-[400px] min-h-[200px]"
+              className="w-full md:h-[700px] min-h-[200px]"
             />
           ) : (
             <p>Image not available</p>
           )}
-          <p className="font-bold text-3x1 1g:text-5xl mt-10">
+          <h3 className="font-bold text-3x1 1g:text-5xl mt-10">
             {" "}
             {data.heading}
-          </p>
+          </h3>
           <div className="mt-2 lg:mt-10 w-auto text-justify fit-img">
             {Parser().parse(data.content)}
           </div>

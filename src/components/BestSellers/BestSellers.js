@@ -3,11 +3,12 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import BestSellerCarousel from "./BestSellerCarousel";
 import apiClient from "@/api/client";
+import Loader from "../loader/Loader";
 
 const BestSellers = () => {
   const [error, setError] = useState(null);
   const [product, setProduct] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     data();
   }, []);
@@ -23,9 +24,13 @@ const BestSellers = () => {
     } catch (error) {
       console.log(error);
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
-
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <section>
       <div className="mx-auto max-w-screen-3xl px-4 pb-4 md:py-10">
