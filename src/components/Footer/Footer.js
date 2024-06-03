@@ -134,6 +134,11 @@ const Footer = () => {
                 Privacy Policy
               </Link>
             </li>
+            <li className="mb-3">
+              <Link href="/who_are_we" className="normal-case font-normal">
+                Who Are we
+              </Link>
+            </li>
           </ul>
         </div>
 
