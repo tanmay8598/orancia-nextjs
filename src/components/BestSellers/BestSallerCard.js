@@ -89,12 +89,12 @@ const BestSellerCard = ({ product }) => {
 
           {product.countInStock.qty === 0 ? (
             <div className="md:flex md:w-full md:h-14 md:justify-between mt-6">
-              <div className="w-full text-center bg-red-200 text-white py-2 rounded-lg font-semibold mt-4 hover:bg-red-300 focus:scale-95 transition-all">
+              <div className="w-full text-center bg-red-200 text-white py-2 rounded-lg font-semibold  mt-4 hover:bg-red-300 focus:scale-95 transition-all">
                 Out of Stock
               </div>
             </div>
           ) : (
-            <div className="md:flex md:w-full md:h-14 md:justify-between mt-6">
+            <div className="md:flex md:w-full md:h-14 md:justify-between mt-2 sm:mt-6">
               <AddtoCartBtn
                 onClick={handleAddToCart}
                 btnStyles="w-full text-center bg-red-400 text-white py-2 rounded-lg font-semibold mt-4 hover:bg-red-300 focus:scale-95 transition-all"

@@ -27,7 +27,7 @@ const NewOrderCard = () => {
       const response = await apiClient.get("/orders/myorders1", {
         userId: user.id,
       });
-
+      console.log(response, "response");
       if (response.ok) {
         setMyOrder(response.data);
       } else {

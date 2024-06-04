@@ -31,6 +31,7 @@ const BestSellers = () => {
   if (loading) {
     return <Loader />;
   }
+  console.log(product, "pp");
   return (
     <section>
       <div className="mx-auto max-w-screen-3xl px-4 pb-4 md:py-10">

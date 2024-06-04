@@ -9,7 +9,7 @@ const AddressPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [shippingAddress, setShippingAddress] = useState(null);
   const { user } = useAuth();
-  console.log(user, "user");
+  console.log(user.shippingAddress, "user");
   useEffect(() => {
     if (user && user.shippingAddress) {
       setShippingAddress(user.shippingAddress);

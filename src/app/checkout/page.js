@@ -16,10 +16,15 @@ import { useRouter } from "next/navigation";
 import { clear } from "@/redux/features/cart/cartSlice";
 const page = () => {
   const [isOpenAccount, setIsOpenAccount] = useState(false);
+  const [coupans, setCoupans] = useState([]);
   const dispatch = useDispatch();
+  const [error, setError] = useState();
   const selector = useSelector((state) => state.cart);
   const [shippingAddress, setShippingAddress] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [discount, setDiscount] = useState(0);
+  const [appliedCoupon, setAppliedCoupon] = useState("");
+
   const products = selector.cart;
   const totalValue = selector.cart.reduce((total, item) => {
     return total + item.quantity * item.product.sell_price;
@@ -41,7 +46,22 @@ const page = () => {
     if (!products.length) {
       router.push("/");
     }
+    getCoupons();
   }, [products]);
+
+  const getCoupons = async () => {
+    try {
+      const response = await apiClient.get("/variation/coupon/get");
+
+      if (response.ok) {
+        setCoupans(response.data);
+      } else {
+        setError(response.status);
+      }
+    } catch (errr) {
+      setError(error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -80,6 +100,19 @@ const page = () => {
   if (isLoading) {
     return <Loader />;
   }
+  const handleApplyCoupon = (couponCode) => {
+    console.log(couponCode, "couponCode");
+    const coupon = coupans.find((c) => c.name === couponCode);
+    if (coupon) {
+      setDiscount(coupon.discount);
+      setAppliedCoupon(couponCode);
+      toast.success("Coupon applied successfully!");
+    } else {
+      setDiscount(0);
+      setAppliedCoupon("");
+      toast.error("Invalid coupon code.");
+    }
+  };
   return (
     <>
       <div className="container mx-auto px-4 py-8">
@@ -145,10 +178,55 @@ const page = () => {
                 )}
               </div>
               <div>
-                <CoopanForm />
+                <form
+                  className="flex"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const couponCode = e.target.elements.coupon.value;
+                    handleApplyCoupon(couponCode);
+                  }}
+                >
+                  <div className="flex-1 mr-4">
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      className=" px-4mt-1 p-2 block w-full border rounded-md  "
+                      placeholder="Discount code or gift card"
+                    />
+                  </div>
+                  <div>
+                    <button className="  bg-red-500 text-white  py-2 px-4 rounded-md hover:bg-red-600   ">
+                      Apply
+                    </button>
+                  </div>
+                </form>
               </div>
               <div>
-                <CoopanBox />
+                <div className="  items-center w-11/12 border border-gray-300 p-4 rounded-lg">
+                  <div className="text-sm mb-4">All Coupons</div>
+
+                  {coupans.map((coupans) => (
+                    <div className="  items-center w-full border border-gray-300 p-4 ">
+                      <div className="flex justify-between items-center">
+                        <div className="flex-1 ml-4">
+                          <p className="text-sm text-gray-600">
+                            {coupans?.name}
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            Any 2 eligible products at ₹{coupans?.discount}
+                          </p>
+                        </div>
+                        <button
+                          className="text-red-500  underline"
+                          onClick={() => handleApplyCoupon(coupans?.name)}
+                        >
+                          Apply
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 

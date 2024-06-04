@@ -44,128 +44,57 @@ function Icon({ id, open }) {
   );
 }
 
-const relproducts = [
-  {
-    id: 0,
-    name: "Moroccan Argan Conditioner For Dry Hair",
-    price: "100",
-    category: {
-      id: 0,
-      name: "Skin care",
-    },
-    image: ["https://files.stbotanica.com/site-images/400x400/STBOT470-01.jpg"],
-    slug: "morocacan-argan-conditioner-dry-hair",
-  },
-  {
-    id: 1,
-    name: "Red Onion Hair Shampoo, 300m",
-    price: "200",
-    category: {
-      id: 0,
-      name: "Skin care",
-    },
-    image: [
-      "https://files.stbotanica.com/site-images/400x400/fc4de260-1fbf-11ec-83b7-c7f6905fb422.jpg",
-    ],
-  },
-  {
-    id: 3,
-    name: "GO Colored Purple Hair Conditioner 200ml",
-    price: "300",
-    category: {
-      id: 0,
-      name: "Skin care",
-    },
-    image: [
-      "https://files.stbotanica.com/site-images/400x400/7c4ecb10-1fab-11ec-9d44-3d19798b1975.jpg",
-    ],
-  },
-  {
-    id: 4,
-    name: "Vitamin C 20%, E & Hyaluronic Acid Face Serum, 20ml",
-    price: "400",
-    category: {
-      id: 0,
-      name: "Skin care",
-    },
-    image: ["https://files.stbotanica.com/site-images/400x400/STBOT492-1.jpg"],
-  },
-  {
-    id: 4,
-    name: "Vitamin C 20%, E & Hyaluronic Acid Face Serum, 20ml",
-    price: "400",
-    category: {
-      id: 0,
-      name: "Skin care",
-    },
-    image: ["https://files.stbotanica.com/site-images/400x400/STBOT492-1.jpg"],
-  },
-  {
-    id: 4,
-    name: "Vitamin C 20%, E & Hyaluronic Acid Face Serum, 20ml",
-    price: "400",
-    category: {
-      id: 0,
-      name: "Skin care",
-    },
-    image: ["https://files.stbotanica.com/site-images/400x400/STBOT492-1.jpg"],
-  },
-  {
-    id: 4,
-    name: "Vitamin C 20%, E & Hyaluronic Acid Face Serum, 20ml",
-    price: "400",
-    category: {
-      id: 0,
-      name: "Skin care",
-    },
-    image: ["https://files.stbotanica.com/site-images/400x400/STBOT492-1.jpg"],
-  },
-  {
-    id: 4,
-    name: "Vitamin C 20%, E & Hyaluronic Acid Face Serum, 20ml",
-    price: "400",
-    category: {
-      id: 0,
-      name: "Skin care",
-    },
-    image: ["https://files.stbotanica.com/site-images/400x400/STBOT492-1.jpg"],
-  },
-];
-
 const page = () => {
   const router = useParams();
-  // console.log(router, "ro");
+  console.log(router, "ro");
   const productId = router.product;
 
   const [product, setProduct] = useState();
-
+  const [products, setProducts] = useState();
+  const params = useParams();
   const [loading, setLoading] = useState(true);
-
+  console.log(params, "params");
   const dispatch = useDispatch();
   const [open, setOpen] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  // const { user } = useAuth();
-  // console.log(user, "userr");
+
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await apiClient.get(`/product/get-by-id`, {
-          productId,
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch product");
-        }
-        setProduct(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching product:", error);
-        setLoading(false);
-      }
-    };
-
     fetchProduct();
-  }, [productId]);
+    fetchProducts();
+  }, [productId, params.category]);
+  const fetchProducts = async () => {
+    try {
+      const response = await apiClient.get("/product/get", {
+        category: params.category,
+      });
+      console.log(response, "res");
+      if (response.ok) {
+        setProducts(response.data.products);
+      } else {
+        setError(response.statusText);
+      }
+    } catch (error) {
+      error.message;
+    } finally {
+      setLoading(false);
+    }
+  };
+  const fetchProduct = async () => {
+    try {
+      const response = await apiClient.get(`/product/get-by-id`, {
+        productId,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch product");
+      }
+      setProduct(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching product:", error);
+      setLoading(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -258,16 +187,16 @@ const page = () => {
                 ₹ {product?.sell_price}
               </p>
               {/* counter  */}
-              <div class="py-2 px-2 mt-2      inline-block bg-white border border-gray-200 rounded-lg">
-                <div class="flex items-center  w-[150px] justify-between  gap-x-1.5">
+              <div className="py-2 px-2 mt-2      inline-block bg-white border border-gray-200 rounded-lg">
+                <div className="flex items-center  w-[150px] justify-between  gap-x-1.5">
                   <button
                     onClick={() => handleQuantity("dec")}
                     type="button"
-                    class="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                    className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                     data-hs-input-number-decrement=""
                   >
                     <svg
-                      class="flex-shrink-0 size-3.5"
+                      className="flex-shrink-0 size-3.5"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
@@ -282,7 +211,7 @@ const page = () => {
                     </svg>
                   </button>
                   <input
-                    class="p-0 w-6 bg-transparent border-0 text-gray-800 text-center focus:ring-0"
+                    className="p-0 w-6 bg-transparent border-0 text-gray-800 text-center focus:ring-0"
                     type="text"
                     value={quantity}
                     data-hs-input-number-input=""
@@ -290,11 +219,11 @@ const page = () => {
                   <button
                     onClick={() => handleQuantity("inc")}
                     type="button"
-                    class="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                    className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-md border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                     data-hs-input-number-increment=""
                   >
                     <svg
-                      class="flex-shrink-0 size-3.5"
+                      className="flex-shrink-0 size-3.5"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
@@ -315,14 +244,14 @@ const page = () => {
                 {product?.countInStock?.qty === 0 ? (
                   <div className="md:flex md:w-full md:h-12 md:justify-between mt-6">
                     {/* <div className="btn btn-primary w-full mt-2 md:mt-0 sm:w-3/4 md:6 rounded-md"> */}
-                    <div className="btn btn-primary   mt-2 md:mt-0 sm:w-3/4 md:6 rounded-md w-full text-center bg-red-200 text-white py-2  font-semibold   hover:bg-red-300 focus:scale-95 transition-all">
+                    <div className="btn btn-primary   mt-6 md:mt-0 sm:w-3/4 md:6 rounded-md w-full text-center bg-red-200 text-white py-2  font-semibold   hover:bg-red-300 focus:scale-95 transition-all">
                       Out of Stock
                     </div>
                   </div>
                 ) : (
                   <div className="md:flex md:w-full md:h-12 md:justify-between mt-6">
                     <AddtoCartBtn
-                      btnStyles="btn btn-primary w-full mt-2 md:mt-0 sm:w-3/4 md:6 rounded-md"
+                      btnStyles="btn btn-primary  w-full md:mt-0 sm:w-3/4 md:6 rounded-md "
                       textStyles="text-md font-regular"
                       onClick={() => notify()}
                     />
@@ -354,7 +283,7 @@ const page = () => {
             </div>
           </div>
         </div>
-        <RelatedProducts products={relproducts} />
+        <RelatedProducts products={products} />
         <div>
           <ReviewSection reviews={product?.reviews} />
         </div>

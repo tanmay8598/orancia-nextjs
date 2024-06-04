@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,13 +7,16 @@ import LogoInformation from "./LogoInformation";
 import { useRouter } from "next/navigation";
 import apiClient from "@/api/client";
 import useAuth from "@/auth/useAuth";
-
+import { BiSolidHide } from "react-icons/bi";
+import { BiSolidShow } from "react-icons/bi";
 const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false); // State to track password visibility
 
   const schema = Yup.object().shape({
     email: Yup.string().required("Email is required"),
@@ -28,6 +30,10 @@ const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
     if (errors[id]) {
       setErrors({ ...errors, [id]: "" });
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   const validate = async () => {
@@ -82,17 +88,31 @@ const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
           error={errors.email}
           placeholder=" "
         />
-        <InputField
-          id="password"
-          label="Password"
-          value={formData.password}
-          onChange={handleInputChange}
-          error={errors.password}
-          placeholder=" "
-        />
+        <div className="relative">
+          <InputField
+            id="password"
+            label="Password"
+            type={isPasswordVisible ? "text" : "password"} // Toggle input type based on state
+            value={formData.password}
+            onChange={handleInputChange}
+            error={errors.password}
+            placeholder=" "
+          />
+          <button
+            type="button"
+            className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+            onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+          >
+            {isPasswordVisible ? (
+              <BiSolidHide className="text-lg" />
+            ) : (
+              <BiSolidShow className="text-lg" />
+            )}
+          </button>
+        </div>
 
         <button
-          className="bg-red-700 text-white w-full font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-[#ed1d24] text-white w-full font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"
           onClick={() => setIsOpen(true)}
         >

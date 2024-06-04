@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import * as Yup from "yup";
+import { BiSolidHide } from "react-icons/bi";
+import { BiSolidShow } from "react-icons/bi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import InputField from "./InputField";
@@ -13,7 +15,7 @@ import useAuth from "@/auth/useAuth";
 
 const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
   const { logIn } = useAuth();
-
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     password: "",
@@ -117,17 +119,39 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
           onInput={handleInputNumber}
           placeholder=" "
         />
-        <InputField
+        {/* <InputField
           id="password"
           label="Password"
           value={formData.password}
           onChange={handleInputChange}
           error={errors.password}
           placeholder=" "
-        />
+        /> */}
+        <div className="relative">
+          <InputField
+            id="password"
+            label="Password"
+            type={isPasswordVisible ? "text" : "password"} // Toggle input type based on state
+            value={formData.password}
+            onChange={handleInputChange}
+            error={errors.password}
+            placeholder=" "
+          />
+          <button
+            type="button"
+            className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+            onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+          >
+            {isPasswordVisible ? (
+              <BiSolidHide className="text-lg" />
+            ) : (
+              <BiSolidShow className="text-lg" />
+            )}
+          </button>
+        </div>
 
         <button
-          className="bg-red-700 text-white w-full font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-[#ed1d24] text-white w-full font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"
         >
           Register

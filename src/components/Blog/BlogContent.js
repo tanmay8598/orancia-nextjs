@@ -34,7 +34,7 @@ const BlogContent = ({ blogid }) => {
   };
 
   return (
-    <div className="mx-auto max-w-screen-2x1 py-5 px-7 lg:h-full lg:mb-10 lg:mt-5">
+    <div className="mx-4 sm:mx-14 max-w-screen-2x1 py-5 px-7 lg:h-full lg:mb-10 lg:mt-5">
       {loading ? (
         <Loader />
       ) : (

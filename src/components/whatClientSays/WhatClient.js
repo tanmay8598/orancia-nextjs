@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import WhatClientSaysCard from "./WhatClientSaysCard";
+import { Autoplay } from "swiper/modules";
 const data = [
   {
     id: 0,
@@ -66,10 +67,8 @@ const WhatClient = () => {
             <div>
               <Swiper
                 spaceBetween={50}
-                // slidesPerView={3}
-                // onSlideChange={() => console.log("slide change")}
-                // onSwiper={(swiper) => console.log(swiper)}
-                // ref={sliderRef}
+                modules={[Autoplay]}
+                autoplay={{ delay: 4000, disableOnInteraction: false }}
                 slidesPerView={1}
                 // spaceBetween={30}
                 breakpoints={{

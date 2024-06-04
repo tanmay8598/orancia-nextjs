@@ -5,10 +5,14 @@ import { MdOutlineStar } from "react-icons/md";
 import { useRouter } from "next/navigation";
 const NewOrderChild = ({ orderData }) => {
   const router = useRouter();
-  console.log(orderData, "orderData");
+
   const handleOrder = () => {
     router.push(`/account/${orderData?._id}`);
-    // router.push(`/order-details/`);
+  };
+  console.log(orderData.orderItems, "order");
+
+  const handleOrderClick = (orderId) => {
+    router.push(`/product/${orderId}`);
   };
 
   return (
@@ -16,39 +20,42 @@ const NewOrderChild = ({ orderData }) => {
       <div className="bg-white  flex justify-center mb-5 items-center">
         <div className="bg-white rounded-black shadow-md rounded-xl border p-5   w-full md:w-3/4">
           <div className="header text-center">
-            <div className="grid grid-cols-1 sm:grid-cols-4 border-b pb-4 gap-2">
+            <div className="grid grid-cols-1 lg:grid-cols-4 border-b pb-4 gap-2">
               <div className="grid   col-span-1 border-r">
-                <div className="text-gray-400">Order Id</div>
-                <div className="text-sm">{orderData?._id}</div>
+                <div className="">Order Id</div>
+                <div className="text-sm text-gray-400">{orderData?._id}</div>
               </div>
               <div className="grid col-span-1 border-r">
-                <div className="text-gray-400">Order Date</div>
-                <div className="text-sm">
+                <div className="">Order Date</div>
+                <div className="text-sm text-gray-400">
                   {orderData
                     ? new Date(orderData.createdAt).toLocaleString()
                     : "N/A"}
                 </div>
               </div>
               <div className="grid col-span-1 border-r">
-                <div className="text-gray-400">Delivery Date</div>
-                <div className="text-sm">
+                <div className="">Delivery Date</div>
+                <div className="text-sm text-gray-400">
                   {orderData
                     ? new Date(orderData.updatedAt).toLocaleString()
                     : "N/A"}
                 </div>
               </div>
               <div className="grid col-span-1  ">
-                <div className="text-gray-400">Ship to</div>
-                <div className="text-sm">
+                <div className="">Ship to</div>
+                <div className="text-sm text-gray-400">
                   {orderData?.shippingAddress?.city}
                 </div>
               </div>
             </div>
             {orderData.orderItems.map((itemData) => (
               <>
-                <div className="grid grid-cols-1 sm:grid-cols-6  py-4  text-center">
+                <div
+                  className="grid grid-cols-1 sm:grid-cols-6  py-4  text-center"
+                  onClick={() => handleOrderClick(itemData._id)}
+                >
                   <div className="grid col-span-1 mr-4 ">
-                    <div className=" rounded">
+                    <div className=" rounded cursor-pointer">
                       {" "}
                       <Image
                         // src="https://tailwindui.com/img/ecommerce-images/confirmation-page-04-product-02.jpg"
@@ -64,15 +71,15 @@ const NewOrderChild = ({ orderData }) => {
                   <div className="grid col-span-4 sm:p-2 pt-2  text-left gap-4  ">
                     <div className="font-semibold">{itemData.name}</div>
                     <div>
-                      <span className="text-gray-400">Product : </span>
-                      <span> {itemData.product}</span>
+                      <span className="">Product : </span>
+                      <span className="text-gray-400"> {itemData.product}</span>
                     </div>
                     <div>
-                      <span className="text-gray-400">Quantity : </span>
-                      <span> {itemData.qty}</span>
+                      <span className="">Quantity : </span>
+                      <span className="text-gray-400"> {itemData.qty}</span>
                     </div>
                   </div>
-                  <div className="grid col-span-1 text-left sm:text-right  ">
+                  <div className="grid text-gray-400 col-span-1 text-left sm:text-right  ">
                     ₹{itemData.price}
                   </div>
                 </div>
@@ -82,8 +89,8 @@ const NewOrderChild = ({ orderData }) => {
             <div className="grid grid-cols-1 sm:grid-cols-4 border-t text-center pt-4 gap-2">
               <div className="grid   col-span-2 sm:text-left    ">
                 <div className="flex justify-between sm:justify-normal">
-                  <div className="text-gray-400 ">Total Amount : </div>
-                  <div> ₹{orderData.totalPrice}</div>
+                  <div className=" ">Total Amount : </div>
+                  <div className="text-gray-400"> ₹{orderData.totalPrice}</div>
                 </div>
               </div>
               <div className="grid   col-span-2   ">

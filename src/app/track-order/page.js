@@ -62,7 +62,7 @@ const Page = () => {
               <div className="sm:col-span-2">
                 <button
                   type="submit"
-                  className="w-full text-center bg-red-400 text-white rounded md:rounded-r font-semibold mt-4 sm:mt-0 hover:bg-red-300 focus:outline-none focus:scale-95 h-8 transition-all"
+                  className="w-full text-center bg-[#ed1d24] text-white rounded md:rounded-r font-semibold mt-4 sm:mt-0 hover:bg-red-300 focus:outline-none focus:scale-95 h-8 transition-all"
                 >
                   Track Order
                 </button>

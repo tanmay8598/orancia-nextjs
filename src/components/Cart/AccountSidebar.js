@@ -43,7 +43,10 @@ const AccountSidebar = ({ isOpen, setIsOpen }) => {
           ) : (
             <>Don't have an account? </>
           )}
-          <button onClick={handleToggleForm} className="text-red-800 underline">
+          <button
+            onClick={handleToggleForm}
+            className="text-[#ed1d24] underline"
+          >
             {isRegistering ? "Login" : "Register"}
           </button>
         </p>

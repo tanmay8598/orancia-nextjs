@@ -17,7 +17,7 @@ const BestSellerCarousel = ({ products }) => {
       setIsMobileView(window.innerWidth < 768);
     };
 
-    handleResize(); // Check initial screen size
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
