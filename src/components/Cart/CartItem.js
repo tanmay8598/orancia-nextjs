@@ -9,14 +9,13 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { useDispatch } from "react-redux";
 const CartItem = ({ item }) => {
-  // console.log(item.product.countInStock.qty, "item");
   const [quantity, setQuantity] = useState(1);
   let total = item.product?.sell_price * item.quantity;
   const dispatch = useDispatch();
   const handleRemoveItem = () => {
     dispatch(remove(item.product?._id));
   };
-  console.log(item, "item");
+
   const handleIncrement = () => {
     dispatch(incrementQuantity(item.product?._id));
   };
@@ -92,17 +91,24 @@ const CartItem = ({ item }) => {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <path d="M5 12h14"></path>
                 </svg>
               </button>
+              {/* <input
+                className="p-0 w-6 bg-transparent border-0 text-gray-800 text-center focus:ring-0"
+                type="text"
+                value={quantity}
+                data-hs-input-number-input=""
+              /> */}
               <input
                 className="p-0 w-6 bg-transparent border-0 text-gray-800 text-center focus:ring-0"
                 type="text"
                 value={quantity}
+                readOnly // Add readOnly attribute
                 data-hs-input-number-input=""
               />
               <button
@@ -119,9 +125,9 @@ const CartItem = ({ item }) => {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <path d="M5 12h14"></path>
                   <path d="M12 5v14"></path>

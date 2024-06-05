@@ -15,9 +15,9 @@ const OrderImages = () => {
       <div className="bg-white rounded-black shadow-md rounded-xl border border-gray-500 w-full md:w-3/4">
         <OrderCardHeader />
 
-        <div class="space-y-8 p-4 sm:space-y-0 sm:p-4">
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-700">
+        <div className="space-y-8 p-4 sm:space-y-0 sm:p-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-700">
               <Image
                 src="https://tailwindui.com/img/ecommerce-images/confirmation-page-04-product-01.jpg"
                 width={500}
@@ -26,7 +26,7 @@ const OrderImages = () => {
                 className="object-cover object-center w-full h-full"
               />
             </div>
-            <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-700">
+            <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-700">
               <Image
                 src="https://tailwindui.com/img/ecommerce-images/confirmation-page-04-product-01.jpg"
                 width={500}
@@ -35,7 +35,7 @@ const OrderImages = () => {
                 className="object-cover object-center w-full h-full"
               />
             </div>
-            <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-700">
+            <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-700">
               <Image
                 src="https://tailwindui.com/img/ecommerce-images/confirmation-page-04-product-01.jpg"
                 width={500}
@@ -44,7 +44,7 @@ const OrderImages = () => {
                 className="object-cover object-center w-full h-full"
               />
             </div>
-            <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-700">
+            <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-700">
               <Image
                 src="https://tailwindui.com/img/ecommerce-images/confirmation-page-04-product-01.jpg"
                 width={500}
@@ -53,15 +53,15 @@ const OrderImages = () => {
                 className="object-cover object-center w-full h-full"
               />
             </div>
-            <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg ">
+            <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg ">
               <div className="flex-shrink-0 m-3">
-                <button className="bg-red-400 rounded-xl text-white font-medium text-xs py-2 px-6 sm:px-12 w-full ">
+                <button className="bg-[#ed1d24] rounded-xl text-white font-medium text-xs py-2 px-6 sm:px-12 w-full ">
                   Track Order
                 </button>
               </div>
               <div className="flex-shrink-0 m-3">
                 <button
-                  className="bg-red-400 rounded-xl text-white font-medium text-xs py-2 px-4 sm:px-8 w-full "
+                  className="bg-[#ed1d24] rounded-xl text-white font-medium text-xs py-2 px-4 sm:px-8 w-full "
                   onClick={handleClick}
                 >
                   View Order Detail

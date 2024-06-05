@@ -32,7 +32,7 @@ const Product = ({ product }) => {
   };
 
   return (
-    <div>
+    <div className="my-4">
       <ToastContainer
         position="bottom-right"
         autoClose={5000}
@@ -47,7 +47,7 @@ const Product = ({ product }) => {
       <Link className="group" href={`/product/${product._id}`}>
         <div className="drop-shadow-md rounded-md bg-white border-red-500 h-[300px] mb-3 p-4 overflow-hidden relative md:h-[328px]">
           <div className=" w-full h-full group-hover:bg-primary/10 transition-all duration-300 flex justify-center items-center">
-            <div className="absolute top-8 left-8 bg-accent text-white px-3 text-sm uppercase font-medium ">
+            <div className="absolute top-8 left-8 bg-[#ed1d24] text-white px-3 text-sm uppercase font-medium ">
               Best Seller
             </div>
             <Image
@@ -58,7 +58,7 @@ const Product = ({ product }) => {
               }
               width={240}
               height={147}
-              alt=""
+              alt="image"
               onError={handleImageError}
             />
           </div>
@@ -84,10 +84,12 @@ const Product = ({ product }) => {
           ₹{product.sell_price}
         </div>
       </Link>
-      <AddtoCartBtn
-        onClick={handleAddToCart}
-        btnStyles="  lg:block btn btn-accent w-full mt-4 rounded-md"
-      />
+      <div className="py-8 md:py-0">
+        <AddtoCartBtn
+          onClick={handleAddToCart}
+          btnStyles="  lg:block btn btn-accent w-full mt-4 rounded-md"
+        />
+      </div>
     </div>
   );
 };

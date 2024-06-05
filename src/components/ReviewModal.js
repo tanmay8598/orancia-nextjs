@@ -95,7 +95,7 @@ const ReviewModal = ({ isOpen, onClose }) => {
 
             <div className="flex items-center mb-4">{renderStars()}</div>
             {errors.rating && (
-              <div className="text-red-500 mb-2">{errors.rating}</div>
+              <div className="text-[#ed1d24] mb-2">{errors.rating}</div>
             )}
             <textarea
               name="comment"
@@ -106,7 +106,7 @@ const ReviewModal = ({ isOpen, onClose }) => {
               rows="4"
             />
             {errors.comment && (
-              <div className="text-red-500 mb-2">{errors.comment}</div>
+              <div className="text-[#ed1d24] mb-2">{errors.comment}</div>
             )}
             <div className="flex justify-end">
               <button
@@ -117,7 +117,7 @@ const ReviewModal = ({ isOpen, onClose }) => {
               </button>
               <button
                 onClick={onClose}
-                className="px-4 py-2 bg-red-400 text-white rounded-md ml-4"
+                className="px-4 py-2 text-[#ed1d24] text-white rounded-md ml-4"
               >
                 Close
               </button>

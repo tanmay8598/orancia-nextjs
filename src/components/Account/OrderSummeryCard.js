@@ -16,7 +16,7 @@ const OrderSummaryCard = () => {
         <OrderCardHeader />
         <div className="space-y-24 p-4">
           <div className="grid grid-cols-1 text-sm sm:grid-cols-12 sm:gap-x-6 md:gap-x-8 lg:gap-x-8">
-            <div class="sm:col-span-2 col-span-2  aspect-h-1 aspect-w-1 overflow-hidden rounded-lg p-3">
+            <div className="sm:col-span-2 col-span-2  aspect-h-1 aspect-w-1 overflow-hidden rounded-lg p-3">
               <Image
                 src="https://tailwindui.com/img/ecommerce-images/confirmation-page-04-product-01.jpg"
                 width={400}
@@ -42,13 +42,13 @@ const OrderSummaryCard = () => {
             </div>
             <div className=" sm:col-span-3 md:col-span-3 lg:col-span-3">
               <div className="flex-shrink-0 m-3">
-                <button className="bg-red-400 rounded-xl text-white font-medium text-xs py-2 px-6 sm:px-12 w-full">
+                <button className="bg-[#ed1d24] rounded-xl text-white font-medium text-xs py-2 px-6 sm:px-12 w-full">
                   Track Order
                 </button>
               </div>
               <div className="flex-shrink-0 m-3">
                 <button
-                  className="bg-red-400 rounded-xl text-white font-medium text-xs py-2 px-4 sm:px-8 w-full"
+                  className="bg-[#ed1d24] rounded-xl text-white font-medium text-xs py-2 px-4 sm:px-8 w-full"
                   onClick={handleClick}
                 >
                   View Order Detail

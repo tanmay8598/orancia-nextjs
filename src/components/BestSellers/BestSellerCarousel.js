@@ -36,7 +36,7 @@ const BestSellerCarousel = ({ products }) => {
       {isMobileView ? (
         <>
           <Slider {...settings}>
-            {products.map((product) => (
+            {products?.map((product) => (
               <BestSallerCard key={product._id} product={product} />
             ))}
           </Slider>
@@ -82,7 +82,7 @@ const BestSellerCarousel = ({ products }) => {
             modules={[Pagination]}
             className="popular-bike-slider mb-8"
           >
-            {products.map((product) => (
+            {products?.map((product) => (
               <SwiperSlide key={product._id}>
                 <BestSallerCard product={product} />
               </SwiperSlide>

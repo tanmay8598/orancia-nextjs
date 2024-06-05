@@ -13,7 +13,7 @@ const NewArrivals = () => {
   const data = async () => {
     try {
       const response = await apiClient.get("product/get");
-      // console.log(response, "response");
+
       if (response.ok) {
         setProduct(response.data.products);
       } else {
@@ -32,12 +32,13 @@ const NewArrivals = () => {
         </h3>
 
         <BestSellerCarousel products={product} />
-
-        <Link href="/new-arrivals">
-          <button className="btn btn-accent rounded-lg mx-auto mt-8">
-            See all
-          </button>
-        </Link>
+        <div className="mt-16">
+          <Link href="/new-arrivals">
+            <button className="btn btn-accent rounded-lg mx-auto mt-8">
+              See all
+            </button>
+          </Link>
+        </div>
       </div>
     </section>
   );

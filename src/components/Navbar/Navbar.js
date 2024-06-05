@@ -82,7 +82,7 @@ const Navbar = () => {
             />
 
             <div
-              class="h-4 w-4 relative inline-flex bg-primary items-center -right-2 bottom-1 -top-4 justify-center text-white font-light text-center bg-heading-color font-heading text-sm md:text-base lg:text-lg   rounded-full h-21 w-21"
+              className="h-4 w-4 relative inline-flex bg-primary items-center -right-2 bottom-1 -top-4 justify-center text-white font-light text-center bg-heading-color font-heading text-sm md:text-base lg:text-lg   rounded-full h-21 w-21"
               style={{ fontSize: "10px" }}
             >
               2

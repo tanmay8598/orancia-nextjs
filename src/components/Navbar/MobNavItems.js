@@ -36,7 +36,7 @@ const MobNavItems = ({ setIsOpen }) => {
   const fetchData = async () => {
     try {
       const response = await apiClient.get("/variation/category/get");
-      console.log(response, "res");
+
       if (response.ok) {
         setCategories(response.data);
       } else {
@@ -82,7 +82,7 @@ const MobNavItems = ({ setIsOpen }) => {
                     <div className="flex-1">
                       <Link
                         href={`/category/${catData._id}`}
-                        className="block p-2 ml-2 rounded-lg hover:bg-red-400 hover:from-indigo-50 hover:to-pink-50 hover:via-red-50 transition ease-in-out duration-300 text-gray-800 font-semibold hover:text-white"
+                        className="block p-2 ml-2 rounded-lg hover:bg-[#ed1d24] hover:from-indigo-50 hover:to-pink-50 hover:via-red-50 transition ease-in-out duration-300 text-gray-800 font-semibold hover:text-white"
                       >
                         {catData.name}
                       </Link>

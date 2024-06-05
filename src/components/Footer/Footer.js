@@ -210,7 +210,7 @@ const Footer = () => {
           <div className="flex p-1 justify-center sm:justify-normal">
             <div className="m-2">
               <div
-                className="bg-red-500 rounded-[29px] object-center p-3 sm:p-2 
+                className="bg-[#ed1d24] rounded-[29px] object-center p-3 sm:p-2 
               w-[50px] sm:w-[56px] "
               >
                 <Image
@@ -218,6 +218,7 @@ const Footer = () => {
                   className="w-full sm:h-[40px]   rounded-full"
                   height={40}
                   width={40}
+                  alt="image"
                 />
               </div>
             </div>
@@ -233,12 +234,13 @@ const Footer = () => {
         <div className="p-6 lg:p-14 lg:pr-3">
           <div className="flex p-1 justify-center sm:justify-normal">
             <div className="m-2">
-              <div className="bg-red-500 rounded-[29px] p-2 w-[50px] sm:w-[56px] ">
+              <div className="bg-[#ed1d24] rounded-[29px] p-2 w-[50px] sm:w-[56px] ">
                 <Image
                   src="returns.png"
                   className="w-full sm:h-[40px] object-contain rounded-full"
                   height={40}
                   width={40}
+                  alt="image"
                 />
               </div>
             </div>
@@ -254,12 +256,13 @@ const Footer = () => {
         <div className="p-6 lg:p-14 lg:pr-3">
           <div className="flex p-1 justify-center sm:justify-normal ">
             <div className="m-2 ">
-              <div className="bg-red-500 rounded-[29px] p-2 sm:w-[56px] w-[50px] ">
+              <div className="bg-[#ed1d24] rounded-[29px] p-2 sm:w-[56px] w-[50px] ">
                 <Image
                   src="/brand.png"
                   className="w-full sm:h-[40px] object-contain rounded-full"
                   height={40}
                   width={40}
+                  alt="image"
                 />
               </div>
             </div>
@@ -274,12 +277,13 @@ const Footer = () => {
         <div className="p-6 lg:p-14 lg:pr-3">
           <div className="flex p-1 justify-center sm:justify-normal">
             <div className="m-2">
-              <div className="bg-red-500 rounded-[29px] p-2 sm:w-[56px]  w-[50px]">
+              <div className="bg-[#ed1d24] rounded-[29px] p-2 sm:w-[56px]  w-[50px]">
                 <Image
                   src="brand-image.png"
                   className="w-full sm:h-[40px] object-contain rounded-full"
                   height={40}
                   width={40}
+                  alt="image"
                 />
               </div>
             </div>

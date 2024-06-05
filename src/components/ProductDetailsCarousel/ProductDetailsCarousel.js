@@ -39,11 +39,11 @@ const ProductDetailsCarousel = ({ images }) => {
       >
         {images?.map((img, index) => (
           <div key={index}>
-            <Image
+            <img
               src={img}
               alt={`Image ${index + 1}`}
-              width={1360} // Adjust the width according to your layout requirements
-              height={760} // Adjust the height according to your layout requirements
+              width={1360}
+              height={760}
               layout="responsive"
             />
           </div>

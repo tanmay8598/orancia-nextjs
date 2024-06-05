@@ -20,7 +20,7 @@ const BlogContent = ({ blogid }) => {
       const response = await apiClient.get(
         `blog/blogbyid/${blogid.blogDetail}`
       );
-      console.log(response.data);
+
       if (response.ok) {
         setData(response?.data);
       } else {

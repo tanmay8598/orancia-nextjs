@@ -62,7 +62,7 @@ const BestSellerCard = ({ product }) => {
                   : "https://files.stbotanica.com/site-images/400x400/STBOT470-01.jpg"
               }
               className="w-full h-full object-contain"
-              alt={product.name}
+              alt={`${product.name} image`}
               width={228}
               height={212}
               onError={handleImageError}
@@ -97,7 +97,7 @@ const BestSellerCard = ({ product }) => {
             <div className="md:flex md:w-full md:h-14 md:justify-between mt-2 sm:mt-6">
               <AddtoCartBtn
                 onClick={handleAddToCart}
-                btnStyles="w-full text-center bg-red-400 text-white py-2 rounded-lg font-semibold mt-4 hover:bg-red-300 focus:scale-95 transition-all"
+                btnStyles="w-full text-center bg-[#ed1d24] text-white py-2 rounded-lg font-semibold mt-4 hover:bg-red-300 focus:scale-95 transition-all"
               />
             </div>
           )}

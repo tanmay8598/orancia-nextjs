@@ -68,7 +68,7 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
               </div>
               <div className="mb-4 mx-2">
                 <button
-                  className="bg-red-400 rounded-xl text-white sm:font-medium text-base py-2  px-8 md:px-24 w-full sm:w-auto"
+                  className="bg-[#ed1d24] rounded-xl text-white sm:font-medium text-base py-2  px-8 md:px-24 w-full sm:w-auto"
                   onClick={handleClick}
                 >
                   CHECKOUT

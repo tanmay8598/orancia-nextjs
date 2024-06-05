@@ -36,8 +36,8 @@ const MenuSidebar = ({ isOpen, setIsOpen }) => {
                       <img
                         src="/user.svg"
                         alt="user icon"
-                        priority={true}
-                        fill={true}
+                        priority="true"
+                        fill="true"
                         className="w-3 h-3"
                       />
                       <span>Account</span>
@@ -48,8 +48,8 @@ const MenuSidebar = ({ isOpen, setIsOpen }) => {
                       <img
                         src="/tracking.svg"
                         alt="track order"
-                        priority={true}
-                        fill={true}
+                        priority="true"
+                        fill="true"
                         className="w-4 h-4"
                       />
                       <span>Track Order</span>
@@ -64,8 +64,8 @@ const MenuSidebar = ({ isOpen, setIsOpen }) => {
                       <img
                         src="/user.svg"
                         alt="user icon"
-                        priority={true}
-                        fill={true}
+                        priority="true"
+                        fill="true"
                         className="w-3 h-3"
                       />
                       <span>Account</span>
@@ -76,8 +76,8 @@ const MenuSidebar = ({ isOpen, setIsOpen }) => {
                       <img
                         src="/tracking.svg"
                         alt="track order"
-                        priority={true}
-                        fill={true}
+                        priority="true"
+                        fill="true"
                         className="w-4 h-4"
                       />
                       <span>Track Order</span>

@@ -20,7 +20,7 @@ const BlogCard = ({ blogData }) => {
             <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
           </Link>
           <Link href="#!">
-            <div className="text-xs absolute top-0 right-0 bg-red-600 rounded-md px-4 py-2 text-white mt-3 mr-3 hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out">
+            <div className="text-xs absolute top-0 right-0 bg-[#ed1d24] rounded-md px-4 py-2 text-white mt-3 mr-3 hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out">
               {/* {blogData?.heading} */}
               Blog
             </div>

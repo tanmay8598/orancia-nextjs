@@ -71,7 +71,6 @@ const Page = () => {
   }
 
   if (error) {
-    console.log(error, "eeee");
     return <div>Error: {error}</div>;
   }
 
@@ -129,7 +128,7 @@ const Page = () => {
                 </p>
               ) : (
                 products.map((product) => (
-                  <NewProducts key={product.id} product={product} />
+                  <Product key={product.id} product={product} />
                 ))
               )}
             </div>

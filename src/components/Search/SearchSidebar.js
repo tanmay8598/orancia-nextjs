@@ -19,7 +19,7 @@ const SearchSidebar = ({ isOpen, setIsOpen }) => {
       const { data } = await apiClient.get("/product/search-product", {
         Query: value,
       });
-      console.log(data, "data");
+
       const results = data.filter((product) => {
         return (
           value &&
@@ -39,12 +39,12 @@ const SearchSidebar = ({ isOpen, setIsOpen }) => {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetContent className="bg-white lg:max-w-[500px] ">
-        <div class="flex items-center justify-center sm:justify-start mt-5 border-b-[1px] pb-4 border-gray-500">
+        <div className="flex items-center justify-center sm:justify-start mt-5 border-b-[1px] pb-4 border-gray-500">
           <div className="relative h-4 w-4 lg:h-5 lg:w-5 cursor-pointer">
             <Image src="/search.svg" alt="logo" priority={true} fill={true} />
           </div>
           <input
-            class="w-full ml-2 font-medium  border-none appearance-none text-md py-1 px-2 focus:outline-none border-2 bg-transparent text-black"
+            className="w-full ml-2 text-sm sm:font-medium  border-none appearance-none text-md py-1 px-2 focus:outline-none border-2 bg-transparent text-black"
             type="search"
             name="q"
             placeholder="What are you looking for?"

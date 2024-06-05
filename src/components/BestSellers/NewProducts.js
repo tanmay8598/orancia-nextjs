@@ -45,7 +45,7 @@ const NewProducts = ({ product }) => {
   return (
     <div>
       <div className="rounded-xl m-2 shadow-lg">
-        <span className="absolute bg-red-600 p-0 px-2 text-white rounded-tl-lg rounded-br-lg">
+        <span className="absolute bg-[#ed1d24] p-0 px-2 text-white rounded-tl-lg rounded-br-lg">
           Best Seller
         </span>
 
@@ -65,7 +65,7 @@ const NewProducts = ({ product }) => {
                 className="w-full 
                 "
                 // h-40  md:h-48
-                alt=""
+                alt="image"
                 width={228}
                 height={212}
                 onError={handleImageError}
@@ -102,7 +102,7 @@ const NewProducts = ({ product }) => {
               <div className="md:flex md:w-full md:h-14 md:justify-between mt-2 sm:mt-6">
                 <AddtoCartBtn
                   onClick={handleAddToCart}
-                  btnStyles="w-full text-center bg-red-400 text-white py-2 rounded-lg font-semibold mt-4 hover:bg-red-300 focus:scale-95 transition-all"
+                  btnStyles="w-full text-center  bg-[#ed1d24] text-white py-2 rounded-lg font-semibold mt-4 hover:bg-red-300 focus:scale-95 transition-all"
                 />
               </div>
             )}

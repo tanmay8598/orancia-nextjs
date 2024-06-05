@@ -40,7 +40,6 @@ const BlogsDetails = () => {
       </div>
     );
   }
-  console.log(blogList.pageCount, "blo");
 
   return (
     <>

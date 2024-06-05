@@ -9,7 +9,7 @@ const AddressPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [shippingAddress, setShippingAddress] = useState(null);
   const { user } = useAuth();
-  console.log(user.shippingAddress, "user");
+
   useEffect(() => {
     if (user && user.shippingAddress) {
       setShippingAddress(user.shippingAddress);
@@ -61,7 +61,7 @@ const AddressPage = () => {
           <div className="flex-1 flex-grow flex justify-center items-center bg-blue-gray-100 sm:rounded-r sm:border-l border-gray-300">
             <button
               onClick={() => setIsOpenAccount(true)}
-              className="text-red-500 hover:underline flex items-center p-6"
+              className="text-[#ed1d24] hover:underline flex items-center p-6"
             >
               <svg
                 className="w-6 h-6 mr-2"

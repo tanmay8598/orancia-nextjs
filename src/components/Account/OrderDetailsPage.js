@@ -76,11 +76,11 @@ const OrderDetailsPage = () => {
         <div className="bg-white rounded-black shadow-md rounded-xl border border-gray-500 w-full md:w-3/4">
           <div className="space-y-24 p-4">
             <div className="grid grid-cols-1 text-sm sm:grid-cols-12 sm:gap-x-6 md:gap-x-8 lg:gap-x-8">
-              <div class="sm:col-span-2 aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-700">
+              <div className="sm:col-span-2 aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-700">
                 <img
                   src="https://tailwindui.com/img/ecommerce-images/confirmation-page-04-product-01.jpg"
                   alt="image"
-                  class="object-cover object-center w-full h-full"
+                  className="object-cover object-center w-full h-full"
                 />
               </div>
               <div className=" sm:col-span-7 md:col-span-9 lg:col-span-7">
@@ -99,13 +99,13 @@ const OrderDetailsPage = () => {
               </div>
               <div className=" sm:col-span-3 md:col-span-3 lg:col-span-3">
                 <div className="flex-shrink-0 m-3">
-                  <button className="bg-red-400 rounded-xl text-white font-medium text-xs py-2 px-6 sm:px-12 w-full sm:w-auto">
+                  <button className="bg-[#ed1d24] rounded-xl text-white font-medium text-xs py-2 px-6 sm:px-12 w-full sm:w-auto">
                     Track Order
                   </button>
                 </div>
                 <div className="flex-shrink-0 m-3">
                   <button
-                    className="bg-red-400 rounded-xl text-white font-medium text-xs py-2 px-4 sm:px-8 w-full sm:w-auto"
+                    className="bg-[#ed1d24] rounded-xl text-white font-medium text-xs py-2 px-4 sm:px-8 w-full sm:w-auto"
                     onClick={handleClick}
                   >
                     View Order Detail

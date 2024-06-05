@@ -46,7 +46,7 @@ const page = () => {
       const response = await apiClient.get("/orders/myorders-details", {
         id: params.account,
       });
-      console.log(response, "respo");
+
       if (response.ok) {
         setMyOrder(response.data);
       } else {

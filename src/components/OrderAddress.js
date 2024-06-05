@@ -4,8 +4,8 @@ import React from "react";
 const OrderAddress = ({ mydata }) => {
   return (
     <>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 ">
-        <div class=" ">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 ">
+        <div className=" ">
           <div className="border-b-2 p-3-b-2 mb-4 font-semibold text-gray-600 text-xl">
             Order Details
           </div>
@@ -26,7 +26,7 @@ const OrderAddress = ({ mydata }) => {
             Order Status Message : {mydata?.deliveryStatus}
           </div>
         </div>
-        <div class=" ">
+        <div className=" ">
           <div className="border-b-2 p-3-b-2 mb-4 font-semibold text-gray-600 text-xl">
             Shipping Details
           </div>
@@ -42,7 +42,7 @@ const OrderAddress = ({ mydata }) => {
             <div className="mb-2">State : {mydata?.shippingAddress?.state}</div>
           </div>
         </div>
-        <div class=" ">
+        <div className=" ">
           <div className="border-b-2 p-3-b-2 mb-4 font-semibold text-gray-600 text-xl">
             Customer Details
           </div>

@@ -41,11 +41,13 @@ const ShopbyCategory = () => {
           <ShopCategoryCard categories={categories} />
         </div>
       </div>
-      <Link href="/category">
-        <button className="btn btn-accent rounded-lg mx-auto mt-10">
-          See all
-        </button>
-      </Link>
+      <div className="mt-16">
+        <Link href="/category">
+          <button className="btn btn-accent rounded-lg mx-auto mt-10">
+            See all
+          </button>
+        </Link>
+      </div>
     </section>
   );
 };

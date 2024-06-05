@@ -27,7 +27,6 @@ const NewOrderCard = () => {
       const response = await apiClient.get("/orders/myorders1", {
         userId: user.id,
       });
-      console.log(response, "response");
       if (response.ok) {
         setMyOrder(response.data);
       } else {
@@ -51,7 +50,7 @@ const NewOrderCard = () => {
         <EmptyOrder />
       ) : (
         myOrder.map((orderData) => (
-          <NewOrderChild key={orderData.id} orderData={orderData} />
+          <NewOrderChild key={orderData._id} orderData={orderData} />
         ))
       )}
     </>

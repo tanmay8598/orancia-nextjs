@@ -38,7 +38,6 @@ async function sitemap() {
 </urlset>`;
 
   await writeFileAsync("public/sitemap.xml", sitemap);
-  console.log("Sitemap generated at public/sitemap.xml");
 }
 
 sitemap();

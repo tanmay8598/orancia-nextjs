@@ -26,19 +26,14 @@ const Page = () => {
     fetchProducts();
   }, [params.category, selectedSubcategory, maxprice, minprice]);
 
-  // console.log(setMinprice(minprice), "minprice");
-  // console.log(setMaxprice(maxprice), "max");
-
   const fetchProducts = async () => {
     try {
-      console.log(minprice, maxprice, "maxprice");
       const response = await apiClient.get("/product/get", {
         category: params.category,
         subcategory: selectedSubcategory._id,
         min: minprice,
         max: maxprice,
       });
-      console.log(response.data, "response");
       if (response.ok) {
         setProducts(response.data.products);
       } else {
@@ -76,7 +71,6 @@ const Page = () => {
   }
 
   if (error) {
-    console.log(error, "eeee");
     return <div>Error: {error}</div>;
   }
 
@@ -110,14 +104,6 @@ const Page = () => {
 
         <div className="w-full max-container h-full flex flex-col md:flex-row pb-10 gap-6 mt-5 justify-between">
           <div className="hidden md:inline-flex h-full w-full md:w-[15%] lg:w-[20%]">
-            {/* <ShopSideNav
-              productsss={products}
-              subCatgary={subcat}
-              selectedSubcategory={selectedSubcategory}
-              handleSubcategory={handleSubcategory}
-              handleChanges={handleChanges}
-              range={range}
-            /> */}
             <BestSideNav
               productsss={products}
               subCatgary={subcat}
@@ -135,7 +121,6 @@ const Page = () => {
                 onClick={() => setIsOpenSearch(!isOpenSearch)}
               >
                 <BsFilterRight className="mt-1 mx-1 " />
-                {/* {isOpenSearch ? "Hide" : "Show"} */}
                 Filters
               </button>
             </div>
@@ -145,8 +130,8 @@ const Page = () => {
                   No products found
                 </p>
               ) : (
-                products.map((product) => (
-                  // <Product key={product.id} product={product} />
+                products.map((product, index) => (
+                  // <Product key={index} product={product} />
                   <NewProducts key={product.id} product={product} />
                 ))
               )}

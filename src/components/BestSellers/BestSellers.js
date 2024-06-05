@@ -31,7 +31,7 @@ const BestSellers = () => {
   if (loading) {
     return <Loader />;
   }
-  console.log(product, "pp");
+
   return (
     <section>
       <div className="mx-auto max-w-screen-3xl px-4 pb-4 md:py-10">
@@ -41,11 +41,13 @@ const BestSellers = () => {
 
         <BestSellerCarousel products={product} />
 
-        <Link href="/best-sellers">
-          <button className="btn btn-accent rounded-lg mx-auto mt-2 sm:mt-8">
-            See all
-          </button>
-        </Link>
+        <div className="my-16">
+          <Link href="/best-sellers">
+            <button className="btn btn-accent rounded-lg mx-auto mt-2 sm:mt-8">
+              See all
+            </button>
+          </Link>
+        </div>
       </div>
     </section>
   );

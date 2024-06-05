@@ -31,7 +31,6 @@ const Page = () => {
 
   const fetchProducts = async () => {
     try {
-      console.log(minprice, maxprice, "maxprice");
       const response = await apiClient.get("/product/get", {
         category: params.category,
         subcategory: selectedSubcategory._id,

@@ -9,7 +9,6 @@ const NewOrderChild = ({ orderData }) => {
   const handleOrder = () => {
     router.push(`/account/${orderData?._id}`);
   };
-  console.log(orderData.orderItems, "order");
 
   const handleOrderClick = (orderId) => {
     router.push(`/product/${orderId}`);
@@ -23,11 +22,11 @@ const NewOrderChild = ({ orderData }) => {
             <div className="grid grid-cols-1 lg:grid-cols-4 border-b pb-4 gap-2">
               <div className="grid   col-span-1 border-r">
                 <div className="">Order Id</div>
-                <div className="text-sm text-gray-400">{orderData?._id}</div>
+                <div className="text-sm text-gray-500">{orderData?._id}</div>
               </div>
               <div className="grid col-span-1 border-r">
                 <div className="">Order Date</div>
-                <div className="text-sm text-gray-400">
+                <div className="text-sm text-gray-500">
                   {orderData
                     ? new Date(orderData.createdAt).toLocaleString()
                     : "N/A"}
@@ -35,7 +34,7 @@ const NewOrderChild = ({ orderData }) => {
               </div>
               <div className="grid col-span-1 border-r">
                 <div className="">Delivery Date</div>
-                <div className="text-sm text-gray-400">
+                <div className="text-sm text-gray-500">
                   {orderData
                     ? new Date(orderData.updatedAt).toLocaleString()
                     : "N/A"}
@@ -43,13 +42,13 @@ const NewOrderChild = ({ orderData }) => {
               </div>
               <div className="grid col-span-1  ">
                 <div className="">Ship to</div>
-                <div className="text-sm text-gray-400">
+                <div className="text-sm text-gray-500">
                   {orderData?.shippingAddress?.city}
                 </div>
               </div>
             </div>
             {orderData.orderItems.map((itemData) => (
-              <>
+              <div key={itemData._id}>
                 <div
                   className="grid grid-cols-1 sm:grid-cols-6  py-4  text-center"
                   onClick={() => handleOrderClick(itemData._id)}
@@ -72,25 +71,25 @@ const NewOrderChild = ({ orderData }) => {
                     <div className="font-semibold">{itemData.name}</div>
                     <div>
                       <span className="">Product : </span>
-                      <span className="text-gray-400"> {itemData.product}</span>
+                      <span className="text-gray-500"> {itemData.product}</span>
                     </div>
                     <div>
                       <span className="">Quantity : </span>
-                      <span className="text-gray-400"> {itemData.qty}</span>
+                      <span className="text-gray-500"> {itemData.qty}</span>
                     </div>
                   </div>
-                  <div className="grid text-gray-400 col-span-1 text-left sm:text-right  ">
+                  <div className="grid text-gray-500 col-span-1 text-left sm:text-right  ">
                     ₹{itemData.price}
                   </div>
                 </div>
-              </>
+              </div>
             ))}
 
             <div className="grid grid-cols-1 sm:grid-cols-4 border-t text-center pt-4 gap-2">
               <div className="grid   col-span-2 sm:text-left    ">
                 <div className="flex justify-between sm:justify-normal">
                   <div className=" ">Total Amount : </div>
-                  <div className="text-gray-400"> ₹{orderData.totalPrice}</div>
+                  <div className="text-gray-500"> ₹{orderData.totalPrice}</div>
                 </div>
               </div>
               <div className="grid   col-span-2   ">

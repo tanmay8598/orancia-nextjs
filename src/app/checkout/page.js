@@ -2,10 +2,7 @@
 import useAuth from "@/auth/useAuth";
 import AddressSidebar from "@/components/Cart/AddressSidebar";
 import Loader from "@/components/loader/Loader";
-import CoopanBox from "@/components/orderPage/CoopanBox";
-import CoopanForm from "@/components/orderPage/CoopanForm";
 import OrderImagecard from "@/components/orderPage/OrderImagecard";
-
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MdAddIcCall } from "react-icons/md";
@@ -14,6 +11,7 @@ import apiClient from "@/api/client";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { clear } from "@/redux/features/cart/cartSlice";
+
 const page = () => {
   const [isOpenAccount, setIsOpenAccount] = useState(false);
   const [coupans, setCoupans] = useState([]);
@@ -29,10 +27,10 @@ const page = () => {
   const totalValue = selector.cart.reduce((total, item) => {
     return total + item.quantity * item.product.sell_price;
   }, 0);
-
+  const discountedTotal = totalValue - discount;
   const { user } = useAuth();
   const router = useRouter();
-  //order items
+
   const orderItems = [];
 
   useEffect(() => {
@@ -73,7 +71,6 @@ const page = () => {
         image: item?.product?.image[0],
         price: item?.product?.sell_price,
         product: item.product._id,
-        // discount: item?.product?.
       });
     });
 
@@ -82,7 +79,7 @@ const page = () => {
       shippingAddress,
       paymentMethod: "COD",
       itemsPrice: totalValue,
-      totalPrice: totalValue,
+      totalPrice: discountedTotal,
       deliveryStatus: "Processing",
       userId: user.id,
       isPaid: true,
@@ -90,29 +87,36 @@ const page = () => {
 
     if (result.ok) {
       dispatch(clear());
-      console.log(result.data._id, "dd");
-      toast.success("Transcation successfull !");
+      toast.success("Transaction successful!");
       router.push(`/account/${result.data._id}`);
     } else {
-      toast.error("Error Retry");
+      toast.error("Error. Retry");
     }
   };
+
   if (isLoading) {
     return <Loader />;
   }
+
   const handleApplyCoupon = (couponCode) => {
-    console.log(couponCode, "couponCode");
-    const coupon = coupans.find((c) => c.name === couponCode);
-    if (coupon) {
-      setDiscount(coupon.discount);
-      setAppliedCoupon(couponCode);
-      toast.success("Coupon applied successfully!");
-    } else {
+    if (appliedCoupon === couponCode) {
       setDiscount(0);
       setAppliedCoupon("");
-      toast.error("Invalid coupon code.");
+      toast.info("Coupon removed.");
+    } else {
+      const coupon = coupans.find((c) => c.name === couponCode);
+      if (coupon) {
+        setDiscount(coupon.discount);
+        setAppliedCoupon(couponCode);
+        toast.success("Coupon applied successfully!");
+      } else {
+        setDiscount(0);
+        setAppliedCoupon("");
+        toast.error("Invalid coupon code.");
+      }
     }
   };
+
   return (
     <>
       <div className="container mx-auto px-4 py-8">
@@ -151,7 +155,7 @@ const page = () => {
             <div className="text-center mb-6">
               <button
                 type="submit"
-                className="w-3/4 bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600"
+                className="w-3/4 bg-[#ed1d24] text-white py-2 px-4 rounded-md hover:bg-red-600"
                 onClick={() => setIsOpenAccount(true)}
               >
                 + Use a different address
@@ -178,50 +182,26 @@ const page = () => {
                 )}
               </div>
               <div>
-                <form
-                  className="flex"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    const couponCode = e.target.elements.coupon.value;
-                    handleApplyCoupon(couponCode);
-                  }}
-                >
-                  <div className="flex-1 mr-4">
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      className=" px-4mt-1 p-2 block w-full border rounded-md  "
-                      placeholder="Discount code or gift card"
-                    />
-                  </div>
-                  <div>
-                    <button className="  bg-red-500 text-white  py-2 px-4 rounded-md hover:bg-red-600   ">
-                      Apply
-                    </button>
-                  </div>
-                </form>
-              </div>
-              <div>
-                <div className="  items-center w-11/12 border border-gray-300 p-4 rounded-lg">
+                <div className="items-center w-11/12 border border-gray-300 p-4 rounded-lg">
                   <div className="text-sm mb-4">All Coupons</div>
 
-                  {coupans.map((coupans) => (
-                    <div className="  items-center w-full border border-gray-300 p-4 ">
+                  {coupans.map((coupon, index) => (
+                    <div
+                      key={index}
+                      className="items-center w-full border border-gray-300 p-4 mb-2"
+                    >
                       <div className="flex justify-between items-center">
                         <div className="flex-1 ml-4">
-                          <p className="text-sm text-gray-600">
-                            {coupans?.name}
-                          </p>
+                          <p className="text-sm text-gray-600">{coupon.name}</p>
                           <p className="text-xs text-gray-500">
-                            Any 2 eligible products at ₹{coupans?.discount}
+                            Any 2 eligible products at ₹{coupon.discount}
                           </p>
                         </div>
                         <button
-                          className="text-red-500  underline"
-                          onClick={() => handleApplyCoupon(coupans?.name)}
+                          className="text-red-500 underline"
+                          onClick={() => handleApplyCoupon(coupon.name)}
                         >
-                          Apply
+                          {appliedCoupon === coupon.name ? "Remove" : "Apply"}
                         </button>
                       </div>
                     </div>
@@ -247,7 +227,7 @@ const page = () => {
                 <p className="text-black text-2xl font-semibold">Total</p>
               </div>
               <p className="text-black text-2xl font-semibold">
-                ₹ {totalValue}.00
+                ₹ {discountedTotal}.00
               </p>
             </div>
             <div className="flex my-4 justify-between items-center">
@@ -261,7 +241,7 @@ const page = () => {
               className="text-white w-full bg-primary p-2 rounded"
               onClick={handleSubmit}
             >
-              Complete transcation
+              Complete transaction
             </button>
           </div>
           <AddressSidebar
@@ -271,17 +251,7 @@ const page = () => {
           />
         </div>
       </div>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      <ToastContainer position="bottom-right" autoClose={3000} />
     </>
   );
 };

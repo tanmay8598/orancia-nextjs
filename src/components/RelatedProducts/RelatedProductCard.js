@@ -12,7 +12,7 @@ const RelatedProductCard = ({ product }) => {
     <Link className="group" href={`/product/${product.slug}`}>
       <div className="drop-shadow-md rounded-md bg-white border-red-500 h-[300px] mb-3 p-4 m-5 overflow-hidden relative md:h-[328px]">
         <div className="w-full h-full group-hover:bg-primary/10 transition-all duration-300 flex justify-center items-center">
-          <div className="absolute top-8 left-8 bg-accent text-white px-3 text-sm uppercase font-medium ">
+          <div className="absolute top-8 left-8 bg-[#ed1d24] text-white px-3 text-sm uppercase font-medium ">
             Best Seller
           </div>
           <Image src={product?.image[0]} width={240} height={147} alt="image" />

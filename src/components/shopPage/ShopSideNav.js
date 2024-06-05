@@ -52,7 +52,6 @@ const ShopSideNav = ({
   // const minprice = price ? min : 0;
   // const maxprice = price ? max : 250000000;
   const firstCategory = categories?.length > 0 ? categories[0] : null;
-  console.log(categories, "selectedSubcategory");
   return (
     <div className="w-full flex flex-col gap-6">
       <div className="text-xs font-medium">Home / {firstCategory?.name} </div>
