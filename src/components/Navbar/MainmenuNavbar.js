@@ -75,7 +75,7 @@ const MainmenuNavbar = () => {
               <button className="hover:opacity-50 cursor-default">
                 Categories
               </button>
-              {/* <CategoriesDroupdown /> */}
+              <CategoriesDroupdown />
             </li>
             <li className="relative group px-3 py-2">
               <button className="hover:opacity-50 cursor-default">

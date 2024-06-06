@@ -39,6 +39,9 @@ const MenuNavbar = () => {
   const handleClick = () => {
     router.push("/blogs");
   };
+  const handlebestsaller = () => {
+    router.push("/best-sellers");
+  };
 
   const toggleDropdown = () => {
     setCategoryDropdownOpen(!categoryDropdownOpen);
@@ -87,10 +90,13 @@ const MenuNavbar = () => {
                     <div className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">
                       <header className="container mx-auto px-4 py-6 flex items-center justify-between">
                         <nav>
-                          <ul className="flex items-center justify-center font-semibold">
+                          <ul
+                            className="flex items-center justify-center font-semibold"
+                            onMouseEnter={() => setCategoryDropdown(false)}
+                          >
                             <li className="relative group px-3 py-2 cursor-pointer">
                               <button
-                                className="hover:opacity-50 cursor-default"
+                                className="hover:opacity-50 cursor-default  "
                                 onMouseEnter={() => setCategoryDropdown(false)}
                               >
                                 Makeup
@@ -147,20 +153,10 @@ const MenuNavbar = () => {
                                 </div>
                               </div>
                             </li>
+
                             <li className="relative group px-3 py-2 cursor-pointer">
                               <button
-                                className="hover:opacity-50   cursor-pointer"
-                                // onClick={() =>
-                                //   setCategoryDropdown(!categoryDropdown)
-                                // }
-                                onMouseEnter={() => setCategoryDropdown(true)}
-                              >
-                                Categories
-                              </button>
-                            </li>
-                            <li className="relative group px-3 py-2 cursor-pointer">
-                              <button
-                                className="hover:opacity-50 cursor-default"
+                                className="hover:opacity-50 cursor-default "
                                 onMouseEnter={() => setCategoryDropdown(false)}
                               >
                                 Skin Care
@@ -263,7 +259,7 @@ const MenuNavbar = () => {
                             </li>
                             <li className="relative group px-3 py-2 cursor-pointer">
                               <button
-                                className="hover:opacity-50 cursor-default"
+                                className="hover:opacity-50 cursor-default "
                                 onMouseEnter={() => setCategoryDropdown(false)}
                               >
                                 Hair Care
@@ -317,15 +313,16 @@ const MenuNavbar = () => {
                                 </div>
                               </div>
                             </li>
-                            <li className="relative group px-3 py-2 cursor-pointer">
+                            <li className="relative group    px-3 py-2 cursor-pointer">
                               <button
-                                className="hover:opacity-50 cursor-default"
+                                className="hover:opacity-50 cursor-default "
+                                onClick={handlebestsaller}
                                 onMouseEnter={() => setCategoryDropdown(false)}
                               >
                                 Bestsellers
                               </button>
-                              {/*  */}
-                              <div className="absolute top-0 -left-2 transition group-hover:translate-y-5 translate-y-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible duration-500 ease-in-out group-hover:transform z-50 min-w-[200px] transform">
+
+                              {/* <div className="absolute top-0 -left-2 transition group-hover:translate-y-5 translate-y-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible duration-500 ease-in-out group-hover:transform z-50 min-w-[200px] transform">
                                 <div className="relative top-[47px] p-6 bg-white  shadow-xl w-full">
                                   <div className="relative z-10">
                                     <ul className="text-[15px]">
@@ -340,13 +337,25 @@ const MenuNavbar = () => {
                                     </ul>
                                   </div>
                                 </div>
-                              </div>
+                              </div> */}
+                            </li>
+                            <li
+                              className="relative group px-3 py-2 cursor-pointer"
+                              // onMouseLeave={() => setCategoryDropdown(false)}
+                              onMouseEnter={() => setCategoryDropdown(false)}
+                            >
+                              <button
+                                className="hover:opacity-50  cursor-pointer "
+                                onMouseEnter={() => setCategoryDropdown(true)}
+                              >
+                                Categories
+                              </button>
                             </li>
                             <li className="relative group px-3 py-2 cursor-pointer">
                               <button
                                 onClick={handleClick}
                                 onMouseEnter={() => setCategoryDropdown(false)}
-                                className="hover:opacity-50 cursor-default "
+                                className="hover:opacity-50 cursor-default  "
                               >
                                 Blog
                               </button>
@@ -356,6 +365,7 @@ const MenuNavbar = () => {
                       </header>
                     </div>
                   </div>
+                  {/* <MegaMenuWithHover /> */}
                 </Popover.Group>
                 <div className="flex items-center space-x-4">
                   <div className="hidden sm:block relative h-4 w-4 lg:h-6 lg:w-6 text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer">

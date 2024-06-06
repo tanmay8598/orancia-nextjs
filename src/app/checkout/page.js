@@ -15,6 +15,7 @@ import { clear } from "@/redux/features/cart/cartSlice";
 const page = () => {
   const [isOpenAccount, setIsOpenAccount] = useState(false);
   const [coupans, setCoupans] = useState([]);
+  const [couponId, setCouponId] = useState("");
   const dispatch = useDispatch();
   const [error, setError] = useState();
   const selector = useSelector((state) => state.cart);
@@ -22,7 +23,7 @@ const page = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [discount, setDiscount] = useState(0);
   const [appliedCoupon, setAppliedCoupon] = useState("");
-
+  const [couponCode, setCouponCode] = useState("");
   const products = selector.cart;
   const totalValue = selector.cart.reduce((total, item) => {
     return total + item.quantity * item.product.sell_price;
@@ -30,7 +31,7 @@ const page = () => {
   const discountedTotal = totalValue - discount;
   const { user } = useAuth();
   const router = useRouter();
-
+  console.log(discountedTotal, "user");
   const orderItems = [];
 
   useEffect(() => {
@@ -60,37 +61,52 @@ const page = () => {
       setError(error);
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    products?.map((item) => {
-      orderItems.push({
-        name: item?.product?.name,
-        qty: item?.quantity,
-        image: item?.product?.image[0],
-        price: item?.product?.sell_price,
+    try {
+      const orderItems = products.map((item) => ({
+        name: item.product.name,
+        qty: item.quantity,
+        image: item.product.image[0],
+        price: item.product.sell_price,
         product: item.product._id,
+      }));
+
+      const orderResult = await apiClient.post("/orders/create-order", {
+        orderItems,
+        shippingAddress,
+        paymentMethod: "COD",
+        itemsPrice: totalValue,
+        totalPrice: discountedTotal,
+        deliveryStatus: "Processing",
+        userId: user.id,
+        isPaid: true,
       });
-    });
 
-    const result = await apiClient.post("/orders/create-order", {
-      orderItems,
-      shippingAddress,
-      paymentMethod: "COD",
-      itemsPrice: totalValue,
-      totalPrice: discountedTotal,
-      deliveryStatus: "Processing",
-      userId: user.id,
-      isPaid: true,
-    });
+      if (!orderResult.ok) {
+        throw new Error("Error creating order.");
+      }
+      if (orderResult.ok) {
+        const couponResult = await apiClient.post("/variation/coupon/post", {
+          couponId,
+          userId: user.id,
+        });
+        if (!couponResult.ok) {
+          throw new Error("Error applying coupon.");
+        }
+      } else {
+        throw new Error("Error creating order.");
+      }
 
-    if (result.ok) {
+      // Apply coupon
+
       dispatch(clear());
       toast.success("Transaction successful!");
-      router.push(`/account/${result.data._id}`);
-    } else {
-      toast.error("Error. Retry");
+      router.push(`/account/${orderResult.data._id}`);
+    } catch (error) {
+      console.error("Transaction failed:", error);
+      toast.error("Transaction failed. Please retry.");
     }
   };
 
@@ -98,25 +114,67 @@ const page = () => {
     return <Loader />;
   }
 
-  const handleApplyCoupon = (couponCode) => {
+  const removedCoupan = (couponCode) => {
     if (appliedCoupon === couponCode) {
       setDiscount(0);
       setAppliedCoupon("");
       toast.info("Coupon removed.");
-    } else {
-      const coupon = coupans.find((c) => c.name === couponCode);
-      if (coupon) {
-        setDiscount(coupon.discount);
-        setAppliedCoupon(couponCode);
-        toast.success("Coupon applied successfully!");
-      } else {
-        setDiscount(0);
-        setAppliedCoupon("");
-        toast.error("Invalid coupon code.");
-      }
+      setCouponId("");
     }
   };
 
+  const handleApplyCoupons = (couponCode) => {
+    const coupon = coupans.find((c) => c.name === couponCode);
+    console.log(coupon.limit, "coupon.limit");
+    const isUsedByUser = coupon?.usedBy?.filter(function (User) {
+      return User._id === user?.id;
+    });
+    // console.log(isUsedByUser, "isUsedByUser");
+
+    if (!coupon) {
+      toast.error("Invalid coupon code.");
+      setDiscount(0);
+      setAppliedCoupon("");
+      return;
+    }
+    if (isUsedByUser?.length > 0) {
+      toast.error("Coupon already used by the user.");
+      setDiscount(0);
+      setAppliedCoupon("");
+      return;
+    }
+
+    const totalCartValue = selector.cart.reduce((total, item) => {
+      return total + item.quantity * item.product.sell_price;
+    }, 0);
+
+    const percentageDiscount = (totalCartValue * coupon.discount) / 100;
+    const effectiveDiscount = Math.min(percentageDiscount, coupon.max);
+    console.log(coupon.max, "coupon.max");
+    console.log(coupon.discount, "coupon.discount");
+    // console.log(percentageDiscount, "percentageDiscount");
+    console.log(effectiveDiscount, "effectiveDiscount");
+
+    if (effectiveDiscount >= totalCartValue) {
+      toast.error(
+        `Maximum discount limit for this coupon is ₹${coupon.limit}.`
+      );
+      setDiscount(0);
+      setAppliedCoupon("");
+      return;
+    }
+
+    setDiscount(effectiveDiscount);
+    setAppliedCoupon(couponCode);
+    setCouponId(coupon._id);
+    toast.success("Coupon applied successfully!");
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    handleApplyCoupons(couponCode);
+  };
+  // console.log(coupans, "coupans");
   return (
     <>
       <div className="container mx-auto px-4 py-8">
@@ -181,8 +239,30 @@ const page = () => {
                   <p>Loading...</p>
                 )}
               </div>
+              <form className="flex" onSubmit={handleFormSubmit}>
+                <div className="flex-1 mr-4">
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    className="px-4 mt-1 p-2 block w-full border rounded-md"
+                    placeholder="Discount code or gift card"
+                    value={couponCode}
+                    onChange={(e) => setCouponCode(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600"
+                  >
+                    Apply
+                  </button>
+                </div>
+              </form>
+
               <div>
-                <div className="items-center w-11/12 border border-gray-300 p-4 rounded-lg">
+                <div className="items-center  border border-gray-300 p-4 mb-5 rounded-lg">
                   <div className="text-sm mb-4">All Coupons</div>
 
                   {coupans.map((coupon, index) => (
@@ -197,12 +277,26 @@ const page = () => {
                             Any 2 eligible products at ₹{coupon.discount}
                           </p>
                         </div>
-                        <button
+                        {/* <button
                           className="text-red-500 underline"
-                          onClick={() => handleApplyCoupon(coupon.name)}
-                        >
-                          {appliedCoupon === coupon.name ? "Remove" : "Apply"}
-                        </button>
+                          onClick={() => removedCoupan(coupon.name)}
+                        > */}
+                        {appliedCoupon === coupon.name ? (
+                          <button
+                            className="text-red-500 underline"
+                            onClick={() => removedCoupan(coupon.name)}
+                          >
+                            Remove
+                          </button>
+                        ) : (
+                          <button
+                            className="text-red-500 underline"
+                            onClick={() => handleApplyCoupons(coupon.name)}
+                          >
+                            Apply
+                          </button>
+                        )}
+                        {/* </button> */}
                       </div>
                     </div>
                   ))}
@@ -216,12 +310,12 @@ const page = () => {
               </div>
               <p className="text-black font-semibold">₹ {totalValue}.00</p>
             </div>
-            <div className="flex my-4 justify-between items-center">
+            {/* <div className="flex my-4 justify-between items-center">
               <div className="flex-1">
                 <p className="text-sm text-gray-600">Shipping</p>
               </div>
               <p className="text-gray-600">Enter shipping address</p>
-            </div>
+            </div> */}
             <div className="flex my-4 justify-between items-center">
               <div className="flex-1">
                 <p className="text-black text-2xl font-semibold">Total</p>
