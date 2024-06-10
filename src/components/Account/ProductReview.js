@@ -11,7 +11,7 @@ const ProductReview = ({ initialRating, initialTotalReviews }) => {
   };
 
   return (
-    <div className="flex flex-row gap-1 mt-2 md:mt-5">
+    <div className="flex flex-row gap-1 mt-2 md:mt-3">
       {[...Array(5)].map((_, index) => (
         <FaStar
           key={index}

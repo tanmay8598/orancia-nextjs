@@ -46,7 +46,7 @@ function Icon({ id, open }) {
 
 const page = () => {
   const router = useParams();
-  console.log(router, "ro");
+
   const productId = router.product;
 
   const [product, setProduct] = useState();
@@ -57,7 +57,8 @@ const page = () => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(0);
   const [quantity, setQuantity] = useState(1);
-
+  const [selectedOffer, setSelectedOffer] = useState(null);
+  const [isDealClicked, setIsDealClicked] = useState(false);
   useEffect(() => {
     fetchProduct();
     fetchProducts();
@@ -104,8 +105,6 @@ const page = () => {
     );
   }
 
-  const handleOpen = (value) => setOpen(open === value ? 0 : value);
-
   const handleQuantity = (type) => {
     if (type === "dec") {
       quantity > 1 && setQuantity(quantity - 1);
@@ -132,6 +131,38 @@ const page = () => {
     });
   };
 
+  console.log(product, "product");
+
+  const handleOfferSelection = (quantity) => {
+    setSelectedOffer(quantity);
+  };
+  const handleButtonClick = () => {
+    if (selectedOffer) {
+      dispatch(add({ product, quantity: selectedOffer }));
+      setIsDealClicked(true);
+      // toast.success("Success. Check your cart!", {
+      //   position: "bottom-right",
+      //   autoClose: 5000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "dark",
+      // });
+    } else {
+      toast.error("Please select an offer!", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+  };
   return (
     <section className="pt-10 pb-10">
       <ToastContainer
@@ -187,7 +218,7 @@ const page = () => {
                 ₹ {product?.sell_price}
               </p>
               {/* counter  */}
-              <div className="py-2 px-2 mt-2      inline-block bg-white border border-gray-200 rounded-lg">
+              <div className="py-2 px-2 mt-2  sm:mt-1    inline-block bg-white border border-gray-200 rounded-lg">
                 <div className="flex items-center  w-[150px] justify-between  gap-x-1.5">
                   <button
                     onClick={() => handleQuantity("dec")}
@@ -241,7 +272,71 @@ const page = () => {
                   </button>
                 </div>
               </div>
-              <div className="md:flex md:w-full md:h-12 md:justify-between mt-6">
+              {/* offer card */}
+              <div className="my-5">
+                <div>
+                  <h5 className="text-lg font-bold mb-2">
+                    Buy more, save more!
+                  </h5>
+                  <p className="text-gray-700">
+                    Don't miss out on these amazing deals!
+                  </p>
+                </div>
+
+                {product?.discount.map((offer) => {
+                  const discountedPrice =
+                    product?.sell_price * (1 - offer.discount / 100);
+                  return (
+                    <div
+                      key={offer.id}
+                      className="my-5 p-3 border border-gray-400 rounded-lg"
+                    >
+                      <div className="flex justify-between items-center">
+                        <div className="flex items-center">
+                          <div className="px-2">
+                            <input
+                              type="radio"
+                              name="offer"
+                              value={offer.quantity}
+                              onChange={() =>
+                                handleOfferSelection(offer.quantity)
+                              }
+                            />
+                          </div>
+                          <div>
+                            Buy {offer?.quantity} save {offer?.discount}%
+                          </div>
+                        </div>
+                        <div>
+                          <del>₹ {product?.sell_price}</del>
+                          <div>₹ {discountedPrice.toFixed(2)}</div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+
+                <div className="p-2">
+                  {/* <button
+                    onClick={handleButtonClick}
+                    className="bg-[#ed1d24] text-white w-full py-3 rounded-md"
+                  >
+                    Grab this deal
+                  </button> */}
+                  <button
+                    onClick={handleButtonClick}
+                    className={`bg-[#ed1d24] text-white w-full py-3 rounded-md ${
+                      !selectedOffer || isDealClicked
+                        ? "cursor-not-allowed opacity-50"
+                        : ""
+                    }`}
+                    disabled={!selectedOffer || isDealClicked}
+                  >
+                    {isDealClicked ? "Deal grabbed!" : "Grab this deal"}
+                  </button>
+                </div>
+              </div>
+              <div className="md:flex md:w-full md:h-12 md:justify-between my-4 sm:mt-0">
                 {product?.countInStock?.qty === 0 ? (
                   <div className="md:flex md:w-full md:h-12 md:justify-between mt-6">
                     {/* <div className="btn btn-primary w-full mt-2 md:mt-0 sm:w-3/4 md:6 rounded-md"> */}
