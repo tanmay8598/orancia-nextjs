@@ -58,10 +58,10 @@ const WhatClient = () => {
         {/* <div className="container mx-auto rounded-[70px px-6]  "> */}
         <div className="max-w-screen-lg mx-auto  ">
           <div className="flex flex-col items-center pt-[20px] pb-[20px]">
-            <h3 className="h3  mb-2 text-center md:text-4xl ">
+            <p className="  font-semibold text-center md:text-4xl mb-11 mt-11">
               {" "}
               What Client Says
-            </h3>
+            </p>
           </div>
           <div className="w-full">
             <div>

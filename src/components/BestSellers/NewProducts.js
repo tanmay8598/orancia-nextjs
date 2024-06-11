@@ -4,26 +4,27 @@ import { FaStar } from "react-icons/fa";
 import AddtoCartBtn from "../Button/AddtoCartBtn";
 import { add } from "@/redux/features/cart/cartSlice";
 import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 import Link from "next/link";
-
+import toast, { Toaster } from "react-hot-toast";
 const NewProducts = ({ product }) => {
   const dispatch = useDispatch();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const handleAddToCart = () => {
     dispatch(add({ product, quantity: 1 }));
-    toast.success("Success. Check your cart!", {
-      position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+    // toast.success("Success. Check your cart!", {
+    //   position: "bottom-right",
+    //   autoClose: 5000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   draggable: true,
+    //   progress: undefined,
+    //   theme: "dark",
+    // });
+    toast.success("Success. Check your cart!");
   };
   const handleImageError = (event) => {
     event.target.src =
@@ -109,7 +110,7 @@ const NewProducts = ({ product }) => {
           </div>
         </div>
       </div>
-      <ToastContainer
+      {/* <ToastContainer
         position="bottom-right"
         autoClose={5000}
         hideProgressBar={false}
@@ -119,7 +120,8 @@ const NewProducts = ({ product }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-      />
+      /> */}
+      <Toaster position="bottom-right" />
     </div>
   );
 };

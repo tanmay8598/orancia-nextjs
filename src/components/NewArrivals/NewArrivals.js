@@ -27,12 +27,12 @@ const NewArrivals = () => {
   return (
     <section>
       <div className="mx-auto max-w-screen-3xl px-4 py-10">
-        <h3 className="h3  text-center md:text-4xl mb-11 mt-11">
+        <p className="  font-semibold text-center md:text-4xl mb-11 mt-11">
           New Arrivals
-        </h3>
+        </p>
 
         <BestSellerCarousel products={product} />
-        <div className="mt-16">
+        <div className="my-8">
           <Link href="/new-arrivals">
             <button className="btn btn-accent rounded-lg mx-auto mt-8">
               See all

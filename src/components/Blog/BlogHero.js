@@ -61,12 +61,13 @@ const BlogHero = () => {
           <p>No blogs available</p>
         )}
       </div>
-      {/* <div className="my-8"></div> */}
-      <Link href="/blogs">
-        <button className="btn btn-accent rounded-lg mx-auto mt-12">
-          See all
-        </button>
-      </Link>
+      <div className="my-8">
+        <Link href="/blogs">
+          <button className="btn btn-accent rounded-lg mx-auto mt-12">
+            See all
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };

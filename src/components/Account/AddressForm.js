@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
+import toast, { Toaster } from "react-hot-toast";
+
 import InputField from "./InputField";
 import { useRouter } from "next/navigation";
 import apiClient from "@/api/client";
@@ -97,6 +99,7 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
           state: formData.state,
         },
       });
+
       if (response.status === 200) {
         logIn(response.data.token);
         setFormData({
@@ -110,8 +113,16 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
           landmark: "",
           state: "",
         });
-        setIsOpen(false);
-        toast.success("Address added successfully!");
+
+        toast.success("Address added successfully!", {
+          id: "address-success-toast",
+          duration: 1000,
+        });
+
+        // Wait for the toast to be shown before closing the modal
+        setTimeout(() => {
+          setIsOpen(false);
+        }, 1000);
       } else {
         toast.error("An error occurred while saving the address.");
       }
@@ -248,7 +259,7 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
           ADD A NEW ADDRESS
         </button>
       </form>
-      <ToastContainer
+      {/* <ToastContainer
         position="bottom-right"
         autoClose={5000}
         hideProgressBar={false}
@@ -258,7 +269,8 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-      />
+      /> */}
+      <Toaster position="bottom-right" />
     </>
   );
 };

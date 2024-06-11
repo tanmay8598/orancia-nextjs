@@ -21,28 +21,28 @@ const NewOrderChild = ({ orderData }) => {
           <div className="header text-center">
             <div className="grid grid-cols-1 lg:grid-cols-4 border-b pb-4 gap-2">
               <div className="grid   col-span-1 border-r">
-                <div className="">Order Id</div>
-                <div className="text-sm text-gray-500">{orderData?._id}</div>
+                <div className="black">Order Id</div>
+                <div className="text-sm text-gray-600">{orderData?._id}</div>
               </div>
               <div className="grid col-span-1 border-r">
-                <div className="">Order Date</div>
-                <div className="text-sm text-gray-500">
+                <div className="black">Order Date</div>
+                <div className="text-sm text-gray-600">
                   {orderData
                     ? new Date(orderData.createdAt).toLocaleString()
                     : "N/A"}
                 </div>
               </div>
               <div className="grid col-span-1 border-r">
-                <div className="">Delivery Date</div>
-                <div className="text-sm text-gray-500">
+                <div className="black">Delivery Date</div>
+                <div className="text-sm text-gray-600">
                   {orderData
                     ? new Date(orderData.updatedAt).toLocaleString()
                     : "N/A"}
                 </div>
               </div>
               <div className="grid col-span-1  ">
-                <div className="">Ship to</div>
-                <div className="text-sm text-gray-500">
+                <div className="black">Ship to</div>
+                <div className="text-sm text-gray-600">
                   {orderData?.shippingAddress?.city}
                 </div>
               </div>
@@ -70,15 +70,15 @@ const NewOrderChild = ({ orderData }) => {
                   <div className="grid col-span-4 sm:p-2 pt-2  text-left gap-4  ">
                     <div className="font-semibold">{itemData.name}</div>
                     <div>
-                      <span className="">Product : </span>
-                      <span className="text-gray-500"> {itemData.product}</span>
+                      <span className="black">Product : </span>
+                      <span className="text-gray-600"> {itemData.product}</span>
                     </div>
                     <div>
-                      <span className="">Quantity : </span>
-                      <span className="text-gray-500"> {itemData.qty}</span>
+                      <span className="black">Quantity : </span>
+                      <span className="text-gray-600"> {itemData.qty}</span>
                     </div>
                   </div>
-                  <div className="grid text-gray-500 col-span-1 text-left sm:text-right  ">
+                  <div className="grid text-gray-600 col-span-1 text-left sm:text-right  ">
                     ₹{itemData.price}
                   </div>
                 </div>
@@ -88,8 +88,8 @@ const NewOrderChild = ({ orderData }) => {
             <div className="grid grid-cols-1 sm:grid-cols-4 border-t text-center pt-4 gap-2">
               <div className="grid   col-span-2 sm:text-left    ">
                 <div className="flex justify-between sm:justify-normal">
-                  <div className=" ">Total Amount : </div>
-                  <div className="text-gray-500"> ₹{orderData.totalPrice}</div>
+                  <div className="black">Total Amount : </div>
+                  <div className="text-gray-600"> ₹{orderData.totalPrice}</div>
                 </div>
               </div>
               <div className="grid   col-span-2   ">

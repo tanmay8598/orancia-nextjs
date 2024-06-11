@@ -1,12 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import * as Yup from "yup";
-import { BiSolidHide } from "react-icons/bi";
-import { BiSolidShow } from "react-icons/bi";
-import { ToastContainer, toast } from "react-toastify";
+import { BiSolidHide, BiSolidShow } from "react-icons/bi";
+// import { ToastContainer, toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 import InputField from "./InputField";
-import SelectField from "./SelectField";
 import { useRouter } from "next/navigation";
 import { SheetHeader, SheetTitle } from "../ui/sheet";
 import LogoInformation from "./LogoInformation";
@@ -69,13 +68,15 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
 
         if (response.ok) {
           toast.success("Form submitted successfully!");
-          logIn(response.data.token);
-          setIsOpen(false);
-        } else
-          (error) => {
-            console.log(error);
-            toast.error("Failed to register. Please try again.");
-          };
+
+          setTimeout(() => {
+            setIsOpen(false);
+            logIn(response.data.token);
+          }, 1000);
+        } else {
+          console.log(response.error);
+          toast.error("Failed to register. Please try again.");
+        }
       } catch (error) {
         console.log(error);
         toast.error("An error occurred. Please try again later.");
@@ -84,10 +85,12 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
       toast.error("Please correct the errors before submitting.");
     }
   };
+
   const handleInputNumber = (e) => {
     const inputValue = e.target.value.replace(/\D/g, "");
     e.target.value = inputValue;
   };
+
   return (
     <>
       <LogoInformation />
@@ -100,7 +103,6 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
           error={errors.name}
           placeholder=" "
         />
-
         <InputField
           id="email"
           label="Email"
@@ -119,14 +121,6 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
           onInput={handleInputNumber}
           placeholder=" "
         />
-        {/* <InputField
-          id="password"
-          label="Password"
-          value={formData.password}
-          onChange={handleInputChange}
-          error={errors.password}
-          placeholder=" "
-        /> */}
         <div className="relative">
           <InputField
             id="password"
@@ -158,17 +152,7 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
         </button>
       </form>
 
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      <Toaster position="bottom-right" />
     </>
   );
 };

@@ -6,8 +6,9 @@ import AddtoCartBtn from "../Button/AddtoCartBtn";
 import { FaStar } from "react-icons/fa";
 import { add } from "@/redux/features/cart/cartSlice";
 import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import toast, { Toaster } from "react-hot-toast";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 const Product = ({ product }) => {
   const short = product.name.replace(/(.{33})..+/, "$1");
 
@@ -15,16 +16,17 @@ const Product = ({ product }) => {
 
   const handleAddToCart = () => {
     dispatch(add({ product, quantity: 1 }));
-    toast.success("Success. Check your cart!", {
-      position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+    // toast.success("Success. Check your cart!", {
+    //   position: "bottom-right",
+    //   autoClose: 5000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   draggable: true,
+    //   progress: undefined,
+    //   theme: "dark",
+    // });
+    toast.success("Success. Check your cart!");
   };
   const handleImageError = (event) => {
     event.target.src =
@@ -33,7 +35,7 @@ const Product = ({ product }) => {
 
   return (
     <div className="my-4">
-      <ToastContainer
+      {/* <ToastContainer
         position="bottom-right"
         autoClose={5000}
         hideProgressBar={false}
@@ -43,7 +45,8 @@ const Product = ({ product }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-      />
+      /> */}
+      <Toaster position="bottom-right" />
       <Link className="group" href={`/product/${product._id}`}>
         <div className="drop-shadow-md rounded-md bg-white border-red-500 h-[300px] mb-3 p-4 overflow-hidden relative md:h-[328px]">
           <div className=" w-full h-full group-hover:bg-primary/10 transition-all duration-300 flex justify-center items-center">

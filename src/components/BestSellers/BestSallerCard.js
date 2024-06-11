@@ -2,30 +2,28 @@
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 import Link from "next/link";
 import AddtoCartBtn from "../Button/AddtoCartBtn";
 import { add } from "@/redux/features/cart/cartSlice";
 
-const BestSellerCard = ({ product }) => {
+const BestSellerCard = ({ product, onAddToCart }) => {
+  const [shownToasts, setShownToasts] = useState(new Set());
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const short = product.name.replace(/(.{33})..+/, "$1");
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
     dispatch(add({ product, quantity: 1 }));
-    toast.success("Success. Check your cart!", {
-      position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+
+    if (!shownToasts.has(product._id)) {
+      toast.success(`Success. Check your cart!`, {
+        id: product._id,
+      });
+      setShownToasts(new Set(shownToasts).add(product._id));
+    }
   };
 
   const handleImageError = (event) => {
@@ -103,17 +101,8 @@ const BestSellerCard = ({ product }) => {
           )}
         </div>
       </div>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+
+      <Toaster position="bottom-right" />
     </div>
   );
 };

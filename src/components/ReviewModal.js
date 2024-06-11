@@ -4,7 +4,8 @@ import useAuth from "@/auth/useAuth";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import * as Yup from "yup";
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 const ReviewModal = ({ isOpen, onClose }) => {
   const router = useParams();
@@ -41,12 +42,19 @@ const ReviewModal = ({ isOpen, onClose }) => {
         comment: formData.comment,
       });
       if (response.ok) {
-        toast.success("Review submitted successfully!");
-        setFormData({
-          rating: 0,
-          comment: "",
+        // toast.success("Review submitted successfully!");
+        toast.success("Review submitted successfully!", {
+          id: "review-success-toast",
+          duration: 1000,
         });
-        onClose();
+
+        setTimeout(() => {
+          setFormData({
+            rating: 0,
+            comment: "",
+          });
+          onClose();
+        }, 1000);
       } else {
         console.error("Failed to submit review");
         toast.error("Failed to submit review. Please try again.");
@@ -123,7 +131,7 @@ const ReviewModal = ({ isOpen, onClose }) => {
               </button>
             </div>
           </div>
-          <ToastContainer
+          {/* <ToastContainer
             position="bottom-right"
             autoClose={5000}
             hideProgressBar={false}
@@ -133,7 +141,8 @@ const ReviewModal = ({ isOpen, onClose }) => {
             pauseOnFocusLoss
             draggable
             pauseOnHover
-          />
+          /> */}
+          <Toaster position="bottom-right" />
         </div>
       )}
     </>

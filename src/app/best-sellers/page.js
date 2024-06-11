@@ -131,7 +131,6 @@ const Page = () => {
                 </p>
               ) : (
                 products.map((product, index) => (
-                  // <Product key={index} product={product} />
                   <NewProducts key={product.id} product={product} />
                 ))
               )}

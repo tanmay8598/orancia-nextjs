@@ -9,8 +9,8 @@ import {
   AccordionBody,
 } from "@material-tailwind/react";
 import { ReviewSection } from "@/components/ReviewSection/ReviewSection";
-
-import { ToastContainer, toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
+// import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProductDetailsCarousel from "@/components/ProductDetailsCarousel/ProductDetailsCarousel";
 import Wrapper from "@/components/Wrapper/Wrapper";
@@ -119,15 +119,18 @@ const page = () => {
   const notify = () => {
     // dispatch(add({ product: products[0], quantity }));
     dispatch(add({ product, quantity }));
+    // toast.success("Success. Check your cart!", {
+    //   position: "bottom-right",
+    //   autoClose: 5000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   draggable: true,
+    //   progress: undefined,
+    //   theme: "dark",
+    // });
     toast.success("Success. Check your cart!", {
-      position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
+      id: "cart-success-toast",
     });
   };
 
@@ -150,6 +153,9 @@ const page = () => {
       //   progress: undefined,
       //   theme: "dark",
       // });
+      toast.success("Success. Check your cart!", {
+        id: "cart-success-toast",
+      });
     } else {
       toast.error("Please select an offer!", {
         position: "bottom-right",
@@ -165,7 +171,7 @@ const page = () => {
   };
   return (
     <section className="pt-10 pb-10">
-      <ToastContainer
+      {/* <ToastContainer
         position="bottom-right"
         autoClose={5000}
         hideProgressBar={false}
@@ -175,7 +181,9 @@ const page = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-      />
+      /> */}
+
+      <Toaster position="bottom-right" />
       <Wrapper>
         <div className="flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]">
           {/* desktop image  */}
@@ -272,9 +280,28 @@ const page = () => {
                   </button>
                 </div>
               </div>
+              <div className="md:flex md:w-full md:h-12 md:justify-between my-4 sm:mt-0">
+                {product?.countInStock?.qty === 0 ? (
+                  <div className="md:flex md:w-full md:h-12 md:justify-between mt-6">
+                    {/* <div className="btn btn-primary w-full mt-2 md:mt-0 sm:w-3/4 md:6 rounded-md"> */}
+                    <div className="btn btn-primary   mt-6 md:mt-0 sm:w-3/4 md:6 rounded-md w-full text-center bg-red-200 text-white py-2  font-semibold   hover:bg-red-300 focus:scale-95 transition-all">
+                      Out of Stock
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mt-4 w-full">
+                    <button
+                      onClick={() => notify()}
+                      className={`bg-[#ed1d24] text-white w-full py-3 rounded-md `}
+                    >
+                      ADD TO CART
+                    </button>
+                  </div>
+                )}
+              </div>
               {/* offer card */}
               <div className="my-5">
-                <div>
+                <div className="pt-4">
                   <h5 className="text-lg font-bold mb-2">
                     Buy more, save more!
                   </h5>
@@ -282,47 +309,44 @@ const page = () => {
                     Don't miss out on these amazing deals!
                   </p>
                 </div>
-
-                {product?.discount.map((offer) => {
-                  const discountedPrice =
-                    product?.sell_price * (1 - offer.discount / 100);
-                  return (
-                    <div
-                      key={offer.id}
-                      className="my-5 p-3 border border-gray-400 rounded-lg"
-                    >
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center">
-                          <div className="px-2">
-                            <input
-                              type="radio"
-                              name="offer"
-                              value={offer.quantity}
-                              onChange={() =>
-                                handleOfferSelection(offer.quantity)
-                              }
-                            />
+                <div className="my-2">
+                  {product?.discount.map((offer) => {
+                    const discountedPrice =
+                      product?.sell_price * (1 - offer.discount / 100);
+                    return (
+                      <div
+                        key={offer.id}
+                        className="my-5 p-3 border border-gray-400 rounded-lg"
+                      >
+                        <div className="flex justify-between items-center">
+                          <div className="flex items-center">
+                            <div className="px-2">
+                              <input
+                                type="radio"
+                                name="offer"
+                                value={offer.quantity}
+                                onChange={() =>
+                                  handleOfferSelection(offer.quantity)
+                                }
+                              />
+                            </div>
+                            <div className="font-semibold">
+                              Buy {offer?.quantity} save {offer?.discount}%
+                            </div>
                           </div>
                           <div>
-                            Buy {offer?.quantity} save {offer?.discount}%
+                            <del>₹ {product?.sell_price}</del>
+                            <div className="font-semibold">
+                              ₹ {discountedPrice.toFixed(2)}
+                            </div>
                           </div>
                         </div>
-                        <div>
-                          <del>₹ {product?.sell_price}</del>
-                          <div>₹ {discountedPrice.toFixed(2)}</div>
-                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
 
-                <div className="p-2">
-                  {/* <button
-                    onClick={handleButtonClick}
-                    className="bg-[#ed1d24] text-white w-full py-3 rounded-md"
-                  >
-                    Grab this deal
-                  </button> */}
+                <div className="py-2">
                   <button
                     onClick={handleButtonClick}
                     className={`bg-[#ed1d24] text-white w-full py-3 rounded-md ${
@@ -335,24 +359,6 @@ const page = () => {
                     {isDealClicked ? "Deal grabbed!" : "Grab this deal"}
                   </button>
                 </div>
-              </div>
-              <div className="md:flex md:w-full md:h-12 md:justify-between my-4 sm:mt-0">
-                {product?.countInStock?.qty === 0 ? (
-                  <div className="md:flex md:w-full md:h-12 md:justify-between mt-6">
-                    {/* <div className="btn btn-primary w-full mt-2 md:mt-0 sm:w-3/4 md:6 rounded-md"> */}
-                    <div className="btn btn-primary   mt-6 md:mt-0 sm:w-3/4 md:6 rounded-md w-full text-center bg-red-200 text-white py-2  font-semibold   hover:bg-red-300 focus:scale-95 transition-all">
-                      Out of Stock
-                    </div>
-                  </div>
-                ) : (
-                  <div className="md:flex md:w-full md:h-12 md:justify-between mt-6">
-                    <AddtoCartBtn
-                      btnStyles="btn btn-primary  w-full md:mt-0 sm:w-3/4 md:6 rounded-md "
-                      textStyles="text-md font-regular"
-                      onClick={() => notify()}
-                    />
-                  </div>
-                )}
               </div>
             </div>
           </div>

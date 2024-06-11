@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { MdAddIcCall } from "react-icons/md";
 import { IoMdMailUnread } from "react-icons/io";
 import apiClient from "@/api/client";
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { clear } from "@/redux/features/cart/cartSlice";
 
@@ -87,6 +88,7 @@ const page = () => {
       if (!orderResult.ok) {
         throw new Error("Error creating order.");
       }
+
       if (orderResult.ok) {
         const couponResult = await apiClient.post("/variation/coupon/post", {
           couponId,
@@ -100,10 +102,17 @@ const page = () => {
       }
 
       // Apply coupon
-
       dispatch(clear());
-      toast.success("Transaction successful!");
-      router.push(`/account/${orderResult.data._id}`);
+
+      toast.success("Transaction successful!", {
+        id: "transaction-success-toast",
+        duration: 1000,
+      });
+
+      // Delay for the duration of the toast
+      setTimeout(() => {
+        router.push(`/account/${orderResult.data._id}`);
+      }, 1000); // Delay matches the toast duration (1 second)
     } catch (error) {
       console.error("Transaction failed:", error);
       toast.error("Transaction failed. Please retry.");
@@ -345,7 +354,8 @@ const page = () => {
           />
         </div>
       </div>
-      <ToastContainer position="bottom-right" autoClose={3000} />
+      <Toaster position="bottom-right" />
+      {/* <ToastContainer position="bottom-right" autoClose={3000} /> */}
     </>
   );
 };

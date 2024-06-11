@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
+import toast, { Toaster } from "react-hot-toast";
 import InputField from "./InputField";
 import LogoInformation from "./LogoInformation";
 import { useRouter } from "next/navigation";
@@ -59,9 +60,15 @@ const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
         const response = await apiClient.post("/user/login", formData);
 
         if (response.ok) {
-          toast.success("Login successful!");
+          toast.success("Login successful!", {
+            id: "login-success-toast",
+            duration: 1000,
+          });
           logIn(response.data.token);
-          setIsOpen(false);
+
+          setTimeout(() => {
+            setIsOpen(false);
+          }, 1000);
         } else {
           console.error("Login failed:");
           toast.error("Login failed. Please try again.");
@@ -120,7 +127,7 @@ const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
         </button>
       </form>
 
-      <ToastContainer
+      {/* <ToastContainer
         position="bottom-right"
         autoClose={5000}
         hideProgressBar={false}
@@ -130,7 +137,8 @@ const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-      />
+      /> */}
+      <Toaster position="bottom-right" />
     </>
   );
 };
