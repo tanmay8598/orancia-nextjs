@@ -101,8 +101,6 @@ const BestSellerCard = ({ product, onAddToCart }) => {
           )}
         </div>
       </div>
-
-      <Toaster position="bottom-right" />
     </div>
   );
 };

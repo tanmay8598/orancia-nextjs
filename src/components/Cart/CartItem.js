@@ -10,7 +10,7 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { useDispatch } from "react-redux";
 const CartItem = ({ item }) => {
-  console.log(item.discountedPrice, "discountedPrice");
+  console.log(item, "discountedPrice");
   const price = item.discountedPrice || item.product?.sell_price;
   const total = price * item.quantity;
   const dispatch = useDispatch();
@@ -22,7 +22,9 @@ const CartItem = ({ item }) => {
   const handleIncrement = () => {
     dispatch(incrementQuantity(item.product?._id));
   };
-
+  const defaultImage =
+    "https://files.stbotanica.com/site-images/400x400/STBOT470-01.jpg";
+  const imageUrl = item.product?.image?.[0] || defaultImage;
   const handleDecrement = () => {
     dispatch(decrementQuantity(item.product?._id));
   };
@@ -32,8 +34,7 @@ const CartItem = ({ item }) => {
       <div className="flex w-full justify-between mb-4 items-center h-[120px] border-b">
         <div className="w-[90px] h-[90px] lg:w-[110px] lg:h-[110px] relative p-2 ">
           <Image
-            // src="https://files.stbotanica.com/site-images/400x400/STBOT470-01.jpg"
-            src={item.product?.image[0]}
+            src={imageUrl}
             fill
             priority
             sizes="(max-width: 110px) 110px, 110px"

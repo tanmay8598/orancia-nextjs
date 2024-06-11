@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import BestSallerCard from "./BestSallerCard";
 
 import Slider from "react-slick";
+import { Toaster } from "react-hot-toast";
 const BestSellerCarousel = ({ products }) => {
   const [isMobileView, setIsMobileView] = useState(false);
   const sliderRef = useRef(null);
@@ -113,6 +114,7 @@ const BestSellerCarousel = ({ products }) => {
               />
             </svg>
           </button>
+          <Toaster position="bottom-right" />
         </div>
       )}
     </>

@@ -27,7 +27,7 @@ const page = () => {
   const [couponCode, setCouponCode] = useState("");
   const products = selector.cart;
 
-  console.log(products, "products");
+  // console.log(products, "products");
 
   const totalValue = selector.cart.reduce((total, item) => {
     const price = item.discountedPrice || item.product?.sell_price;
