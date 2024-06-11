@@ -57,7 +57,7 @@ const page = () => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  const [selectedOffer, setSelectedOffer] = useState(null);
+  const [selectedOffer, setSelectedOffer] = useState();
   const [isDealClicked, setIsDealClicked] = useState(false);
   const [discountedPrice, setDiscountedPrice] = useState(0);
   useEffect(() => {
@@ -127,10 +127,12 @@ const page = () => {
 
   // console.log(product, "product");
 
-  const handleOfferSelection = (quantity, discount) => {
+  const handleOfferSelection = (quantitys, discount) => {
+    quantitys = Number(quantitys);
+    // console.log(typeof quantitys, "quantitys");
     const newDiscountedPrice = product.sell_price * (1 - discount / 100);
     setDiscountedPrice(newDiscountedPrice);
-    setSelectedOffer(quantity);
+    setSelectedOffer(quantitys);
   };
   const handleButtonClick = () => {
     // console.log({ ...product, discountedPrice }, "product");
