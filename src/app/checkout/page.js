@@ -26,13 +26,17 @@ const page = () => {
   const [appliedCoupon, setAppliedCoupon] = useState("");
   const [couponCode, setCouponCode] = useState("");
   const products = selector.cart;
+
+  console.log(products, "products");
+
   const totalValue = selector.cart.reduce((total, item) => {
-    return total + item.quantity * item.product.sell_price;
+    const price = item.discountedPrice || item.product?.sell_price;
+    return total + item.quantity * price;
   }, 0);
   const discountedTotal = totalValue - discount;
   const { user } = useAuth();
   const router = useRouter();
-  console.log(discountedTotal, "user");
+  // console.log(discountedTotal, "user");
   const orderItems = [];
 
   useEffect(() => {
@@ -62,6 +66,60 @@ const page = () => {
       setError(error);
     }
   };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const orderItems = products.map((item) => ({
+  //       name: item.product.name,
+  //       qty: item.quantity,
+  //       image: item.product.image[0],
+  //       price: item.product.sell_price,
+  //       product: item.product._id,
+  //     }));
+
+  //     const orderResult = await apiClient.post("/orders/create-order", {
+  //       orderItems,
+  //       shippingAddress,
+  //       paymentMethod: "COD",
+  //       itemsPrice: totalValue,
+  //       totalPrice: discountedTotal,
+  //       deliveryStatus: "Processing",
+  //       userId: user.id,
+  //       isPaid: true,
+  //     });
+
+  //     if (!orderResult.ok) {
+  //       throw new Error("Error creating order.");
+  //     }
+
+  //     if (orderResult.ok) {
+  //       const couponResult = await apiClient.post("/variation/coupon/post", {
+  //         couponId,
+  //         userId: user.id,
+  //       });
+  //       if (!couponResult.ok) {
+  //         throw new Error("Error applying coupon.");
+  //       }
+  //     } else {
+  //       throw new Error("Error creating order.");
+  //     }
+
+  //     dispatch(clear());
+
+  //     toast.success("Transaction successful!", {
+  //       id: "transaction-success-toast",
+  //       duration: 1000,
+  //     });
+
+  //     // setTimeout(() => {
+  //     router.push(`/account/${orderResult.data._id}`);
+  //     // }, 1000);
+  //   } catch (error) {
+  //     console.error("Transaction failed:", error);
+  //     toast.error("Transaction failed. Please retry.");
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -79,7 +137,7 @@ const page = () => {
         shippingAddress,
         paymentMethod: "COD",
         itemsPrice: totalValue,
-        totalPrice: discountedTotal,
+        totalPrice: discountedTotal || totalValue,
         deliveryStatus: "Processing",
         userId: user.id,
         isPaid: true,
@@ -89,7 +147,7 @@ const page = () => {
         throw new Error("Error creating order.");
       }
 
-      if (orderResult.ok) {
+      if (couponId) {
         const couponResult = await apiClient.post("/variation/coupon/post", {
           couponId,
           userId: user.id,
@@ -97,11 +155,8 @@ const page = () => {
         if (!couponResult.ok) {
           throw new Error("Error applying coupon.");
         }
-      } else {
-        throw new Error("Error creating order.");
       }
 
-      // Apply coupon
       dispatch(clear());
 
       toast.success("Transaction successful!", {
@@ -109,10 +164,7 @@ const page = () => {
         duration: 1000,
       });
 
-      // Delay for the duration of the toast
-      setTimeout(() => {
-        router.push(`/account/${orderResult.data._id}`);
-      }, 1000); // Delay matches the toast duration (1 second)
+      router.push(`/account/${orderResult.data._id}`);
     } catch (error) {
       console.error("Transaction failed:", error);
       toast.error("Transaction failed. Please retry.");
@@ -127,7 +179,7 @@ const page = () => {
     if (appliedCoupon === couponCode) {
       setDiscount(0);
       setAppliedCoupon("");
-      toast.info("Coupon removed.");
+      toast.success("Coupon removed.");
       setCouponId("");
     }
   };

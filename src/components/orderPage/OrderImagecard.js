@@ -17,7 +17,8 @@ const OrderImagecard = ({ item }) => {
         </div>
         <div className="flex-1 ml-4">
           <p className="text-sm text-gray-500">
-            Price: ₹ {item.product.sell_price}*{item.quantity}
+            Price: ₹ {item.discountedPrice || item.product.sell_price}*{" "}
+            {item.quantity}
           </p>
         </div>
       </div>

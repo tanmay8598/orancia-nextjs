@@ -10,7 +10,9 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { useDispatch } from "react-redux";
 const CartItem = ({ item }) => {
-  let total = item.product?.sell_price * item.quantity;
+  console.log(item.discountedPrice, "discountedPrice");
+  const price = item.discountedPrice || item.product?.sell_price;
+  const total = price * item.quantity;
   const dispatch = useDispatch();
 
   const handleRemoveItem = () => {
@@ -55,8 +57,8 @@ const CartItem = ({ item }) => {
           </div>
 
           <div className="flex items-center justify-between">
-            <div className="py-2 px-3 mt-2     bg-white border border-gray-200 w-44 rounded-lg">
-              <div className="flex items-center  w-[150px] justify-between  gap-x-1.5">
+            <div className="py-2 px-3 mt-2     bg-white border border-gray-200  rounded-lg">
+              <div className="flex items-center  min-w-max justify-between  gap-x-1.5">
                 <button
                   // onClick={() => handleQuantity("dec")}
                   onClick={handleDecrement}

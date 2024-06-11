@@ -33,7 +33,9 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
   };
   const { user } = useAuth();
   const totalValue = products.reduce((total, item) => {
-    return total + item?.quantity * item?.product?.sell_price;
+    console.log(item.discountedPrice, item?.product?.sell_price, "itemitem");
+    const price = item.discountedPrice || item?.product?.sell_price;
+    return total + item?.quantity * price;
   }, 0);
 
   return (

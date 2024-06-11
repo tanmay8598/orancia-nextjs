@@ -59,6 +59,7 @@ const page = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedOffer, setSelectedOffer] = useState(null);
   const [isDealClicked, setIsDealClicked] = useState(false);
+  const [discountedPrice, setDiscountedPrice] = useState(0);
   useEffect(() => {
     fetchProduct();
     fetchProducts();
@@ -68,7 +69,7 @@ const page = () => {
       const response = await apiClient.get("/product/get", {
         category: params.category,
       });
-      console.log(response, "res");
+      // console.log(response, "res");
       if (response.ok) {
         setProducts(response.data.products);
       } else {
@@ -117,72 +118,35 @@ const page = () => {
   };
 
   const notify = () => {
-    // dispatch(add({ product: products[0], quantity }));
     dispatch(add({ product, quantity }));
-    // toast.success("Success. Check your cart!", {
-    //   position: "bottom-right",
-    //   autoClose: 5000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    //   theme: "dark",
-    // });
+
     toast.success("Success. Check your cart!", {
       id: "cart-success-toast",
     });
   };
 
-  console.log(product, "product");
+  // console.log(product, "product");
 
-  const handleOfferSelection = (quantity) => {
+  const handleOfferSelection = (quantity, discount) => {
+    const newDiscountedPrice = product.sell_price * (1 - discount / 100);
+    setDiscountedPrice(newDiscountedPrice);
     setSelectedOffer(quantity);
   };
   const handleButtonClick = () => {
+    // console.log({ ...product, discountedPrice }, "product");
     if (selectedOffer) {
-      dispatch(add({ product, quantity: selectedOffer }));
+      dispatch(add({ product, quantity: selectedOffer, discountedPrice }));
       setIsDealClicked(true);
-      // toast.success("Success. Check your cart!", {
-      //   position: "bottom-right",
-      //   autoClose: 5000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   theme: "dark",
-      // });
       toast.success("Success. Check your cart!", {
         id: "cart-success-toast",
       });
     } else {
-      toast.error("Please select an offer!", {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
+      toast.error("Please select an offer!");
     }
   };
+
   return (
     <section className="pt-10 pb-10">
-      {/* <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      /> */}
-
       <Toaster position="bottom-right" />
       <Wrapper>
         <div className="flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]">
@@ -315,7 +279,7 @@ const page = () => {
                       product?.sell_price * (1 - offer.discount / 100);
                     return (
                       <div
-                        key={offer.id}
+                        key={offer._id}
                         className="my-5 p-3 border border-gray-400 rounded-lg"
                       >
                         <div className="flex justify-between items-center">
@@ -325,8 +289,15 @@ const page = () => {
                                 type="radio"
                                 name="offer"
                                 value={offer.quantity}
+                                // onChange={() =>
+                                //   handleOfferSelection(offer.quantity)
+
+                                // }
                                 onChange={() =>
-                                  handleOfferSelection(offer.quantity)
+                                  handleOfferSelection(
+                                    offer.quantity,
+                                    offer.discount
+                                  )
                                 }
                               />
                             </div>
