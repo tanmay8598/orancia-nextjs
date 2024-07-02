@@ -3,17 +3,18 @@ import useAuth from "@/auth/useAuth";
 import AddressSidebar from "@/components/Cart/AddressSidebar";
 import Loader from "@/components/loader/Loader";
 import OrderImagecard from "@/components/orderPage/OrderImagecard";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MdAddIcCall } from "react-icons/md";
 import { IoMdMailUnread } from "react-icons/io";
 import apiClient from "@/api/client";
-// import { ToastContainer, toast } from "react-toastify";
+import useRazorpay from "react-razorpay";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { clear } from "@/redux/features/cart/cartSlice";
 
 const page = () => {
+  const { user } = useAuth();
   const [isOpenAccount, setIsOpenAccount] = useState(false);
   const [coupans, setCoupans] = useState([]);
   const [couponId, setCouponId] = useState("");
@@ -27,17 +28,60 @@ const page = () => {
   const [couponCode, setCouponCode] = useState("");
   const products = selector.cart;
 
-  // console.log(products, "products");
+  //razorpay
+  const [Razorpay] = useRazorpay();
+  const [paymentStatus, setPaymentStatus] = useState();
+  const [uploadVisible, setUploadVisible] = useState(false);
 
   const totalValue = selector.cart.reduce((total, item) => {
     const price = item.discountedPrice || item.product?.sell_price;
     return total + item.quantity * price;
   }, 0);
   const discountedTotal = totalValue - discount;
-  const { user } = useAuth();
+
   const router = useRouter();
-  // console.log(discountedTotal, "user");
+
   const orderItems = [];
+
+  const handlePayment = useCallback(async () => {
+    const result = await apiClient.get("/orders/payment", {
+      total: totalValue,
+      userId: user.id,
+    });
+
+    const options = {
+      key: result.data.notes.key,
+      amount: totalValue,
+      currency: "INR",
+      name: "Orancia Pvt Ltd.",
+      description: "Test Transaction",
+      image: "https://example.com/your_logo",
+      order_id: result.data.id,
+      handler: async (res) => {
+        try {
+          const paymentId = res.razorpay_payment_id;
+          if (paymentId) {
+            setPaymentStatus(true);
+          }
+        } catch (error) {
+          setUploadVisible(false);
+          createFailedOrder();
+        }
+      },
+      prefill: {
+        email: user?.email,
+        contact: user?.shippingAddress?.phone,
+        name: user?.name,
+      },
+
+      theme: {
+        color: "#3399cc",
+      },
+    };
+
+    const rzpay = new Razorpay(options);
+    rzpay.open();
+  }, [Razorpay, user]);
 
   useEffect(() => {
     if (user && user.shippingAddress) {
@@ -66,62 +110,15 @@ const page = () => {
       setError(error);
     }
   };
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
 
-  //   try {
-  //     const orderItems = products.map((item) => ({
-  //       name: item.product.name,
-  //       qty: item.quantity,
-  //       image: item.product.image[0],
-  //       price: item.product.sell_price,
-  //       product: item.product._id,
-  //     }));
+  useEffect(() => {
+    if (paymentStatus === true) {
+      handleSubmit();
+    }
+  }, [paymentStatus]);
 
-  //     const orderResult = await apiClient.post("/orders/create-order", {
-  //       orderItems,
-  //       shippingAddress,
-  //       paymentMethod: "COD",
-  //       itemsPrice: totalValue,
-  //       totalPrice: discountedTotal,
-  //       deliveryStatus: "Processing",
-  //       userId: user.id,
-  //       isPaid: true,
-  //     });
-
-  //     if (!orderResult.ok) {
-  //       throw new Error("Error creating order.");
-  //     }
-
-  //     if (orderResult.ok) {
-  //       const couponResult = await apiClient.post("/variation/coupon/post", {
-  //         couponId,
-  //         userId: user.id,
-  //       });
-  //       if (!couponResult.ok) {
-  //         throw new Error("Error applying coupon.");
-  //       }
-  //     } else {
-  //       throw new Error("Error creating order.");
-  //     }
-
-  //     dispatch(clear());
-
-  //     toast.success("Transaction successful!", {
-  //       id: "transaction-success-toast",
-  //       duration: 1000,
-  //     });
-
-  //     // setTimeout(() => {
-  //     router.push(`/account/${orderResult.data._id}`);
-  //     // }, 1000);
-  //   } catch (error) {
-  //     console.error("Transaction failed:", error);
-  //     toast.error("Transaction failed. Please retry.");
-  //   }
-  // };
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     try {
       const orderItems = products.map((item) => ({
@@ -211,10 +208,6 @@ const page = () => {
 
     const percentageDiscount = (totalCartValue * coupon.discount) / 100;
     const effectiveDiscount = Math.min(percentageDiscount, coupon.max);
-    console.log(coupon.max, "coupon.max");
-    console.log(coupon.discount, "coupon.discount");
-    // console.log(percentageDiscount, "percentageDiscount");
-    console.log(effectiveDiscount, "effectiveDiscount");
 
     if (effectiveDiscount >= totalCartValue) {
       toast.error(
@@ -394,7 +387,8 @@ const page = () => {
             </div>
             <button
               className="text-white w-full bg-primary p-2 rounded"
-              onClick={handleSubmit}
+              onClick={handlePayment}
+              // onClick={handleSubmit}
             >
               Complete transaction
             </button>

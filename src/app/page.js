@@ -13,23 +13,8 @@ import ShopbyCategory from "@/components/ShopbyCategory/ShopbyCategory";
 import SingleBanner from "@/components/SingleBanner/SingleBanner";
 import Loader from "@/components/loader/Loader";
 import WhatClient from "@/components/whatClientSays/WhatClient";
-import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setLoading(false);
-  //   }, 1000);
-
-  //   return () => clearTimeout(timer);
-  // }, []);
-
-  // if (loading) {
-  //   return <Loader />;
-  // }
-
   return (
     <div>
       <Banner />
