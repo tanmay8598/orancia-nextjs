@@ -9,7 +9,6 @@ import BestSallerCard from "./BestSallerCard";
 import Slider from "react-slick";
 import { Toaster } from "react-hot-toast";
 
-
 const BestSellerCarousel = ({ products }) => {
   const [isMobileView, setIsMobileView] = useState(false);
   const sliderRef = useRef(null);
@@ -33,14 +32,19 @@ const BestSellerCarousel = ({ products }) => {
     slidesToScroll: 1.25,
   };
 
-
   return (
     <>
       {isMobileView ? (
         <>
           <Slider {...settings}>
             {products?.map((product) => (
-              <BestSallerCard key={product._id} product={product.productDetails ? product.productDetails : product} />
+              <BestSallerC
+                ard
+                key={product._id}
+                product={
+                  product.productDetails ? product.productDetails : product
+                }
+              />
             ))}
           </Slider>
         </>
@@ -87,7 +91,11 @@ const BestSellerCarousel = ({ products }) => {
           >
             {products?.map((product) => (
               <SwiperSlide key={product._id} className="flex justify-center">
-                <BestSallerCard product={product.productDetails ? product.productDetails : product} />
+                <BestSallerCard
+                  product={
+                    product.productDetails ? product.productDetails : product
+                  }
+                />
               </SwiperSlide>
             ))}
           </Swiper>

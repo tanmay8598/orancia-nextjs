@@ -10,7 +10,6 @@ import AddtoCartBtn from "../Button/AddtoCartBtn";
 import { add } from "@/redux/features/cart/cartSlice";
 
 const BestSellerCard = ({ product, onAddToCart }) => {
-
   const [shownToasts, setShownToasts] = useState(new Set());
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const short = product.name.replace(/(.{33})..+/, "$1");
@@ -50,7 +49,7 @@ const BestSellerCard = ({ product, onAddToCart }) => {
       <div className="flex-col flex">
         <Link className="group" href={`/product/${product._id}`}>
           <div
-            className="overflow-hidden rounded-t-lg"
+            className="overflow-hidden rounded-t-lg w-full h-[228px] flex items-center justify-center"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
@@ -60,10 +59,10 @@ const BestSellerCard = ({ product, onAddToCart }) => {
                   ? product.image[currentImageIndex]
                   : "https://files.stbotanica.com/site-images/400x400/STBOT470-01.jpg"
               }
-              className="w-full h-full object-contain"
+              className="object-cover w-full h-full "
               alt={`${product.name} image`}
               width={228}
-              height={212}
+              height={100}
               onError={handleImageError}
             />
           </div>
@@ -87,13 +86,13 @@ const BestSellerCard = ({ product, onAddToCart }) => {
           </div>
 
           {product.countInStock.qty === 0 ? (
-            <div className="md:flex md:w-full md:h-14 md:justify-between mt-6">
-              <div className="w-full text-center bg-red-200 text-white py-2 rounded-lg font-semibold  mt-4 hover:bg-red-300 focus:scale-95 transition-all">
+            <div className="md:flex md:w-full  md:justify-between ">
+              <div className="w-full text-center bg-red-200 text-white py-2 rounded-lg font-semibold  mt-2 hover:bg-red-300 focus:scale-95 transition-all">
                 Out of Stock
               </div>
             </div>
           ) : (
-            <div >
+            <div>
               <AddtoCartBtn
                 onClick={handleAddToCart}
                 btnStyles="w-full text-center bg-[#ed1d24] text-white py-2 rounded-lg font-semibold mt-2 hover:bg-red-300 focus:scale-95 transition-all"

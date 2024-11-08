@@ -16,22 +16,18 @@ import WhatClient from "@/components/whatClientSays/WhatClient";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-
-  const [loading, setLoading] = useState(true)
-
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setInterval(() => setLoading(false), 2000)
-  }, [])
+    setInterval(() => setLoading(false), 2000);
+  }, []);
 
   if (loading) {
     return (
       <div className="h-screen">
-
         <Loader />
       </div>
-    )
-
+    );
   }
 
   return (

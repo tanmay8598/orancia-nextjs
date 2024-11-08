@@ -19,11 +19,14 @@ const Page = () => {
   const [minprice, setMinprice] = useState("");
   const [maxprice, setMaxprice] = useState("");
   const [range, setRange] = useState([0, 1000]);
+  //pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState();
   const params = useParams();
   useEffect(() => {
     fetchSubcategories();
     fetchProducts();
-  }, [params.category, selectedSubcategory, maxprice, minprice]);
+  }, [params.category, selectedSubcategory, maxprice, minprice, currentPage]);
 
   const fetchProducts = async () => {
     try {
@@ -36,6 +39,7 @@ const Page = () => {
 
       if (response.ok) {
         setProducts(response.data.products);
+        setPageSize(response.data.pageCount);
       } else {
         setError(response.statusText);
       }
@@ -83,6 +87,8 @@ const Page = () => {
     setMinprice(newValue[0]);
     setMaxprice(newValue[1]);
   };
+
+  console.log(products);
 
   return (
     <>
@@ -135,6 +141,13 @@ const Page = () => {
           </div>
         </div>
         {/* <Pagination /> */}
+
+        <Pagination
+          count={pageSize}
+          page={currentPage}
+          siblingCount={1}
+          onChange={(e, value) => setCurrentPage(value)}
+        />
       </div>
     </>
   );

@@ -9,7 +9,7 @@ import { Autoplay } from "swiper/modules";
 const data = [
   {
     id: 0,
-    name: "Tuhina Jha",
+    name: "Arti Jha",
 
     address: "Bengaluru India",
     image:
