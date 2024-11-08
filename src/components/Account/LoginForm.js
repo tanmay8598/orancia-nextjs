@@ -10,6 +10,7 @@ import apiClient from "@/api/client";
 import useAuth from "@/auth/useAuth";
 import { BiSolidHide } from "react-icons/bi";
 import { BiSolidShow } from "react-icons/bi";
+
 const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
   const [formData, setFormData] = useState({
     email: "",

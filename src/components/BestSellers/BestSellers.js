@@ -3,34 +3,33 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import BestSellerCarousel from "./BestSellerCarousel";
 import apiClient from "@/api/client";
-import Loader from "../loader/Loader";
+
 
 const BestSellers = () => {
   const [error, setError] = useState(null);
   const [product, setProduct] = useState([]);
-  const [loading, setLoading] = useState(true);
+
+
   useEffect(() => {
-    data();
+    fetchData();
   }, []);
-  const data = async () => {
+
+
+  const fetchData = async () => {
     try {
-      const response = await apiClient.get("product/get");
+      const response = await apiClient.get("product/most-ordered-products");
 
       if (response.ok) {
-        setProduct(response.data.products);
+        setProduct(response.data.mostOrderedProducts);
       } else {
         setError(response.status);
       }
     } catch (error) {
-      console.log(error);
+
       setError(error.message);
-    } finally {
-      setLoading(false);
     }
   };
-  if (loading) {
-    return <Loader />;
-  }
+
 
   return (
     <section>

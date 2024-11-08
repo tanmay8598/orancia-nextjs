@@ -10,6 +10,7 @@ import AddtoCartBtn from "../Button/AddtoCartBtn";
 import { add } from "@/redux/features/cart/cartSlice";
 
 const BestSellerCard = ({ product, onAddToCart }) => {
+
   const [shownToasts, setShownToasts] = useState(new Set());
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const short = product.name.replace(/(.{33})..+/, "$1");
@@ -92,10 +93,10 @@ const BestSellerCard = ({ product, onAddToCart }) => {
               </div>
             </div>
           ) : (
-            <div className="md:flex md:w-full md:h-14 md:justify-between mt-2 sm:mt-6">
+            <div >
               <AddtoCartBtn
                 onClick={handleAddToCart}
-                btnStyles="w-full text-center bg-[#ed1d24] text-white py-2 rounded-lg font-semibold mt-4 hover:bg-red-300 focus:scale-95 transition-all"
+                btnStyles="w-full text-center bg-[#ed1d24] text-white py-2 rounded-lg font-semibold mt-2 hover:bg-red-300 focus:scale-95 transition-all"
               />
             </div>
           )}

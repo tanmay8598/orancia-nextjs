@@ -16,6 +16,7 @@ const AddressPage = () => {
     }
     setIsLoading(false);
   }, [user]);
+
   if (isLoading) {
     return <Loader />;
   }
@@ -30,7 +31,7 @@ const AddressPage = () => {
                 <>
                   <p>
                     {shippingAddress.address},{shippingAddress.street},
-                    {shippingAddress.city},{shippingAddress.landmark},{" "}
+                    {shippingAddress.city},{shippingAddress.landmark},
                     {shippingAddress.area},{shippingAddress.pincode},
                     {shippingAddress.state}
                   </p>

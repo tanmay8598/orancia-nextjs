@@ -1,23 +1,3 @@
-// import OrderDetailsPage from "@/components/Account/OrderDetailsPage";
-// import OrderImages from "@/components/Account/OrderImages";
-// import OrderSummaryCard from "@/components/Account/OrderSummeryCard";
-// import React from "react";
-// const Page = () => {
-//   const orderId = "123456";
-//   const orderStatus = "Processing";
-
-//   return (
-//     <div className="container mx-auto p-8">
-//       <h1 className="text-2xl font-bold mb-12 underline text-center">
-//         Orders Detail Page
-//       </h1>
-//       <OrderDetailsPage />
-//       <OrderImages />
-//     </div>
-//   );
-// };
-
-// export default Page;
 "use client";
 import apiClient from "@/api/client";
 import useAuth from "@/auth/useAuth";
@@ -35,11 +15,14 @@ const page = () => {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const params = useParams();
+
   useEffect(() => {
     if (user) {
       getMyOrder();
     }
   }, [user]);
+
+
 
   const getMyOrder = async () => {
     try {
@@ -71,88 +54,72 @@ const page = () => {
   };
 
   return (
-    <>
-      <div className="shadow-lg m-8 rounded-md   pb-2  p-6 shadow-blue-gray-300 bg-white">
-        {/* order header section */}
-        <div className="grid grid-cols-1  border-b-2 mb-2  ">
-          <div className="flex justify-between pb-2">
-            <div className="flex text-[#4F46E5] pt-2">
-              <div>
-                <IoIosCart className="mt-1 mr-1 " />
-              </div>
-              <div>My Order Details</div>
-            </div>
-            <div
-              onClick={handleBackClick}
-              className="cursor-pointer bg-red-600 p-2 text-white rounded  "
-            >
-              Back
-            </div>
+    <div className="shadow-lg m-8 rounded-lg pb-4 p-6 shadow-blue-gray-300 bg-white">
+      {/* Order Header Section */}
+      <div className="border-b-2 pb-4 mb-6">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center text-[#4F46E5] text-xl font-semibold">
+            <IoIosCart className="mr-2 text-2xl" />
+            <span>My Order Details</span>
           </div>
-        </div>
-        <OrderAddress mydata={myOrder} /> {/* order item */}
-        <div className="mb-4">
-          <div className="grid grid-cols-1   mb-2  ">
-            <div className="border-b-2 p-3-b-2 mb-4 font-semibold text-gray-600 text-xl">
-              Items
-            </div>
-          </div>
-          <div>
-            <div className="w-full overflow-x-auto">
-              <table className="w-full border-2 border-collapse">
-                <thead>
-                  <tr>
-                    <th className="border p-3 border-gray-300">Product Name</th>
-                    <th className="border p-3 border-gray-300">
-                      Product Image
-                    </th>
-                    <th className="border p-3 border-gray-300">Quantity</th>
-                    <th className="border p-3 border-gray-300">Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {myOrder?.orderItems?.length > 0 ? (
-                    myOrder.orderItems.map((data, index) => (
-                      <tr key={index}>
-                        <td className="border p-3 border-gray-300">
-                          {data?.name}
-                        </td>
-                        <td className="border p-3 border-gray-300">
-                          <div className="rounded">
-                            <Image
-                              src={data?.image}
-                              width={200}
-                              height={200}
-                              alt="Picture of the author"
-                              className="object-contain object-center w-full h-20 rounded-lg"
-                            />
-                          </div>
-                        </td>
-                        <td className="border p-3 text-center border-gray-300">
-                          {data?.qty}
-                        </td>
-                        <td className="border p-3 text-center border-gray-300">
-                          ₹{data?.price}
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td
-                        colSpan="4"
-                        className="border p-3 border-gray-300 text-center"
-                      >
-                        No order items available
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
+          <button
+            onClick={handleBackClick}
+            className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition"
+          >
+            Back
+          </button>
         </div>
       </div>
-    </>
+
+      {/* Order Address Section */}
+      <OrderAddress mydata={myOrder} />
+
+      {/* Items Section */}
+      <div className="mb-6">
+        <h2 className="text-xl font-semibold text-gray-700 mb-4">Items</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full border border-gray-300 text-left">
+            <thead>
+              <tr className="bg-gray-100 text-gray-600">
+                <th className="border border-gray-300 p-4 font-medium">Product Name</th>
+                <th className="border border-gray-300 p-4 font-medium">Product Image</th>
+                <th className="border border-gray-300 p-4 font-medium">Quantity</th>
+                <th className="border border-gray-300 p-4 font-medium">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {myOrder?.orderItems?.length > 0 ? (
+                myOrder.orderItems.map((data, index) => (
+                  <tr key={index} className="hover:bg-gray-50">
+                    <td className="border p-4 border-gray-300 text-gray-700">{data?.name}</td>
+                    <td className="border p-4 border-gray-300">
+                      <div className="flex justify-center">
+                        <Image
+                          src={data?.image}
+                          width={80}
+                          height={80}
+                          alt="Product Image"
+                          className="object-contain w-20 h-20 rounded-lg shadow"
+                        />
+                      </div>
+                    </td>
+                    <td className="border p-4 border-gray-300 text-center text-gray-700">{data?.qty}</td>
+                    <td className="border p-4 border-gray-300 text-center font-semibold text-gray-800">₹{data?.price}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="4" className="border p-4 text-center border-gray-300 text-gray-600">
+                    No order items available
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
   );
 };
 

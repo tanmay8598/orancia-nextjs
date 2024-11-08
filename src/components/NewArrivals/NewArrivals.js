@@ -1,18 +1,22 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-
 import apiClient from "@/api/client";
 import BestSellerCarousel from "../BestSellers/BestSellerCarousel";
+
 const NewArrivals = () => {
   const [error, setError] = useState(null);
   const [product, setProduct] = useState([]);
+
+
   useEffect(() => {
-    data();
+    fetchData();
   }, []);
-  const data = async () => {
+
+
+  const fetchData = async () => {
     try {
-      const response = await apiClient.get("product/get");
+      const response = await apiClient.get("product/get-new-arrival");
 
       if (response.ok) {
         setProduct(response.data.products);

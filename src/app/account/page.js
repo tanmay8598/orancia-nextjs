@@ -4,46 +4,51 @@ import MyProfile from "@/components/Account/MyProfile";
 import OrderPage from "@/components/Account/OrderPage";
 import React, { useState } from "react";
 import useAuth from "../../auth/useAuth";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   const [activeTab, setActiveTab] = useState("orders"); // Default active tab is "orders"
-  const { logOut } = useAuth();
+  const { user, logOut } = useAuth();
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
+
+  const router = useRouter()
+
+  if (!user) {
+    return (
+      router.push('/')
+    )
+  }
 
   return (
     <div className="w-full max-container h-full flex flex-col pb-20 mt-10">
       {/* Tab navigation */}
       <div className="flex justify-center gap-10 mt-5 border-b pb-3">
         <div
-          className={`cursor-pointer ${
-            activeTab === "orders" ? "text-blue-500" : "text-gray-500"
-          }`}
+          className={`cursor-pointer ${activeTab === "orders" ? "text-blue-500" : "text-gray-500"
+            }`}
           onClick={() => handleTabClick("orders")}
         >
           Orders
         </div>
         <div
-          className={`cursor-pointer ${
-            activeTab === "profile" ? "text-blue-500" : "text-gray-500"
-          }`}
+          className={`cursor-pointer ${activeTab === "profile" ? "text-blue-500" : "text-gray-500"
+            }`}
           onClick={() => handleTabClick("profile")}
         >
           Profile
         </div>
         <div
-          className={`cursor-pointer ${
-            activeTab === "address" ? "text-blue-500" : "text-gray-500"
-          }`}
+          className={`cursor-pointer ${activeTab === "address" ? "text-blue-500" : "text-gray-500"
+            }`}
           onClick={() => handleTabClick("address")}
         >
           Address
         </div>
         <div
-          className={`cursor-pointer ${
-            activeTab === "logout" ? "text-blue-500" : "text-gray-500"
-          }`}
+          className={`cursor-pointer ${activeTab === "logout" ? "text-blue-500" : "text-gray-500"
+            }`}
           onClick={() => {
             logOut();
           }}

@@ -126,6 +126,5 @@ const NewProducts = ({ product }) => {
   );
 };
 
-// export default ProductCard;
 
 export default NewProducts;

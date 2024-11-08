@@ -1,16 +1,7 @@
 "use client";
-import AddtoCartBtn from "@/components/Button/AddtoCartBtn";
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import { FaStar } from "react-icons/fa";
-import {
-  Accordion,
-  AccordionHeader,
-  AccordionBody,
-} from "@material-tailwind/react";
 import { ReviewSection } from "@/components/ReviewSection/ReviewSection";
 import toast, { Toaster } from "react-hot-toast";
-// import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProductDetailsCarousel from "@/components/ProductDetailsCarousel/ProductDetailsCarousel";
 import Wrapper from "@/components/Wrapper/Wrapper";
@@ -20,29 +11,9 @@ import { add } from "@/redux/features/cart/cartSlice";
 import { useParams, useRouter } from "next/navigation";
 import Loader from "@/components/loader/Loader";
 import apiClient from "@/api/client";
-import useAuth from "@/auth/useAuth";
 import ProductReview from "@/components/Account/ProductReview";
+import PincodeChecker from "@/components/Pincode/PincodeChecker";
 
-function Icon({ id, open }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
-      className={`${
-        id === open ? "rotate-180" : ""
-      } h-5 w-5 transition-transform`}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-      />
-    </svg>
-  );
-}
 
 const page = () => {
   const router = useParams();
@@ -55,7 +26,7 @@ const page = () => {
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(0);
+
   const [quantity, setQuantity] = useState(1);
   const [selectedOffer, setSelectedOffer] = useState();
   const [isDealClicked, setIsDealClicked] = useState(false);
@@ -64,6 +35,8 @@ const page = () => {
     fetchProduct();
     fetchProducts();
   }, [productId, params.category]);
+
+
   const fetchProducts = async () => {
     try {
       const response = await apiClient.get("/product/get", {
@@ -81,6 +54,7 @@ const page = () => {
       setLoading(false);
     }
   };
+
   const fetchProduct = async () => {
     try {
       const response = await apiClient.get(`/product/get-by-id`, {
@@ -88,11 +62,13 @@ const page = () => {
       });
 
       if (!response.ok) {
+        setProduct(null)
         throw new Error("Failed to fetch product");
       }
       setProduct(response.data);
       setLoading(false);
     } catch (error) {
+      setProduct(null)
       console.error("Error fetching product:", error);
       setLoading(false);
     }
@@ -100,10 +76,20 @@ const page = () => {
 
   if (loading) {
     return (
-      <div>
+      <div className="h-screen">
         <Loader />
       </div>
     );
+  }
+
+  if (product == null) {
+    return (
+      <div className="flex flex-1 justify-center items-center h-screen">
+        <p className="text-center text-xl text-gray-500">Product not found</p>
+      </div>
+
+
+    )
   }
 
   const handleQuantity = (type) => {
@@ -113,7 +99,7 @@ const page = () => {
       if (quantity < product?.countInStock.qty) {
         setQuantity(quantity + 1);
       }
-      // setQuantity(quantity + 1);
+
     }
   };
 
@@ -265,6 +251,7 @@ const page = () => {
                   </div>
                 )}
               </div>
+              <PincodeChecker />
               {/* offer card */}
               <div className="my-5">
                 <div className="pt-4">
@@ -322,11 +309,10 @@ const page = () => {
                 <div className="py-2">
                   <button
                     onClick={handleButtonClick}
-                    className={`bg-[#ed1d24] text-white w-full py-3 rounded-md ${
-                      !selectedOffer || isDealClicked
-                        ? "cursor-not-allowed opacity-50"
-                        : ""
-                    }`}
+                    className={`bg-[#ed1d24] text-white w-full py-3 rounded-md ${!selectedOffer || isDealClicked
+                      ? "cursor-not-allowed opacity-50"
+                      : ""
+                      }`}
                     disabled={!selectedOffer || isDealClicked}
                   >
                     {isDealClicked ? "Deal grabbed!" : "Grab this deal"}

@@ -16,94 +16,81 @@ const NewOrderChild = ({ orderData }) => {
 
   return (
     <>
-      <div className="bg-white  flex justify-center mb-5 items-center">
-        <div className="bg-white rounded-black shadow-md rounded-xl border p-5   w-full md:w-3/4">
+      <div className="flex justify-center mb-5 items-center">
+        <div className="bg-white shadow-lg rounded-xl border p-6 w-full md:w-3/4">
           <div className="header text-center">
-            <div className="grid grid-cols-1 lg:grid-cols-4 border-b pb-4 gap-2">
-              <div className="grid   col-span-1 border-r">
-                <div className="black">Order Id</div>
-                <div className="text-sm text-gray-600">{orderData?._id}</div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 border-b pb-4 gap-4">
+              <div className="text-center lg:text-left border-r">
+                <div className="text-lg font-medium text-gray-800">Order Id</div>
+                <div className="text-sm text-gray-500 mt-1">{orderData?._id}</div>
               </div>
-              <div className="grid col-span-1 border-r">
-                <div className="black">Order Date</div>
-                <div className="text-sm text-gray-600">
+              <div className="text-center lg:text-left border-r">
+                <div className="text-lg font-medium text-gray-800">Order Date</div>
+                <div className="text-sm text-gray-500 mt-1">
                   {orderData
                     ? new Date(orderData.createdAt).toLocaleString()
                     : "N/A"}
                 </div>
               </div>
-              <div className="grid col-span-1 border-r">
-                <div className="black">Delivery Date</div>
-                <div className="text-sm text-gray-600">
-                  {orderData
-                    ? new Date(orderData.updatedAt).toLocaleString()
-                    : "N/A"}
-                </div>
-              </div>
-              <div className="grid col-span-1  ">
-                <div className="black">Ship to</div>
-                <div className="text-sm text-gray-600">
+              <div className="text-center lg:text-left">
+                <div className="text-lg font-medium text-gray-800">Ship to</div>
+                <div className="text-sm text-gray-500 mt-1">
                   {orderData?.shippingAddress?.city}
                 </div>
               </div>
             </div>
+
             {orderData.orderItems.map((itemData) => (
-              <div key={itemData._id}>
+              <div key={itemData._id} className="py-4">
                 <div
-                  className="grid grid-cols-1 sm:grid-cols-6  py-4  text-center"
+                  className="grid grid-cols-1 sm:grid-cols-6 items-center gap-4 text-left"
                   onClick={() => handleOrderClick(itemData._id)}
                 >
-                  <div className="grid col-span-1 mr-4 ">
-                    <div className=" rounded cursor-pointer">
-                      {" "}
-                      <Image
-                        // src="https://tailwindui.com/img/ecommerce-images/confirmation-page-04-product-02.jpg"
-                        src={itemData.image}
-                        width={200}
-                        height={200}
-                        alt="Picture of the author"
-                        className="object-contain object-center w-full h-full rounded-lg"
-                      />
+                  <div className="col-span-1">
+                    <Image
+                      src={itemData.image}
+                      width={80}
+                      height={80}
+                      alt="Product Image"
+                      className="object-cover w-full h-full rounded-md shadow"
+                    />
+                  </div>
+
+                  <div className="col-span-4 sm:pl-2">
+                    <div className="text-lg font-semibold text-gray-800">{itemData.name}</div>
+                    <div className="text-sm text-gray-500 mt-1">
+                      <span className="font-medium text-gray-700">Product:</span> {itemData.product}
+                    </div>
+                    <div className="text-sm text-gray-500 mt-1">
+                      <span className="font-medium text-gray-700">Quantity:</span> {itemData.qty}
                     </div>
                   </div>
 
-                  <div className="grid col-span-4 sm:p-2 pt-2  text-left gap-4  ">
-                    <div className="font-semibold">{itemData.name}</div>
-                    <div>
-                      <span className="black">Product : </span>
-                      <span className="text-gray-600"> {itemData.product}</span>
-                    </div>
-                    <div>
-                      <span className="black">Quantity : </span>
-                      <span className="text-gray-600"> {itemData.qty}</span>
-                    </div>
-                  </div>
-                  <div className="grid text-gray-600 col-span-1 text-left sm:text-right  ">
+                  <div className="col-span-1 text-right text-lg font-semibold text-gray-800">
                     ₹{itemData.price}
                   </div>
                 </div>
               </div>
             ))}
 
-            <div className="grid grid-cols-1 sm:grid-cols-4 border-t text-center pt-4 gap-2">
-              <div className="grid   col-span-2 sm:text-left    ">
-                <div className="flex justify-between sm:justify-normal">
-                  <div className="black">Total Amount : </div>
-                  <div className="text-gray-600"> ₹{orderData.totalPrice}</div>
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 border-t pt-4 gap-4 items-center">
+              <div className="flex justify-between sm:justify-start items-center col-span-1">
+                <div className="text-lg font-medium text-gray-700">Total Amount:</div>
+                <div className="text-lg font-semibold text-gray-800 ml-2">₹{orderData.totalPrice}</div>
               </div>
-              <div className="grid   col-span-2   ">
-                <div
-                  className="flex cursor-pointer sm:justify-end text-[#4F46E5]"
+              <div className="text-right sm:text-left col-span-1">
+                <button
+                  className="text-indigo-600 font-medium hover:underline"
                   onClick={handleOrder}
                 >
-                  <div> View Order Detail</div>
-                </div>
+                  View Order Detail
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </>
   );
 };

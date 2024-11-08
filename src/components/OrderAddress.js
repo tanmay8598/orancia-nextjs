@@ -2,6 +2,8 @@ import { useParams } from "next/navigation";
 import React from "react";
 
 const OrderAddress = ({ mydata }) => {
+
+  console.log(mydata?.shippingAddress)
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 ">
@@ -55,9 +57,12 @@ const OrderAddress = ({ mydata }) => {
             <div className="mb-2">
               {/* Address : {myOrder?.shippingAddress?.address} */}
             </div>
-            <div className="mb-2">
-              Pin code : {mydata?.shippingAddress?.pincode}
-            </div>
+            {
+              mydata?.shippingAddress?.pincode && (<div className="mb-2">
+                Pin code : {mydata?.shippingAddress?.pincode}
+              </div>)
+            }
+
           </div>
         </div>
       </div>

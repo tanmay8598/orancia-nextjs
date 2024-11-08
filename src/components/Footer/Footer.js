@@ -20,7 +20,7 @@ const Footer = () => {
   };
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-5 bg-[#8c8d94]  font-sans   font-normal text-xs  text-white mt-12 drop-shadow">
+      <div className="grid grid-cols-1 lg:grid-cols-4 bg-[#8c8d94]  font-sans   font-normal text-xs  text-white mt-12 drop-shadow">
         {/* Section 1 */}
 
         <div className="p-6 lg:p-14">
@@ -58,15 +58,10 @@ const Footer = () => {
                 Frequently asked questions
               </Link>{" "}
             </li>
-            <li className="mb-3">
-              {" "}
-              <Link href="#" className="normal-case font-normal">
-                Store Locatorut
-              </Link>
-            </li>
+
             <li className="mb-3">
               <Link href="#" className="normal-case font-normal">
-                Cancellation & Returntact
+                Cancellation & Return
               </Link>
             </li>
             <li className="mb-3">
@@ -75,11 +70,7 @@ const Footer = () => {
                 Shipping & Delivery
               </Link>
             </li>
-            <li className="mb-3">
-              <Link href="#" className="normal-case font-normal">
-                Sell on Orancia
-              </Link>
-            </li>
+
           </ul>
         </div>
         <div className="p-6 lg:p-14">
@@ -163,45 +154,7 @@ const Footer = () => {
           />
         </div>
 
-        {/* Section 4 */}
-        <div className="p-6 lg:p-14">
-          <p className="font-medium text-xl">My SHOP</p>
-          <ul className="mt-4 text-sm">
-            <li className="mb-3">
-              {" "}
-              <Link href="/best-sellers" className="normal-case font-normal">
-                Makeup
-              </Link>
-            </li>
-            <li className="mb-3">
-              <Link href="/best-sellers" className="normal-case font-normal">
-                Body Care
-              </Link>{" "}
-            </li>
-            <li className="mb-3">
-              {" "}
-              <Link href="/best-sellers" className="normal-case font-normal">
-                Hair Care
-              </Link>
-            </li>
-            <li className="mb-3">
-              <Link href="/best-sellers" className="normal-case font-normal">
-                Men's Care
-              </Link>
-            </li>
-            <li className="mb-3">
-              {" "}
-              <Link href="/best-sellers" className="normal-case font-normal">
-                Wellness
-              </Link>
-            </li>
-            <li className="mb-3">
-              <Link href="/best-sellers" className="normal-case font-normal">
-                Gifting
-              </Link>
-            </li>
-          </ul>
-        </div>
+
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-5 bg-gray-200  font-sans   text-sm  text-blue-gray-500  font-medium  drop-shadow">
         {/* Section 1 */}

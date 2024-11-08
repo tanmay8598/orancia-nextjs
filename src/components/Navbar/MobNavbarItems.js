@@ -23,7 +23,7 @@ const MobNavbarItems = ({ setIsOpen }) => {
       <div>
         <div>
           <ul className="mt-3 text-[15px]">
-            <li className=" pt-[6px]">
+            {/* <li className=" pt-[6px]">
               <div className="flex w-full items-center">
                 <div className="flex-1">
                   <Link
@@ -64,7 +64,7 @@ const MobNavbarItems = ({ setIsOpen }) => {
                   </Link>
                 </div>
               </div>
-            </li>
+            </li> */}
             <li className=" pt-[6px]">
               <div className="flex w-full items-center">
                 <div className="flex-1">
@@ -73,7 +73,7 @@ const MobNavbarItems = ({ setIsOpen }) => {
                     onClick={closeModal}
                     className="block py-2       transition ease-in-out duration-300 text-black font-semibold hover:text-black"
                   >
-                    Bestsellers
+                    Best sellers
                     <hr className="mt-4 border-gray-300" />
                   </Link>
                 </div>
@@ -87,7 +87,7 @@ const MobNavbarItems = ({ setIsOpen }) => {
                     onClick={closeModal}
                     className="block py-2  hover:text-black     transition ease-in-out duration-300 text-black font-semibold  "
                   >
-                    Blog
+                    Blogs
                     <hr className="mt-4 border-gray-300" />
                   </Link>
                 </div>

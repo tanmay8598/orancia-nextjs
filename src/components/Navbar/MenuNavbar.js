@@ -39,8 +39,11 @@ const MenuNavbar = () => {
   const handleClick = () => {
     router.push("/blogs");
   };
-  const handlebestsaller = () => {
+  const handleBestSeller = () => {
     router.push("/best-sellers");
+  };
+  const handleNewArrivals = () => {
+    router.push("/new-arrivals");
   };
 
   const toggleDropdown = () => {
@@ -106,34 +109,30 @@ const MenuNavbar = () => {
                                 Categories
                               </button>
                             </li>
-                            <li className="relative group    px-3 py-2 cursor-pointer">
+                            <li className="relative group px-3 py-2 cursor-pointer">
                               <button
-                                className="hover:opacity-50 cursor-default "
-                                onClick={handlebestsaller}
+                                className="hover:opacity-50  cursor-pointer "
+                                onClick={handleBestSeller}
                                 onMouseEnter={() => setCategoryDropdown(false)}
                               >
                                 Bestsellers
                               </button>
 
-                              {/* <div className="absolute top-0 -left-2 transition group-hover:translate-y-5 translate-y-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible duration-500 ease-in-out group-hover:transform z-50 min-w-[200px] transform">
-                                <div className="relative top-[47px] p-6 bg-white  shadow-xl w-full">
-                                  <div className="relative z-10">
-                                    <ul className="text-[15px]">
-                                      <li>
-                                        <a
-                                          href="#"
-                                          className="text-gray-600 hover:text-gray-800 py-1 block font-normal"
-                                        >
-                                          Get Support
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div> */}
+
+                            </li>
+                            <li className="relative group px-3 py-2 cursor-pointer">
+                              <button
+                                className="hover:opacity-50  cursor-pointer "
+                                onClick={handleNewArrivals}
+                                onMouseEnter={() => setCategoryDropdown(false)}
+                              >
+                                New arrivals
+                              </button>
+
+
                             </li>
 
-                            <li className="relative group px-3 py-2 cursor-pointer">
+                            {/* <li className="relative group px-3 py-2 cursor-pointer">
                               <button
                                 className="hover:opacity-50 cursor-default  "
                                 onMouseEnter={() => setCategoryDropdown(false)}
@@ -191,9 +190,9 @@ const MenuNavbar = () => {
                                   </div>
                                 </div>
                               </div>
-                            </li>
+                            </li> */}
 
-                            <li className="relative group px-3 py-2 cursor-pointer">
+                            {/* <li className="relative group px-3 py-2 cursor-pointer">
                               <button
                                 className="hover:opacity-50 cursor-default "
                                 onMouseEnter={() => setCategoryDropdown(false)}
@@ -351,13 +350,13 @@ const MenuNavbar = () => {
                                   </div>
                                 </div>
                               </div>
-                            </li>
+                            </li> */}
 
                             <li className="relative group px-3 py-2 cursor-pointer">
                               <button
                                 onClick={handleClick}
                                 onMouseEnter={() => setCategoryDropdown(false)}
-                                className="hover:opacity-50 cursor-default  "
+                                className="hover:opacity-50 cursor-pointer"
                               >
                                 Blog
                               </button>

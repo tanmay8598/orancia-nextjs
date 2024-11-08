@@ -27,6 +27,7 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
     if (!user) {
       setIsOpenAccount(true);
     } else {
+
       router.push(`/checkout`);
       setIsOpen(false);
     }

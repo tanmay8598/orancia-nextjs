@@ -13,10 +13,12 @@ import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { clear } from "@/redux/features/cart/cartSlice";
 
+
 const page = () => {
   const { user } = useAuth();
   const [isOpenAccount, setIsOpenAccount] = useState(false);
   const [coupans, setCoupans] = useState([]);
+
   const [couponId, setCouponId] = useState("");
   const dispatch = useDispatch();
   const [error, setError] = useState();
@@ -32,6 +34,7 @@ const page = () => {
   const [Razorpay] = useRazorpay();
   const [paymentStatus, setPaymentStatus] = useState();
   const [uploadVisible, setUploadVisible] = useState(false);
+  const [deliveryInfo, setDeliveryInfo] = useState(true)
 
   const totalValue = selector.cart.reduce((total, item) => {
     const price = item.discountedPrice || item.product?.sell_price;
@@ -41,7 +44,13 @@ const page = () => {
 
   const router = useRouter();
 
-  const orderItems = [];
+  const [showCoupons, setShowCoupons] = useState(false);
+
+  const toggleCoupons = () => {
+    setShowCoupons(!showCoupons);
+  };
+
+
 
   const handlePayment = useCallback(async () => {
     const result = await apiClient.get("/orders/payment", {
@@ -53,7 +62,7 @@ const page = () => {
       key: result.data.notes.key,
       amount: totalValue,
       currency: "INR",
-      name: "Orancia Pvt Ltd.",
+      name: "Pinakinshine ECOM Pvt. Ltd",
       description: "Test Transaction",
       image: "https://example.com/your_logo",
       order_id: result.data.id,
@@ -86,14 +95,36 @@ const page = () => {
   useEffect(() => {
     if (user && user.shippingAddress) {
       setShippingAddress(user.shippingAddress);
+      checkDelivery(user.shippingAddress.pincode)
     }
     setIsLoading(false);
   }, [user]);
 
-  useEffect(() => {
-    if (!products.length) {
-      router.push("/");
+  const checkDelivery = async (pincode) => {
+    if (!pincode || pincode.length !== 6) return
+
+
+    try {
+      // Replace with your actual API endpoint
+      const response = await apiClient.get("/delivery/check-delivery-exist-by-pincode", { pinCode: pincode })
+
+      if (response?.data?.inboundServiceExist == 'Yes') {
+        toast.success("Delivery available!", {
+          id: "transaction-success-toast",
+          duration: 4000,
+        });
+        setDeliveryInfo(false)
+      } else {
+        toast.error("Delivery to your address is not available");
+
+      }
+    } catch (error) {
+      console.error('Failed to fetch delivery info:', error)
     }
+  }
+
+  useEffect(() => {
+
     getCoupons();
   }, [products]);
 
@@ -168,8 +199,15 @@ const page = () => {
     }
   };
 
+
   if (isLoading) {
-    return <Loader />;
+    return (
+      <div className="h-screen">
+
+        <Loader />
+      </div>
+    )
+
   }
 
   const removedCoupan = (couponCode) => {
@@ -183,7 +221,7 @@ const page = () => {
 
   const handleApplyCoupons = (couponCode) => {
     const coupon = coupans.find((c) => c.name === couponCode);
-    console.log(coupon.limit, "coupon.limit");
+
     const isUsedByUser = coupon?.usedBy?.filter(function (User) {
       return User._id === user?.id;
     });
@@ -228,7 +266,8 @@ const page = () => {
     e.preventDefault();
     handleApplyCoupons(couponCode);
   };
-  // console.log(coupans, "coupans");
+
+  console.log(coupans)
   return (
     <>
       <div className="container mx-auto px-4 py-8">
@@ -264,6 +303,8 @@ const page = () => {
                 <p>Loading...</p>
               )}
             </div>
+
+
             <div className="text-center mb-6">
               <button
                 type="submit"
@@ -316,45 +357,52 @@ const page = () => {
               </form>
 
               <div>
-                <div className="items-center  border border-gray-300 p-4 mb-5 rounded-lg">
-                  <div className="text-sm mb-4">All Coupons</div>
+                <div className="items-center border border-gray-200 p-4 mb-5 rounded-lg shadow-sm bg-white">
+                  {/* Show All Coupons Button */}
+                  <button
+                    onClick={toggleCoupons}
+                    className="bg-blue-500 text-white text-sm px-3 py-1 rounded-md w-full mb-3 hover:bg-blue-600 transition-colors duration-200"
+                  >
+                    {showCoupons ? 'Hide Coupons' : 'Show All Coupons'}
+                  </button>
 
-                  {coupans.map((coupon, index) => (
-                    <div
-                      key={index}
-                      className="items-center w-full border border-gray-300 p-4 mb-2"
-                    >
-                      <div className="flex justify-between items-center">
-                        <div className="flex-1 ml-4">
-                          <p className="text-sm text-gray-600">{coupon.name}</p>
-                          <p className="text-xs text-gray-500">
-                            Any 2 eligible products at ₹{coupon.discount}
-                          </p>
+                  {/* Coupons List */}
+                  {showCoupons && (
+                    <div className="mt-2">
+                      <div className="text-md font-medium text-gray-700 mb-3">All Coupons</div>
+
+                      {coupans.map((coupon, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center justify-between w-full border border-gray-300 p-3 mb-2 rounded-md shadow hover:shadow-md transition-shadow duration-200 bg-gray-50"
+                        >
+                          <div className="flex-1">
+                            <p className="text-sm font-semibold text-gray-700">{coupon.name}</p>
+                            <p className="text-xs text-gray-500">
+                              {coupon.discount}% OFF, max ₹{coupon.max} OFF
+                            </p>
+                          </div>
+                          {appliedCoupon === coupon.name ? (
+                            <button
+                              className="text-red-600 text-xs px-2 py-1 rounded-full border border-red-600 hover:bg-red-100 transition-colors duration-200"
+                              onClick={() => removedCoupan(coupon.name)}
+                            >
+                              Remove
+                            </button>
+                          ) : (
+                            <button
+                              className="text-blue-600 text-xs px-2 py-1 rounded-full border border-blue-600 hover:bg-blue-100 transition-colors duration-200"
+                              onClick={() => handleApplyCoupons(coupon.name)}
+                            >
+                              Apply
+                            </button>
+                          )}
                         </div>
-                        {/* <button
-                          className="text-red-500 underline"
-                          onClick={() => removedCoupan(coupon.name)}
-                        > */}
-                        {appliedCoupon === coupon.name ? (
-                          <button
-                            className="text-red-500 underline"
-                            onClick={() => removedCoupan(coupon.name)}
-                          >
-                            Remove
-                          </button>
-                        ) : (
-                          <button
-                            className="text-red-500 underline"
-                            onClick={() => handleApplyCoupons(coupon.name)}
-                          >
-                            Apply
-                          </button>
-                        )}
-                        {/* </button> */}
-                      </div>
+                      ))}
                     </div>
-                  ))}
+                  )}
                 </div>
+
               </div>
             </div>
 
@@ -378,17 +426,18 @@ const page = () => {
                 ₹ {discountedTotal}.00
               </p>
             </div>
-            <div className="flex my-4 justify-between items-center">
+            {/* <div className="flex my-4 justify-between items-center">
               <div className="flex-1">
                 <p className="text-sm text-gray-600">
                   Including ₹ 103.21 in taxes
                 </p>
               </div>
-            </div>
+            </div> */}
             <button
+              disabled={deliveryInfo}
               className="text-white w-full bg-primary p-2 rounded"
               onClick={handlePayment}
-              // onClick={handleSubmit}
+            // onClick={handleSubmit}
             >
               Complete transaction
             </button>

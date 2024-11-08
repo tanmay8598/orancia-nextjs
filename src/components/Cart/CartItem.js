@@ -20,7 +20,10 @@ const CartItem = ({ item }) => {
   };
 
   const handleIncrement = () => {
-    dispatch(incrementQuantity(item.product?._id));
+    if (item.quantity < item.product?.countInStock.qty) {
+      dispatch(incrementQuantity(item.product?._id));
+    }
+
   };
 
   const handleDecrement = () => {

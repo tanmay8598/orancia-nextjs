@@ -1,10 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import OrderCardHeader from "./OrderCardHeader";
-import Image from "next/image";
-import { MdOutlineStar } from "react-icons/md";
-import { IoDownloadOutline } from "react-icons/io5";
-import { useRouter } from "next/navigation";
 import useAuth from "@/auth/useAuth";
 import apiClient from "@/api/client";
 import NewOrderChild from "./NewOrderChild";

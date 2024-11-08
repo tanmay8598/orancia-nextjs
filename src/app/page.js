@@ -13,8 +13,27 @@ import ShopbyCategory from "@/components/ShopbyCategory/ShopbyCategory";
 import SingleBanner from "@/components/SingleBanner/SingleBanner";
 import Loader from "@/components/loader/Loader";
 import WhatClient from "@/components/whatClientSays/WhatClient";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+
+  const [loading, setLoading] = useState(true)
+
+
+  useEffect(() => {
+    setInterval(() => setLoading(false), 2000)
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="h-screen">
+
+        <Loader />
+      </div>
+    )
+
+  }
+
   return (
     <div>
       <Banner />
