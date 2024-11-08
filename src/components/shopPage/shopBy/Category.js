@@ -1,6 +1,4 @@
-"use client";
 import React, { useState } from "react";
-
 import {
   Accordion,
   AccordionHeader,
@@ -29,10 +27,14 @@ function Icon({ id, open }) {
   );
 }
 
-const Category = () => {
+const Category = ({ categories }) => {
   const [open, setOpen] = useState(0);
 
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
+
+  // Extract the first category
+  const firstCategory = categories?.length > 0 ? categories[0] : null;
+
   return (
     <div>
       <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
@@ -43,7 +45,15 @@ const Category = () => {
           Category
         </AccordionHeader>
         <AccordionBody className="text-sm font-poppins lg:text-md leading-7 mt-2">
-          <Checkbox label="Skin Care" defaultChecked />
+          {
+            // categories?.length === 0 ? (
+            //   <p>No Category available</p>
+            // ) : (
+            firstCategory && (
+              <Checkbox label={firstCategory.name} defaultChecked />
+            )
+            // )
+          }
         </AccordionBody>
       </Accordion>
     </div>

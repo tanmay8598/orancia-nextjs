@@ -5,9 +5,8 @@ import {
   Accordion,
   AccordionHeader,
   AccordionBody,
-  Slider,
 } from "@material-tailwind/react";
-
+import Slider from "@mui/material/Slider";
 function Icon({ id, open }) {
   return (
     <svg
@@ -31,10 +30,11 @@ function Icon({ id, open }) {
 
 const Price = () => {
   const [open, setOpen] = useState(0);
-  const [min, setMin] = useState(0);
-  const [max, setMax] = useState(1000);
+  const [range, setRange] = useState([5, 30]);
 
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
+  const handleChanges = (event, newValue) => setRange(newValue);
+
   return (
     <div>
       <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
@@ -45,7 +45,17 @@ const Price = () => {
           Price
         </AccordionHeader>
         <AccordionBody className="text-sm font-poppins lg:text-md leading-7 mt-2">
-          <Slider color="red" defaultValue={20} />
+          <Slider
+            className="w-56 m-3 text-red-500"
+            value={range}
+            onChange={handleChanges}
+            valueLabelDisplay="auto"
+            min={0}
+            max={100}
+          />
+          <div className=" ml-3 font-medium ">
+            Min : {range[0]} - Max : {range[1]}
+          </div>
         </AccordionBody>
       </Accordion>
     </div>

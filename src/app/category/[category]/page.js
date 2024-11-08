@@ -1,117 +1,143 @@
+"use client";
+import React, { useEffect, useState } from "react";
 import Product from "@/components/BestSellers/Product";
+import Pagination from "@/components/ShopbyCategory/Pagination";
 import ShopSideNav from "@/components/shopPage/ShopSideNav";
-import React from "react";
+import ShopMobNav from "@/components/shopPage/ShopMobNav";
+import apiClient from "@/api/client";
+import Loader from "@/components/loader/Loader";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+import NewProducts from "@/components/BestSellers/NewProducts";
 
-export const metadata = {
-  title: "Category Name",
-  description: "Premium Herbal Products",
-};
+const Page = () => {
+  const [isOpenSearch, setIsOpenSearch] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [subcat, setSubcat] = useState([]);
+  const [selectedSubcategory, setSelectedSubcategory] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [minprice, setMinprice] = useState("");
+  const [maxprice, setMaxprice] = useState("");
+  const [range, setRange] = useState([0, 1000]);
+  const params = useParams();
+  useEffect(() => {
+    fetchSubcategories();
+    fetchProducts();
+  }, [params.category, selectedSubcategory, maxprice, minprice]);
 
-const data = [
-  {
-    id: 0,
-    name: "Moroccan Argan Conditioner For Dry Hair",
-    price: "100",
-    category: {
-      id: 0,
-      name: "Skin care",
-    },
-    image: ["https://files.stbotanica.com/site-images/400x400/STBOT470-01.jpg"],
-  },
-  {
-    id: 1,
-    name: "Red Onion Hair Shampoo, 300ml",
-    price: "200",
-    category: {
-      id: 0,
-      name: "Skin care",
-    },
-    image: [
-      "https://files.stbotanica.com/site-images/400x400/fc4de260-1fbf-11ec-83b7-c7f6905fb422.jpg",
-    ],
-  },
-  {
-    id: 3,
-    name: "GO Colored Purple Hair Conditioner 200ml",
-    price: "300",
-    category: {
-      id: 0,
-      name: "Skin care",
-    },
-    image: [
-      "https://files.stbotanica.com/site-images/400x400/7c4ecb10-1fab-11ec-9d44-3d19798b1975.jpg",
-    ],
-  },
-  {
-    id: 4,
-    name: "Vitamin C 20%, E & Hyaluronic Acid Face Serum, 20ml",
-    price: "400",
-    category: {
-      id: 0,
-      name: "Skin care",
-    },
-    image: ["https://files.stbotanica.com/site-images/400x400/STBOT492-1.jpg"],
-  },
-  {
-    id: 4,
-    name: "Vitamin C 20%, E & Hyaluronic Acid Face Serum, 20ml",
-    price: "400",
-    category: {
-      id: 0,
-      name: "Skin care",
-    },
-    image: ["https://files.stbotanica.com/site-images/400x400/STBOT492-1.jpg"],
-  },
-  {
-    id: 4,
-    name: "Vitamin C 20%, E & Hyaluronic Acid Face Serum, 20ml",
-    price: "400",
-    category: {
-      id: 0,
-      name: "Skin care",
-    },
-    image: ["https://files.stbotanica.com/site-images/400x400/STBOT492-1.jpg"],
-  },
-  {
-    id: 4,
-    name: "Vitamin C 20%, E & Hyaluronic Acid Face Serum, 20ml",
-    price: "400",
-    category: {
-      id: 0,
-      name: "Skin care",
-    },
-    image: ["https://files.stbotanica.com/site-images/400x400/STBOT492-1.jpg"],
-  },
-  {
-    id: 4,
-    name: "Vitamin C 20%, E & Hyaluronic Acid Face Serum, 20ml",
-    price: "400",
-    category: {
-      id: 0,
-      name: "Skin care",
-    },
-    image: ["https://files.stbotanica.com/site-images/400x400/STBOT492-1.jpg"],
-  },
-];
+  const fetchProducts = async () => {
+    try {
+      const response = await apiClient.get("/product/get", {
+        category: params.category,
+        subcategory: selectedSubcategory._id,
+        min: minprice,
+        max: maxprice,
+      });
 
-const page = () => {
+      if (response.ok) {
+        setProducts(response.data.products);
+      } else {
+        setError(response.statusText);
+      }
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchSubcategories = async () => {
+    try {
+      const response = await apiClient.get(
+        "/variation/subcategory/get-by-category",
+        { catId: params.category }
+      );
+      if (response.ok) {
+        setSubcat(response.data);
+      } else {
+        setError(response.statusText);
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  const handleSubcategory = (subcategory) => {
+    setSelectedSubcategory(subcategory);
+  };
+
+  const handleChanges = (event, newValue) => {
+    setRange(newValue);
+    setMinprice(newValue[0]);
+    setMaxprice(newValue[1]);
+  };
+
   return (
     <>
-      {/* banner  */}
-      <div className="w-full max-container h-full flex pb-20 gap-10 mt-10">
-        <div className="w-[20%] lg:w-[25%] hidden md:inline-flex h-full">
-          <ShopSideNav />
-        </div>
-        <div className="w-full md:w-[80%] lg:w-[75%] h-full flex flex-col gap-10 px-3">
-          <div className="grid grid-cols-2  lg:grid-cols-3 gap-5 lg:gap-10">
-            {data.map((product) => {
-              return <Product product={product} />;
-            })}
+      <div className="  max-w-screen-xl mx-2 p-2 md:pb-16 md:pt-1">
+        {isOpenSearch && (
+          <ShopMobNav
+            isOpen={isOpenSearch}
+            setIsOpen={setIsOpenSearch}
+            productsss={products}
+            subCatgary={subcat}
+            selectedSubcategory={selectedSubcategory}
+            handleSubcategory={handleSubcategory}
+            handleChanges={handleChanges}
+            range={range}
+          />
+        )}
+
+        <div className="w-full max-container h-full flex flex-col md:flex-row pb-10 gap-6 mt-5 justify-between">
+          <div className="hidden md:inline-flex h-full w-full md:w-[15%] lg:w-[20%]">
+            <ShopSideNav
+              productsss={products}
+              subCatgary={subcat}
+              selectedSubcategory={selectedSubcategory}
+              handleSubcategory={handleSubcategory}
+              handleChanges={handleChanges}
+              range={range}
+            />
+          </div>
+
+          <div className="w-full md:w-[85%] lg:w-[80%] h-full flex flex-col gap-10 px-0">
+            <div className="mb-2">
+              <button
+                className="block md:hidden ml-1 toggle-button bg-red-500 text-white p-2 rounded-md absolute"
+                onClick={() => setIsOpenSearch(!isOpenSearch)}
+              >
+                {isOpenSearch ? "Hide" : "Show"} Filters
+              </button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+              {products.length === 0 ? (
+                <p className="text-center justify-center flex align-middle">
+                  No products found
+                </p>
+              ) : (
+                products.map((product) => (
+                  <Product key={product.id} product={product} />
+                ))
+              )}
+            </div>
           </div>
         </div>
+        {/* <Pagination /> */}
       </div>
     </>
   );
 };
 
-export default page;
+export default Page;

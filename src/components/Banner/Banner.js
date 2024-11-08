@@ -1,20 +1,15 @@
 "use client";
+import apiClient from "@/api/client";
 import Image from "next/image";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 
-const data = [
-  {
-    id: 0,
-    img: "https://files.stbotanica.com/site-images/original/bestsellers-at-40-1920x527_1.gif",
-  },
-  {
-    id: 1,
-    img: "https://files.stbotanica.com/site-images/original/1920x527dqeb.gif",
-  },
-];
+const Banner = () => {
+  const [banner, setBanner] = useState([]);
 
-const Banner = ({ img, title, mainTitle, price }) => {
+  const router = useRouter();
+
   var settings = {
     dots: false,
     infinite: true,
@@ -24,18 +19,46 @@ const Banner = ({ img, title, mainTitle, price }) => {
     pauseOnHover: false,
   };
 
+  useEffect(() => {
+    bannerHandler();
+  }, []);
+
+  const bannerHandler = async () => {
+
+    const { data } = await apiClient.get("variation/banner/get");
+
+
+    setBanner(data);
+
+
+  };
+
+  const handleClick = (item) => {
+
+    if (item.product) {
+      router.push(`/product/${item.product}`);
+    }
+    else if (item.category) {
+      router.push(`/category/${item.category}`);
+    }
+    else if (item.subcategory) {
+      router.push(`/subcategory/${item.subcategory}`);
+    }
+  }
+
   return (
     <div className="w-full ">
       <Slider {...settings}>
-        {data?.map((item) => {
+        {banner?.map((item) => {
           return (
             <Image
-              key={item.id}
+              key={item._id}
               alt="banner"
-              src={item.img}
+              src={item.image}
               height={2000}
               width={2000}
-              className="w-full h-[350px]  m-auto md:h-auto rounded-sm object-cover object-right md:object-left-bottom sm:h-auto"
+              className="w-full md:h-[400px] min-h-[200px]"
+              onClick={() => handleClick(item)}
             />
           );
         })}
