@@ -53,7 +53,7 @@ const NewProducts = ({ product }) => {
         <div className=" flex-col  flex">
           <Link className="group" href={`/product/${product._id}`}>
             <div
-              className="overflow-hidden rounded-t-lg"
+              className="overflow-hidden rounded-t-lg  h-[228px] flex items-center justify-center"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
@@ -63,7 +63,7 @@ const NewProducts = ({ product }) => {
                     ? product.image[currentImageIndex]
                     : "https://files.stbotanica.com/site-images/400x400/STBOT470-01.jpg"
                 }
-                className="w-full 
+                className="object-cover w-full h-full
                 "
                 // h-40  md:h-48
                 alt="image"
@@ -125,6 +125,5 @@ const NewProducts = ({ product }) => {
     </div>
   );
 };
-
 
 export default NewProducts;

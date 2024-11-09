@@ -117,8 +117,6 @@ const MenuNavbar = () => {
                               >
                                 Bestsellers
                               </button>
-
-
                             </li>
                             <li className="relative group px-3 py-2 cursor-pointer">
                               <button
@@ -128,8 +126,6 @@ const MenuNavbar = () => {
                               >
                                 New arrivals
                               </button>
-
-
                             </li>
 
                             {/* <li className="relative group px-3 py-2 cursor-pointer">

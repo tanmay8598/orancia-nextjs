@@ -2,8 +2,7 @@ import { useParams } from "next/navigation";
 import React from "react";
 
 const OrderAddress = ({ mydata }) => {
-
-  console.log(mydata?.shippingAddress)
+  console.log(mydata?.shippingAddress);
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 ">
@@ -23,6 +22,8 @@ const OrderAddress = ({ mydata }) => {
               Shipping Price : ₹{mydata?.shippingPrice}
             </div>
             <div className="mb-2">Total Price : ₹{mydata?.totalPrice}</div>
+
+            <div className="mb-2">Tracking ID/AWB : {mydata?.wayBill}</div>
           </div>
           <div className="border p-3-2 text-lg p-2 text-green-600">
             Order Status Message : {mydata?.deliveryStatus}
@@ -57,12 +58,11 @@ const OrderAddress = ({ mydata }) => {
             <div className="mb-2">
               {/* Address : {myOrder?.shippingAddress?.address} */}
             </div>
-            {
-              mydata?.shippingAddress?.pincode && (<div className="mb-2">
+            {mydata?.shippingAddress?.pincode && (
+              <div className="mb-2">
                 Pin code : {mydata?.shippingAddress?.pincode}
-              </div>)
-            }
-
+              </div>
+            )}
           </div>
         </div>
       </div>

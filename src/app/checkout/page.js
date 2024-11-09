@@ -163,7 +163,7 @@ const page = () => {
       const orderResult = await apiClient.post("/orders/create-order", {
         orderItems,
         shippingAddress,
-        paymentMethod: "COD",
+        paymentMethod: "ONLINE",
         itemsPrice: totalValue,
         totalPrice: discountedTotal || totalValue,
         deliveryStatus: "Processing",
@@ -209,6 +209,8 @@ const page = () => {
     )
 
   }
+
+  console.log(shippingAddress)
 
   const removedCoupan = (couponCode) => {
     if (appliedCoupon === couponCode) {

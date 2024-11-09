@@ -1,15 +1,40 @@
 "use client";
 import React, { useState } from "react";
+import apiClient from "@/api/client";
+import Tracking from "./tracking";
 
 const Page = () => {
-  const [searchBy, setSearchBy] = useState("orderID");
+  const [searchBy, setSearchBy] = useState("");
   const [inputValue, setInputValue] = useState("");
+  const [trackOrder, setTrackOrder] = useState(null);
+  const [error, setError] = useState(null);
+  const [showTracking, setShowTracking] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Search By:", searchBy);
-    console.log("Input Value:", inputValue);
+    trackMyOrder();
   };
+
+  const trackMyOrder = async () => {
+    try {
+      const response = await apiClient.get(`/delivery/track-shipment`, {
+        wayBillNo: inputValue,
+      });
+
+      if (response.ok) {
+        setTrackOrder(response.data.ShipmentData);
+        setShowTracking(true);
+        setInputValue("");
+      } else {
+        setError(response.statusText);
+      }
+    } catch (error) {
+      console.log("Error:", error);
+      setError("Something went wrong. Please try again.");
+    }
+  };
+
+  console.log(trackOrder);
 
   return (
     <>
@@ -27,15 +52,6 @@ const Page = () => {
                 <div className="flex items-center gap-1 sm:px-3">
                   <input
                     type="radio"
-                    value="orderID"
-                    checked={searchBy === "orderID"}
-                    onChange={() => setSearchBy("orderID")}
-                  />
-                  <label>Order ID/No</label>
-                </div>
-                <div className="flex items-center gap-1 sm:px-3">
-                  <input
-                    type="radio"
                     value="trackingID"
                     checked={searchBy === "trackingID"}
                     onChange={() => setSearchBy("trackingID")}
@@ -44,16 +60,11 @@ const Page = () => {
                 </div>
               </div>
             </div>
-
             <div className="grid grid-cols-1 sm:py-2 sm:px-3 sm:grid-cols-6 text-center">
               <div className="sm:col-span-4">
                 <input
                   type="text"
-                  placeholder={
-                    searchBy === "orderID"
-                      ? "Enter Your Order ID/No"
-                      : "Enter Your Tracking ID/AWB"
-                  }
+                  placeholder="Enter Your Tracking ID/AWB"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   className="shadow appearance-none border border-gray-300 w-full h-8 p-1 focus:outline-none focus:border-blue-500"
@@ -73,6 +84,7 @@ const Page = () => {
             <p className="my-2">Check current status of your shipment.</p>
           </div>
         </div>
+        {showTracking && trackOrder && <Tracking trackingData={trackOrder} />}
       </div>
     </>
   );
