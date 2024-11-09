@@ -10,6 +10,7 @@ import MobNavbarItems from "../Navbar/MobNavbarItems";
 import AccountSidebar from "./AccountSidebar";
 import { useRouter } from "next/navigation";
 import useAuth from "@/auth/useAuth";
+import { FaUserCheck } from "react-icons/fa6";
 
 const MenuSidebar = ({ isOpen, setIsOpen }) => {
   const [isOpenAccount, setIsOpenAccount] = useState(false);
@@ -61,13 +62,7 @@ const MenuSidebar = ({ isOpen, setIsOpen }) => {
                 <div className=" flex justify-between pt-4 relative  text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer">
                   <div onClick={handleRedirect}>
                     <div className="flex items-center gap-x-2 text-xs">
-                      <img
-                        src="/user.svg"
-                        alt="user icon"
-                        priority="true"
-                        fill="true"
-                        className="w-3 h-3"
-                      />
+                    <FaUserCheck />
                       <span>Account</span>
                     </div>
                   </div>

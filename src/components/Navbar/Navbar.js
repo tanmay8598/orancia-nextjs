@@ -64,7 +64,7 @@ const Navbar = () => {
             onClick={() => setIsOpenAccount(true)}
           >
             <Image
-              src="/user.svg"
+              src="/search.svg"
               alt="user icon"
               priority={true}
               fill={true}

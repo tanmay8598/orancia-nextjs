@@ -13,6 +13,7 @@ import Image from "next/image";
 import MenuSidebar from "../Cart/MenuSidebar";
 import MainmenuNavbar from "./MainmenuNavbar";
 import Link from "next/link";
+import { FaUserCheck } from "react-icons/fa6";
 
 import CategoryDropdown from "./CategoryDroupdown";
 
@@ -401,19 +402,15 @@ const MenuNavbar = () => {
                           width={24}
                           height={24}
                         />
+
                       </div>
                     ) : (
                       <div
                         className="relative h-4 w-4 text-xs sm:text-sm md:text-lg lg:text-xl cursor-pointer"
                         onClick={handleRedirect}
                       >
-                        <Image
-                          src="/user.svg"
-                          alt="user icon"
-                          priority
-                          width={24}
-                          height={24}
-                        />
+                                               <FaUserCheck />
+
                       </div>
                     )}
                   </div>

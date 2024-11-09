@@ -38,8 +38,7 @@ const BestSellerCarousel = ({ products }) => {
         <>
           <Slider {...settings}>
             {products?.map((product) => (
-              <BestSallerC
-                ard
+              <BestSallerCard
                 key={product._id}
                 product={
                   product.productDetails ? product.productDetails : product
