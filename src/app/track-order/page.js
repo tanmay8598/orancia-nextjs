@@ -4,7 +4,7 @@ import apiClient from "@/api/client";
 import Tracking from "./tracking";
 
 const Page = () => {
-  const [searchBy, setSearchBy] = useState("");
+  const [searchBy, setSearchBy] = useState("trackingID");
   const [inputValue, setInputValue] = useState("");
   const [trackOrder, setTrackOrder] = useState(null);
   const [error, setError] = useState(null);
@@ -34,6 +34,7 @@ const Page = () => {
     }
   };
 
+  console.log(trackOrder);
 
   return (
     <>
@@ -65,6 +66,7 @@ const Page = () => {
                   type="text"
                   placeholder="Enter Your Tracking ID/AWB"
                   value={inputValue}
+                  checked="true"
                   onChange={(e) => setInputValue(e.target.value)}
                   className="shadow appearance-none border border-gray-300 w-full h-8 p-1 focus:outline-none focus:border-blue-500"
                 />
