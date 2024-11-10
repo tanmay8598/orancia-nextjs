@@ -36,6 +36,8 @@ const page = () => {
   const [uploadVisible, setUploadVisible] = useState(false);
   const [deliveryInfo, setDeliveryInfo] = useState(true)
 
+  const [razorpay_payment_id, setrazorpay_payment_id] = useState()
+
   const totalValue = selector.cart.reduce((total, item) => {
     const price = item.discountedPrice || item.product?.sell_price;
     return total + item.quantity * price;
@@ -63,13 +65,15 @@ const page = () => {
       amount: totalValue,
       currency: "INR",
       name: "Pinakinshine ECOM Pvt. Ltd",
-      description: "Test Transaction",
+      description: "Total Payment",
       image: "https://example.com/your_logo",
       order_id: result.data.id,
       handler: async (res) => {
+
         try {
           const paymentId = res.razorpay_payment_id;
           if (paymentId) {
+            setrazorpay_payment_id(paymentId)
             setPaymentStatus(true);
           }
         } catch (error) {
@@ -163,7 +167,9 @@ const page = () => {
       const orderResult = await apiClient.post("/orders/create-order", {
         orderItems,
         shippingAddress,
-        paymentMethod: "ONLINE",
+        paymentMethod: "Online",
+        paymentResult: "Success",
+        invoiceId: razorpay_payment_id,
         itemsPrice: totalValue,
         totalPrice: discountedTotal || totalValue,
         deliveryStatus: "Processing",
@@ -210,7 +216,7 @@ const page = () => {
 
   }
 
-  console.log(shippingAddress)
+
 
   const removedCoupan = (couponCode) => {
     if (appliedCoupon === couponCode) {
@@ -269,7 +275,7 @@ const page = () => {
     handleApplyCoupons(couponCode);
   };
 
-  console.log(coupans)
+
   return (
     <>
       <div className="container mx-auto px-4 py-8">
