@@ -70,7 +70,6 @@ const Footer = () => {
                 Shipping & Delivery
               </Link>
             </li>
-
           </ul>
         </div>
         <div className="p-6 lg:p-14">
@@ -82,17 +81,7 @@ const Footer = () => {
                 Home
               </Link>
             </li>
-            <li className="mb-3">
-              <Link href="/contact-us" className="normal-case font-normal">
-                Contact Us
-              </Link>{" "}
-            </li>
-            <li className="mb-3">
-              {" "}
-              <Link href="/about-us" className="normal-case font-normal">
-                About Us
-              </Link>
-            </li>
+
             <li className="mb-3">
               <Link href="#" className="normal-case font-normal">
                 {!user ? (
@@ -153,8 +142,6 @@ const Footer = () => {
             className="mt-4"
           />
         </div>
-
-
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-5 bg-gray-200  font-sans   text-sm  text-blue-gray-500  font-medium  drop-shadow">
         {/* Section 1 */}
