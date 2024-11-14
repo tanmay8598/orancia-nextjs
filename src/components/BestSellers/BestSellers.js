@@ -34,7 +34,7 @@ const BestSellers = () => {
   return (
     <section>
       <div className="mx-auto max-w-screen-3xl px-4 pb-4 md:py-10">
-        <p className="  font-semibold text-center md:text-4xl mb-11 mt-11">
+        <p className="  text-2xl font-semibold text-center md:text-4xl mb-11 mt-11">
           Best Sellers
         </p>
 

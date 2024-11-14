@@ -355,7 +355,7 @@ const MenuNavbar = () => {
                                 onMouseEnter={() => setCategoryDropdown(false)}
                                 className="hover:opacity-50 cursor-pointer"
                               >
-                                Blog
+                                Blogs
                               </button>
                             </li>
                           </ul>

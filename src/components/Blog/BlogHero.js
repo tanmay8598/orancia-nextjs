@@ -44,7 +44,7 @@ const BlogHero = () => {
     <div className="  max-w-screen-xl mt-8 sm:mt-1 mx-auto p-5 sm:p-10 md:p-16">
       <div className="border-b mb-5 flex justify-between text-sm">
         <div className="text-red-600 flex items-center pb-2 pr-2 border-b-2 border-red-600 uppercase">
-          <a href="#" className="font-semibold inline-block">
+          <a href="#" className="font-semibold inline-block text-2xl">
             Blog
           </a>
         </div>

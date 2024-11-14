@@ -31,7 +31,7 @@ const ShopbyCategory = () => {
     <section>
       <div className="max-w-screen-lg mx-auto">
         {/* <h3 className="text-center text-3xl md:text-4xl mb-11 mt-11 font-medium"> */}
-        <p className="  font-semibold text-center md:text-4xl mb-11 mt-11">
+        <p className="  text-2xl font-semibold text-center md:text-4xl mb-11 mt-11">
           Shop by category
         </p>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-10 lg:mt-10 px-3 lg:px-0 place-items-center place-content-center">

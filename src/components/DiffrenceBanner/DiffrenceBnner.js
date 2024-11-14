@@ -6,7 +6,7 @@ const DiffrenceBnner = () => {
     <>
       <div className="container py-16 relative">
         <div className="">
-          <p className="  font-semibold text-center md:text-4xl mb-11 mt-11">
+          <p className=" text-2xl  font-semibold text-center md:text-4xl mb-11 mt-11">
             Summer Ready Skin care
           </p>
         </div>
