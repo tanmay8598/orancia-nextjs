@@ -4,7 +4,8 @@ import BlogCard from "./BlogCard";
 import BlogBanner from "./BlogBanner";
 import apiClient from "@/api/client";
 import Loader from "../loader/Loader";
-import { Pagination } from "@mui/material";
+// import { Pagination } from "@mui/material";
+import Pagination from "./../ShopbyCategory/Pagination";
 
 const BlogsDetails = () => {
   const [error, setError] = useState();
@@ -67,7 +68,8 @@ const BlogsDetails = () => {
         </div>
         <Pagination
           count={blogList.pageCount}
-          color="primary"
+          page={currentPageNo}
+          siblingCount={1}
           onChange={(e, value) => setCurrentPageNo(value)}
         />
       </div>

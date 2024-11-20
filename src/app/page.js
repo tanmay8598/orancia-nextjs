@@ -14,6 +14,7 @@ import SingleBanner from "@/components/SingleBanner/SingleBanner";
 import Loader from "@/components/loader/Loader";
 import WhatClient from "@/components/whatClientSays/WhatClient";
 import { useEffect, useState } from "react";
+import KnowYourIngredients from "./../components/whatClientSays/KnowYourIngredients";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -39,8 +40,9 @@ export default function Home() {
       <ShopbyCategory />
       {/* <ImageGallery /> */}
       {/* <Hero /> */}
+      {/* <WhatClient /> */}
       <NewArrivals />
-      <WhatClient />
+      <KnowYourIngredients />
       <DiffrenceBnner />
       <BlogHero />
     </div>
