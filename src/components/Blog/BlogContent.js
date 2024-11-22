@@ -45,7 +45,7 @@ const BlogContent = ({ blogid }) => {
               alt="logo"
               height={3000}
               width={2000}
-              className="w-full md:h-[700px] min-h-[200px]"
+              className="w-full md:h-[400px] min-h-[200px] object-cover"
             />
           ) : (
             <p>Image not available</p>

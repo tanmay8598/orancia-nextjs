@@ -69,11 +69,25 @@ const MobNavbarItems = ({ setIsOpen }) => {
               <div className="flex w-full items-center">
                 <div className="flex-1">
                   <Link
-                    href="#"
+                    href="/best-sellers"
                     onClick={closeModal}
                     className="block py-2       transition ease-in-out duration-300 text-black font-semibold hover:text-black"
                   >
                     Best sellers
+                    <hr className="mt-4 border-gray-300" />
+                  </Link>
+                </div>
+              </div>
+            </li>
+            <li className=" pt-[6px]">
+              <div className="flex w-full items-center">
+                <div className="flex-1">
+                  <Link
+                    href="/new-arrivals"
+                    onClick={closeModal}
+                    className="block py-2       transition ease-in-out duration-300 text-black font-semibold hover:text-black"
+                  >
+                    New Arrivals
                     <hr className="mt-4 border-gray-300" />
                   </Link>
                 </div>

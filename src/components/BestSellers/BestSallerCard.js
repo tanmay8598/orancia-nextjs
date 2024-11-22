@@ -49,7 +49,7 @@ const BestSellerCard = ({ product, onAddToCart }) => {
       <div className="flex-col flex">
         <Link className="group" href={`/product/${product._id}`}>
           <div
-            className="overflow-hidden rounded-t-lg w-full h-[228px] flex items-center justify-center"
+            className="overflow-hidden rounded-t-lg w-full h-[220px] flex items-center justify-center"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
@@ -68,7 +68,10 @@ const BestSellerCard = ({ product, onAddToCart }) => {
           </div>
         </Link>
         <div className="p-2">
+        <div className="h-10">
           <p className="text-sm font-medium text-left">{short}</p>
+
+          </div>
           <p className="text-sm text-gray-400 font-normal text-left">
             {product.category.name}
           </p>

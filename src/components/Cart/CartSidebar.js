@@ -55,7 +55,7 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
               </p>
             </div>
           ) : (
-            <ScrollArea className="h-[70vh] xl:h-[74vh]  mb-4">
+            <ScrollArea className="h-[78vh] lg:h-[70vh] xl:h-[74vh]  mb-4">
               {products &&
                 products.map((item, index) => (
                   <CartItem item={item} key={index} />
@@ -71,7 +71,7 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
               </div>
               <div className="mb-4 mx-2">
                 <button
-                  className="bg-[#ed1d24] rounded-xl text-white sm:font-medium text-base py-2  px-8 md:px-24 w-full sm:w-auto"
+                  className="bg-[#ed1d24] rounded-xl text-white sm:font-medium text-base py-2  px-8  w-full sm:w-auto"
                   onClick={handleClick}
                 >
                   CHECKOUT
