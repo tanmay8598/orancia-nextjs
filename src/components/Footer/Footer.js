@@ -1,11 +1,13 @@
 import Image from "next/image";
 import React, { useState } from "react";
-import { BsFacebook, BsWhatsapp } from "react-icons/bs";
+import { BsFacebook, BsWhatsapp, BsLinkedin } from "react-icons/bs";
 import { MdEmail, MdLocalPhone, MdLocationPin } from "react-icons/md";
+import { BsTwitterX } from "react-icons/bs";
+
 import { RiInstagramFill } from "react-icons/ri";
 import logo from "../../../public/oranica.png";
 import { FaYoutube } from "react-icons/fa";
-import { BsTwitterX } from "react-icons/bs";
+
 import Link from "next/link";
 import AccountSidebar from "../Cart/AccountSidebar";
 import useAuth from "@/auth/useAuth";
@@ -28,14 +30,22 @@ const Footer = () => {
           <p className="font-medium text-3xl">Orancia.in</p>
           <p className="mt-4 regular-14 text-sm">
             {" "}
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum is simply dummy text of the printing and
-            typesetting industry.
+            Unleash Your Inner Radiance with magic of our Premium skincare
+            products Orancia social media links.
           </p>
           <div className="mt-4 flex gap-2">
-            <BsFacebook size={30} />
-            <RiInstagramFill size={30} />
-            <BsWhatsapp size={30} />
+            <a href="https://www.facebook.com/profile.php?id=61551878665744">
+              <BsFacebook size={30} />
+            </a>
+            <a href="https://www.instagram.com/orancia.in/?hl=en">
+              <RiInstagramFill size={30} />
+            </a>
+            <a href="https://x.com/Orancia2519" className="items-center">
+              <BsTwitterX size={26} />
+            </a>
+            <a href="https://www.linkedin.com/in/orancia-a-beauty-ab86b5327/">
+              <BsLinkedin size={24} />
+            </a>
           </div>
           <div className="mt-4 text-sm">
             © Copyright
@@ -54,19 +64,25 @@ const Footer = () => {
               </Link>
             </li>
             <li className="mb-3">
-              <Link href="#" className="normal-case font-normal">
+              <Link
+                href="/frequently-asked/"
+                className="normal-case font-normal"
+              >
                 Frequently asked questions
               </Link>{" "}
             </li>
 
             <li className="mb-3">
-              <Link href="#" className="normal-case font-normal">
+              <Link
+                href="/cancellation-return/"
+                className="normal-case font-normal"
+              >
                 Cancellation & Return
               </Link>
             </li>
             <li className="mb-3">
               {" "}
-              <Link href="#" className="normal-case font-normal">
+              <Link href="/shipping-delivery" className="normal-case font-normal">
                 Shipping & Delivery
               </Link>
             </li>
@@ -103,12 +119,7 @@ const Footer = () => {
                 )}
               </Link>{" "}
             </li>
-            <li className="mb-3">
-              {" "}
-              <Link href="/contact-us" className="normal-case font-normal">
-                Contact Us
-              </Link>
-            </li>
+
             <li className="mb-3">
               <Link href="/privacy-policy" className="normal-case font-normal">
                 Privacy Policy
@@ -143,8 +154,7 @@ const Footer = () => {
           />
         </div>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-5 bg-gray-200  font-sans   text-sm  text-blue-gray-500  font-medium  drop-shadow">
-        {/* Section 1 */}
+      {/* <div className="grid grid-cols-1 lg:grid-cols-5 bg-gray-200  font-sans   text-sm  text-blue-gray-500  font-medium  drop-shadow">
 
         <div className="p-6 lg:p-14 lg:pr-3">
           <div className="flex p-1 justify-center sm:justify-normal">
@@ -169,14 +179,13 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        {/* Section 1 */}
 
         <div className="p-6 lg:p-14 lg:pr-3">
           <div className="flex p-1 justify-center sm:justify-normal">
             <div className="m-2">
               <div className="bg-[#ed1d24] rounded-[29px] p-2 w-[50px] sm:w-[56px] ">
                 <Image
-                  src="returns.png"
+                  src="/returns.png"
                   className="w-full sm:h-[40px] object-contain rounded-full"
                   height={40}
                   width={40}
@@ -191,7 +200,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        {/* Section 2 */}
 
         <div className="p-6 lg:p-14 lg:pr-3">
           <div className="flex p-1 justify-center sm:justify-normal ">
@@ -212,14 +220,13 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        {/* Section 1 */}
 
         <div className="p-6 lg:p-14 lg:pr-3">
           <div className="flex p-1 justify-center sm:justify-normal">
             <div className="m-2">
               <div className="bg-[#ed1d24] rounded-[29px] p-2 sm:w-[56px]  w-[50px]">
                 <Image
-                  src="brand-image.png"
+                  src="/brand-image.png"
                   className="w-full sm:h-[40px] object-contain rounded-full"
                   height={40}
                   width={40}
@@ -234,7 +241,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        {/* Section 1 */}
 
         <div className="p-6 lg:p-14 lg:pr-10">
           <div className="flex p-1 justify-center sm:justify-normal">
@@ -248,7 +254,7 @@ const Footer = () => {
             <BsTwitterX size={30} className="cursor-pointer" />
           </div>
         </div>
-      </div>
+      </div> */}
       <AccountSidebar isOpen={isOpenAccount} setIsOpen={setIsOpenAccount} />
     </>
   );

@@ -9,13 +9,13 @@ const WhoWeAreCard = () => {
           <div className="grid grid-cols-1">
             <ChildCard
               hedding="Our Vision"
-              para="Bring inspiration and joy to people, everywhere, everyday."
+              para="Fostering Customer Trust & loyalty"
             />
           </div>
           <div className="grid grid-cols-1">
             <ChildCard
               hedding="Our Mission"
-              para="To create a world where our consumers have access to a finely curated, authentic assortment of products and services that delight and elevate the human spirit."
+              para="To delight the customers with our authentic products & services."
             />
           </div>
         </div>
