@@ -48,8 +48,8 @@ const Footer = () => {
             </a>
           </div>
           <div className="mt-4 text-sm">
-            © Copyright
-            <a href="https://www.orancia.com"> orancia.in</a>
+            Developed By
+            <a href="https://www.ixtminds.com"> ixtminds </a>
           </div>
         </div>
         {/* Section  */}
