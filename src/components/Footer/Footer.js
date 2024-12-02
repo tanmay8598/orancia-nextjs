@@ -49,7 +49,7 @@ const Footer = () => {
           </div>
           <div className="mt-4 text-sm">
             © Copyright
-            <a href="https://www.ixtminds.com"> orancia.in</a>
+            <a href="https://www.orancia.com"> orancia.in</a>
           </div>
         </div>
         {/* Section  */}
@@ -82,7 +82,10 @@ const Footer = () => {
             </li>
             <li className="mb-3">
               {" "}
-              <Link href="/shipping-delivery" className="normal-case font-normal">
+              <Link
+                href="/shipping-delivery"
+                className="normal-case font-normal"
+              >
                 Shipping & Delivery
               </Link>
             </li>
@@ -141,7 +144,7 @@ const Footer = () => {
               <MdLocationPin style={{ marginRight: "10px" }} /> Lucknow, India
             </div>
             <div className="flex items-center mb-2">
-              <MdLocalPhone style={{ marginRight: "10px" }} /> +974-30014946
+              <MdLocalPhone style={{ marginRight: "10px" }} /> 9005345980
             </div>
             <div className="flex items-center mb-2">
               <MdEmail style={{ marginRight: "10px" }} /> info@orancia.in
