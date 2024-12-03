@@ -83,12 +83,13 @@ const Page = () => {
   };
 
   const handleChanges = (event, newValue) => {
+    console.log(newValue);
     setRange(newValue);
     setMinprice(newValue[0]);
     setMaxprice(newValue[1]);
   };
 
-  console.log(products);
+  // console.log(products);
 
   return (
     <>
