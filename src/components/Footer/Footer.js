@@ -47,10 +47,6 @@ const Footer = () => {
               <BsLinkedin size={24} />
             </a>
           </div>
-          <div className="mt-4 text-sm">
-            Developed By
-            <a href="https://www.ixtminds.com"> ixtminds </a>
-          </div>
         </div>
         {/* Section  */}
 
@@ -156,7 +152,42 @@ const Footer = () => {
             className="mt-4"
           />
         </div>
+        <div className="lg:col-span-5 lg:flex justify-center items-center lg:w-full">
+          <div className=" w-full flex items-center justify-around mb-4">
+            <Image
+              src="/gmpCertified.png"
+              alt="Tag 1"
+              width={80}
+              height={80}
+              className="rounded-full hover:scale-105 transition-transform"
+            />
+            <Image
+              src="/mwithl.png"
+              alt="Tag 2"
+              width={80}
+              height={80}
+              className="rounded-full hover:scale-105 transition-transform"
+            />
+            <div className="flex flex-col gap-1">
+              <Image
+                src="/ayushCertified.png"
+                alt="Tag 3"
+                width={80}
+                height={80}
+                className="rounded-full hover:scale-105 transition-transform"
+              />
+              <p>Ayush Certified</p>
+            </div>
+          </div>
+        </div>
+        <div className="lg:col-span-5 lg:flex justify-center items-center lg:w-full mb-4 ">
+          <div className="mt-4 text-sm text-center">
+            Developed & Managed By
+            <a href="https://www.ixtminds.com"> ixt minds </a>
+          </div>
+        </div>
       </div>
+
       {/* <div className="grid grid-cols-1 lg:grid-cols-5 bg-gray-200  font-sans   text-sm  text-blue-gray-500  font-medium  drop-shadow">
 
         <div className="p-6 lg:p-14 lg:pr-3">
