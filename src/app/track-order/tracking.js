@@ -9,7 +9,7 @@ import {
 
 const Tracking = ({ trackingData }) => {
   const scans = trackingData?.Shipment;
-
+  console.log(trackingData)
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-8">
       <h2 className="text-2xl font-semibold mb-6 text-center text-gray-800">
@@ -41,7 +41,7 @@ const Tracking = ({ trackingData }) => {
               <span>Time: {scan.StatusTime}</span>
             </div>
             <div className="text-sm text-gray-700 ">
-              {scan.Scans.map((s, i) => (
+              {scan?.Scans?.map((s, i) => (
                 <div key={i} className="flex items-center mb-1">
                   <FaMapMarkerAlt className="text-gray-400 mr-2" />
                   <span>Location: {s.ScanDetail.ScannedLocation}</span>

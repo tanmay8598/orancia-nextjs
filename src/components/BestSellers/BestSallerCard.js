@@ -68,8 +68,8 @@ const BestSellerCard = ({ product, onAddToCart }) => {
           </div>
         </Link>
         <div className="p-2">
-        <div className="h-10">
-          <p className="text-sm font-medium text-left">{short}</p>
+          <div className="h-10">
+            <p className="text-sm font-medium text-left">{short}</p>
 
           </div>
           <p className="text-sm text-gray-400 font-normal text-left">

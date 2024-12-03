@@ -176,7 +176,7 @@ const page = () => {
         userId: user.id,
         isPaid: true,
       });
-
+      console.log(orderResult)
       if (!orderResult.ok) {
         throw new Error("Error creating order.");
       }

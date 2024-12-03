@@ -20,7 +20,10 @@ const page = () => {
 
   const productId = router.product;
 
+
   const [product, setProduct] = useState();
+  const [groupProducts, setGroupProducts] = useState();
+
   const [products, setProducts] = useState();
   const params = useParams();
   const [loading, setLoading] = useState(true);
@@ -31,9 +34,15 @@ const page = () => {
   const [selectedOffer, setSelectedOffer] = useState();
   const [isDealClicked, setIsDealClicked] = useState(false);
   const [discountedPrice, setDiscountedPrice] = useState(0);
+
+  //sizes
+  const [size, setSize] = useState("");
+  const [sizes, setSizes] = useState();
+
   useEffect(() => {
     fetchProduct();
     fetchProducts();
+
   }, [productId, params.category]);
 
 
@@ -66,6 +75,8 @@ const page = () => {
         throw new Error("Failed to fetch product");
       }
       setProduct(response.data);
+      setSize(response.data.size?.name);
+      fetchProductsByGroupId(response.data.groupId);
       setLoading(false);
     } catch (error) {
       setProduct(null)
@@ -73,6 +84,37 @@ const page = () => {
       setLoading(false);
     }
   };
+
+  const fetchProductsByGroupId = async (groupId) => {
+    try {
+      const response = await apiClient.get(`/product/get-by-groupid`, {
+        groupId,
+      });
+
+      if (!response.ok) {
+        setProduct(null)
+        throw new Error("Failed to fetch product");
+      }
+
+      var allSizes = response.data?.map((item) => {
+        return item?.size?.name;
+      });
+      //creating sizes array
+      allSizes = [...new Set(allSizes)];
+      setSizes(allSizes);
+
+
+      setGroupProducts(response.data);
+      setLoading(false);
+    } catch (error) {
+      setGroupProducts(null)
+      console.error("Error fetching product:", error);
+      setLoading(false);
+    }
+  };
+
+
+
 
   if (loading) {
     return (
@@ -133,6 +175,21 @@ const page = () => {
     }
   };
 
+
+  const handleChangeSize = (e) => {
+    setSize(e.target.value);
+    const xyz = e.target.value;
+
+    const product1 = groupProducts?.filter(function (el) {
+      return (
+        el.size?.name === xyz
+      );
+    });
+    if (product1) {
+      setProduct(product1[0]);
+    }
+  };
+
   return (
     <section className="pt-10 pb-10">
       <Toaster position="bottom-right" />
@@ -177,6 +234,34 @@ const page = () => {
               <p className="text-3xl mt-2 mb-2 font-semibold hidden md:block md-6 ">
                 ₹ {product?.sell_price}
               </p>
+
+              <div className="mb-4 lg:w-[50%]">
+                {sizes?.length > 0 && sizes[0] !== undefined ? (
+                  <>
+                    <label
+                      htmlFor="size-select"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Select size
+                    </label>
+                    <select
+                      id="size-select"
+                      name="size"
+                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      onChange={handleChangeSize}
+                    >
+                      {sizes.map((size) => (
+                        <option value={size} key={size}>
+                          {size}
+                        </option>
+                      ))}
+                    </select>
+                  </>
+                ) : (
+                  <p className="text-gray-500">No sizes available</p>
+                )}
+              </div>
+
               {/* counter  */}
               <div className="py-2 px-2 mt-2  sm:mt-1    inline-block bg-white border border-gray-200 rounded-lg">
                 <div className="flex items-center  w-[150px] justify-between  gap-x-1.5">

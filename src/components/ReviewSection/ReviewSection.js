@@ -37,6 +37,8 @@ export const ReviewSection = ({ reviews }) => {
   const averageRating =
     reviews?.reduce((sum, review) => sum + review.rating, 0) / reviews?.length;
   const displayRating = isNaN(averageRating) ? 0 : averageRating.toFixed(1);
+
+
   return (
     <div className="w-full bg-gray-50 md:mx-auto">
       <div className="my-2 mx-auto max-w-screen-md px-10 py-16">

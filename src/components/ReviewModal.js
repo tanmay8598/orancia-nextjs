@@ -31,6 +31,7 @@ const ReviewModal = ({ isOpen, onClose }) => {
       [name]: name === "rating" ? parseInt(value) : value,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -54,6 +55,7 @@ const ReviewModal = ({ isOpen, onClose }) => {
             comment: "",
           });
           onClose();
+          location.reload()
         }, 1000);
       } else {
         console.error("Failed to submit review");
