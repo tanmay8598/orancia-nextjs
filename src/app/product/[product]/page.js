@@ -14,12 +14,10 @@ import apiClient from "@/api/client";
 import ProductReview from "@/components/Account/ProductReview";
 import PincodeChecker from "@/components/Pincode/PincodeChecker";
 
-
 const page = () => {
   const router = useParams();
 
   const productId = router.product;
-
 
   const [product, setProduct] = useState();
   const [groupProducts, setGroupProducts] = useState();
@@ -42,9 +40,7 @@ const page = () => {
   useEffect(() => {
     fetchProduct();
     fetchProducts();
-
   }, [productId, params.category]);
-
 
   const fetchProducts = async () => {
     try {
@@ -71,7 +67,7 @@ const page = () => {
       });
 
       if (!response.ok) {
-        setProduct(null)
+        setProduct(null);
         throw new Error("Failed to fetch product");
       }
       setProduct(response.data);
@@ -79,7 +75,7 @@ const page = () => {
       fetchProductsByGroupId(response.data.groupId);
       setLoading(false);
     } catch (error) {
-      setProduct(null)
+      setProduct(null);
       console.error("Error fetching product:", error);
       setLoading(false);
     }
@@ -92,7 +88,7 @@ const page = () => {
       });
 
       if (!response.ok) {
-        setProduct(null)
+        setProduct(null);
         throw new Error("Failed to fetch product");
       }
 
@@ -103,18 +99,16 @@ const page = () => {
       allSizes = [...new Set(allSizes)];
       setSizes(allSizes);
 
-
       setGroupProducts(response.data);
       setLoading(false);
     } catch (error) {
-      setGroupProducts(null)
+      setGroupProducts(null);
       console.error("Error fetching product:", error);
       setLoading(false);
     }
   };
 
-
-
+ 
 
   if (loading) {
     return (
@@ -129,9 +123,7 @@ const page = () => {
       <div className="flex flex-1 justify-center items-center h-screen">
         <p className="text-center text-xl text-gray-500">Product not found</p>
       </div>
-
-
-    )
+    );
   }
 
   const handleQuantity = (type) => {
@@ -141,7 +133,6 @@ const page = () => {
       if (quantity < product?.countInStock.qty) {
         setQuantity(quantity + 1);
       }
-
     }
   };
 
@@ -175,15 +166,12 @@ const page = () => {
     }
   };
 
-
   const handleChangeSize = (e) => {
     setSize(e.target.value);
     const xyz = e.target.value;
 
     const product1 = groupProducts?.filter(function (el) {
-      return (
-        el.size?.name === xyz
-      );
+      return el.size?.name === xyz;
     });
     if (product1) {
       setProduct(product1[0]);
@@ -394,10 +382,11 @@ const page = () => {
                 <div className="py-2">
                   <button
                     onClick={handleButtonClick}
-                    className={`bg-[#ed1d24] text-white w-full py-3 rounded-md ${!selectedOffer || isDealClicked
-                      ? "cursor-not-allowed opacity-50"
-                      : ""
-                      }`}
+                    className={`bg-[#ed1d24] text-white w-full py-3 rounded-md ${
+                      !selectedOffer || isDealClicked
+                        ? "cursor-not-allowed opacity-50"
+                        : ""
+                    }`}
                     disabled={!selectedOffer || isDealClicked}
                   >
                     {isDealClicked ? "Deal grabbed!" : "Grab this deal"}
@@ -428,6 +417,14 @@ const page = () => {
               <div dangerouslySetInnerHTML={{ __html: product?.details }} />
             </div>
           </div>
+        {product?.ingredients   && 
+          <div className="mb-8 bg-[#FFF6F6] rounded border-blue-gray-100 p-4">
+          <p className="text-xl font-semibold mb-2 md:text-md">Product Ingredients</p>
+          <div className=" ">
+            <div dangerouslySetInnerHTML={{ __html: product?.ingredients }} />
+          </div>
+        </div>
+        }
         </div>
         <RelatedProducts products={products} />
         <div>
