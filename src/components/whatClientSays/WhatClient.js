@@ -53,7 +53,7 @@ const WhatClient = () => {
   const numberOfSlides = 6;
   return (
     <>
-      <section className="mt-[15px] xl:mt-[200px] relative">
+      <section className="xl:mt-[200px] relative">
         {/* <section> */}
         {/* <div className="container mx-auto rounded-[70px px-6]  "> */}
         <div className="max-w-screen-lg mx-auto  ">

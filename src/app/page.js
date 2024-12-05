@@ -40,9 +40,9 @@ export default function Home() {
       <ShopbyCategory />
       {/* <ImageGallery /> */}
       {/* <Hero /> */}
-      {/* <WhatClient /> */}
       <NewArrivals />
-      <KnowYourIngredients />
+      <WhatClient />
+      {/* <KnowYourIngredients /> */}
       <DiffrenceBnner />
       <BlogHero />
     </div>

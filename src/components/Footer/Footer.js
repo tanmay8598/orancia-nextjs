@@ -31,9 +31,10 @@ const Footer = () => {
           <p className="mt-4 regular-14 text-sm">
             {" "}
             Unleash Your Inner Radiance with magic of our Premium skincare
-            products Orancia social media links.
+            products
           </p>
-          <div className="mt-4 flex gap-2">
+          <p className="mt-4 regular-14 text-sm">Social media links.</p>
+          <div className="mt-1 flex gap-2">
             <a href="https://www.facebook.com/profile.php?id=61551878665744">
               <BsFacebook size={30} />
             </a>
@@ -159,25 +160,37 @@ const Footer = () => {
               alt="Tag 1"
               width={80}
               height={80}
-              className="rounded-full hover:scale-105 transition-transform"
+              className="rounded-full hover:scale-105 transition-transform object-cover"
             />
             <Image
               src="/mwithl.png"
               alt="Tag 2"
               width={80}
               height={80}
-              className="rounded-full hover:scale-105 transition-transform"
+              className="rounded-full hover:scale-105 transition-transform object-cover"
             />
-            <div className="flex flex-col gap-1">
+
+            <div>
+
+            
+
+<div className="w-[81px] h-[81px] rounded-full overflow-hidden relative">
+    <Image
+      src="/blkwt.png"
+      alt="Tag 3"
+      className="hover:scale-105 transition-transform object-cover"
+      fill
+    />
+  </div>
               <Image
-                src="/ayushCertified.png"
+                src="/ayushwithoutbg.png"
                 alt="Tag 3"
                 width={80}
-                height={80}
-                className="rounded-full hover:scale-105 transition-transform"
+                height={78}
+                className="rounded-full hover:scale-105 transition-transform object-cover absolute bottom-[38px]"
               />
-              <p>Ayush Certified</p>
             </div>
+              
           </div>
         </div>
         <div className="lg:col-span-5 lg:flex justify-center items-center lg:w-full mb-4 ">

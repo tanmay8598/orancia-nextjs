@@ -13,6 +13,7 @@ import Loader from "@/components/loader/Loader";
 import apiClient from "@/api/client";
 import ProductReview from "@/components/Account/ProductReview";
 import PincodeChecker from "@/components/Pincode/PincodeChecker";
+import KnowYourIngredients from './../../../components/whatClientSays/KnowYourIngredients';
 
 const page = () => {
   const router = useParams();
@@ -426,6 +427,9 @@ const page = () => {
         </div>
         }
         </div>
+
+      <KnowYourIngredients />
+        
         <RelatedProducts products={products} />
         <div>
           <ReviewSection reviews={product?.reviews} />

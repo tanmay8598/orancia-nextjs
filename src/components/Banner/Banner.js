@@ -57,7 +57,7 @@ const Banner = () => {
               src={item.image}
               height={2000}
               width={2000}
-              className="w-full md:h-[400px] min-h-[200px]"
+              className="w-full md:h-[400px] min-h-[200px] max-h-[200px] lg:max-h-full"
               onClick={() => handleClick(item)}
             />
           );
