@@ -14,14 +14,19 @@ import apiClient from "@/api/client";
 import ProductReview from "@/components/Account/ProductReview";
 import PincodeChecker from "@/components/Pincode/PincodeChecker";
 import KnowYourIngredients from './../../../components/whatClientSays/KnowYourIngredients';
+import useAuth from './../../../auth/useAuth';
+import RecentlyViewed from './../../../components/RecentlyViewed/RecentlyViewed';
 
 const page = () => {
+  const {user} = useAuth()
+
   const router = useParams();
 
   const productId = router.product;
 
   const [product, setProduct] = useState();
   const [groupProducts, setGroupProducts] = useState();
+  const [recentlyViewed, setRecentlyViewed] = useState([])
 
   const [products, setProducts] = useState();
   const params = useParams();
@@ -41,6 +46,7 @@ const page = () => {
   useEffect(() => {
     fetchProduct();
     fetchProducts();
+    getRecentlyViewedItems()
   }, [productId, params.category]);
 
   const fetchProducts = async () => {
@@ -67,10 +73,13 @@ const page = () => {
         productId,
       });
 
+    
+
       if (!response.ok) {
         setProduct(null);
         throw new Error("Failed to fetch product");
       }
+      addItemInRecentlyViewed()
       setProduct(response.data);
       setSize(response.data.size?.name);
       fetchProductsByGroupId(response.data.groupId);
@@ -81,6 +90,34 @@ const page = () => {
       setLoading(false);
     }
   };
+
+  const addItemInRecentlyViewed = async() => {
+      try {
+        const response = await apiClient.post(`/product/add-item-in-recently-viewed`, {
+          userId: user?.id,
+          productId: productId
+        })
+
+        // console.log(response)
+      } catch (error) {
+        console.log("Error occured",  error)
+      }
+  }
+
+  const getRecentlyViewedItems = async() => {
+      try {
+        const response = await apiClient.get(`/product/get-recently-viewed-item`, {
+          userId: user?.id,
+          
+        })
+
+    console.log(response.data.recentlyViewedItems)
+
+        setRecentlyViewed(response.data.recentlyViewedItems)
+      } catch (error) {
+        console.log("Error occured",  error)
+      }
+  }
 
   const fetchProductsByGroupId = async (groupId) => {
     try {
@@ -431,6 +468,9 @@ const page = () => {
       <KnowYourIngredients />
         
         <RelatedProducts products={products} />
+
+        <RecentlyViewed products={recentlyViewed}/>
+        
         <div>
           <ReviewSection reviews={product?.reviews} />
         </div>
