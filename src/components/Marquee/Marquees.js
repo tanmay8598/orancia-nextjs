@@ -6,10 +6,11 @@ const Marquees = () => {
     <>
       <Marquee className="gap-3">
         <MarqueeChild title="◉ No Sulphates" />
-        <MarqueeChild title=" ◉ No Parabens" />
-        <MarqueeChild title="◉ No Preservatives" />
-        <MarqueeChild title="◉ No Harsh Chemicals" />
-        <MarqueeChild title="◉ No Harsh Chemicals" />
+        <MarqueeChild title="◉ No Phthalates" />
+        <MarqueeChild title="◉ No Parabens" />
+        <MarqueeChild title="◉ No Minerals Oil" />
+        <MarqueeChild title="◉ No Petroleum" />
+        <MarqueeChild title="◉ No Harmful Chemicals" />
       </Marquee>
     </>
   );

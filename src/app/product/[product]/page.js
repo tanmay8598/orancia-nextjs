@@ -111,7 +111,7 @@ const page = () => {
           
         })
 
-    console.log(response.data.recentlyViewedItems)
+
 
         setRecentlyViewed(response.data.recentlyViewedItems)
       } catch (error) {
@@ -443,7 +443,8 @@ const page = () => {
             <span className="text-sm   font-medium ">
               Size : {product?.size?.name}
             </span>
-            <div className="  ">
+            {console.log(product)}
+            <div className="break-words">
               <div dangerouslySetInnerHTML={{ __html: product?.description }} />
             </div>
           </div>
@@ -465,11 +466,17 @@ const page = () => {
         }
         </div>
 
-      <KnowYourIngredients />
         
         <RelatedProducts products={products} />
+      <KnowYourIngredients />
+
+        {
+          recentlyViewed?.length > 0 && 
+
 
         <RecentlyViewed products={recentlyViewed}/>
+        }
+
         
         <div>
           <ReviewSection reviews={product?.reviews} />

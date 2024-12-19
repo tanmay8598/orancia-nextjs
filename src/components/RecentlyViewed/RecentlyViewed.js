@@ -6,8 +6,8 @@ const RecentlyViewed = ({ products }) => {
 	
   return (
     <section>
-      <div className="mx-auto max-w-screen-3xl px-4 py-10">
-        <h2 className="text-2xl font-bold mb-8">Recently Viewed</h2>
+      <div className="mx-auto max-w-screen-xl px-4 py-12">
+        <h2 className="text-lg md:text-2xl font-bold mb-8">Recently Viewed</h2>
         <div className="overflow-x-auto scrollbar-hide">
           <div className="flex space-x-4">
             {products.map((product, index) => (
@@ -26,7 +26,7 @@ const RecentlyViewed = ({ products }) => {
                   </h3>
                   
                   <div className="text-gray-800 font-bold mt-2">
-                    ${product?.product?.cost_price}
+                  ₹{product?.product?.cost_price}
                   </div>
                 </div>
               </div>

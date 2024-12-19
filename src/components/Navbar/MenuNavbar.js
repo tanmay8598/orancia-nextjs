@@ -56,7 +56,7 @@ const MenuNavbar = () => {
         <header className="relative bg-white">
           <section className="py-2 bg-primary text-center md-py-3">
             <p className="text-white text-xs md:text-sm">
-              🎁 Buy Any 3 Products for Rs 1395 Only!
+              🎁 Buy any 3 product of 3000 Rs Only!
             </p>
           </section>
           <nav

@@ -30,7 +30,7 @@ const RelatedProducts = ({ products }) => {
     // </div>
     <section>
       <div className="mx-auto max-w-screen-3xl px-4 py-10">
-        <div className="text-2xl font-bold mb-8">You Might Also Like</div>
+        <div className="text-lg md:text-2xl font-bold mb-8">You Might Also Like</div>
 
         <BestSellerCarousel products={products} />
       </div>

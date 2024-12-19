@@ -113,7 +113,7 @@ const page = () => {
           The website and our business may be subject to changes periodically.
           We may update this Privacy Policy periodically to reflect changes in
           our practices or for other operational, legal, or regulatory reasons.
-          1 We encourage you to review this Privacy Policy 2 regularly for any
+           We encourage you to review this Privacy Policy  regularly for any
           updates. If you use our site or provide us with information after we
           have updated our privacy policy, or notified you, you are agreeing to
           the privacy policy and the practices mentioned in it.
