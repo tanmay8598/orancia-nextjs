@@ -23,7 +23,7 @@ export default function Home() {
 
   const sigleBannerImage = async() =>{
     const response = await apiClient.get( `/variation/bottombanner/list`)
-    console.log(response.data.banners[0].image)
+
     setBannerImage(response.data.banners[0].image)
   }
 
