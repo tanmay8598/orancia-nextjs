@@ -15,11 +15,20 @@ import Loader from "@/components/loader/Loader";
 import WhatClient from "@/components/whatClientSays/WhatClient";
 import { useEffect, useState } from "react";
 import KnowYourIngredients from "./../components/whatClientSays/KnowYourIngredients";
+import apiClient from './../api/client';
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
+  const [bannerImage, setBannerImage] = useState();
+
+  const sigleBannerImage = async() =>{
+    const response = await apiClient.get( `/variation/bottombanner/list`)
+    console.log(response.data.banners[0].image)
+    setBannerImage(response.data.banners[0].image)
+  }
 
   useEffect(() => {
+    sigleBannerImage()
     setInterval(() => setLoading(false), 2000);
   }, []);
 
@@ -36,7 +45,7 @@ export default function Home() {
       <Banner />
       <Marquees />
       <BestSellers />
-      <SingleBanner data="https://discoverpilgrim.com/cdn/shop/files/Buy_Any_3_At_999_Homepage_Desktop_Banner_1920x520_82bb6c8a-800c-481b-8a2c-fdfa2e1315ba.jpg?v=1715843796&width=2000" />
+      <SingleBanner data={bannerImage} />
       <ShopbyCategory />
       {/* <ImageGallery /> */}
       {/* <Hero /> */}
