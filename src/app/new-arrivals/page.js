@@ -5,9 +5,7 @@ import apiClient from "@/api/client";
 import Loader from "@/components/loader/Loader";
 import NewProducts from "@/components/BestSellers/NewProducts";
 
-
 const Page = () => {
-
   const [products, setProducts] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -18,15 +16,17 @@ const Page = () => {
   const [pageSize, setPageSize] = useState();
 
   useEffect(() => {
-
     fetchProducts();
   }, [currentPage]);
 
   const fetchProducts = async () => {
     try {
-      const response = await apiClient.get("product/get-new-arrival", {
-        pageNumber: currentPage
-      });
+      const response = await apiClient.get(
+        "product/share-new-arrival-products",
+        {
+          pageNumber: currentPage,
+        }
+      );
 
       if (response.ok) {
         setProducts(response.data.products);
@@ -41,8 +41,6 @@ const Page = () => {
     }
   };
 
-
-
   if (isLoading) {
     return (
       <div>
@@ -55,18 +53,10 @@ const Page = () => {
     return <div>Error: {error}</div>;
   }
 
-
-
   return (
     <>
       <div className="max-w-screen-xl mx-2 p-2 md:pb-16 md:pt-1">
-
-
         <div className="w-full max-container h-full flex flex-col md:flex-row pb-10 gap-6 mt-5 justify-between">
-
-
-
-
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:gap-5">
             {products.length === 0 ? (
               <p className="text-center justify-center flex align-middle">
@@ -74,7 +64,12 @@ const Page = () => {
               </p>
             ) : (
               products.map((product, index) => (
-                <NewProducts key={product.id} product={product.productDetails ? product.productDetails : product} />
+                <NewProducts
+                  key={product.id}
+                  product={
+                    product.productDetails ? product.productDetails : product
+                  }
+                />
               ))
             )}
           </div>

@@ -23,12 +23,15 @@ const Page = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await apiClient.get("product/most-ordered-products", {
-        pageNumber: currentPage,
-      });
+      const response = await apiClient.get(
+        "product/share-best-seller-products",
+        {
+          pageNumber: currentPage,
+        }
+      );
 
       if (response.ok) {
-        setProducts(response.data.mostOrderedProducts);
+        setProducts(response.data.products);
         setPageSize(response.data.pageCount);
       } else {
         setError(response.statusText);

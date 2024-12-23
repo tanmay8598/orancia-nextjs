@@ -4,32 +4,31 @@ import React, { useEffect, useState } from "react";
 import BestSellerCarousel from "./BestSellerCarousel";
 import apiClient from "@/api/client";
 
-
 const BestSellers = () => {
   const [error, setError] = useState(null);
   const [product, setProduct] = useState([]);
-
 
   useEffect(() => {
     fetchData();
   }, []);
 
-
   const fetchData = async () => {
     try {
-      const response = await apiClient.get("product/most-ordered-products");
+      const response = await apiClient.get(
+        "product/share-best-seller-products"
+      );
+
+     
 
       if (response.ok) {
-        setProduct(response.data.mostOrderedProducts);
+        setProduct(response.data.products);
       } else {
         setError(response.status);
       }
     } catch (error) {
-
       setError(error.message);
     }
   };
-
 
   return (
     <section>

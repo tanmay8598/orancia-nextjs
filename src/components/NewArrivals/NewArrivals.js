@@ -8,15 +8,15 @@ const NewArrivals = () => {
   const [error, setError] = useState(null);
   const [product, setProduct] = useState([]);
 
-
   useEffect(() => {
     fetchData();
   }, []);
 
-
   const fetchData = async () => {
     try {
-      const response = await apiClient.get("product/get-new-arrival");
+      const response = await apiClient.get(
+        "product/share-new-arrival-products"
+      );
 
       if (response.ok) {
         setProduct(response.data.products);
