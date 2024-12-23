@@ -13,12 +13,12 @@ import Loader from "@/components/loader/Loader";
 import apiClient from "@/api/client";
 import ProductReview from "@/components/Account/ProductReview";
 import PincodeChecker from "@/components/Pincode/PincodeChecker";
-import KnowYourIngredients from './../../../components/whatClientSays/KnowYourIngredients';
-import useAuth from './../../../auth/useAuth';
-import RecentlyViewed from './../../../components/RecentlyViewed/RecentlyViewed';
+import KnowYourIngredients from "./../../../components/whatClientSays/KnowYourIngredients";
+import useAuth from "./../../../auth/useAuth";
+import RecentlyViewed from "./../../../components/RecentlyViewed/RecentlyViewed";
 
 const page = () => {
-  const {user} = useAuth()
+  const { user } = useAuth();
 
   const router = useParams();
 
@@ -26,7 +26,7 @@ const page = () => {
 
   const [product, setProduct] = useState();
   const [groupProducts, setGroupProducts] = useState();
-  const [recentlyViewed, setRecentlyViewed] = useState([])
+  const [recentlyViewed, setRecentlyViewed] = useState([]);
 
   const [products, setProducts] = useState();
   const params = useParams();
@@ -46,7 +46,7 @@ const page = () => {
   useEffect(() => {
     fetchProduct();
     fetchProducts();
-    getRecentlyViewedItems()
+    getRecentlyViewedItems();
   }, [productId, params.category]);
 
   const fetchProducts = async () => {
@@ -54,7 +54,7 @@ const page = () => {
       const response = await apiClient.get("/product/get", {
         category: params.category,
       });
-      // console.log(response, "res");
+
       if (response.ok) {
         setProducts(response.data.products);
       } else {
@@ -73,13 +73,11 @@ const page = () => {
         productId,
       });
 
-    
-
       if (!response.ok) {
         setProduct(null);
         throw new Error("Failed to fetch product");
       }
-      addItemInRecentlyViewed()
+      addItemInRecentlyViewed();
       setProduct(response.data);
       setSize(response.data.size?.name);
       fetchProductsByGroupId(response.data.groupId);
@@ -91,33 +89,34 @@ const page = () => {
     }
   };
 
-  const addItemInRecentlyViewed = async() => {
-      try {
-        const response = await apiClient.post(`/product/add-item-in-recently-viewed`, {
+  const addItemInRecentlyViewed = async () => {
+    try {
+      const response = await apiClient.post(
+        `/product/add-item-in-recently-viewed`,
+        {
           userId: user?.id,
-          productId: productId
-        })
+          productId: productId,
+        }
+      );
+    } catch (error) {
+      console.log("Error occured", error);
+    }
+  };
 
-        // console.log(response)
-      } catch (error) {
-        console.log("Error occured",  error)
-      }
-  }
-
-  const getRecentlyViewedItems = async() => {
-      try {
-        const response = await apiClient.get(`/product/get-recently-viewed-item`, {
+  const getRecentlyViewedItems = async () => {
+    try {
+      const response = await apiClient.get(
+        `/product/get-recently-viewed-item`,
+        {
           userId: user?.id,
-          
-        })
+        }
+      );
 
-
-
-        setRecentlyViewed(response.data.recentlyViewedItems)
-      } catch (error) {
-        console.log("Error occured",  error)
-      }
-  }
+      setRecentlyViewed(response.data.recentlyViewedItems);
+    } catch (error) {
+      console.log("Error occured", error);
+    }
+  };
 
   const fetchProductsByGroupId = async (groupId) => {
     try {
@@ -145,8 +144,6 @@ const page = () => {
       setLoading(false);
     }
   };
-
- 
 
   if (loading) {
     return (
@@ -182,17 +179,14 @@ const page = () => {
     });
   };
 
-  // console.log(product, "product");
-
   const handleOfferSelection = (quantitys, discount) => {
     quantitys = Number(quantitys);
-    // console.log(typeof quantitys, "quantitys");
+
     const newDiscountedPrice = product.sell_price * (1 - discount / 100);
     setDiscountedPrice(newDiscountedPrice);
     setSelectedOffer(quantitys);
   };
   const handleButtonClick = () => {
-    // console.log({ ...product, discountedPrice }, "product");
     if (selectedOffer) {
       dispatch(add({ product, quantity: selectedOffer, discountedPrice }));
       setIsDealClicked(true);
@@ -443,9 +437,12 @@ const page = () => {
             <span className="text-sm   font-medium ">
               Size : {product?.size?.name}
             </span>
-            {console.log(product)}
-            <div className="break-words">
-              <div dangerouslySetInnerHTML={{ __html: product?.description }} />
+
+            <div className="">
+              <div
+                dangerouslySetInnerHTML={{ __html: product?.description }}
+                className="[&_*]:m-0 [&_*]:p-0 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mb-4 [&_h3]:text-lg [&_h3]:font-medium [&_h3]:mb-2"
+              />
             </div>
           </div>
           <div className="mb-8 bg-[#FFF6F6] rounded border-blue-gray-100 p-4">
@@ -453,31 +450,33 @@ const page = () => {
               Product Details
             </p>
             <div className=" ">
-              <div dangerouslySetInnerHTML={{ __html: product?.details }} />
+              <div
+                dangerouslySetInnerHTML={{ __html: product?.details }}
+                className="[&_*]:m-0 [&_*]:p-0 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mb-4 [&_h3]:text-lg [&_h3]:font-medium [&_h3]:mb-2"
+              />
             </div>
           </div>
-        {product?.ingredients   && 
-          <div className="mb-8 bg-[#FFF6F6] rounded border-blue-gray-100 p-4">
-          <p className="text-xl font-semibold mb-2 md:text-md">Product Ingredients</p>
-          <div className=" ">
-            <div dangerouslySetInnerHTML={{ __html: product?.ingredients }} />
-          </div>
-        </div>
-        }
+          {product?.ingredients && (
+            <div className="mb-8 bg-[#FFF6F6] rounded border-blue-gray-100 p-4">
+              <p className="text-xl font-semibold mb-2 md:text-md">
+                Product Ingredients
+              </p>
+              <div className=" ">
+                <div
+                  dangerouslySetInnerHTML={{ __html: product?.ingredients }}
+                />
+              </div>
+            </div>
+          )}
         </div>
 
-        
         <RelatedProducts products={products} />
-      <KnowYourIngredients />
+        <KnowYourIngredients />
 
-        {
-          recentlyViewed?.length > 0 && 
+        {recentlyViewed?.length > 0 && (
+          <RecentlyViewed products={recentlyViewed} />
+        )}
 
-
-        <RecentlyViewed products={recentlyViewed}/>
-        }
-
-        
         <div>
           <ReviewSection reviews={product?.reviews} />
         </div>
