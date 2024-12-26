@@ -53,7 +53,7 @@ const page = () => {
     router.push("/account/");
   };
 
-  console.log(myOrder)
+
 
   return (
     <div className="shadow-lg m-8 rounded-lg pb-4 p-6 shadow-blue-gray-300 bg-white">

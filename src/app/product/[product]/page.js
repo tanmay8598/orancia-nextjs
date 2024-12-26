@@ -44,12 +44,13 @@ const page = () => {
   const [sizes, setSizes] = useState();
 
   useEffect(() => {
-    fetchProduct();
-    fetchProducts();
+    // fetchProduct();
+    fetchSimilarProducts();  //similar product from same category
     getRecentlyViewedItems();
+    fetchProductsByGroupId()
   }, [productId, params.category]);
 
-  const fetchProducts = async () => {
+  const fetchSimilarProducts = async () => {
     try {
       const response = await apiClient.get("/product/get", {
         category: params.category,
@@ -78,9 +79,10 @@ const page = () => {
         throw new Error("Failed to fetch product");
       }
       addItemInRecentlyViewed();
-      setProduct(response.data);
       setSize(response.data.size?.name);
-      fetchProductsByGroupId(response.data.groupId);
+      setProduct(response.data);
+
+      // fetchProductsByGroupId(response.data.groupId);
       setLoading(false);
     } catch (error) {
       setProduct(null);
@@ -121,9 +123,11 @@ const page = () => {
   const fetchProductsByGroupId = async (groupId) => {
     try {
       const response = await apiClient.get(`/product/get-by-groupid`, {
-        groupId,
+        groupId: productId,
       });
-
+      setProduct(response.data[0])
+      addItemInRecentlyViewed();
+      setSize(response.data[0].size?.name);
       if (!response.ok) {
         setProduct(null);
         throw new Error("Failed to fetch product");
@@ -414,11 +418,10 @@ const page = () => {
                 <div className="py-2">
                   <button
                     onClick={handleButtonClick}
-                    className={`bg-[#ed1d24] text-white w-full py-3 rounded-md ${
-                      !selectedOffer || isDealClicked
-                        ? "cursor-not-allowed opacity-50"
-                        : ""
-                    }`}
+                    className={`bg-[#ed1d24] text-white w-full py-3 rounded-md ${!selectedOffer || isDealClicked
+                      ? "cursor-not-allowed opacity-50"
+                      : ""
+                      }`}
                     disabled={!selectedOffer || isDealClicked}
                   >
                     {isDealClicked ? "Deal grabbed!" : "Grab this deal"}
@@ -435,7 +438,7 @@ const page = () => {
               Product Description
             </p>
             <span className="text-sm   font-medium ">
-              Size : {product?.size?.name}
+              Size : {product?.size?.name ? product?.size?.name : "Not available"}
             </span>
 
             <div className="">

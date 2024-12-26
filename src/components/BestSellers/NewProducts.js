@@ -51,7 +51,7 @@ const NewProducts = ({ product }) => {
         </span>
 
         <div className=" flex-col  flex">
-          <Link className="group" href={`/product/${product._id}`}>
+          <Link className="group" href={`/product/${product.groupId}`}>
             <div
               className="overflow-hidden rounded-t-lg  h-[228px]  flex items-center justify-center"
               onMouseEnter={handleMouseEnter}

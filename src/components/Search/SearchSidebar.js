@@ -67,7 +67,7 @@ const SearchSidebar = ({ isOpen, setIsOpen }) => {
                     <ul className="mt-1 text-[15px]">
                       <li>
                         <Link
-                          href={`/product/${result._id}`}
+                          href={`/product/${result.groupId}`}
                           className=" "
                           onClick={handleCloseModal}
                         >

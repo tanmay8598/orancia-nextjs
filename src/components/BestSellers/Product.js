@@ -47,7 +47,7 @@ const Product = ({ product }) => {
         pauseOnHover
       /> */}
       <Toaster position="bottom-right" />
-      <Link className="group" href={`/product/${product._id}`}>
+      <Link className="group" href={`/product/${product.groupId}`}>
         <div className="drop-shadow-md rounded-md bg-white border-red-500 h-[300px] mb-3 p-4 overflow-hidden relative md:h-[328px]">
           <div className=" w-full h-full group-hover:bg-primary/10 transition-all duration-300 flex justify-center items-center">
             <div className="absolute top-8 left-8 bg-[#ed1d24] text-white px-3 text-sm uppercase font-medium ">
