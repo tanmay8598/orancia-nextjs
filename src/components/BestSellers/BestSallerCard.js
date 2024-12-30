@@ -9,7 +9,7 @@ import Link from "next/link";
 import AddtoCartBtn from "../Button/AddtoCartBtn";
 import { add } from "@/redux/features/cart/cartSlice";
 
-const BestSellerCard = ({ product, onAddToCart }) => {
+const BestSellerCard = ({ product, type }) => {
   const [shownToasts, setShownToasts] = useState(new Set());
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const short = product.name.replace(/(.{33})..+/, "$1");
@@ -44,7 +44,8 @@ const BestSellerCard = ({ product, onAddToCart }) => {
   return (
     <div className="rounded-xl m-2 shadow-lg relative">
       <span className="absolute bg-red-600 p-0 px-2 text-white rounded-tl-lg rounded-br-lg">
-        Best Seller
+
+        {type === 'new-arrivals' ? "New Arrival" : "Best Seller"}
       </span>
       <div className="flex-col flex">
         <Link className="group" href={`/product/${product.groupId}`}>

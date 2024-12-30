@@ -35,7 +35,7 @@ const NewArrivals = () => {
           New Arrivals
         </p>
 
-        <BestSellerCarousel products={product} />
+        <BestSellerCarousel products={product} type='new-arrivals' />
         <div className="my-8">
           <Link href="/new-arrivals">
             <button className="btn btn-accent rounded-lg mx-auto mt-8">

@@ -33,6 +33,7 @@ const BlogContent = ({ blogid }) => {
     }
   };
 
+
   return (
     <div className="mx-4 sm:mx-14 max-w-screen-2x1 py-5 px-7 lg:h-full lg:mb-10 lg:mt-5">
       {loading ? (
@@ -45,7 +46,7 @@ const BlogContent = ({ blogid }) => {
               alt="logo"
               height={3000}
               width={2000}
-              className="w-full md:h-[400px] min-h-[200px] object-cover"
+              className="w-full h-full"
             />
           ) : (
             <p>Image not available</p>

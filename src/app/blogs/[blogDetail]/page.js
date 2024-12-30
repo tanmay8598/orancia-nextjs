@@ -3,16 +3,16 @@ import BlogContent from "@/components/Blog/BlogContent";
 // import { useParams } from "next/navigation";
 
 export async function generateMetadata({ params }) {
-  const blogid = params.blogDetails;
-  const { data } = await apiclient.get(`/blog/blogbyid/${blogid}`);
+  const blogid = params.blogDetail;
+
+  const { data } = await apiclient.get(`blog/blogbyid/${blogid}`);
+
 
   return {
     title: data?.mtitle,
-
     description: data?.mdesc,
-
     openGraph: {
-      images: [String(data?.image)],
+      images: [String(data?.image[0])],
     },
   };
 }

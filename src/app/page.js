@@ -21,8 +21,8 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [bannerImage, setBannerImage] = useState();
 
-  const sigleBannerImage = async() =>{
-    const response = await apiClient.get( `/variation/bottombanner/list`)
+  const sigleBannerImage = async () => {
+    const response = await apiClient.get(`/variation/bottombanner/list`)
 
     setBannerImage(response.data.banners[0].image)
   }

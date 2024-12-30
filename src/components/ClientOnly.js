@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import AuthContext from "@/auth/context";
 import MenuNavbar from "@/components/Navbar/MenuNavbar";
 import Footer from "@/components/Footer/Footer";
+import ScrollToTop from "./ScrollToTop/ScrollToTop";
 
 const ClientOnly = ({ children }) => {
   const [user, setUser] = useState();
@@ -21,8 +22,12 @@ const ClientOnly = ({ children }) => {
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <MenuNavbar />
-      <main className="relative overflow-hidden">{children}</main>
+      <main className="relative overflow-hidden">{children}
+
+        <ScrollToTop />
+      </main>
       <Footer />
+
     </AuthContext.Provider>
   );
 };

@@ -46,9 +46,9 @@ const NewProducts = ({ product }) => {
   return (
     <div>
       <div className="rounded-xl m-2 shadow-lg">
-        <span className="absolute bg-[#ed1d24] p-0 px-2 text-white rounded-tl-lg rounded-br-lg">
+        {/* <span className="absolute bg-[#ed1d24] p-0 px-2 text-white rounded-tl-lg rounded-br-lg">
           Best Seller
-        </span>
+        </span> */}
 
         <div className=" flex-col  flex">
           <Link className="group" href={`/product/${product.groupId}`}>

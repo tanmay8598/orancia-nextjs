@@ -9,7 +9,8 @@ import BestSallerCard from "./BestSallerCard";
 import Slider from "react-slick";
 import { Toaster } from "react-hot-toast";
 
-const BestSellerCarousel = ({ products }) => {
+const BestSellerCarousel = ({ products, type }) => {
+
   const [isMobileView, setIsMobileView] = useState(false);
   const sliderRef = useRef(null);
 
@@ -43,6 +44,7 @@ const BestSellerCarousel = ({ products }) => {
                 product={
                   product.productDetails ? product.productDetails : product
                 }
+                type={type}
               />
             ))}
           </Slider>
@@ -94,6 +96,7 @@ const BestSellerCarousel = ({ products }) => {
                   product={
                     product.productDetails ? product.productDetails : product
                   }
+                  type={type}
                 />
               </SwiperSlide>
             ))}

@@ -5,6 +5,7 @@ import "./globals.css";
 import { Providers } from "@/redux/provider";
 import ClientOnly from "@/components/ClientOnly";
 
+
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <ClientOnly>{children}</ClientOnly>
         </Providers>
+
       </body>
     </html>
   );

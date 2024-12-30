@@ -3,7 +3,7 @@ import React from "react";
 
 const RecentlyViewed = ({ products }) => {
 
-	
+
   return (
     <section>
       <div className="mx-auto max-w-screen-xl px-4 py-12">
@@ -24,9 +24,9 @@ const RecentlyViewed = ({ products }) => {
                   <h3 className="text-lg font-semibold truncate">
                     {product.product.name}
                   </h3>
-                  
+
                   <div className="text-gray-800 font-bold mt-2">
-                  ₹{product?.product?.cost_price}
+                    ₹{product?.product?.cost_price}
                   </div>
                 </div>
               </div>

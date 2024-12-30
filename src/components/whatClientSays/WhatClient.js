@@ -19,7 +19,7 @@ const data = [
   },
   {
     id: 1,
-    name: "Pranjal Dev   ",
+    name: "Pranjal Dev",
 
     address: "Lucknow India",
     image:
