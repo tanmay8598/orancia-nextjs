@@ -11,7 +11,7 @@ const NewOrderChild = ({ orderData }) => {
   };
 
   const handleOrderClick = (orderId) => {
-    router.push(`/product/${orderId}`);
+    // router.push(`/product/${orderId}`);
   };
 
   return (
@@ -58,9 +58,9 @@ const NewOrderChild = ({ orderData }) => {
 
                   <div className="col-span-4 sm:pl-2">
                     <div className="text-lg font-semibold text-gray-800">{itemData.name}</div>
-                    <div className="text-sm text-gray-500 mt-1">
+                    {/* <div className="text-sm text-gray-500 mt-1">
                       <span className="font-medium text-gray-700">Product:</span> {itemData.product}
-                    </div>
+                    </div> */}
                     <div className="text-sm text-gray-500 mt-1">
                       <span className="font-medium text-gray-700">Quantity:</span> {itemData.qty}
                     </div>
@@ -73,12 +73,12 @@ const NewOrderChild = ({ orderData }) => {
               </div>
             ))}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 border-t pt-4 gap-4 items-center">
+            <div className="lg:flex justify-between  grid-cols-1 sm:grid-cols-2 border-t pt-4 gap-4 relative">
               <div className="flex justify-between sm:justify-start items-center col-span-1">
                 <div className="text-lg font-medium text-gray-700">Total Amount:</div>
                 <div className="text-lg font-semibold text-gray-800 ml-2">₹{orderData.totalPrice}</div>
               </div>
-              <div className="text-right sm:text-left col-span-1">
+              <div className="sm:text-left col-span-1 mt-5 lg:mt-0">
                 <button
                   className="text-indigo-600 font-medium hover:underline"
                   onClick={handleOrder}

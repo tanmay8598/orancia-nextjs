@@ -48,7 +48,7 @@ const ProductDetail = ({ productId }) => {
     useEffect(() => {
         // fetchProduct();
         fetchSimilarProducts();  //similar product from same category
-        getRecentlyViewedItems();
+
         fetchProductsByGroupId()
     }, [productId, params.category]);
 
@@ -69,6 +69,11 @@ const ProductDetail = ({ productId }) => {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        addItemInRecentlyViewed()
+        getRecentlyViewedItems();
+    }, [product, user])
 
     // const fetchProduct = async () => {
     //   try {
@@ -99,7 +104,7 @@ const ProductDetail = ({ productId }) => {
                 `/product/add-item-in-recently-viewed`,
                 {
                     userId: user?.id,
-                    productId: productId,
+                    productId: product?._id,
                 }
             );
         } catch (error) {
@@ -108,6 +113,7 @@ const ProductDetail = ({ productId }) => {
     };
 
     const getRecentlyViewedItems = async () => {
+
         try {
             const response = await apiClient.get(
                 `/product/get-recently-viewed-item`,
@@ -128,7 +134,7 @@ const ProductDetail = ({ productId }) => {
                 groupId: productId,
             });
             setProduct(response.data[0])
-            addItemInRecentlyViewed();
+
             setSize(response.data[0].size?.name);
             if (!response.ok) {
                 setProduct(null);

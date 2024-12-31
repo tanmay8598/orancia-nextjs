@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React from "react";
 
 const RecentlyViewed = ({ products }) => {
@@ -11,8 +12,9 @@ const RecentlyViewed = ({ products }) => {
         <div className="overflow-x-auto scrollbar-hide">
           <div className="flex space-x-4">
             {products.map((product, index) => (
-              <div
+              <Link
                 key={index}
+                href={`/product/${product?.product?.groupId}`}
                 className="min-w-[200px] w-60 bg-white shadow-lg rounded-lg p-4 transform transition-transform hover:scale-105"
               >
                 <img
@@ -29,7 +31,7 @@ const RecentlyViewed = ({ products }) => {
                     ₹{product?.product?.cost_price}
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

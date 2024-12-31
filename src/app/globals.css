@@ -157,3 +157,17 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.blog-content ul {
+  list-style-type: disc; /* Adds bullet points */
+  padding-left: 20px; /* Adds indentation */
+}
+
+.blog-content ol {
+  list-style-type: decimal; /* Adds numbered points */
+  padding-left: 20px; /* Adds indentation */
+}
+
+.blog-content li {
+  margin-bottom: 5px; /* Adds spacing between list items */
+}

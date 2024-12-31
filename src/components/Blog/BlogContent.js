@@ -2,8 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { Parser } from "html-to-react";
+// import { Parser } from "html-to-react";
 import apiClient from "@/api/client";
+import parse from 'html-react-parser';
+import DOMPurify from 'dompurify'
 import Loader from "../loader/Loader";
 
 const BlogContent = ({ blogid }) => {
@@ -33,6 +35,13 @@ const BlogContent = ({ blogid }) => {
     }
   };
 
+  const htmlFrom = (htmlString) => {
+
+    const cleanHtmlString = DOMPurify.sanitize(htmlString,
+      { USE_PROFILES: { html: true } });
+    const html = parse(cleanHtmlString);
+    return html;
+  }
 
   return (
     <div className="mx-4 sm:mx-14 max-w-screen-2x1 py-5 px-7 lg:h-full lg:mb-10 lg:mt-5">
@@ -55,8 +64,9 @@ const BlogContent = ({ blogid }) => {
             {" "}
             {data.heading}
           </h3>
-          <div className="mt-2 lg:mt-10 w-auto text-justify fit-img">
-            {Parser().parse(data.content)}
+          <div className="mt-2 lg:mt-10 w-full fit-img blog-content">
+            {/* {Parser().parse(data.content)} */}
+            {data.content && htmlFrom(data.content)}
           </div>
           {error && <p className="text-red-500">{error}</p>}{" "}
         </div>
@@ -66,3 +76,5 @@ const BlogContent = ({ blogid }) => {
 };
 
 export default BlogContent;
+
+

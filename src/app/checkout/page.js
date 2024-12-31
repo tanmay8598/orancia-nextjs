@@ -97,7 +97,8 @@ const page = () => {
   }, [Razorpay, user]);
 
   useEffect(() => {
-    if (user && user.shippingAddress) {
+    if (user && Object.keys(user.shippingAddress).length !== 0 && user.shippingAddress.constructor === Object) {
+
       setShippingAddress(user.shippingAddress);
       checkDelivery(user.shippingAddress.pincode)
     }
@@ -176,7 +177,7 @@ const page = () => {
         userId: user.id,
         isPaid: true,
       });
-      console.log(orderResult)
+
       if (!orderResult.ok) {
         throw new Error("Error creating order.");
       }
@@ -308,7 +309,7 @@ const page = () => {
                   </p>
                 </>
               ) : (
-                <p>Loading...</p>
+                <p className="text-center">No address found</p>
               )}
             </div>
 
