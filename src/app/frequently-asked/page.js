@@ -24,23 +24,24 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="max-w-screen-xl mx-auto p-8">
+    <div className="max-w-screen-lg mx-auto p-8">
       <h1 className="text-2xl font-bold mb-6 text-center">{faqs?.coreTitle}</h1>
 
       {faqs?.sections.map((section, sectionIndex) => (
         <div key={sectionIndex} className="faq-container">
-          <h2 className="text-xl font-semibold mb-4 text-center">
+          <h2 className="text-xl font-semibold mb-4 text-center p-3 bg-gray-200">
             {section.title}
           </h2>
           {section.faqs.map((faq, faqIndex) => (
-            <div key={faqIndex} className="faq-item mb-8">
+            <div
+              key={faqIndex}
+              className="faq-item mb-8 border-b-2 lg:border-b-1 border-gray-300  "
+            >
               <div
                 className="cursor-pointer flex justify-between items-center mb-4"
                 onClick={() => toggleExpand(sectionIndex, faqIndex)}
               >
-                <h3 className="text-lg font-medium">
-                  {faq.question}
-                </h3>
+                <h3 className="text-lg font-medium">{faq.question}</h3>
                 <span className="text-lg font-bold">
                   {expanded[`${sectionIndex}-${faqIndex}`] ? "-" : "+"}
                 </span>
@@ -56,7 +57,9 @@ const Page = () => {
                             key={stepIndex}
                             className="flex gap-2 flex-wrap items-start"
                           >
-                            <span className="font-bold">Step {stepIndex + 1}:</span>
+                            <span className="font-bold">
+                              Step {stepIndex + 1}:
+                            </span>
                             <span>{step}</span>
                           </li>
                         ))}
@@ -76,9 +79,3 @@ const Page = () => {
 };
 
 export default Page;
-
-
-
-
-
-

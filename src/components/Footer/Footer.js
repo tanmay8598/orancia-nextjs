@@ -65,7 +65,7 @@ const Footer = () => {
                 href="/frequently-asked/"
                 className="normal-case font-normal"
               >
-                Frequently asked questions
+                FAQ 
               </Link>{" "}
             </li>
 
