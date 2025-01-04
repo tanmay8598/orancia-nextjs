@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
 import toast, { Toaster } from "react-hot-toast";
 import InputField from "./InputField";
 import LogoInformation from "./LogoInformation";
-import { useRouter } from "next/navigation";
-import apiClient from "@/api/client";
+import { BiSolidHide, BiSolidShow } from "react-icons/bi";
+import ForgetPassword from "./ForgetPassword";
 import useAuth from "@/auth/useAuth";
-import { BiSolidHide } from "react-icons/bi";
-import { BiSolidShow } from "react-icons/bi";
+import apiClient from "@/api/client";
 
 const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
   const [formData, setFormData] = useState({
@@ -18,24 +15,23 @@ const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
   });
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [errors, setErrors] = useState({});
-  const [showPassword, setShowPassword] = useState(false); // State to track password visibility
+  const [showPassword, setShowPassword] = useState(false);
+  const [forgetPasswordOpen, setForgetPasswordOpen] = useState(false);
 
   const schema = Yup.object().shape({
     email: Yup.string().required("Email is required"),
     password: Yup.string().required("Password is required"),
   });
+
   const { logIn } = useAuth();
+
   const handleInputChange = (e) => {
     const { id, value, type } = e.target;
-    const newValue = type === "checkbox" ? checked : value;
+    const newValue = type === "checkbox" ? e.target.checked : value;
     setFormData({ ...formData, [id]: newValue });
     if (errors[id]) {
       setErrors({ ...errors, [id]: "" });
     }
-  };
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
   };
 
   const validate = async () => {
@@ -85,60 +81,64 @@ const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
 
   return (
     <>
-      <LogoInformation />
-
-      <form onSubmit={handleSubmit}>
-        <InputField
-          id="email"
-          label="Email"
-          value={formData.email}
-          onChange={handleInputChange}
-          error={errors.email}
-          placeholder=" "
+      {forgetPasswordOpen ? (
+        <ForgetPassword
+          isOpen={forgetPasswordOpen}
+          setIsOpen={setForgetPasswordOpen}
         />
-        <div className="relative">
-          <InputField
-            id="password"
-            label="Password"
-            type={isPasswordVisible ? "text" : "password"} // Toggle input type based on state
-            value={formData.password}
-            onChange={handleInputChange}
-            error={errors.password}
-            placeholder=" "
-          />
-          <button
-            type="button"
-            className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
-            onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-          >
-            {isPasswordVisible ? (
-              <BiSolidHide className="text-lg" />
-            ) : (
-              <BiSolidShow className="text-lg" />
-            )}
-          </button>
-        </div>
+      ) : (
+        <>
+          <LogoInformation />
 
-        <button
-          className="bg-[#ed1d24] text-white w-full font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="submit"
-          onClick={() => setIsOpen(true)}
-        >
-          Login
-        </button>
-      </form>
+          <form onSubmit={handleSubmit}>
+            <InputField
+              id="email"
+              label="Email"
+              value={formData.email}
+              onChange={handleInputChange}
+              error={errors.email}
+              placeholder=" "
+            />
+            <div className="relative">
+              <InputField
+                id="password"
+                label="Password"
+                type={isPasswordVisible ? "text" : "password"}
+                value={formData.password}
+                onChange={handleInputChange}
+                error={errors.password}
+                placeholder=" "
+              />
+              <button
+                type="button"
+                className="absolute -inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+              >
+                {isPasswordVisible ? (
+                  <BiSolidHide className="text-lg" />
+                ) : (
+                  <BiSolidShow className="text-lg" />
+                )}
+              </button>
 
-      {/* <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      /> */}
+              <p
+                className="text-xs mb-2 -mt-2 underline cursor-pointer"
+                onClick={() => setForgetPasswordOpen(true)}
+              >
+                Forgot password?
+              </p>
+            </div>
+
+            <button
+              className="bg-[#ed1d24] text-white w-full font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+              onClick={() => setIsOpen(true)}
+            >
+              Login
+            </button>
+          </form>
+        </>
+      )}
       <Toaster position="bottom-right" />
     </>
   );
