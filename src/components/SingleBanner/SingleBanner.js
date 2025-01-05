@@ -10,7 +10,7 @@ const SingleBanner = ({ data }) => {
         height={2000}
         width={2000}
         // className="w-full md:h-[400px] h-[247px] object-cover"
-        className="w-full md:h-[400px] min-h-[200px]"
+        className="w-full md:h-[600px] min-h-[200px]"
       />
     </div>
   );

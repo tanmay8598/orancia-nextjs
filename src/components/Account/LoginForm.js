@@ -83,7 +83,8 @@ const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
     <>
       {forgetPasswordOpen ? (
         <ForgetPassword
-          setIsOpen={() => setForgetPasswordOpen(false)}
+          isOpen={forgetPasswordOpen}
+          setIsOpen={setForgetPasswordOpen}
         />
       ) : (
         <>
@@ -119,15 +120,13 @@ const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
                   <BiSolidShow className="text-lg" />
                 )}
               </button>
-
-              <p
-                className="text-sm mb-2 mt-4 underline cursor-pointer"
-                onClick={() => setForgetPasswordOpen(true)}
-              >
-                Forgot password?
-              </p>
             </div>
-
+            <p
+              className="text-sm mb-2 mt-4 underline cursor-pointer"
+              onClick={() => setForgetPasswordOpen(true)}
+            >
+              Forgot password?
+            </p>
             <button
               className="bg-[#ed1d24] text-white w-full font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
