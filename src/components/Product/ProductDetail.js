@@ -481,15 +481,15 @@ const ProductDetail = ({ productId }) => {
                     )}
                 </div>
 
-                <RelatedProducts products={products} />
                 <KnowYourIngredients />
+                <RelatedProducts products={products} />
 
                 {recentlyViewed?.length > 0 && (
                     <RecentlyViewed products={recentlyViewed} />
                 )}
 
                 <div>
-                    <ReviewSection reviews={product?.reviews} />
+                    <ReviewSection reviews={product?.reviews} productId={product._id} />
                 </div>
             </Wrapper>
         </section>

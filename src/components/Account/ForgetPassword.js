@@ -8,7 +8,7 @@ import LogoInformation from "./LogoInformation";
 import { useRouter } from "next/navigation";
 import apiClient from "@/api/client";
 
-const ForgetPassword = ({ isOpen, setIsOpen }) => {
+const ForgetPassword = ({ setIsOpen }) => {
   const [formData, setFormData] = useState({
     email: "",
   });
@@ -43,7 +43,7 @@ const ForgetPassword = ({ isOpen, setIsOpen }) => {
   };
 
 
-  const handleSendPassword = async () => {
+  const handleSendPassword = async (e) => {
     e.preventDefault();
     validate();
 
@@ -73,23 +73,23 @@ const ForgetPassword = ({ isOpen, setIsOpen }) => {
       <LogoInformation />
 
       <form onSubmit={handleSendPassword}>
-      <p className="text-base mb-2 ">Please enter your email to reset your password</p>
-      <InputField
-        id="email"
-        label="Email"
-        value={formData.email}
-        onChange={handleInputChange}
-        error={errors.email}
-        placeholder=" "
-      />
+        <p className="text-base mb-2 ">Please enter your email to reset your password</p>
+        <InputField
+          id="email"
+          label="Email"
+          value={formData.email}
+          onChange={handleInputChange}
+          error={errors.email}
+          placeholder=" "
+        />
 
-      <button
-        className="bg-[#ed1d24] text-white w-full font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
-        type="submit"
+        <button
+          className="bg-[#ed1d24] text-white w-full font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
         // onClick={handleSendPassword}
-      >
-        Send Password
-      </button>
+        >
+          Send Password
+        </button>
       </form>
 
       <Toaster position="bottom-right" />

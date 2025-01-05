@@ -2,7 +2,7 @@ import useAuth from "@/auth/useAuth";
 import React, { useState } from "react";
 import ReviewModal from "../ReviewModal";
 
-export const ReviewSection = ({ reviews }) => {
+export const ReviewSection = ({ reviews, productId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useAuth();
 
@@ -134,7 +134,7 @@ export const ReviewSection = ({ reviews }) => {
               Write a review
             </button>
           )}
-          <ReviewModal isOpen={isModalOpen} onClose={closeModal} />
+          <ReviewModal isOpen={isModalOpen} onClose={closeModal} productId={productId} />
         </div>
       </div>
       {reviews?.map((review, index) => (

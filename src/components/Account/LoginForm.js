@@ -83,8 +83,7 @@ const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
     <>
       {forgetPasswordOpen ? (
         <ForgetPassword
-          isOpen={forgetPasswordOpen}
-          setIsOpen={setForgetPasswordOpen}
+          setIsOpen={() => setForgetPasswordOpen(false)}
         />
       ) : (
         <>
@@ -122,7 +121,7 @@ const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
               </button>
 
               <p
-                className="text-xs mb-2 -mt-2 underline cursor-pointer"
+                className="text-sm mb-2 mt-4 underline cursor-pointer"
                 onClick={() => setForgetPasswordOpen(true)}
               >
                 Forgot password?

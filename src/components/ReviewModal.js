@@ -7,9 +7,9 @@ import * as Yup from "yup";
 // import { ToastContainer, toast } from "react-toastify";
 import toast, { Toaster } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
-const ReviewModal = ({ isOpen, onClose }) => {
+const ReviewModal = ({ isOpen, onClose, productId }) => {
   const router = useParams();
-  const productId = router.product;
+
   const { user } = useAuth();
 
   const [formData, setFormData] = useState({
@@ -36,12 +36,14 @@ const ReviewModal = ({ isOpen, onClose }) => {
     e.preventDefault();
     try {
       await schema.validate(formData, { abortEarly: false });
+      console.log(productId, formData, user)
       const response = await apiClient.post("/product/create-review", {
         productId: productId,
         user,
         rating: formData.rating,
         comment: formData.comment,
       });
+      console.log(response)
       if (response.ok) {
         // toast.success("Review submitted successfully!");
         toast.success("Review submitted successfully!", {

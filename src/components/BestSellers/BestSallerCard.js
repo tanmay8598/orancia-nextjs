@@ -43,10 +43,13 @@ const BestSellerCard = ({ product, type }) => {
 
   return (
     <div className="rounded-xl m-2 shadow-lg relative">
-      <span className="absolute bg-red-600 p-0 px-2 text-white rounded-tl-lg rounded-br-lg">
+      {
+        type && (<span className="absolute bg-red-600 p-0 px-2 text-white rounded-tl-lg rounded-br-lg">
 
-        {type === 'new-arrivals' ? "New Arrival" : "Best Seller"}
-      </span>
+          {type === 'new-arrivals' ? "New Arrival" : "Best Seller"}
+        </span>)
+      }
+
       <div className="flex-col flex">
         <Link className="group" href={`/product/${product.groupId}`}>
           <div

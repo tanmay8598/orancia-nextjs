@@ -16,8 +16,8 @@ const ProductReview = ({ initialRating, initialTotalReviews }) => {
         <FaStar
           key={index}
           color={index < rating ? "#D90429" : "#FFC0CB"}
-          onClick={() => handleRatingChange(index + 1)}
-          style={{ cursor: "pointer" }}
+        // onClick={() => handleRatingChange(index + 1)}
+        // style={{ cursor: "pointer" }}
         />
       ))}
       <p className="text-sm ml-1 font-medium underline">

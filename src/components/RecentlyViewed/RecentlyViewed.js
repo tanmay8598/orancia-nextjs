@@ -11,7 +11,7 @@ const RecentlyViewed = ({ products }) => {
         <h2 className="text-lg md:text-2xl font-bold mb-8">Recently Viewed</h2>
         <div className="overflow-x-auto scrollbar-hide">
           <div className="flex space-x-4">
-            {products.map((product, index) => (
+            {products?.map((product, index) => (
               <Link
                 key={index}
                 href={`/product/${product?.product?.groupId}`}
@@ -24,7 +24,7 @@ const RecentlyViewed = ({ products }) => {
                 />
                 <div className="mt-4">
                   <h3 className="text-lg font-semibold truncate">
-                    {product.product.name}
+                    {product?.product?.name}
                   </h3>
 
                   <div className="text-gray-800 font-bold mt-2">
