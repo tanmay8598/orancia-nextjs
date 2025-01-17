@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import ShopCategoryCard from "./ShopCategoryCard";
 import apiClient from "@/api/client";
+import { ArrowRightCircleIcon } from "lucide-react";
 
 const ShopbyCategory = () => {
   const [categories, setCategories] = useState([]);
@@ -42,10 +43,12 @@ const ShopbyCategory = () => {
         </div>
       </div>
       <div className="mt-20">
-        <Link href="/category">
-          <button className="btn btn-accent rounded-lg mx-auto mt-10">
-            See all
-          </button>
+        <Link href="/best-sellers" className="flex flex-row items-center justify-center gap-1">
+          {/* <button className="btn btn-accent rounded-lg mx-auto mt-2 sm:mt-8">
+              See all
+            </button> */}
+          <p className="font-medium text-center">VIEW ALL</p>
+          <ArrowRightCircleIcon size={15} />
         </Link>
       </div>
     </section>

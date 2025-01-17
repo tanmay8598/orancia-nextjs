@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import apiClient from "@/api/client";
 import BestSellerCarousel from "../BestSellers/BestSellerCarousel";
+import { ArrowRightCircleIcon } from "lucide-react";
 
 const NewArrivals = () => {
   const [error, setError] = useState(null);
@@ -35,12 +36,14 @@ const NewArrivals = () => {
           New Arrivals
         </p>
 
-        <BestSellerCarousel products={product} type='new-arrivals' />
+        <BestSellerCarousel products={product} type='new-arrivals' showType={false} />
         <div className="my-8">
-          <Link href="/new-arrivals">
-            <button className="btn btn-accent rounded-lg mx-auto mt-8">
+          <Link href="/best-sellers" className="flex flex-row items-center justify-center gap-1">
+            {/* <button className="btn btn-accent rounded-lg mx-auto mt-2 sm:mt-8">
               See all
-            </button>
+            </button> */}
+            <p className="font-medium text-center">VIEW ALL</p>
+            <ArrowRightCircleIcon size={15} />
           </Link>
         </div>
       </div>

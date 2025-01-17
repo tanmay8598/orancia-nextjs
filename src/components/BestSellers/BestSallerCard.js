@@ -12,7 +12,7 @@ import { add } from "@/redux/features/cart/cartSlice";
 const BestSellerCard = ({ product, type }) => {
   const [shownToasts, setShownToasts] = useState(new Set());
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const short = product.name.replace(/(.{33})..+/, "$1");
+  const short = product.name.replace(/(.{30})..+/, "$1");
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
@@ -40,20 +40,20 @@ const BestSellerCard = ({ product, type }) => {
   const handleMouseLeave = () => {
     setCurrentImageIndex(0);
   };
-
+  // console.log(product.disabled)
   return (
     <div className="rounded-xl m-2 shadow-lg relative">
       {
-        type && (<span className="absolute bg-red-600 p-0 px-2 text-white rounded-tl-lg rounded-br-lg">
-
-          {type === 'new-arrivals' ? "New Arrival" : "Best Seller"}
+        type && (<span className="absolute bg-red-600 p-0 px-2 text-white rounded-tl-lg rounded-br-lg text-sm">
+          {type === 'new-arrivals' && "New Arrival"}
+          {type === 'best-seller' && "Best Seller"}
         </span>)
       }
 
       <div className="flex-col flex">
         <Link className="group" href={`/product/${product.groupId}`}>
           <div
-            className="overflow-hidden rounded-t-lg w-full h-[220px] flex items-center justify-center"
+            className="overflow-hidden rounded-t-lg w-full h-[180px] md:h-[250px] flex items-center justify-center"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
@@ -63,36 +63,39 @@ const BestSellerCard = ({ product, type }) => {
                   ? product.image[currentImageIndex]
                   : "https://files.stbotanica.com/site-images/400x400/STBOT470-01.jpg"
               }
-              className="object-cover w-full h-full "
+              className="object-cover h-[194px] w-[194px] md:h-full md:w-full"
               alt={`${product.name} image`}
-              width={228}
-              height={100}
+              height={2000}
+              width={2000}
               onError={handleImageError}
             />
           </div>
         </Link>
         <div className="p-2">
-          <div className="h-10">
+          <div className="">
             <p className="text-sm font-medium text-left">{short}</p>
-
           </div>
-          <p className="text-sm text-gray-400 font-normal text-left">
-            {product.category.name}
+          <p className="text-sm text-gray-700 font-normal text-left py-2">
+            {product?.category?.name}
           </p>
-          <div className="flex flex-row gap-1 mt-2 items-center">
-            <div className="flex flex-row gap-1 text-white bg-green-700 px-2 rounded-md">
+          <div className="flex flex-row gap-1  items-center">
+            <div className="flex flex-row gap-1 text-white bg-green-500 px-2 rounded-sm">
               <span className="pt-1">
                 <FaStar color="#ffffff" size={12} />
               </span>
-              <span className="text-sm">{product?.rating}</span>
+              <span className="text-sm">
+                {product?.rating % 1 === 0
+                  ? Number(product?.rating).toFixed(0)
+                  : Number(product?.rating).toFixed(1)}
+              </span>
             </div>
             <p className="text-xs font-medium">({product?.reviews?.length})</p>
           </div>
-          <div className="text-lg font-semibold text-left mt-2">
+          <div className="text-sm md:text-lg font-semibold text-left mt-2">
             ₹{product.sell_price}
           </div>
 
-          {product.countInStock.qty === 0 ? (
+          {product.countInStock.qty === 0 || product.disabled ? (
             <div className="md:flex md:w-full  md:justify-between ">
               <div className="w-full text-center bg-red-200 text-white py-2 rounded-lg font-semibold  mt-2 hover:bg-red-300 focus:scale-95 transition-all">
                 Out of Stock
@@ -102,13 +105,13 @@ const BestSellerCard = ({ product, type }) => {
             <div>
               <AddtoCartBtn
                 onClick={handleAddToCart}
-                btnStyles="w-full text-center bg-[#ed1d24] text-white py-2 rounded-lg font-semibold mt-2 hover:bg-red-300 focus:scale-95 transition-all"
+                btnStyles="w-full text-center bg-[#ed1d24] text-white p-[10px] rounded-lg font-semibold mt-2 hover:bg-red-300 focus:scale-95 transition-all"
               />
             </div>
           )}
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

@@ -53,9 +53,9 @@ const BlogContent = ({ blogid }) => {
             <Image
               src={data.image[0]}
               alt="logo"
-              height={3000}
+              height={2000}
               width={2000}
-              className="w-full h-fit object-center"
+              className="h-full w-full md:h-[500px]"
             />
           ) : (
             <p>Image not available</p>

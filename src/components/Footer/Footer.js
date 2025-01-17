@@ -35,16 +35,16 @@ const Footer = () => {
           </p>
           <p className="mt-4 regular-14 text-sm">Social media links.</p>
           <div className="mt-1 flex gap-2">
-            <a href="https://www.facebook.com/profile.php?id=61551878665744">
+            <a href="https://www.facebook.com/profile.php?id=61571499286384">
               <BsFacebook size={30} />
             </a>
-            <a href="https://www.instagram.com/orancia.in/?hl=en">
+            <a href="https://www.instagram.com/orancia_skin/">
               <RiInstagramFill size={30} />
             </a>
             <a href="https://x.com/Orancia2519" className="items-center">
               <BsTwitterX size={26} />
             </a>
-            <a href="https://www.linkedin.com/in/orancia-a-beauty-ab86b5327/">
+            <a href="https://www.linkedin.com/in/orancia-skincare-321471344/">
               <BsLinkedin size={24} />
             </a>
           </div>
@@ -65,7 +65,7 @@ const Footer = () => {
                 href="/frequently-asked/"
                 className="normal-case font-normal"
               >
-                FAQ 
+                FAQ
               </Link>{" "}
             </li>
 
@@ -137,11 +137,11 @@ const Footer = () => {
         <div className="p-6 lg:p-14">
           <p className="font-medium text-xl">Contact</p>
           <div className="mt-4 text-sm">
-            <div className="flex items-center mb-2">
-              <MdLocationPin style={{ marginRight: "10px" }} /> Lucknow, India
+            <div className="flex items-start mb-2">
+              <MdLocationPin style={{ marginRight: "10px" }} />Pinakinshine Ecom Pvt Ltd <br /> D-5/614, Vikas khand, Gomtinagar Lucknow
             </div>
             <div className="flex items-center mb-2">
-              <MdLocalPhone style={{ marginRight: "10px" }} /> 9005345980
+              <MdLocalPhone style={{ marginRight: "10px" }} /> +91-9005345980
             </div>
             <div className="flex items-center mb-2">
               <MdEmail style={{ marginRight: "10px" }} /> info@orancia.in
@@ -172,16 +172,16 @@ const Footer = () => {
 
             <div>
 
-            
 
-<div className="w-[81px] h-[81px] rounded-full overflow-hidden relative">
-    <Image
-      src="/blkwt.png"
-      alt="Tag 3"
-      className="hover:scale-105 transition-transform object-cover"
-      fill
-    />
-  </div>
+
+              <div className="w-[81px] h-[81px] rounded-full overflow-hidden relative">
+                <Image
+                  src="/blkwt.png"
+                  alt="Tag 3"
+                  className="hover:scale-105 transition-transform object-cover"
+                  fill
+                />
+              </div>
               <Image
                 src="/ayushwithoutbg.png"
                 alt="Tag 3"
@@ -190,7 +190,7 @@ const Footer = () => {
                 className="rounded-full hover:scale-105 transition-transform object-cover absolute bottom-[38px]"
               />
             </div>
-              
+
           </div>
         </div>
         <div className="lg:col-span-5 lg:flex justify-center items-center lg:w-full mb-4 ">

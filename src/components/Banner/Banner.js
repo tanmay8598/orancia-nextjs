@@ -41,9 +41,7 @@ const Banner = () => {
     else if (item.category) {
       router.push(`/category/${item.category}`);
     }
-    else if (item.subcategory) {
-      router.push(`/subcategory/${item.subcategory}`);
-    }
+
   }
 
   return (
@@ -57,7 +55,8 @@ const Banner = () => {
               src={item.image}
               height={2000}
               width={2000}
-              className="w-full md:h-[400px] min-h-[200px] max-h-[200px] lg:max-h-full"
+              className="w-full md:h-[400px] lg:max-h-full"
+              // className="w-full md:h-[400px] min-h-[200px] max-h-[200px] lg:max-h-full"
               onClick={() => handleClick(item)}
             />
           );

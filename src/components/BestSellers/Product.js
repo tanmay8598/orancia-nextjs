@@ -16,16 +16,7 @@ const Product = ({ product }) => {
 
   const handleAddToCart = () => {
     dispatch(add({ product, quantity: 1 }));
-    // toast.success("Success. Check your cart!", {
-    //   position: "bottom-right",
-    //   autoClose: 5000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    //   theme: "dark",
-    // });
+
     toast.success("Success. Check your cart!");
   };
   const handleImageError = (event) => {
@@ -35,17 +26,7 @@ const Product = ({ product }) => {
 
   return (
     <div className="my-4">
-      {/* <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      /> */}
+
       <Toaster position="bottom-right" />
       <Link className="group" href={`/product/${product.groupId}`}>
         <div className="drop-shadow-md rounded-md bg-white border-red-500 h-[300px] mb-3 p-4 overflow-hidden relative md:h-[328px]">
@@ -75,7 +56,9 @@ const Product = ({ product }) => {
         <div className="flex flex-row gap-1 mt-2 items-center">
           <div className="flex flex-row gap-1 text-white bg-green-700 p-1.5 rounded-sm">
             <FaStar color="#ffffff" size={10} />{" "}
-            <p className="text-[10px]">{product?.rating}</p>
+            <p className="text-[10px]">{product?.rating % 1 === 0
+              ? Number(product?.rating).toFixed(0)
+              : Number(product?.rating).toFixed(1)}</p>
           </div>
 
           <p className="text-[12px]  font-medium">
@@ -87,12 +70,21 @@ const Product = ({ product }) => {
           ₹{product.sell_price}
         </div>
       </Link>
-      <div className="py-8 md:py-0">
-        <AddtoCartBtn
-          onClick={handleAddToCart}
-          btnStyles="  lg:block btn btn-accent w-full mt-4 rounded-md"
-        />
-      </div>
+      {product.countInStock.qty === 0 || product.disabled ? (
+        <div className="md:flex md:w-full  md:justify-between ">
+          <div className="w-full text-center bg-red-200 text-white py-2 rounded-lg font-semibold  mt-2 hover:bg-red-300 focus:scale-95 transition-all">
+            Out of Stock
+          </div>
+        </div>
+      ) : (
+        <div>
+          <AddtoCartBtn
+            onClick={handleAddToCart}
+            btnStyles="w-full text-center bg-[#ed1d24] text-white p-[10px] rounded-lg font-semibold mt-2 hover:bg-red-300 focus:scale-95 transition-all"
+          />
+        </div>
+      )}
+
     </div>
   );
 };

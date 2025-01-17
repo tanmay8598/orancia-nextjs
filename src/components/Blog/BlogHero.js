@@ -4,6 +4,7 @@ import BlogCard from "./BlogCard";
 import apiClient from "@/api/client";
 import Link from "next/link";
 import Loader from "../loader/Loader";
+import { ArrowRightCircleIcon } from "lucide-react";
 
 const BlogHero = () => {
   const [error, setError] = useState();
@@ -62,10 +63,12 @@ const BlogHero = () => {
         )}
       </div>
       <div className="my-8">
-        <Link href="/blogs">
-          <button className="btn btn-accent rounded-lg mx-auto mt-12">
-            See all
-          </button>
+        <Link href="/best-sellers" className="flex flex-row items-center justify-center gap-1">
+          {/* <button className="btn btn-accent rounded-lg mx-auto mt-2 sm:mt-8">
+              See all
+            </button> */}
+          <p className="font-medium text-center">VIEW ALL</p>
+          <ArrowRightCircleIcon size={15} />
         </Link>
       </div>
     </div>

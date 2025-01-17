@@ -47,11 +47,8 @@ export default function Home() {
       <BestSellers />
       <SingleBanner data={bannerImage} />
       <ShopbyCategory />
-      {/* <ImageGallery /> */}
-      {/* <Hero /> */}
       <NewArrivals />
       <WhatClient />
-      {/* <KnowYourIngredients /> */}
       <DiffrenceBnner />
       <BlogHero />
     </div>

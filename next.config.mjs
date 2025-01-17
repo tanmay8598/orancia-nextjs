@@ -5,7 +5,7 @@ const nextConfig = {
     domains: [
       "s3.ap-southeast-1.amazonaws.com",
       "images.pexels.com",
-      "khuddamezair-s3.s3.ap-south-1.amazonaws.com",
+      "orancia-s3.s3.ap-south-1.amazonaws.com",
     ],
   },
   trailingSlash: true,

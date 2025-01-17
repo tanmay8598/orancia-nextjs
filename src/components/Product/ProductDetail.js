@@ -350,7 +350,7 @@ const ProductDetail = ({ productId }) => {
                                 </div>
                             </div>
                             <div className="md:flex md:w-full md:h-12 md:justify-between my-4 sm:mt-0">
-                                {product?.countInStock?.qty === 0 ? (
+                                {product?.countInStock?.qty === 0 || product.disabled ? (
                                     <div className="md:flex md:w-full md:h-12 md:justify-between mt-6">
                                         {/* <div className="btn btn-primary w-full mt-2 md:mt-0 sm:w-3/4 md:6 rounded-md"> */}
                                         <div className="btn btn-primary   mt-6 md:mt-0 sm:w-3/4 md:6 rounded-md w-full text-center bg-red-200 text-white py-2  font-semibold   hover:bg-red-300 focus:scale-95 transition-all">
@@ -452,7 +452,7 @@ const ProductDetail = ({ productId }) => {
                         <div className="">
                             <div
                                 dangerouslySetInnerHTML={{ __html: product?.description }}
-                                className="[&_*]:m-0 [&_*]:p-0 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mb-4 [&_h3]:text-lg [&_h3]:font-medium [&_h3]:mb-2"
+                                className="[&_*]:m-0 [&_*]:p-0 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mb-4 [&_h3]:text-lg [&_h3]:font-medium [&_h3]:mb-2 blog-content"
                             />
                         </div>
                     </div>
@@ -463,7 +463,7 @@ const ProductDetail = ({ productId }) => {
                         <div className=" ">
                             <div
                                 dangerouslySetInnerHTML={{ __html: product?.details }}
-                                className="[&_*]:m-0 [&_*]:p-0 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mb-4 [&_h3]:text-lg [&_h3]:font-medium [&_h3]:mb-2"
+                                className="[&_*]:m-0 [&_*]:p-0 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mb-4 [&_h3]:text-lg [&_h3]:font-medium [&_h3]:mb-2 blog-content"
                             />
                         </div>
                     </div>
@@ -472,7 +472,7 @@ const ProductDetail = ({ productId }) => {
                             <p className="text-xl font-semibold mb-2 md:text-md">
                                 Product Ingredients
                             </p>
-                            <div className=" ">
+                            <div className="blog-content">
                                 <div
                                     dangerouslySetInnerHTML={{ __html: product?.ingredients }}
                                 />

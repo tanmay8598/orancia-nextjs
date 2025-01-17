@@ -24,8 +24,8 @@ async function sitemap() {
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${allPaths
-    .map(
-      (url) => `
+      .map(
+        (url) => `
     <url>
       <loc>${BASE_URL}${url}</loc>
       <lastmod>${new Date().toISOString()}</lastmod>
@@ -33,8 +33,8 @@ async function sitemap() {
       <priority>0.7</priority>
     </url>
   `
-    )
-    .join("")}
+      )
+      .join("")}
 </urlset>`;
 
   await writeFileAsync("public/sitemap.xml", sitemap);

@@ -33,10 +33,10 @@ const page = () => {
   //razorpay
   const [Razorpay] = useRazorpay();
   const [paymentStatus, setPaymentStatus] = useState();
+  const [razorpay_payment_id, setrazorpay_payment_id] = useState()
   const [uploadVisible, setUploadVisible] = useState(false);
   const [deliveryInfo, setDeliveryInfo] = useState(true)
 
-  const [razorpay_payment_id, setrazorpay_payment_id] = useState()
 
   const totalValue = selector.cart.reduce((total, item) => {
     const price = item.discountedPrice || item.product?.sell_price;

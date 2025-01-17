@@ -5,11 +5,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { useEffect, useRef, useState } from "react";
-import BestSallerCard from "./BestSallerCard";
 import Slider from "react-slick";
 import { Toaster } from "react-hot-toast";
+import RelatedProductCard from "./RelatedProductCard";
 
-const BestSellerCarousel = ({ products, showType, relatedType }) => {
+const RelatedProductCarousel = ({ products, showType, }) => {
 
   const [isMobileView, setIsMobileView] = useState(false);
   const sliderRef = useRef(null);
@@ -39,13 +39,11 @@ const BestSellerCarousel = ({ products, showType, relatedType }) => {
         <>
           <Slider {...settings}>
             {products?.map((product) => (
-              <BestSallerCard
+              <RelatedProductCard
                 key={product._id}
                 product={
                   product.productDetails ? product.productDetails : product
                 }
-                type={showType ? "best-seller" : 'new-arrivals'}
-
               />
             ))}
 
@@ -94,7 +92,7 @@ const BestSellerCarousel = ({ products, showType, relatedType }) => {
           >
             {products?.map((product) => (
               <SwiperSlide key={product._id} className="flex justify-center">
-                <BestSallerCard
+                <RelatedProductCard
                   product={
                     product.productDetails ? product.productDetails : product
                   }
@@ -135,4 +133,4 @@ const BestSellerCarousel = ({ products, showType, relatedType }) => {
   );
 };
 
-export default BestSellerCarousel;
+export default RelatedProductCarousel;
