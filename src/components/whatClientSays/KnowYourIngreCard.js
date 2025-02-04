@@ -11,8 +11,8 @@ const KnowYourIngreCard = ({ data }) => {
 
       {/* Overlay at the Bottom */}
       <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 text-white p-4 flex flex-col items-center">
-        <h4 className="text-2xl font-normal text-center">{data.name}</h4>
-        <p className="text-xs text-center mt-2">{data.message}</p>
+        <h4 className="text-2xl font-normal text-center">{data.title}</h4>
+        <p className="text-xs text-center mt-2">{data.description}</p>
       </div>
     </div>
   );

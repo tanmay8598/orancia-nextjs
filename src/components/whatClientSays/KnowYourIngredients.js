@@ -1,64 +1,27 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import KnowYourIngreCard from "./KnowYourIngreCard";
-const data = [
-  {
-    id: 0,
-    name: "Green tea",
-
-    image:
-      "https://img.freepik.com/free-photo/close-up-tea-leaves-farm-sri-lanka_53876-42969.jpg?ga=GA1.1.961293520.1727337761&semt=ais_hybrid",
-    message: "Detoxifies & Hydrates",
-  },
-  {
-    id: 1,
-    name: "Neet + tulsi   ",
-
-    image:
-      "https://img.freepik.com/free-photo/fresh-green-leaves_23-2147837044.jpg?ga=GA1.1.961293520.1727337761&semt=ais_hybrid",
-    message: "Unclogs Pores & Prevents Breakoutes",
-  },
-  {
-    id: 2,
-    name: "Carrot",
-
-    image:
-      "https://img.freepik.com/free-photo/front-view-vegetable_140725-103355.jpg?ga=GA1.1.961293520.1727337761&semt=ais_hybrid",
-    message: "Fades Tan & Provides Sun Protection",
-  },
-  {
-    id: 3,
-    name: "Sandalwood",
-
-    image:
-      "https://img.freepik.com/free-vector/sandalwood-perfumery-cosmetic-realistic-ad-poster-with-sandal-products-decorated-with-tree-branches-vector-illustration_1284-80577.jpg?ga=GA1.1.961293520.1727337761&semt=ais_hybrid",
-    message: "Retains Moisture & Boosts Radiance",
-  },
-  {
-    id: 4,
-    name: "Green tea",
-
-    image:
-      "https://img.freepik.com/free-photo/close-up-tea-leaves-farm-sri-lanka_53876-42969.jpg?ga=GA1.1.961293520.1727337761&semt=ais_hybrid",
-    message: "Detoxifies & Hydrates",
-  },
-  {
-    id: 4,
-    name: "Carrot",
-
-    image:
-      "https://img.freepik.com/free-photo/front-view-vegetable_140725-103355.jpg?ga=GA1.1.961293520.1727337761&semt=ais_hybrid",
-    message: "Fades Tan & Provides Sun Protection",
-  },
-];
+import apiClient from "./../../api/client";
 
 const KnowYourIngredients = () => {
-  const numberOfSlides = 6;
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [ingredients, setIngredients] = useState([]);
+
+  const knowYourIngredientsData = async () => {
+    const response = await apiClient.get("/ingredients/get-all-ingredients");
+
+    setIngredients(response.data);
+  };
+
+  useEffect(() => {
+    knowYourIngredientsData();
+  }, []);
+
   return (
     <>
       <section className=" relative">
@@ -71,6 +34,7 @@ const KnowYourIngredients = () => {
           <div>
             <Swiper
               spaceBetween={20}
+              onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
               modules={[Autoplay]}
               autoplay={{ delay: 4000, disableOnInteraction: false }}
               slidesPerView={1}
@@ -81,14 +45,29 @@ const KnowYourIngredients = () => {
                 1440: { slidesPerView: 3 },
               }}
             >
-              {data.map((data, index) => (
+              {ingredients?.map((data, index) => (
                 <SwiperSlide key={index}>
                   <KnowYourIngreCard data={data} />
                 </SwiperSlide>
               ))}
-              <div className="flex flex-col items-center pt-[20px] pb-[20px]">
+              {/* <div className="flex flex-col items-center pt-[20px] pb-[20px]">
                 <h3 className="mb-2 text-center">....</h3>
-              </div>
+              </div> */}
+
+              {ingredients?.length > 1 && (
+                <div className="flex justify-center items-center pt-4 pb-4">
+                  {ingredients?.map((_, index) => (
+                    <span
+                      key={index}
+                      className={`w-1 h-1 mx-1 rounded-full transition-all duration-300 ${
+                        index === activeIndex
+                          ? "bg-black w-1 h-1"
+                          : "bg-gray-400"
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
             </Swiper>
           </div>
         </div>
