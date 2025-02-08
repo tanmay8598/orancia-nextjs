@@ -8,9 +8,9 @@ import { Autoplay } from "swiper/modules";
 import KnowYourIngreCard from "./KnowYourIngreCard";
 import apiClient from "./../../api/client";
 
-const KnowYourIngredients = () => {
+const KnowYourIngredients = ({ingredients}) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [ingredients, setIngredients] = useState([]);
+  // const [ingredients, setIngredients] = useState([]);
 
   const knowYourIngredientsData = async () => {
     const response = await apiClient.get("/ingredients/get-all-ingredients");
@@ -19,7 +19,7 @@ const KnowYourIngredients = () => {
   };
 
   useEffect(() => {
-    knowYourIngredientsData();
+    // knowYourIngredientsData();
   }, []);
 
   return (
@@ -31,7 +31,7 @@ const KnowYourIngredients = () => {
               Know your Ingredients
             </p>
           </div>
-          <div>
+          <div className=" items-center  pb-[20px]">
             <Swiper
               spaceBetween={20}
               onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
@@ -55,7 +55,7 @@ const KnowYourIngredients = () => {
               </div> */}
 
               {ingredients?.length > 1 && (
-                <div className="flex justify-center items-center pt-4 pb-4">
+                <div className="flex justify-center items-center pt-4 pb-4 lg:hidden">
                   {ingredients?.map((_, index) => (
                     <span
                       key={index}

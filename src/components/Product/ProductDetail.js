@@ -45,6 +45,8 @@ const ProductDetail = ({ productId }) => {
     const [size, setSize] = useState("");
     const [sizes, setSizes] = useState();
 
+    
+
     useEffect(() => {
         // fetchProduct();
         fetchSimilarProducts();  //similar product from same category
@@ -221,6 +223,7 @@ const ProductDetail = ({ productId }) => {
             setProduct(product1[0]);
         }
     };
+
 
     return (
         <section className="pt-10 pb-10">
@@ -481,7 +484,12 @@ const ProductDetail = ({ productId }) => {
                     )}
                 </div>
 
-                <KnowYourIngredients />
+                
+
+
+                {product?.selectedIngredients?.length > 0 && (
+                <KnowYourIngredients ingredients={ product?.selectedIngredients} />
+                )}
                 <RelatedProducts products={products} />
 
                 {recentlyViewed?.length > 0 && (
