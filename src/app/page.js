@@ -15,20 +15,20 @@ import Loader from "@/components/loader/Loader";
 import WhatClient from "@/components/whatClientSays/WhatClient";
 import { useEffect, useState } from "react";
 import KnowYourIngredients from "./../components/whatClientSays/KnowYourIngredients";
-import apiClient from './../api/client';
+import apiClient from "./../api/client";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [bannerImage, setBannerImage] = useState();
 
   const sigleBannerImage = async () => {
-    const response = await apiClient.get(`/variation/bottombanner/list`)
+    const response = await apiClient.get(`/variation/bottombanner/list`);
 
-    setBannerImage(response.data.banners[0].image)
-  }
+    setBannerImage(response?.data?.banners[0]?.image);
+  };
 
   useEffect(() => {
-    sigleBannerImage()
+    sigleBannerImage();
     setInterval(() => setLoading(false), 2000);
   }, []);
 

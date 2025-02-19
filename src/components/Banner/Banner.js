@@ -10,12 +10,12 @@ const Banner = () => {
 
   const router = useRouter();
 
-  var settings = {
+  const settings = {
     dots: false,
-    infinite: true,
+    infinite: banner.length > 1,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: banner.length > 1,
     pauseOnHover: false,
   };
 
@@ -24,44 +24,47 @@ const Banner = () => {
   }, []);
 
   const bannerHandler = async () => {
-
     const { data } = await apiClient.get("variation/banner/get");
-
-
     setBanner(data);
-
-
   };
 
   const handleClick = (item) => {
-
     if (item.product) {
       router.push(`/product/${item.product}`);
-    }
-    else if (item.category) {
+    } else if (item.category) {
       router.push(`/category/${item.category}`);
     }
-
-  }
+  };
 
   return (
-    <div className="w-full ">
-      <Slider {...settings}>
-        {banner?.map((item) => {
-          return (
+    <div className="w-full">
+      {banner.length > 1 ? (
+        <Slider {...settings}>
+          {banner.map((item) => (
             <Image
-              key={item._id}
+              key={item?._id}
               alt="banner"
-              src={item.image}
+              src={item?.image}
               height={2000}
               width={2000}
               className="w-full md:h-[400px] lg:max-h-full"
-              // className="w-full md:h-[400px] min-h-[200px] max-h-[200px] lg:max-h-full"
               onClick={() => handleClick(item)}
             />
-          );
-        })}
-      </Slider>
+          ))}
+        </Slider>
+      ) : (
+        banner.length === 1 && (
+          <Image
+            key={banner[0]?._id}
+            alt="banner"
+            src={banner[0]?.image}
+            height={2000}
+            width={2000}
+            className="w-full md:h-[400px] lg:max-h-full"
+            onClick={() => handleClick(banner[0])}
+          />
+        )
+      )}
     </div>
   );
 };
