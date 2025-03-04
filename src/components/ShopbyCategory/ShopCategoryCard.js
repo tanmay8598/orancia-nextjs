@@ -1,10 +1,33 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const ShopCategoryCard = ({ categories }) => {
+  const [loading, setLoading] = useState(true); // Add loading state
+
+  useEffect(() => {
+    // Simulate data fetching delay
+    if (categories && categories.length > 0) {
+      setLoading(false); // Set loading to false when data is available
+    }
+  }, [categories]);
+
+  // Skeleton loader component
+  const SkeletonLoader = () => (
+    <div className="w-full group">
+      <div
+        className="h-[150px] lg:h-[300px] rounded-md w-full bg-gray-200 animate-pulse"
+      ></div>
+    </div>
+  );
+
   return (
     <>
-      {categories &&
+      {loading ? (
+        // Show skeleton loader while loading
+        Array.from({ length: 4 }).map((_, index) => <SkeletonLoader key={index} />)
+      ) : (
+        // Render actual content when data is fetched
+        categories &&
         categories.map((category) => (
           <div key={category._id} className="w-full group">
             <Link href={`/category/${category._id}`} aria-label={`Shop ${category.name}`}>
@@ -19,7 +42,8 @@ const ShopCategoryCard = ({ categories }) => {
               </div>
             </Link>
           </div>
-        ))}
+        ))
+      )}
     </>
   );
 };
