@@ -4,10 +4,11 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 const Banner = () => {
   const [banner, setBanner] = useState([]);
-
+  const sliderRef = React.useRef(null);
   const router = useRouter();
 
   const settings = {
@@ -16,7 +17,9 @@ const Banner = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: banner.length > 1,
+    autoplaySpeed: 5000,
     pauseOnHover: false,
+    arrows: false,
   };
 
   useEffect(() => {
@@ -37,31 +40,58 @@ const Banner = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="relative w-full">
       {banner.length > 1 ? (
-        <Slider {...settings}>
-          {banner.map((item) => (
-            <Image
-              key={item?._id}
-              alt="banner"
-              src={item?.image}
-              height={2000}
-              width={2000}
-              className="w-full md:h-[400px] lg:max-h-full"
-              onClick={() => handleClick(item)}
-            />
-          ))}
-        </Slider>
+        <>
+          <Slider ref={sliderRef} {...settings}>
+            {banner.map((item, index) => (
+              <div key={item?._id} className="w-full">
+                <Image
+                  alt={item?.altText || "Banner Image"}
+                  src={item?.image}
+                  height={item?.height || 600}
+                  width={item?.width || 1200}
+                  className="w-full h-auto max-h-[300px] sm:max-h-[350px] md:max-h-[400px] lg:max-h-[500px] object-cover"
+                  onClick={() => handleClick(item)}
+                  priority={index === 0}
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
+                  placeholder="blur"
+                  blurDataURL="data:image/png;base64,..."
+                />
+              </div>
+            ))}
+          </Slider>
+          <button
+            aria-label="Previous Slide"
+            className="absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-all"
+            onClick={() => sliderRef.current?.slickPrev()}
+          >
+            <MdChevronLeft className="size-5 md:size-6" />
+          </button>
+          <button
+            aria-label="Next Slide"
+            className="absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-all"
+            onClick={() => sliderRef.current?.slickNext()}
+          >
+            <MdChevronRight className="size-5 md:size-6" />
+          </button>
+        </>
       ) : (
         banner.length === 1 && (
           <Image
             key={banner[0]?._id}
-            alt="banner"
+            alt={banner[0]?.altText || "Banner Image"}
             src={banner[0]?.image}
-            height={2000}
-            width={2000}
-            className="w-full md:h-[400px] lg:max-h-full"
+            height={banner[0]?.height || 600}
+            width={banner[0]?.width || 1200}
+            className="w-full h-auto max-h-[300px] sm:max-h-[350px] md:max-h-[400px] lg:max-h-[500px] object-cover"
             onClick={() => handleClick(banner[0])}
+            priority
+            quality={85}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,..."
           />
         )
       )}

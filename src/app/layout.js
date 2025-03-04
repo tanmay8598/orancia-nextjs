@@ -22,7 +22,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={poppins.className}>
-        {/* <script src="https://checkout.razorpay.com/v1/checkout.js" /> */}
         <Providers>
           <ClientOnly>{children}</ClientOnly>
         </Providers>

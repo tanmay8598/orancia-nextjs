@@ -11,7 +11,6 @@ import useAuth from "@/auth/useAuth";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import MenuSidebar from "../Cart/MenuSidebar";
-import MainmenuNavbar from "./MainmenuNavbar";
 import Link from "next/link";
 import { FaUserCheck } from "react-icons/fa6";
 
@@ -22,7 +21,7 @@ const MenuNavbar = () => {
   const [isOpenSearch, setIsOpenSearch] = useState(false);
   const [isOpenAccount, setIsOpenAccount] = useState(false);
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
-  const [categoryDroup, setCategoryDroup] = useState(false);
+
   const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
   const [categoryDropdown, setCategoryDropdown] = useState(false);
   const [cartLength, setCartLength] = useState(0);

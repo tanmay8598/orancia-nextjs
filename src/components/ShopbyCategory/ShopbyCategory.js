@@ -31,22 +31,18 @@ const ShopbyCategory = () => {
   return (
     <section>
       <div className="max-w-screen-lg mx-auto">
-        {/* <h3 className="text-center text-3xl md:text-4xl mb-11 mt-11 font-medium"> */}
-        <p className="  text-2xl font-semibold text-center md:text-4xl mb-11 mt-11">
+
+        <p className="  text-2xl font-semibold text-center md:text-4xl mb-10 mt-10">
           Shop by category
         </p>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-10 lg:mt-10 px-3 lg:px-0 place-items-center place-content-center">
-          {/* {categories.map((category) => (
-            <ShopCategoryCard key={category.id} category={category} />
-          ))} */}
+
           <ShopCategoryCard categories={categories} />
         </div>
       </div>
-      <div className="mt-20">
+      <div className="my-8">
         <Link href="/best-sellers" className="flex flex-row items-center justify-center gap-1">
-          {/* <button className="btn btn-accent rounded-lg mx-auto mt-2 sm:mt-8">
-              See all
-            </button> */}
+
           <p className="font-medium text-center">VIEW ALL</p>
           <ArrowRightCircleIcon size={15} />
         </Link>

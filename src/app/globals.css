@@ -171,3 +171,16 @@
 .blog-content li {
   margin-bottom: 5px; /* Adds spacing between list items */
 }
+
+.swiper-slide {
+  width: 150px; /* Adjust as needed for mobile */
+  height: 250px; /* Adjust as needed for mobile */
+}
+
+/* Hide arrow buttons on mobile */
+@media (max-width: 767px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
+}

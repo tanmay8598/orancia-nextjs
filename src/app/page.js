@@ -44,9 +44,9 @@ export default function Home() {
     <div>
       <Banner />
       <Marquees />
+      <ShopbyCategory />
       <BestSellers />
       <SingleBanner data={bannerImage} />
-      <ShopbyCategory />
       <NewArrivals />
       <WhatClient />
       <DiffrenceBnner />

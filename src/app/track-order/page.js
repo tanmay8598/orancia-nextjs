@@ -12,29 +12,33 @@ const Page = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!inputValue.trim()) {
+      setError("Please enter a valid Tracking ID/AWB.");
+      return;
+    }
     trackMyOrder();
   };
 
   const trackMyOrder = async () => {
     try {
       const response = await apiClient.get(`/delivery/track-shipment`, {
-        wayBillNo: inputValue,
+        wayBillNo: inputValue
       });
 
       if (response.ok) {
         setTrackOrder(response.data.ShipmentData);
         setShowTracking(true);
+        setError(null);
         setInputValue("");
       } else {
-        setError(response.statusText);
+        setError(response.statusText || "Failed to fetch tracking data.");
       }
     } catch (error) {
-      console.log("Error:", error);
+      console.error("Error:", error);
       setError("Something went wrong. Please try again.");
     }
   };
 
-  console.log(trackOrder);
 
   return (
     <>
@@ -64,11 +68,11 @@ const Page = () => {
               <div className="sm:col-span-4">
                 <input
                   type="text"
-                  placeholder="Enter Your Tracking ID/AWB"
+                  placeholder="Enter Your Tracking ID/AWB*"
                   value={inputValue}
-                  checked="true"
                   onChange={(e) => setInputValue(e.target.value)}
                   className="shadow appearance-none border border-gray-300 w-full h-8 p-1 focus:outline-none focus:border-blue-500"
+
                 />
               </div>
               <div className="sm:col-span-2">
@@ -80,6 +84,11 @@ const Page = () => {
                 </button>
               </div>
             </div>
+            {error && (
+              <div className="text-red-500 text-sm mt-2 text-center">
+                {error}
+              </div>
+            )}
           </form>
           <div className="grid grid-cols-1 sm:py-2 sm:px-3">
             <p className="my-2">Check current status of your shipment.</p>

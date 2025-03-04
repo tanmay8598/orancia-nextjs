@@ -24,13 +24,13 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
   const router = useRouter();
 
   const handleClick = () => {
-    if (!user) {
-      setIsOpenAccount(true);
-    } else {
+    // if (!user) {
+    //   setIsOpenAccount(true);
+    // } else {
 
-      router.push(`/checkout`);
-      setIsOpen(false);
-    }
+    router.push(`/checkout`);
+    setIsOpen(false);
+    // }
   };
   const { user } = useAuth();
   const totalValue = products.reduce((total, item) => {

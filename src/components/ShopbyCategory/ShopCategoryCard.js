@@ -6,18 +6,17 @@ const ShopCategoryCard = ({ categories }) => {
     <>
       {categories &&
         categories.map((category) => (
-          <div key={category._id} className="w-full">
-            <Link href={`/category/${category._id}`}>
+          <div key={category._id} className="w-full group">
+            <Link href={`/category/${category._id}`} aria-label={`Shop ${category.name}`}>
               <div
-                className="h-[150px] lg:h-[300px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md w-full bg-cover bg-center bg-no-repeat"
+                className="h-[150px] lg:h-[300px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md w-full bg-cover bg-center bg-no-repeat relative"
                 style={{ backgroundImage: `url(${category.image})` }}
-              ></div>
-              <span
-                className="  absolute  bg-red-600 rounded-md text-white z-40 p-2"
-                style={{ marginTop: "-2rem" }}
               >
-                {category.name}
-              </span>
+                {/* Category Name */}
+                <span className="absolute bottom-2 left-2 bg-red-600 rounded-md text-white text-sm px-3 py-1">
+                  {category.name}
+                </span>
+              </div>
             </Link>
           </div>
         ))}

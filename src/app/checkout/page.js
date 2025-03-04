@@ -12,6 +12,7 @@ import useRazorpay from "react-razorpay";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { clear } from "@/redux/features/cart/cartSlice";
+import AccountSidebar from "@/components/Cart/AccountSidebar";
 
 
 const page = () => {
@@ -55,45 +56,50 @@ const page = () => {
 
 
   const handlePayment = useCallback(async () => {
-    const result = await apiClient.get("/orders/payment", {
-      total: totalValue,
-      userId: user.id,
-    });
+    if (!user) {
+      setIsOpenAccount(true)
+    } else {
+      const result = await apiClient.get("/orders/payment", {
+        total: totalValue,
+        userId: user.id,
+      });
 
-    const options = {
-      key: result.data.notes.key,
-      amount: totalValue,
-      currency: "INR",
-      name: "Pinakinshine ECOM Pvt. Ltd",
-      description: "Total Payment",
-      image: "https://example.com/your_logo",
-      order_id: result.data.id,
-      handler: async (res) => {
+      const options = {
+        key: result.data.notes.key,
+        amount: totalValue,
+        currency: "INR",
+        name: "Pinakinshine ECOM Pvt. Ltd",
+        description: "Total Payment",
+        image: "https://example.com/your_logo",
+        order_id: result.data.id,
+        handler: async (res) => {
 
-        try {
-          const paymentId = res.razorpay_payment_id;
-          if (paymentId) {
-            setrazorpay_payment_id(paymentId)
-            setPaymentStatus(true);
+          try {
+            const paymentId = res.razorpay_payment_id;
+            if (paymentId) {
+              setrazorpay_payment_id(paymentId)
+              setPaymentStatus(true);
+            }
+          } catch (error) {
+            setUploadVisible(false);
+            createFailedOrder();
           }
-        } catch (error) {
-          setUploadVisible(false);
-          createFailedOrder();
-        }
-      },
-      prefill: {
-        email: user?.email,
-        contact: user?.shippingAddress?.phone,
-        name: user?.name,
-      },
+        },
+        prefill: {
+          email: user?.email,
+          contact: user?.shippingAddress?.phone,
+          name: user?.name,
+        },
 
-      theme: {
-        color: "#3399cc",
-      },
-    };
+        theme: {
+          color: "#3399cc",
+        },
+      };
 
-    const rzpay = new Razorpay(options);
-    rzpay.open();
+      const rzpay = new Razorpay(options);
+      rzpay.open();
+    }
+
   }, [Razorpay, user]);
 
   useEffect(() => {
@@ -283,7 +289,7 @@ const page = () => {
         <h1 className="text-2xl font-bold mb-4">Checkout</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-white shadow-md rounded-lg p-6">
-            <h2 className="text-lg font-semibold mb-4">Address </h2>
+            <h2 className="text-lg font-semibold mb-4">Address</h2>
             <div
               className="bg-blue-gray-100 mb-6 rounded-lg p-4"
               style={{
@@ -294,8 +300,8 @@ const page = () => {
                 <>
                   <p>
                     {shippingAddress.address},{shippingAddress.street} ,{" "}
-                    {shippingAddress.city},{shippingAddress.landmark},{" "}
-                    {shippingAddress.area},{shippingAddress.pincode},
+                    {shippingAddress.city},{shippingAddress.landmark} ,{" "}
+                    {shippingAddress.area}, {shippingAddress.pincode},{" "}
                     {shippingAddress.state}
                   </p>
 
@@ -314,10 +320,10 @@ const page = () => {
             </div>
 
 
-            <div className="text-center mb-6">
+            <div className="mb-6">
               <button
                 type="submit"
-                className="w-3/4 bg-[#ed1d24] text-white py-2 px-4 rounded-md hover:bg-red-600"
+                className="text-sm bg-[#ed1d24] text-white py-2 px-4 rounded-md hover:bg-red-600"
                 onClick={() => setIsOpenAccount(true)}
               >
                 + Use a different address
@@ -365,54 +371,59 @@ const page = () => {
                 </div>
               </form>
 
-              <div>
-                <div className="items-center border border-gray-200 p-4 mb-5 rounded-lg shadow-sm bg-white">
-                  {/* Show All Coupons Button */}
-                  <button
-                    onClick={toggleCoupons}
-                    className="bg-blue-500 text-white text-sm px-3 py-1 rounded-md w-full mb-3 hover:bg-blue-600 transition-colors duration-200"
-                  >
-                    {showCoupons ? 'Hide Coupons' : 'Show All Coupons'}
-                  </button>
 
-                  {/* Coupons List */}
-                  {showCoupons && (
-                    <div className="mt-2">
-                      <div className="text-md font-medium text-gray-700 mb-3">All Coupons</div>
+              <div className="items-center border border-gray-200 p-4 mb-5 rounded-lg shadow-sm bg-white">
+                {/* Show All Coupons Button */}
 
-                      {coupans.map((coupon, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center justify-between w-full border border-gray-300 p-3 mb-2 rounded-md shadow hover:shadow-md transition-shadow duration-200 bg-gray-50"
-                        >
-                          <div className="flex-1">
-                            <p className="text-sm font-semibold text-gray-700">{coupon.name}</p>
-                            <p className="text-xs text-gray-500">
-                              {coupon.discount}% OFF, max ₹{coupon.max} OFF
-                            </p>
-                          </div>
-                          {appliedCoupon === coupon.name ? (
-                            <button
-                              className="text-red-600 text-xs px-2 py-1 rounded-full border border-red-600 hover:bg-red-100 transition-colors duration-200"
-                              onClick={() => removedCoupan(coupon.name)}
-                            >
-                              Remove
-                            </button>
-                          ) : (
-                            <button
-                              className="text-blue-600 text-xs px-2 py-1 rounded-full border border-blue-600 hover:bg-blue-100 transition-colors duration-200"
-                              onClick={() => handleApplyCoupons(coupon.name)}
-                            >
-                              Apply
-                            </button>
-                          )}
+
+                <button
+                  onClick={toggleCoupons}
+                  className="bg-blue-500 text-white text-sm px-3 py-1 rounded-md w-full mb-3 hover:bg-blue-600 transition-colors duration-200"
+                >
+                  {showCoupons ? 'Hide Coupons' : 'Show All Coupons'}
+                </button>
+
+
+                {/* Coupons List */}
+                {showCoupons && (
+                  <div className="mt-2">
+                    <div className="text-md font-medium text-gray-700 mb-3">All Coupons</div>
+                    {
+                      coupans?.length < 1 && (<p className="text-sm">No coupons found</p>)
+                    }
+                    {coupans.map((coupon, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center justify-between w-full border border-gray-300 p-3 mb-2 rounded-md shadow hover:shadow-md transition-shadow duration-200 bg-gray-50"
+                      >
+                        <div className="flex-1">
+                          <p className="text-sm font-semibold text-gray-700">{coupon.name}</p>
+                          <p className="text-xs text-gray-500">
+                            {coupon.discount}% OFF, max ₹{coupon.max} OFF
+                          </p>
                         </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
+                        {appliedCoupon === coupon.name ? (
+                          <button
+                            className="text-red-600 text-xs px-2 py-1 rounded-full border border-red-600 hover:bg-red-100 transition-colors duration-200"
+                            onClick={() => removedCoupan(coupon.name)}
+                          >
+                            Remove
+                          </button>
+                        ) : (
+                          <button
+                            className="text-blue-600 text-xs px-2 py-1 rounded-full border border-blue-600 hover:bg-blue-100 transition-colors duration-200"
+                            onClick={() => handleApplyCoupons(coupon.name)}
+                          >
+                            Apply
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
+
+
             </div>
 
             <div className="flex my-4 justify-between items-center">
@@ -421,12 +432,7 @@ const page = () => {
               </div>
               <p className="text-black font-semibold">₹ {totalValue}.00</p>
             </div>
-            {/* <div className="flex my-4 justify-between items-center">
-              <div className="flex-1">
-                <p className="text-sm text-gray-600">Shipping</p>
-              </div>
-              <p className="text-gray-600">Enter shipping address</p>
-            </div> */}
+
             <div className="flex my-4 justify-between items-center">
               <div className="flex-1">
                 <p className="text-black text-2xl font-semibold">Total</p>
@@ -435,27 +441,26 @@ const page = () => {
                 ₹ {discountedTotal}.00
               </p>
             </div>
-            {/* <div className="flex my-4 justify-between items-center">
-              <div className="flex-1">
-                <p className="text-sm text-gray-600">
-                  Including ₹ 103.21 in taxes
-                </p>
-              </div>
-            </div> */}
+
             <button
-              disabled={deliveryInfo}
+              disabled={user && deliveryInfo}
               className="text-white w-full bg-primary p-2 rounded"
               onClick={handlePayment}
-            // onClick={handleSubmit}
+
             >
               Complete transaction
             </button>
           </div>
-          <AddressSidebar
-            isOpen={isOpenAccount}
-            setIsOpen={setIsOpenAccount}
-            existingAddress={shippingAddress}
-          />
+          {
+            user ? (
+              <AddressSidebar
+                isOpen={isOpenAccount}
+                setIsOpen={setIsOpenAccount}
+                existingAddress={shippingAddress}
+              />
+            ) : (<AccountSidebar isOpen={isOpenAccount} setIsOpen={setIsOpenAccount} />)
+          }
+
         </div>
       </div>
       <Toaster position="bottom-right" />

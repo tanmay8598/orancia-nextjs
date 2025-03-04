@@ -32,7 +32,7 @@ const BestSellers = () => {
   };
 
   return (
-    <section>
+    <section className="mt-10">
       <div className="mx-auto max-w-screen-3xl px-4 pb-4 md:py-10">
         <p className="text-2xl font-semibold text-center md:text-4xl mb-2 md:mb-11 mt-4">
           Best Sellers
@@ -42,9 +42,6 @@ const BestSellers = () => {
 
         <div className="my-8">
           <Link href="/best-sellers" className="flex flex-row items-center justify-center gap-1">
-            {/* <button className="btn btn-accent rounded-lg mx-auto mt-2 sm:mt-8">
-              See all
-            </button> */}
             <p className="font-medium text-center">VIEW ALL</p>
             <ArrowRightCircleIcon size={15} />
           </Link>
