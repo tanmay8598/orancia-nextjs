@@ -49,13 +49,13 @@ const Banner = () => {
                 <Image
                   alt={item?.altText || "Banner Image"}
                   src={item?.image}
-                  height={item?.height || 600}
-                  width={item?.width || 1200}
-                  className="w-full h-auto max-h-[300px] sm:max-h-[350px] md:max-h-[400px] lg:max-h-[500px] object-cover"
+                  width={1200}
+                  height={600}
+                  className="w-full h-full object-cover"
                   onClick={() => handleClick(item)}
                   priority={index === 0}
                   quality={85}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
+                  sizes="(max-width: 375px) 375px, (max-width: 768px) 768px, 100vw"
                   placeholder="blur"
                   blurDataURL="data:image/png;base64,..."
                 />
@@ -79,20 +79,22 @@ const Banner = () => {
         </>
       ) : (
         banner.length === 1 && (
-          <Image
-            key={banner[0]?._id}
-            alt={banner[0]?.altText || "Banner Image"}
-            src={banner[0]?.image}
-            height={banner[0]?.height || 600}
-            width={banner[0]?.width || 1200}
-            className="w-full h-auto max-h-[300px] sm:max-h-[350px] md:max-h-[400px] lg:max-h-[500px] object-cover"
-            onClick={() => handleClick(banner[0])}
-            priority
-            quality={85}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
-            placeholder="blur"
-            blurDataURL="data:image/png;base64,..."
-          />
+          <div className="w-full aspect-[1200/600]">
+            <Image
+              key={banner[0]?._id}
+              alt={banner[0]?.altText || "Banner Image"}
+              src={banner[0]?.image}
+              width={1200}
+              height={600}
+              className="w-full h-full object-cover"
+              onClick={() => handleClick(banner[0])}
+              priority
+              quality={85}
+              sizes="(max-width: 375px) 375px, (max-width: 768px) 768px, 100vw"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,..."
+            />
+          </div>
         )
       )}
     </div>

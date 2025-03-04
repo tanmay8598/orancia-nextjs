@@ -41,7 +41,7 @@ const BestSellerCard = ({ product, type }) => {
   };
 
   return (
-    <div className="rounded-xl m-2 shadow-lg relative bg-white border border-gray-200 hover:border-[#ed1d24] transition-all duration-300">
+    <div className="rounded-xl m-2 shadow-lg relative bg-white border border-gray-200 hover:border-[#ed1d24] transition-all duration-300 min-h-[400px]">
       {/* Badge for New Arrival or Best Seller */}
       {type && (
         <span className="absolute bg-red-600 p-1 px-2 text-white rounded-tl-lg rounded-br-lg text-sm z-10">
@@ -53,23 +53,20 @@ const BestSellerCard = ({ product, type }) => {
       <div className="flex-col flex">
         {/* Product Image */}
         <Link className="group" href={`/product/${product.groupId}`}>
-          <div
-            className="overflow-hidden rounded-t-lg w-full h-[180px] md:h-[250px] flex items-center justify-center bg-white"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <Image
-              src={
-                product.image && product.image.length > 0
-                  ? product.image[currentImageIndex]
-                  : "https://files.stbotanica.com/site-images/400x400/STBOT470-01.jpg"
-              }
-              className="object-contain h-full w-full"
-              alt={`${product.name} image`}
-              height={200}
-              width={200}
-              onError={handleImageError}
-            />
+          <div className="overflow-hidden rounded-t-lg w-full h-[180px] md:h-[250px] flex items-center justify-center bg-white aspect-[1/1]">
+            {product.image && product.image.length > 0 ? (
+              <Image
+                src={product.image[currentImageIndex]}
+                className="object-contain h-full w-full"
+                alt={`${product.name} image`}
+                height={200}
+                width={200}
+                onError={handleImageError}
+                priority
+              />
+            ) : (
+              <div className="w-full h-full bg-gray-200 animate-pulse"></div>
+            )}
           </div>
         </Link>
 
@@ -103,7 +100,7 @@ const BestSellerCard = ({ product, type }) => {
           </div>
 
           {/* Price */}
-          <div className="text-sm md:text-lg font-semibold text-left mt-2">
+          <div className="text-sm md:text-lg font-semibold text-left mt-2 min-h-[24px]">
             ₹{product.sell_price}
           </div>
         </div>
