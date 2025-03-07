@@ -41,37 +41,30 @@ const BestSellerCarousel = ({ products, showType }) => {
           </svg>
         </button>
 
-        {/* Swiper Carousel */}
-        {products.length === 0 ? (
-          <div className="w-full h-[400px] flex gap-4">
-            {[1, 2, 3, 4].map((item) => (
-              <div key={item} className="w-1/4 h-full bg-gray-200 animate-pulse"></div>
-            ))}
-          </div>
-        ) : (
-          <Swiper
-            ref={sliderRef}
-            slidesPerView={2}
-            spaceBetween={0}
-            breakpoints={{
-              640: { slidesPerView: 2 },
-              768: { slidesPerView: 2 },
-              960: { slidesPerView: 3 },
-              1440: { slidesPerView: 4 },
-            }}
-            modules={[Pagination]}
-            className="w-full mb-8"
-          >
-            {products.map((product) => (
-              <SwiperSlide key={product._id} className="flex justify-center h-[400px]">
-                <BestSellerCard
-                  product={product.productDetails ? product.productDetails : product}
-                  type={showType ? "best-seller" : "new-arrivals"}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        )}
+
+        <Swiper
+          ref={sliderRef}
+          slidesPerView={2}
+          spaceBetween={0}
+          breakpoints={{
+            640: { slidesPerView: 2 },
+            768: { slidesPerView: 2 },
+            960: { slidesPerView: 3 },
+            1440: { slidesPerView: 4 },
+          }}
+          modules={[Pagination]}
+          className="w-full mb-8"
+        >
+          {products.map((product) => (
+            <SwiperSlide key={product._id} className="flex justify-center h-[400px]">
+              <BestSellerCard
+                product={product.productDetails ? product.productDetails : product}
+                type={showType ? "best-seller" : "new-arrivals"}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
 
         {/* Next Button - Hidden on Mobile */}
         <button

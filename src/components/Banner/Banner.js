@@ -48,7 +48,25 @@ const Banner = () => {
 
   // Skeleton loader component
   const SkeletonLoader = () => (
-    <div className="w-full h-[400px] sm:h-[450px] md:h-[500px] lg:h-[500px] bg-gray-200 animate-pulse"></div>
+    <div className="relative w-full h-[200px] sm:h-[450px] md:h-[500px] lg:h-[600px] bg-gray-200 rounded-lg overflow-hidden">
+      {/* Gradient Animation for Banner */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shimmer"></div>
+
+      {/* Mimic Content Structure in Center */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="bg-gray-300 h-8 w-3/4 rounded-lg animate-pulse"></div>
+      </div>
+
+      {/* Shimmer Effect for Left Arrow */}
+      <div className="absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-gray-300 rounded-full p-2 animate-pulse">
+        <div className="w-6 h-6 rounded-full bg-gray-400"></div>
+      </div>
+
+      {/* Shimmer Effect for Right Arrow */}
+      <div className="absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-gray-300 rounded-full p-2 animate-pulse">
+        <div className="w-6 h-6 rounded-full bg-gray-400"></div>
+      </div>
+    </div>
   );
 
   return (
@@ -89,21 +107,24 @@ const Banner = () => {
             <MdChevronRight className="size-5 md:size-6" /> {/* Responsive icon size */}
           </button>
         </>
+      ) : banner.length === 1 ? (
+        <Image
+          key={banner[0]?._id}
+          alt={banner[0]?.altText || "Banner Image"}
+          src={banner[0]?.image}
+          height={banner[0]?.height || 600}
+          width={banner[0]?.width || 1200}
+          className="w-full h-auto max-h-[400px] sm:max-h-[450px] md:max-h-[500px] lg:max-h-[600px] object-cover"
+          onClick={() => handleClick(banner[0])}
+          priority // Preload the image
+          quality={85} // Optimize image quality
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw" // Responsive sizes
+        />
       ) : (
-        banner.length === 1 && (
-          <Image
-            key={banner[0]?._id}
-            alt={banner[0]?.altText || "Banner Image"}
-            src={banner[0]?.image}
-            height={banner[0]?.height || 600}
-            width={banner[0]?.width || 1200}
-            className="w-full h-auto max-h-[400px] sm:max-h-[450px] md:max-h-[500px] lg:max-h-[600px] object-cover"
-            onClick={() => handleClick(banner[0])}
-            priority // Preload the image
-            quality={85} // Optimize image quality
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw" // Responsive sizes
-          />
-        )
+        // Fallback when there are no banners
+        <div className="w-full h-[400px] sm:h-[450px] md:h-[500px] lg:h-[600px] bg-gray-100 flex items-center justify-center">
+          <p className="text-gray-500">No banners available</p>
+        </div>
       )}
     </div>
   );

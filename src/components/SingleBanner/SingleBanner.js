@@ -33,7 +33,7 @@ const SingleBanner = ({ data }) => {
         <SkeletonLoader />
       ) : (
         <Link className="w-full mb-2" href="/blogs">
-          <div className="w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] overflow-hidden">
+          <div className="w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-full  overflow-hidden">
             <Image
               src={data}
               alt="Promotional Banner"

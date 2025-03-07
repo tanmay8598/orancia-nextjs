@@ -9,7 +9,7 @@ import Link from "next/link";
 import AddtoCartBtn from "../Button/AddtoCartBtn";
 import { add } from "@/redux/features/cart/cartSlice";
 
-const BestSellerCard = ({ product, type }) => {
+const BestSellerCard = ({ product, type, loading }) => {
   const [shownToasts, setShownToasts] = useState(new Set());
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const dispatch = useDispatch();
@@ -39,6 +39,49 @@ const BestSellerCard = ({ product, type }) => {
   const handleMouseLeave = () => {
     setCurrentImageIndex(0);
   };
+
+  // Skeleton loader component
+  const SkeletonLoader = () => (
+    <div className="rounded-xl m-2 shadow-lg relative bg-white border border-gray-200 min-h-[400px]">
+      {/* Badge Placeholder */}
+      {type && (
+        <div className="absolute bg-gray-300 p-1 px-2 rounded-tl-lg rounded-br-lg text-sm z-10 w-20 h-6 animate-pulse"></div>
+      )}
+
+      <div className="flex-col flex">
+        {/* Product Image Placeholder */}
+        <div className="overflow-hidden rounded-t-lg w-full h-[180px] md:h-[250px] flex items-center justify-center bg-gray-200 aspect-[1/1] animate-pulse"></div>
+
+        {/* Product Details Placeholder */}
+        <div className="p-3">
+          {/* Product Name Placeholder */}
+          <div className="h-12 overflow-hidden">
+            <div className="h-4 bg-gray-300 rounded w-3/4 animate-pulse"></div>
+            <div className="h-4 bg-gray-300 rounded w-1/2 mt-2 animate-pulse"></div>
+          </div>
+
+          {/* Product Category Placeholder */}
+          <div className="h-4 bg-gray-300 rounded w-1/3 mt-2 animate-pulse"></div>
+
+          {/* Rating and Reviews Placeholder */}
+          <div className="flex flex-row gap-1 items-center mt-2">
+            <div className="h-4 bg-gray-300 rounded w-10 animate-pulse"></div>
+            <div className="h-4 bg-gray-300 rounded w-6 animate-pulse"></div>
+          </div>
+
+          {/* Price Placeholder */}
+          <div className="h-6 bg-gray-300 rounded w-1/4 mt-2 animate-pulse"></div>
+        </div>
+
+        {/* Add to Cart Button Placeholder */}
+        <div className="h-10 bg-gray-300 rounded-lg mt-2 animate-pulse"></div>
+      </div>
+    </div>
+  );
+
+  if (loading) {
+    return <SkeletonLoader />;
+  }
 
   return (
     <div className="rounded-xl m-2 shadow-lg relative bg-white border border-gray-200 hover:border-[#ed1d24] transition-all duration-300 min-h-[400px]">
