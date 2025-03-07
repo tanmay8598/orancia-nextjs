@@ -21,6 +21,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <link rel="preconnect" href="https://orancia-s3.s3.ap-south-1.amazonaws.com/" />
       <body className={poppins.className}>
         <Providers>
           <ClientOnly>{children}</ClientOnly>

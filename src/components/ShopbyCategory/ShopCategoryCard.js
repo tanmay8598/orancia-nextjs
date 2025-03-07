@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -37,12 +38,19 @@ const ShopCategoryCard = ({ categories }) => {
         categories.map((category) => (
           <div key={category._id} className="w-full group">
             <Link href={`/category/${category._id}`} aria-label={`Shop ${category.name}`}>
-              <div
-                className="h-[150px] lg:h-[300px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md w-full bg-cover bg-center bg-no-repeat relative"
-                style={{ backgroundImage: `url(${category.image})` }}
-              >
+              <div className="h-[150px] lg:h-[300px] hover:scale-105 transition-all duration-500 cursor-pointer rounded-md w-full relative overflow-hidden">
+                {/* Optimized Image */}
+                <Image
+                  src={category.image}
+                  alt={category.name}
+                  fill
+                  className="object-cover object-center rounded-md"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority // Add this if the image is above the fold (critical for LCP)
+                />
+
                 {/* Category Name */}
-                <span className="absolute bottom-2 left-2 bg-red-600 rounded-md text-white text-sm px-3 py-1">
+                <span className="absolute bottom-2 left-2 bg-red-600 rounded-md text-white text-sm px-3 py-1 z-10">
                   {category.name}
                 </span>
               </div>
