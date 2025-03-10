@@ -117,7 +117,9 @@ const Footer = () => {
               <MdEmail className="mr-2" /> info@orancia.in
             </div>
           </div>
-          <img
+          <Image
+            width={200}
+            height={100}
             src="https://i.ibb.co/Qfvn4z6/payment.png"
             alt="Payment Methods"
             className="mt-4 max-w-full"

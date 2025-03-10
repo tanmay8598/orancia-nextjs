@@ -31,6 +31,7 @@ const Banner = () => {
     try {
       const { data } = await apiClient.get("variation/banner/get");
       setBanner(data);
+      console.log(data);
     } catch (error) {
       console.error("Error fetching banner data:", error);
     } finally {
@@ -49,7 +50,7 @@ const Banner = () => {
   // Skeleton loader component
   const SkeletonLoader = () => (
     <>
-      <div className="relative w-full h-[110px] sm:h-[350px] md:h-[400px] bg-gray-200 rounded-lg overflow-hidden">
+      <div className="relative w-full h-[150px] sm:h-[350px] md:h-[400px] bg-gray-200 rounded-lg overflow-hidden">
         {/* Gradient Animation for Banner */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shimmer"></div>
 
@@ -88,7 +89,7 @@ const Banner = () => {
                   className="w-full h-auto max-h-[400px] sm:max-h-[450px] md:max-h-[500px] lg:max-h-[600px] object-cover"
                   onClick={() => handleClick(item)}
                   priority // Preload the first image
-                  quality={50} // Optimize image quality
+                  quality={30} // Optimize image quality
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw" // Responsive sizes
                 />
               </div>
@@ -121,7 +122,7 @@ const Banner = () => {
           className="w-full h-auto max-h-[400px] sm:max-h-[450px] md:max-h-[500px] lg:max-h-[600px] object-cover"
           onClick={() => handleClick(banner[0])}
           priority // Preload the image
-          quality={50} // Optimize image quality
+          quality={30} // Optimize image quality
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw" // Responsive sizes
         />
       ) : (

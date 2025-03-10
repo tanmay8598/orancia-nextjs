@@ -10,6 +10,7 @@ const nextConfig = {
       "i.pinimg.com",
       "cdn2.stylecraze.com",
       "restaurant-tcj.netlify.app",
+      "i.ibb.co"
     ],
   },
   trailingSlash: true,
