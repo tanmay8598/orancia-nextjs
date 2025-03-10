@@ -3,6 +3,10 @@ const withMT = require("@material-tailwind/react/utils/withMT");
 
 module.exports = withMT({
   darkMode: ["class"],
+  mode: "jit",
+  experimental: {
+    optimizeCss: true,
+  },
   content: [
     "./pages/**/*.{js,jsx}",
     "./components/**/*.{js,jsx}",

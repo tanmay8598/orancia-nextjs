@@ -48,25 +48,27 @@ const Banner = () => {
 
   // Skeleton loader component
   const SkeletonLoader = () => (
-    <div className="relative w-full h-[200px] sm:h-[450px] md:h-[500px] lg:h-[600px] bg-gray-200 rounded-lg overflow-hidden">
-      {/* Gradient Animation for Banner */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shimmer"></div>
+    <>
+      <div className="relative w-full h-[110px] sm:h-[350px] md:h-[400px] bg-gray-200 rounded-lg overflow-hidden">
+        {/* Gradient Animation for Banner */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shimmer"></div>
 
-      {/* Mimic Content Structure in Center */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="bg-gray-300 h-8 w-3/4 rounded-lg animate-pulse"></div>
-      </div>
+        {/* Mimic Content Structure in Center */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="bg-gray-300 h-8 w-3/4 rounded-lg animate-pulse"></div>
+        </div>
 
-      {/* Shimmer Effect for Left Arrow */}
-      <div className="absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-gray-300 rounded-full p-2 animate-pulse">
-        <div className="w-6 h-6 rounded-full bg-gray-400"></div>
-      </div>
+        {/* Shimmer Effect for Left Arrow */}
+        <div className="absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-gray-300 rounded-full p-2 animate-pulse">
+          <div className="w-6 h-6 rounded-full bg-gray-400"></div>
+        </div>
 
-      {/* Shimmer Effect for Right Arrow */}
-      <div className="absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-gray-300 rounded-full p-2 animate-pulse">
-        <div className="w-6 h-6 rounded-full bg-gray-400"></div>
+        {/* Shimmer Effect for Right Arrow */}
+        <div className="absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-gray-300 rounded-full p-2 animate-pulse">
+          <div className="w-6 h-6 rounded-full bg-gray-400"></div>
+        </div>
       </div>
-    </div>
+    </>
   );
 
   return (
@@ -86,7 +88,7 @@ const Banner = () => {
                   className="w-full h-auto max-h-[400px] sm:max-h-[450px] md:max-h-[500px] lg:max-h-[600px] object-cover"
                   onClick={() => handleClick(item)}
                   priority // Preload the first image
-                  quality={85} // Optimize image quality
+                  quality={50} // Optimize image quality
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw" // Responsive sizes
                 />
               </div>
@@ -97,14 +99,16 @@ const Banner = () => {
             className="absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-all"
             onClick={() => sliderRef.current?.slickPrev()}
           >
-            <MdChevronLeft className="size-5 md:size-6" /> {/* Responsive icon size */}
+            <MdChevronLeft className="size-5 md:size-6" />{" "}
+            {/* Responsive icon size */}
           </button>
           <button
             aria-label="Next Slide"
             className="absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-all"
             onClick={() => sliderRef.current?.slickNext()}
           >
-            <MdChevronRight className="size-5 md:size-6" /> {/* Responsive icon size */}
+            <MdChevronRight className="size-5 md:size-6" />{" "}
+            {/* Responsive icon size */}
           </button>
         </>
       ) : banner.length === 1 ? (
@@ -117,7 +121,7 @@ const Banner = () => {
           className="w-full h-auto max-h-[400px] sm:max-h-[450px] md:max-h-[500px] lg:max-h-[600px] object-cover"
           onClick={() => handleClick(banner[0])}
           priority // Preload the image
-          quality={85} // Optimize image quality
+          quality={50} // Optimize image quality
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw" // Responsive sizes
         />
       ) : (
