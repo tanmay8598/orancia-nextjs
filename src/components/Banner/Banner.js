@@ -67,7 +67,7 @@ const Banner = ({ initialBanner = [] }) => {
         {/* Preconnect to AWS S3 bucket */}
         <link
           rel="preconnect"
-          href="https://your-s3-bucket-name.s3.your-region.amazonaws.com"
+          href="https://orancia-s3.s3.ap-south-1.amazonaws.com"
           crossOrigin="anonymous"
         />
         {/* Preload the LCP image if available */}
