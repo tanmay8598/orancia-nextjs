@@ -6,9 +6,9 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
-const Banner = () => {
-  const [banner, setBanner] = useState([]);
-  const [loading, setLoading] = useState(true); // Add loading state
+const Banner = ({ initialBanner = [] }) => {
+  const [banner, setBanner] = useState(initialBanner);
+  const [loading, setLoading] = useState(!initialBanner.length);
   const sliderRef = React.useRef(null);
   const router = useRouter();
 
@@ -20,24 +20,27 @@ const Banner = () => {
     autoplay: banner.length > 1,
     autoplaySpeed: 5000,
     pauseOnHover: false,
-    arrows: false, // Hide default arrows
+    arrows: false,
   };
 
   useEffect(() => {
-    bannerHandler();
+    if (!initialBanner.length) {
+      bannerHandler();
+    }
   }, []);
 
   const bannerHandler = async () => {
     try {
       const { data } = await apiClient.get("variation/banner/get");
       setBanner(data);
-      console.log(data);
     } catch (error) {
       console.error("Error fetching banner data:", error);
     } finally {
-      setLoading(false); // Set loading to false after data is fetched
+      setLoading(false);
     }
   };
+
+
 
   const handleClick = (item) => {
     if (item.product) {
@@ -47,29 +50,13 @@ const Banner = () => {
     }
   };
 
-  // Skeleton loader component
   const SkeletonLoader = () => (
-    <>
-      <div className="relative w-full h-[150px] sm:h-[350px] md:h-[400px] bg-gray-200 rounded-lg overflow-hidden">
-        {/* Gradient Animation for Banner */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shimmer"></div>
-
-        {/* Mimic Content Structure in Center */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="bg-gray-300 h-8 w-3/4 rounded-lg animate-pulse"></div>
-        </div>
-
-        {/* Shimmer Effect for Left Arrow */}
-        <div className="absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-gray-300 rounded-full p-2 animate-pulse">
-          <div className="w-6 h-6 rounded-full bg-gray-400"></div>
-        </div>
-
-        {/* Shimmer Effect for Right Arrow */}
-        <div className="absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-gray-300 rounded-full p-2 animate-pulse">
-          <div className="w-6 h-6 rounded-full bg-gray-400"></div>
-        </div>
+    <div className="relative w-full h-[150px] sm:h-[350px] md:h-[400px] bg-gray-200 rounded-lg overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shimmer"></div>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="bg-gray-300 h-8 w-3/4 rounded-lg animate-pulse"></div>
       </div>
-    </>
+    </div>
   );
 
   return (
@@ -79,7 +66,7 @@ const Banner = () => {
       ) : banner.length > 1 ? (
         <>
           <Slider ref={sliderRef} {...settings}>
-            {banner.map((item) => (
+            {banner.map((item, index) => (
               <div key={item?._id} className="w-full">
                 <Image
                   alt={item?.altText || "Banner Image"}
@@ -88,9 +75,10 @@ const Banner = () => {
                   width={item?.width || 1200}
                   className="w-full h-auto max-h-[400px] sm:max-h-[450px] md:max-h-[500px] lg:max-h-[600px] object-cover"
                   onClick={() => handleClick(item)}
-                  priority // Preload the first image
-                  quality={30} // Optimize image quality
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw" // Responsive sizes
+                  priority={index === 0}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  quality={75}
+                  sizes="(max-width: 480px) 100vw, (max-width: 768px) 80vw, 50vw"
                 />
               </div>
             ))}
@@ -100,16 +88,14 @@ const Banner = () => {
             className="absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-all"
             onClick={() => sliderRef.current?.slickPrev()}
           >
-            <MdChevronLeft className="size-5 md:size-6" />{" "}
-            {/* Responsive icon size */}
+            <MdChevronLeft className="size-5 md:size-6" />
           </button>
           <button
             aria-label="Next Slide"
             className="absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-all"
             onClick={() => sliderRef.current?.slickNext()}
           >
-            <MdChevronRight className="size-5 md:size-6" />{" "}
-            {/* Responsive icon size */}
+            <MdChevronRight className="size-5 md:size-6" />
           </button>
         </>
       ) : banner.length === 1 ? (
@@ -121,12 +107,11 @@ const Banner = () => {
           width={banner[0]?.width || 1200}
           className="w-full h-auto max-h-[400px] sm:max-h-[450px] md:max-h-[500px] lg:max-h-[600px] object-cover"
           onClick={() => handleClick(banner[0])}
-          priority // Preload the image
-          quality={30} // Optimize image quality
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw" // Responsive sizes
+          priority
+          quality={75}
+          sizes="(max-width: 480px) 100vw, (max-width: 768px) 80vw, 50vw"
         />
       ) : (
-        // Fallback when there are no banners
         <div className="w-full h-[400px] sm:h-[450px] md:h-[500px] lg:h-[600px] bg-gray-100 flex items-center justify-center">
           <p className="text-gray-500">No banners available</p>
         </div>
