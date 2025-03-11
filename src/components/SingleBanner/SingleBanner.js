@@ -1,24 +1,27 @@
+'use client'
+import apiClient from "@/api/client";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 
-const SingleBanner = ({ data }) => {
-  const [loading, setLoading] = useState(true); // Add loading state
-  const [imageLoaded, setImageLoaded] = useState(false); // Track image loading
+const SingleBanner = () => {
+  const [loading, setLoading] = useState(true);
+  const [bannerImage, setBannerImage] = useState(null);
 
   useEffect(() => {
-    if (data) {
-      const img = new window.Image(); // Use the native browser Image object
-      img.src = data;
-      img.onload = () => {
-        setImageLoaded(true);
-        setLoading(false); // Set loading to false when the image is loaded
-      };
-      img.onerror = () => {
-        setLoading(false); // Handle error case
-      };
+    fetchBanner();
+  }, []);
+
+  const fetchBanner = async () => {
+    try {
+      const response = await apiClient.get(`/variation/bottombanner/list`);
+      setBannerImage(response?.data?.banners[0]?.image);
+      setLoading(false);
+    } catch (error) {
+      console.error("Failed to fetch banner:", error);
+      setLoading(false);
     }
-  }, [data]);
+  };
 
   // Skeleton loader component
   const SkeletonLoader = () => (
@@ -29,21 +32,21 @@ const SingleBanner = ({ data }) => {
 
   return (
     <>
-      {loading ? (
+      {loading || !bannerImage ? (
         <SkeletonLoader />
       ) : (
         <Link className="w-full mb-2" href="/blogs">
-          <div className="w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] overflow-hidden">
+          <div className="w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[700px] overflow-hidden">
             <Image
-              src={data}
+              src={bannerImage}
               alt="Promotional Banner"
               height={700}
               width={2000}
               className="w-full h-full object-cover"
               priority // Preload the image for better performance
-              quality={55} // Optimize image quality
+              quality={75} // Optimize image quality
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw" // Responsive sizes
-              onLoadingComplete={() => setImageLoaded(true)} // Ensure image is fully loaded
+              onLoadingComplete={() => setLoading(false)} // Set loading to false when the image is fully loaded
             />
           </div>
         </Link>
