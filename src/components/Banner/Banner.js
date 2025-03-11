@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import Head from "next/head";
 
 const Banner = ({ initialBanner = [] }) => {
   const [banner, setBanner] = useState(initialBanner);
@@ -61,6 +62,24 @@ const Banner = ({ initialBanner = [] }) => {
 
   return (
     <div className="relative w-full">
+      <Head>
+
+        {/* Preconnect to AWS S3 bucket */}
+        <link
+          rel="preconnect"
+          href="https://your-s3-bucket-name.s3.your-region.amazonaws.com"
+          crossOrigin="anonymous"
+        />
+        {/* Preload the LCP image if available */}
+        {banner.length > 0 && (
+          <link
+            rel="preload"
+            href={banner[0]?.image}
+            as="image"
+            fetchpriority="high"
+          />
+        )}
+      </Head>
       {loading ? (
         <SkeletonLoader />
       ) : banner.length > 1 ? (
@@ -76,8 +95,8 @@ const Banner = ({ initialBanner = [] }) => {
                   className="w-full h-auto max-h-[400px] sm:max-h-[450px] md:max-h-[500px] lg:max-h-[600px] object-cover"
                   onClick={() => handleClick(item)}
                   priority={index === 0}
-                  loading={index === 0 ? "eager" : "lazy"}
-                  quality={75}
+                  // loading={index === 0 ? "eager" : "lazy"}
+                  quality={70}
                   sizes="(max-width: 480px) 100vw, (max-width: 768px) 80vw, 50vw"
                 />
               </div>
@@ -108,7 +127,7 @@ const Banner = ({ initialBanner = [] }) => {
           className="w-full h-auto max-h-[400px] sm:max-h-[450px] md:max-h-[500px] lg:max-h-[600px] object-cover"
           onClick={() => handleClick(banner[0])}
           priority
-          quality={75}
+          quality={70}
           sizes="(max-width: 480px) 100vw, (max-width: 768px) 80vw, 50vw"
         />
       ) : (
