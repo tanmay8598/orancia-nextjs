@@ -7,6 +7,7 @@ import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 import ForgetPassword from "./ForgetPassword";
 import useAuth from "@/auth/useAuth";
 import apiClient from "@/api/client";
+import VerifyEmail from './VerifyEmail';
 
 const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
   const [formData, setFormData] = useState({
@@ -17,6 +18,9 @@ const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [forgetPasswordOpen, setForgetPasswordOpen] = useState(false);
+  const [showVerifyEmail, setShowVerifyEmail] = useState(false); 
+  const [registeredEmail, setRegisteredEmail] = useState(""); 
+
 
   const schema = Yup.object().shape({
     email: Yup.string().required("Email is required"),
@@ -56,20 +60,32 @@ const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
       try {
         const response = await apiClient.post("/user/login", formData);
 
-        if (response.ok) {
-          toast.success("Login successful!", {
-            id: "login-success-toast",
-            duration: 1000,
-          });
-          logIn(response.data.token);
+        console.log(response)
 
-          setTimeout(() => {
-            setIsOpen(false);
-          }, 1000);
-        } else {
-          console.error("Login failed:");
-          toast.error("Login failed. Please try again.");
+
+     
+          if (response.data.isEmailVerfied === true) { 
+            toast.success("Login successful!", {
+              id: "login-success-toast",
+              duration: 1000,
+            });
+            logIn(response.data.token);
+        
+            setTimeout(() => {
+              setIsOpen(false);
+            }, 1000);
+          } else if (response.data.isEmailVerfied === false) {
+          
+            setRegisteredEmail(response.data.email); 
+            setShowVerifyEmail(true);
+            toast.error(response.data.message);
+          }
+        else {
+          toast.error(response.data.message || "Login failed. Please try again.");
+          console.error("Login failed:", response.data);
         }
+        
+        
       } catch (error) {
         console.error("Error:", error);
         toast.error("An error occurred. Please try again later.");
@@ -81,12 +97,23 @@ const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
 
   return (
     <>
-      {forgetPasswordOpen ? (
+      {
+      forgetPasswordOpen ? (
         <ForgetPassword
           isOpen={forgetPasswordOpen}
           setIsOpen={setForgetPasswordOpen}
         />
-      ) : (
+      ) : 
+      showVerifyEmail ? (
+        <VerifyEmail
+          isOpen={showVerifyEmail}
+          email={formData.email}
+          setIsOpen={setShowVerifyEmail}
+          setIsOpen2={setIsOpen}
+
+        />
+      ) : 
+      (
         <>
           <LogoInformation />
 

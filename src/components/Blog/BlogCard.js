@@ -12,7 +12,7 @@ const BlogCard = ({ blogData }) => {
               src={blogData?.image[0]}
               alt={blogData?.heading || "Blog Image"}
               fill // Fill the container
-              className="object-cover" // Maintain aspect ratio
+              className="object-fit" // Maintain aspect ratio
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Responsive sizes
               priority={false} // Lazy load by default
             />

@@ -63,7 +63,7 @@ const Page = () => {
                 No products found
               </p>
             ) : (
-              products.map((product, index) => (
+              products?.map((product, index) => (
                 <NewProducts
                   key={product.id}
                   product={

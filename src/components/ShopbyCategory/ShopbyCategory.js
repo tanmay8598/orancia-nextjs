@@ -41,7 +41,7 @@ const ShopbyCategory = () => {
         </div>
       </div>
       <div className="my-8">
-        <Link href="/best-sellers" className="flex flex-row items-center justify-center gap-1">
+        <Link href="/category" className="flex flex-row items-center justify-center gap-1">
 
           <p className="font-medium text-center">VIEW ALL</p>
           <ArrowRightCircleIcon size={15} />

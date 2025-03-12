@@ -15,10 +15,10 @@ const Banner = ({ initialBanner = [] }) => {
 
   const settings = {
     dots: false,
-    infinite: banner.length > 1,
+    infinite: banner?.length > 1,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: banner.length > 1,
+    autoplay: banner?.length > 1,
     autoplaySpeed: 5000,
     pauseOnHover: false,
     arrows: false,
@@ -71,7 +71,7 @@ const Banner = ({ initialBanner = [] }) => {
           crossOrigin="anonymous"
         />
         {/* Preload the LCP image if available */}
-        {banner.length > 0 && (
+        {banner?.length > 0 && (
           <link
             rel="preload"
             href={banner[0]?.image}
@@ -82,10 +82,10 @@ const Banner = ({ initialBanner = [] }) => {
       </Head>
       {loading ? (
         <SkeletonLoader />
-      ) : banner.length > 1 ? (
+      ) : banner?.length > 1 ? (
         <>
           <Slider ref={sliderRef} {...settings}>
-            {banner.map((item, index) => (
+            {banner?.map((item, index) => (
               <div key={item?._id} className="w-full">
                 <Image
                   alt={item?.altText || "Banner Image"}
@@ -117,7 +117,7 @@ const Banner = ({ initialBanner = [] }) => {
             <MdChevronRight className="size-5 md:size-6" />
           </button>
         </>
-      ) : banner.length === 1 ? (
+      ) : banner?.length === 1 ? (
         <Image
           key={banner[0]?._id}
           alt={banner[0]?.altText || "Banner Image"}

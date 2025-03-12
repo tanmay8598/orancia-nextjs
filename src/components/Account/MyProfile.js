@@ -9,6 +9,7 @@ const MyProfile = () => {
   const [email, setEmail] = useState(user?.email || "");
   const [password, setPassword] = useState("");
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await apiClient.post('/user/update-profile', {
@@ -17,6 +18,8 @@ const MyProfile = () => {
       email,
       password
     })
+
+    console.log(response)
 
     if (response.ok) {
       logIn(response.data.token)

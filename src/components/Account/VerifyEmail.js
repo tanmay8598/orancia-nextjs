@@ -1,23 +1,27 @@
+
 import React, { useState } from "react";
 import * as Yup from "yup";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
 import toast, { Toaster } from "react-hot-toast";
 import InputField from "./InputField";
 import LogoInformation from "./LogoInformation";
-import { useRouter } from "next/navigation";
 import apiClient from "@/api/client";
+import useAuth from './../../auth/useAuth';
 
-const ForgetPassword = ({ setIsOpen }) => {
+const VerifyEmail = ({ email, setIsOpen, setIsOpen2 }) => {
+  const { logIn } = useAuth();
+
   const [formData, setFormData] = useState({
-    email: "",
+    otp: "",
   });
+
+
+
   const [errors, setErrors] = useState({});
 
-
   const schema = Yup.object().shape({
-    email: Yup.string().required("Email is required"),
+    otp: Yup.string().required("OTP is required"),
   });
+
   const handleInputChange = (e) => {
     const { id, value, type } = e.target;
     const newValue = type === "checkbox" ? checked : value;
@@ -42,34 +46,38 @@ const ForgetPassword = ({ setIsOpen }) => {
     }
   };
 
-
-  const handleSendPassword = async (e) => {
+  const handleVerifyEmail = async (e) => {
     e.preventDefault();
-    validate();
+    const isValid = await validate();
+    if (isValid) {
+      try {
+        const response = await apiClient.post(`/user/verify-user-profile`, {
+          email: email,
+          otp: formData.otp,
+        });
 
-    try {
-      const response = await apiClient.post(`/user/reset-password`, {
-        email: formData.email,
-      });
+				console.log(response)
 
+        if (response.ok) {
+          toast.success(response.data.message);
+          // setIsOpen(false);
 
-
-      if (response.ok) {
-        toast.success(response.data);
-        setIsOpen(false)
-
-      } 
-
-      if (!response.ok) {
-        toast.error(response.data.message);
-        
-
-      } 
-    } catch (error) {
-      console.error("API Error:", error);
-      toast.warning(
-        "Failed to send password recovery email. Please try again."
-      );
+					  setTimeout(() => {
+            setIsOpen(false);
+            setIsOpen2(false);
+            logIn(response.data.token);
+          }, 1000);
+        } else {
+					setIsOpen(false);
+					setIsOpen2(false);
+          toast.error(response.data.message);
+        }
+      } catch (error) {
+				setIsOpen(false);
+				setIsOpen2(false);
+        console.error("API Error:", error);
+        toast.warning("Failed to verify your email. Please try again.");
+      }
     }
   };
 
@@ -77,23 +85,24 @@ const ForgetPassword = ({ setIsOpen }) => {
     <>
       <LogoInformation />
 
-      <form onSubmit={handleSendPassword}>
-        <p className="text-base mb-2 ">Please enter your email to reset your password</p>
+      <form onSubmit={handleVerifyEmail}>
+        <p className="text-base mb-2 ">
+          Please enter the OTP sent to your email
+        </p>
         <InputField
-          id="email"
-          label="Email"
-          value={formData.email}
+          id="otp"
+          label="OTP"
+          value={formData.otp}
           onChange={handleInputChange}
-          error={errors.email}
+          error={errors.otp}
           placeholder=" "
         />
 
         <button
           className="bg-[#ed1d24] text-white w-full font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"
-        // onClick={handleSendPassword}
         >
-          Send Password
+          Verify Otp
         </button>
       </form>
 
@@ -102,4 +111,4 @@ const ForgetPassword = ({ setIsOpen }) => {
   );
 };
 
-export default ForgetPassword;
+export default VerifyEmail;

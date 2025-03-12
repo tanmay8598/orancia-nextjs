@@ -78,7 +78,7 @@ const DifferenceBanner = () => {
           className="max-w-[200px]"
         />
       </div>
-      <div className="absolute top-1/2 -translate-y-[50%] left-[40%] -translate-x-1/2">
+      <div className="absolute top-1/2 -translate-y-[36%] left-[40%] -translate-x-1/2">
         <Image
           src="https://restaurant-tcj.netlify.app/assets/kiwi-Do64hCSg.png"
           alt="Decorative kiwi illustration"

@@ -12,6 +12,7 @@ const SearchSidebar = ({ isOpen, setIsOpen }) => {
   const [results, setResults] = useState([]);
 
   const handleSearch = async (value) => {
+
     if (value.length < 1) {
       setResults([]);
     } else {
@@ -19,6 +20,8 @@ const SearchSidebar = ({ isOpen, setIsOpen }) => {
       const { data } = await apiClient.get("/product/search-product", {
         Query: value,
       });
+
+
 
       const results = data.filter((product) => {
         return (
@@ -49,19 +52,20 @@ const SearchSidebar = ({ isOpen, setIsOpen }) => {
             name="q"
             placeholder="What are you looking for?"
             onChange={(e) => handleSearch(e.target.value)}
+
           />
         </div>
         <div></div>
-        {results.length === 0 && search?.length > 0 && (
+        {results?.length === 0 && search?.length > 0 && (
           <div className="text-center h-screen flex flex-col items-center justify-center text-lg">
             No results could be found
           </div>
         )}
 
-        {results.length > 0 && (
+        {results?.length > 0 && (
           <div className="mt-2">
             <ScrollArea>
-              {results.map((result) => (
+              {results?.map((result) => (
                 <>
                   <div key={result._id}>
                     <ul className="mt-1 text-[15px]">

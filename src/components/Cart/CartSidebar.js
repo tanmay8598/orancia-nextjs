@@ -55,7 +55,8 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
               </p>
             </div>
           ) : (
-            <ScrollArea className="h-[78vh] lg:h-[70vh] xl:h-[74vh]  mb-4">
+            <ScrollArea 
+            className={`h-[70vh] lg:h-[70vh] xl:h-[74vh] mb-4 scroll-area-mobile`}>
               {products &&
                 products.map((item, index) => (
                   <CartItem item={item} key={index} />

@@ -63,7 +63,7 @@ const BlogHero = () => {
         )}
       </div>
       <div className="my-8">
-        <Link href="/best-sellers" className="flex flex-row items-center justify-center gap-1">
+        <Link href="/blogs" className="flex flex-row items-center justify-center gap-1">
           {/* <button className="btn btn-accent rounded-lg mx-auto mt-2 sm:mt-8">
               See all
             </button> */}

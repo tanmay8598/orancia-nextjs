@@ -11,6 +11,7 @@ import { SheetHeader, SheetTitle } from "../ui/sheet";
 import LogoInformation from "./LogoInformation";
 import apiClient from "@/api/client";
 import useAuth from "@/auth/useAuth";
+import VerifyEmail from "./VerifyEmail"; 
 
 const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
   const { logIn } = useAuth();
@@ -22,6 +23,8 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
     phone: "",
   });
   const [errors, setErrors] = useState({});
+  const [showVerifyEmail, setShowVerifyEmail] = useState(false); 
+  const [registeredEmail, setRegisteredEmail] = useState(""); 
   const router = useRouter();
   const schema = Yup.object().shape({
     name: Yup.string()
@@ -67,15 +70,17 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
         const response = await apiClient.post("/user/register", formData);
 
         if (response.ok) {
-          toast.success("Form submitted successfully!");
+          toast.success(response.data.message);
+          setRegisteredEmail(formData.email); 
+          setShowVerifyEmail(true); 
 
-          setTimeout(() => {
-            setIsOpen(false);
-            logIn(response.data.token);
-          }, 1000);
+          // setTimeout(() => {
+          //   setIsOpen(false);
+          //   // logIn(response.data.token);
+          // }, 1000);
         } else {
           console.log(response.error);
-          toast.error("Failed to register. Please try again.");
+          toast.error(response.data.message);
         }
       } catch (error) {
         console.log(error);
@@ -93,64 +98,74 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
 
   return (
     <>
-      <LogoInformation />
-      <form onSubmit={handleSubmit}>
-        <InputField
-          id="name"
-          label="Name"
-          value={formData.name}
-          onChange={handleInputChange}
-          error={errors.name}
-          placeholder=" "
+    {showVerifyEmail ? (
+        <VerifyEmail
+          email={registeredEmail}
+          setIsOpen={setShowVerifyEmail}
+          setIsOpen2={setIsOpen}
         />
-        <InputField
-          id="email"
-          label="Email"
-          value={formData.email}
-          onChange={handleInputChange}
-          error={errors.email}
-          placeholder=" "
-        />
-        <InputField
-          id="phone"
-          label="Phone Number"
-          value={formData.phone}
-          onChange={handleInputChange}
-          error={errors.phone}
-          maxLength={10}
-          onInput={handleInputNumber}
-          placeholder=" "
-        />
-        <div className="relative">
-          <InputField
-            id="password"
-            label="Password"
-            type={isPasswordVisible ? "text" : "password"} // Toggle input type based on state
-            value={formData.password}
-            onChange={handleInputChange}
-            error={errors.password}
-            placeholder=" "
-          />
-          <button
-            type="button"
-            className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
-            onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-          >
-            {isPasswordVisible ? (
-              <BiSolidHide className="text-lg" />
-            ) : (
-              <BiSolidShow className="text-lg" />
-            )}
-          </button>
-        </div>
+      ) : (
+        <>
+          <LogoInformation />
+          <form onSubmit={handleSubmit}>
+            <InputField
+              id="name"
+              label="Name"
+              value={formData.name}
+              onChange={handleInputChange}
+              error={errors.name}
+              placeholder=" "
+            />
+            <InputField
+              id="email"
+              label="Email"
+              value={formData.email}
+              onChange={handleInputChange}
+              error={errors.email}
+              placeholder=" "
+            />
+            <InputField
+              id="phone"
+              label="Phone Number"
+              value={formData.phone}
+              onChange={handleInputChange}
+              error={errors.phone}
+              maxLength={10}
+              onInput={handleInputNumber}
+              placeholder=" "
+            />
+            <div className="relative">
+              <InputField
+                id="password"
+                label="Password"
+                type={isPasswordVisible ? "text" : "password"}
+                value={formData.password}
+                onChange={handleInputChange}
+                error={errors.password}
+                placeholder=" "
+              />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+              >
+                {isPasswordVisible ? (
+                  <BiSolidHide className="text-lg" />
+                ) : (
+                  <BiSolidShow className="text-lg" />
+                )}
+              </button>
+            </div>
 
-        <button
-          className="bg-[#ed1d24] text-white w-full font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="submit"
-        >
-          Register
-        </button>
-      </form>
+            <button
+              className="bg-[#ed1d24] text-white w-full font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              Register
+            </button>
+          </form>
+        </>
+      )}
 
       <Toaster position="bottom-right" />
     </>
@@ -158,3 +173,5 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
 };
 
 export default Register;
+
+

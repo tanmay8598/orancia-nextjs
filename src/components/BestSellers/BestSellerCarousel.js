@@ -16,7 +16,7 @@ const BestSellerCarousel = ({ products, showType }) => {
       <div className="flex items-center justify-center">
         {/* Previous Button - Hidden on Mobile */}
         <button
-          className="hidden md:block hover:drop-shadow-md hover:bg-white hover:p-2 hover:rounded-lg"
+          className=" md:block hover:drop-shadow-md hover:bg-white hover:p-2 hover:rounded-lg"
           onClick={() => {
             if (sliderRef.current && sliderRef.current.swiper) {
               sliderRef.current.swiper.slidePrev();
@@ -68,7 +68,7 @@ const BestSellerCarousel = ({ products, showType }) => {
 
         {/* Next Button - Hidden on Mobile */}
         <button
-          className="hidden md:block hover:drop-shadow-md hover:bg-white hover:p-2 hover:rounded-lg"
+          className=" md:block hover:drop-shadow-md hover:bg-white hover:p-2 hover:rounded-lg"
           onClick={() => {
             if (sliderRef.current && sliderRef.current.swiper) {
               sliderRef.current.swiper.slideNext();
