@@ -69,7 +69,7 @@ const DifferenceBanner = () => {
           className="max-w-[200px]"
         />
       </div>
-      <div className="hidden sm:block absolute bottom-0 right-0">
+      <div className="hidden sm:block absolute -bottom-12 right-0">
         <Image
           src="https://restaurant-tcj.netlify.app/assets/apple-B3cOfIDT.png"
           alt="Decorative apple illustration"
