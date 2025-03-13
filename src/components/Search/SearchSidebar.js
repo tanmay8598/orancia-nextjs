@@ -21,18 +21,16 @@ const SearchSidebar = ({ isOpen, setIsOpen }) => {
         Query: value,
       });
 
+      // const results = data?.filter((product) => {
+      //   return (
+      //     value &&
+      //     product &&
+      //     product.name &&
+      //     product.name.toLowerCase().includes(value)
+      //   );
+      // });
 
-
-      const results = data.filter((product) => {
-        return (
-          value &&
-          product &&
-          product.name &&
-          product.name.toLowerCase().includes(value)
-        );
-      });
-
-      setResults(results);
+      setResults(data);
     }
   };
   const handleCloseModal = () => {
@@ -64,7 +62,7 @@ const SearchSidebar = ({ isOpen, setIsOpen }) => {
 
         {results?.length > 0 && (
           <div className="mt-2">
-            <ScrollArea>
+            <ScrollArea className="h-[80vh] overflow-y-auto">
               {results?.map((result) => (
                 <>
                   <div key={result._id}>
