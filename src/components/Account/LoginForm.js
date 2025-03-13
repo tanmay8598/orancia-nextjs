@@ -60,10 +60,7 @@ const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
       try {
         const response = await apiClient.post("/user/login", formData);
 
-        console.log(response)
 
-
-     
           if (response.data.isEmailVerfied === true) { 
             toast.success("Login successful!", {
               id: "login-success-toast",

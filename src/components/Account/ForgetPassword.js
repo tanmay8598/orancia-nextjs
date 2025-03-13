@@ -43,33 +43,30 @@ const ForgetPassword = ({ setIsOpen }) => {
   };
 
 
+
   const handleSendPassword = async (e) => {
     e.preventDefault();
-    validate();
-
+    const isValid = await validate(); 
+  
+    if (!isValid) {
+      toast.error("Please correct the errors first");
+      return;
+    }
+  
     try {
       const response = await apiClient.post(`/user/reset-password`, {
         email: formData.email,
       });
-
-
-
+  
       if (response.ok) {
-        toast.success(response.data);
-        setIsOpen(false)
-
-      } 
-
-      if (!response.ok) {
-        toast.error(response.data.message);
-        
-
-      } 
+        toast.success(response.data.message || "Password reset email sent successfully!");
+        setIsOpen(false);
+      } else {
+        toast.error(response.data.message || "Failed to send password recovery email");
+      }
     } catch (error) {
-      console.error("API Error:", error);
-      toast.warning(
-        "Failed to send password recovery email. Please try again."
-      );
+      console.error("error", error);
+      toast.error("Failed to send password recovery email. Please try again");
     }
   };
 
