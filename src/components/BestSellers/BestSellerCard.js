@@ -84,7 +84,7 @@ const BestSellerCard = ({ product, type, loading }) => {
   }
 
   return (
-    <div className="rounded-xl m-2 shadow-lg relative bg-white border border-gray-200 hover:border-[#ed1d24] transition-all duration-300 min-h-[400px]">
+    <div className="rounded-xl m-2 shadow-lg relative bg-white border border-gray-200 hover:border-[#ed1d24] transition-all duration-300 ">
       {/* Badge for New Arrival or Best Seller */}
       {type && (
         <span className="absolute bg-red-600 p-1 px-2 text-white rounded-tl-lg rounded-br-lg text-sm z-10">
@@ -97,8 +97,8 @@ const BestSellerCard = ({ product, type, loading }) => {
         {/* Product Image */}
         <Link className="group" href={`/product/${product.groupId}`}>
           <div className="overflow-hidden rounded-t-lg w-full h-[180px] md:h-[250px] flex items-center justify-center bg-white aspect-[1/1]"
-    onMouseEnter={handleMouseEnter}
-    onMouseLeave={handleMouseLeave}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             {product.image && product.image.length > 0 ? (
               <Image
@@ -143,8 +143,8 @@ const BestSellerCard = ({ product, type, loading }) => {
               </span>
             </div>
             {product?.reviews?.length > 0 && (
-  <p className="text-xs font-medium">({product.reviews.length})</p>
-)}
+              <p className="text-xs font-medium">({product.reviews.length})</p>
+            )}
 
           </div>
 

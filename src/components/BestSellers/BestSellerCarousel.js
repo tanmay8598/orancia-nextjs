@@ -14,7 +14,6 @@ const BestSellerCarousel = ({ products, showType }) => {
   return (
     <>
       <div className="flex items-center justify-center">
-        {/* Previous Button - Hidden on Mobile */}
         <button
           className=" md:block hover:drop-shadow-md hover:bg-white hover:p-2 hover:rounded-lg"
           onClick={() => {
@@ -66,7 +65,7 @@ const BestSellerCarousel = ({ products, showType }) => {
         </Swiper>
 
 
-        {/* Next Button - Hidden on Mobile */}
+
         <button
           className=" md:block hover:drop-shadow-md hover:bg-white hover:p-2 hover:rounded-lg"
           onClick={() => {
