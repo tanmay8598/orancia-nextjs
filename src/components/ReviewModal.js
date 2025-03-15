@@ -103,7 +103,7 @@ const ReviewModal = ({ isOpen, onClose, productId }) => {
       {isOpen && (
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-80 z-50">
           <div className="bg-white p-8 rounded-lg w-96">
-            <h2 className="text-lg font-medium mb-4">Write a Review</h2>
+            <h2 className="text-lg font-medium mb-4">Write a Review </h2>
 
             <div className="flex items-center mb-4">{renderStars()}</div>
             {errors.rating && (
@@ -129,7 +129,7 @@ const ReviewModal = ({ isOpen, onClose, productId }) => {
               </button>
               <button
                 onClick={onClose}
-                className="px-4 py-2 text-[#ed1d24] text-white rounded-md ml-4"
+                className="px-4 py-2 text-[#ed1d24] rounded-md ml-4 border border-[#ed1d24]"
               >
                 Close
               </button>

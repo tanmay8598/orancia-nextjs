@@ -28,10 +28,12 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
   const router = useRouter();
   const schema = Yup.object().shape({
     name: Yup.string()
-      .required("First name is required")
-      .min(3, "First name must be at least 3 characters"),
+      .required("Name is required")
+      .min(3, "Name must be at least 3 characters"),
 
-    email: Yup.string().required("Email is required"),
+    email: Yup.string()
+    .required("Email is required")
+    .email("Invalid email format"),
     phone: Yup.string()
       .required("Phone Number is required")
       .matches(/^\d{10}$/, "Phone Number must be exactly 10 digits"),

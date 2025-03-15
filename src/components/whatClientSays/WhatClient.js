@@ -87,8 +87,8 @@ const WhatClient = () => {
   return (
     <section className="relative">
       <div className="max-w-screen-lg mx-auto">
-        <div className="flex flex-col items-center pt-[10px] pb-[10px]">
-          <p className="text-2xl font-semibold text-center md:text-4xl mb-11 mt-11">
+        <div className="flex flex-col items-center">
+          <p className="text-2xl font-semibold text-center md:text-4xl mb-11 ">
             What Client Says
           </p>
         </div>

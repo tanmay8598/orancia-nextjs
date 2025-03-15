@@ -31,7 +31,7 @@ const NewArrivals = () => {
   };
   return (
     <section>
-      <div className="mx-auto max-w-screen-3xl px-4 py-10">
+      <div className="mx-auto max-w-screen-3xl px-4 py-1">
         <p className=" text-2xl font-semibold text-center md:text-4xl mb-11 mt-11">
           New Arrivals
         </p>

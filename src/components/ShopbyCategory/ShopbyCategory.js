@@ -32,7 +32,7 @@ const ShopbyCategory = () => {
     <section>
       <div className="max-w-screen-lg mx-auto">
 
-        <p className="  text-2xl font-semibold text-center md:text-4xl mb-10 mt-10">
+        <p className="  text-2xl font-semibold text-center md:text-4xl mb-6 md:mb-10 mt-2 md:mt-10 ">
           Shop by category
         </p>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-10 lg:mt-10 px-3 lg:px-0 place-items-center place-content-center">

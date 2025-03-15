@@ -23,6 +23,8 @@ const Page = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState();
   const params = useParams();
+
+  console.log( selectedSubcategory)
   useEffect(() => {
     fetchSubcategories();
     fetchProducts();
@@ -36,6 +38,7 @@ const Page = () => {
         min: minprice,
         max: maxprice,
       });
+
 
       if (response.ok) {
         setProducts(response.data.products);
@@ -83,7 +86,6 @@ const Page = () => {
   };
 
   const handleChanges = (event, newValue) => {
-    console.log(newValue);
     setRange(newValue);
     setMinprice(newValue[0]);
     setMaxprice(newValue[1]);

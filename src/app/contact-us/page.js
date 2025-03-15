@@ -1,15 +1,19 @@
 "use client";
-
 import React, { useState } from "react";
-import { toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
+import emailjs from "@emailjs/browser";
+import { useRouter } from "next/navigation";
 
 const ContactUsPage = () => {
-  const [formData, setFormData] = useState({
+  const router = useRouter();
+  const initialFormData = {
     name: "",
     email: "",
     phone: "",
     message: "",
-  });
+  };
+  const [formData, setFormData] = useState(initialFormData);
+
 
   const [errors, setErrors] = useState({});
 
@@ -19,7 +23,7 @@ const ContactUsPage = () => {
   };
 
   const validatePhone = (phone) => {
-    const phoneRegex = /^[6-9]\d{9}$/; // Indian mobile number validation
+    const phoneRegex = /^[6-9]\d{9}$/; 
     return phoneRegex.test(phone);
   };
 
@@ -28,49 +32,71 @@ const ContactUsPage = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // email js
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = {};
 
-    // if (!formData.name) newErrors.name = "Name is required.";
+    if (!formData.name) newErrors.name = "Name is required.";
     if (!validateEmail(formData.email))
       newErrors.email = "Please enter a valid email address.";
     if (!validatePhone(formData.phone))
       newErrors.phone = "Please enter a valid 10-digit mobile number.";
-    // if (!formData.message) newErrors.message = "Message is required.";
+    if (!formData.message) newErrors.message = "Message is required.";
 
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log("Form Data Submitted:", formData);
-      toast.success("form submitted!");
-      // Clear form after submission
-      setFormData({ name: "", email: "", phone: "", message: "" });
+        const serviceId = "service_tsvacdw";
+        const templateId = "template_sbrmkhd";
+        const publicKey = "Wyitq4FDOvf7fxz2S";
+
+        const templateParams = {
+            from_name: formData.name,
+            user_email: formData.email,
+            user_mobile: formData.phone,
+            to_name: "Orancia",
+            message: formData.message,
+        };
+
+        emailjs
+            .send(serviceId, templateId, templateParams, publicKey)
+            .then((response) => {
+                console.log("Email sent successfully!", response);
+                toast.success("Email sent successfully!");
+                setTimeout(() => {
+                  router.push("/");
+                }, 1000);
+                setFormData(initialFormData);
+            })
+            .catch((error) => {
+                console.error("Error sending email", error);
+                toast.error("Email not sent");
+
+            });
     }
-  };
+};
+
 
   return (
+    <>
     <div className="bg-gray-50 py-10 lg:py-16 px-6 lg:px-16">
       <div className="max-w-screen-xl mx-auto">
-        {/* Heading */}
         <h1 className="text-lg lg:text-4xl font-bold text-center text-gray-800 mb-8">
           Contact Us
         </h1>
 
-        {/* Intro Text */}
         <p className="text-center text-gray-600 mb-12">
           Send your queries and other concerns to us. We’ll respond to them as
           soon as possible.
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {/* Contact Form */}
           <div className="bg-white shadow-lg rounded-lg p-8">
             <h2 className="text-2xl font-semibold text-gray-800 mb-6">
               Write to us
             </h2>
             <form className="space-y-6" onSubmit={handleSubmit}>
-              {/* Name */}
               <div>
                 <label className="block text-gray-700 font-medium mb-2">
                   Name
@@ -83,12 +109,11 @@ const ContactUsPage = () => {
                   className="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-primary focus:border-primary outline-none"
                   placeholder="Your Name"
                 />
-                {/* {errors.name && (
+                {errors.name && (
                   <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-                )} */}
+                )}
               </div>
 
-              {/* Email */}
               <div>
                 <label className="block text-gray-700 font-medium mb-2">
                   Email
@@ -106,7 +131,6 @@ const ContactUsPage = () => {
                 )}
               </div>
 
-              {/* Phone */}
               <div>
                 <label className="block text-gray-700 font-medium mb-2">
                   Phone/Mobile
@@ -124,7 +148,6 @@ const ContactUsPage = () => {
                 )}
               </div>
 
-              {/* Message */}
               <div>
                 <label className="block text-gray-700 font-medium mb-2">
                   Message
@@ -137,12 +160,11 @@ const ContactUsPage = () => {
                   className="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-primary focus:border-primary outline-none"
                   placeholder="Your Message"
                 ></textarea>
-                {/* {errors.message && (
+                {errors.message && (
                   <p className="text-red-500 text-sm mt-1">{errors.message}</p>
-                )} */}
+                )}
               </div>
 
-              {/* Submit Button */}
               <button
                 type="submit"
                 className="w-full bg-primary text-white py-2 rounded-md font-medium hover:bg-primary-dark transition duration-300"
@@ -152,7 +174,6 @@ const ContactUsPage = () => {
             </form>
           </div>
 
-          {/* Contact Details */}
           <div className="bg-white shadow-lg rounded-lg p-8">
             <h2 className="text-2xl font-semibold text-gray-800 mb-6">
               PinakinShine Ecom Pvt. Ltd.
@@ -172,6 +193,8 @@ const ContactUsPage = () => {
         </div>
       </div>
     </div>
+    <Toaster position="bottom-right" />
+    </>
   );
 };
 

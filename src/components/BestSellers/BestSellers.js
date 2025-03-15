@@ -40,7 +40,7 @@ const BestSellers = () => {
 
         <BestSellerCarousel products={product} showType={true} />
 
-        <div className="my-8">
+        <div className="my-2">
           <Link href="/best-sellers" className="flex flex-row items-center justify-center gap-1">
             <p className="font-medium text-center">VIEW ALL</p>
             <ArrowRightCircleIcon size={15} />

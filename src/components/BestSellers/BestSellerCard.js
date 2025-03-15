@@ -96,11 +96,14 @@ const BestSellerCard = ({ product, type, loading }) => {
       <div className="flex-col flex">
         {/* Product Image */}
         <Link className="group" href={`/product/${product.groupId}`}>
-          <div className="overflow-hidden rounded-t-lg w-full h-[180px] md:h-[250px] flex items-center justify-center bg-white aspect-[1/1]">
+          <div className="overflow-hidden rounded-t-lg w-full h-[180px] md:h-[250px] flex items-center justify-center bg-white aspect-[1/1]"
+    onMouseEnter={handleMouseEnter}
+    onMouseLeave={handleMouseLeave}
+          >
             {product.image && product.image.length > 0 ? (
               <Image
                 src={product.image[currentImageIndex]}
-                className="object-contain h-full w-full"
+                className="object-contain h-full w-full pt-7"
                 alt={`${product.name} image`}
                 height={200}
                 width={200}
@@ -139,7 +142,10 @@ const BestSellerCard = ({ product, type, loading }) => {
                   : Number(product?.rating).toFixed(1)}
               </span>
             </div>
-            <p className="text-xs font-medium">({product?.reviews?.length})</p>
+            {product?.reviews?.length > 0 && (
+  <p className="text-xs font-medium">({product.reviews.length})</p>
+)}
+
           </div>
 
           {/* Price */}

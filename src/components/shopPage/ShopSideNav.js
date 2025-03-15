@@ -106,7 +106,7 @@ const ShopSideNav = ({
               <Checkbox
                 key={index}
                 label={subCategory.name}
-                // checked={selectedSubcategory._id === subCategory._id}
+                checked={selectedSubcategory._id === subCategory._id}
 
                 onChange={() => handleSubcategory(subCategory)}
               />

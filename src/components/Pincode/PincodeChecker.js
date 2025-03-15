@@ -40,7 +40,7 @@ export default function PincodeChecker() {
                         <MapPin className="w-5 h-5" />
                         <h2 className="text-lg font-medium">Delivery Options</h2>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-1 md:gap-2 w-full mr-10">
                         <input
                             type="text"
                             placeholder="Enter pincode"

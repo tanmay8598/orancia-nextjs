@@ -31,6 +31,8 @@ const page = () => {
   const [couponCode, setCouponCode] = useState("");
   const products = selector.cart;
 
+  console.log()
+
   //razorpay
   const [Razorpay] = useRazorpay();
   const [paymentStatus, setPaymentStatus] = useState();
@@ -87,8 +89,9 @@ const page = () => {
         },
         prefill: {
           email: user?.email,
-          contact: user?.shippingAddress?.phone,
+          contact: shippingAddress?.mobileNumber,
           name: user?.name,
+        
         },
 
         theme: {

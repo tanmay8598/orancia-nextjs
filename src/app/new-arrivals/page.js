@@ -55,9 +55,9 @@ const Page = () => {
 
   return (
     <>
-      <div className="max-w-screen-xl mx-2 p-2 md:pb-16 md:pt-1">
+      <div className="max-w-screen-xl mx-auto p-2 md:pb-16 md:pt-1">
         <div className="w-full max-container h-full flex flex-col md:flex-row pb-10 gap-6 mt-5 justify-between">
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:gap-5 justify-center mx-auto">
             {products.length === 0 ? (
               <p className="text-center justify-center flex align-middle">
                 No products found

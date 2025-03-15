@@ -62,7 +62,7 @@ const BlogHero = () => {
           <p>No blogs available</p>
         )}
       </div>
-      <div className="my-8">
+      <div className="mt-8">
         <Link href="/blogs" className="flex flex-row items-center justify-center gap-1">
           {/* <button className="btn btn-accent rounded-lg mx-auto mt-2 sm:mt-8">
               See all

@@ -37,9 +37,10 @@ const ProductDetail = ({ productId }) => {
     const dispatch = useDispatch();
 
     const [quantity, setQuantity] = useState(1);
-    const [selectedOffer, setSelectedOffer] = useState();
+    const [selectedOffer, setSelectedOffer] = useState(null);
     const [isDealClicked, setIsDealClicked] = useState(false);
-    const [discountedPrice, setDiscountedPrice] = useState(0);
+    const [discountedPrice, setDiscountedPrice] = useState(null);
+
 
     //sizes
     const [size, setSize] = useState("");
@@ -193,13 +194,22 @@ const ProductDetail = ({ productId }) => {
         });
     };
 
-    const handleOfferSelection = (quantitys, discount) => {
-        quantitys = Number(quantitys);
 
-        const newDiscountedPrice = product.sell_price * (1 - discount / 100);
-        setDiscountedPrice(newDiscountedPrice);
-        setSelectedOffer(quantitys);
+    const handleOfferSelection = (quantitys, discount) => {
+        
+        quantitys = Number(quantitys) || 0; 
+    
+        if (selectedOffer === quantitys) {
+            setSelectedOffer(null);
+            setDiscountedPrice(null);
+        } else {
+            const newDiscountedPrice = product.sell_price * (1 - discount / 100);
+            setDiscountedPrice(newDiscountedPrice);
+            setSelectedOffer(quantitys);
+        }
+      
     };
+    
     const handleButtonClick = () => {
         if (selectedOffer) {
             dispatch(add({ product, quantity: selectedOffer, discountedPrice }));
@@ -371,7 +381,11 @@ const ProductDetail = ({ productId }) => {
                                     </div>
                                 )}
                             </div>
+                            <div className="mx-auto">
+
+
                             <PincodeChecker />
+                            </div>
                             {/* offer card */}
                             <div className="my-5">
                                 <div className="pt-4">
@@ -395,17 +409,16 @@ const ProductDetail = ({ productId }) => {
                                                     <div className="flex items-center">
                                                         <div className="px-2">
                                                             <input
-                                                                type="radio"
-                                                                name="offer"
-                                                                value={offer.quantity}
-                                                                // onChange={() =>
-                                                                //   handleOfferSelection(offer.quantity)
-
-                                                                // }
+                                                                type="checkbox"
+                                                                
+                                                                value={offer?.quantity}
+                                                               
+                                                        
+                                                                checked={selectedOffer === Number(offer.quantity)} 
                                                                 onChange={() =>
                                                                     handleOfferSelection(
-                                                                        offer.quantity,
-                                                                        offer.discount
+                                                                        offer?.quantity,
+                                                                        offer?.discount
                                                                     )
                                                                 }
                                                             />

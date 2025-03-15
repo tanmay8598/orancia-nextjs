@@ -74,7 +74,7 @@ const NewProducts = ({ product }) => {
             </div>
           </Link>
           <div className="p-2">
-            <p className="text-sm font-medium text-left">{short}</p>
+            <p className="text-sm font-medium text-left min-h-[40px]">{short}</p>
             <p className="text-sm text-gray-400 font-normal  text-left">
               {product.category.name}
             </p>
