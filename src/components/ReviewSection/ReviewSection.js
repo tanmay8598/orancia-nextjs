@@ -146,7 +146,7 @@ export const ReviewSection = ({ reviews, productId }) => {
           <blockquote className="relative w-full bg-white p-5 border border-gray-200 break-inside-avoid-column">
             <p className="text-sm font-medium">{review.comment}</p>
             
-            <div className="mt-2 flex items-start gap-2 font-bold">
+            <div className="mt-2 flex flex-row items-center justify-start gap-2 font-bold">
           
               <ReactStars
                 count={5} 
@@ -159,12 +159,12 @@ export const ReviewSection = ({ reviews, productId }) => {
 
               <div className="text-xs">
                 <cite className="not-italic">{review.name}</cite>
-                <p className="text-gray-700">
+                {/* <p className="text-gray-700">
                   Customer{" "}
                   <a href="" target="_blank" className="text-red-500">
                     Orancia
                   </a>
-                </p>
+                </p> */}
               </div>
             </div>
           </blockquote>

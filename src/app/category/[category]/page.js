@@ -24,7 +24,7 @@ const Page = () => {
   const [pageSize, setPageSize] = useState();
   const params = useParams();
 
-  console.log( selectedSubcategory)
+ 
   useEffect(() => {
     fetchSubcategories();
     fetchProducts();
@@ -34,11 +34,10 @@ const Page = () => {
     try {
       const response = await apiClient.get("/product/get", {
         category: params.category,
-        subcategory: selectedSubcategory._id,
+        subcategory: selectedSubcategory?._id,
         min: minprice,
         max: maxprice,
       });
-
 
       if (response.ok) {
         setProducts(response.data.products);
@@ -81,8 +80,16 @@ const Page = () => {
     return <div>Error: {error}</div>;
   }
 
+ 
+
   const handleSubcategory = (subcategory) => {
-    setSelectedSubcategory(subcategory);
+    if (selectedSubcategory && selectedSubcategory?._id === subcategory._id) {
+      // If the same subcategory is clicked again, uncheck it
+      setSelectedSubcategory(null);
+    } else {
+      // Otherwise, set the new subcategory
+      setSelectedSubcategory(subcategory);
+    }
   };
 
   const handleChanges = (event, newValue) => {

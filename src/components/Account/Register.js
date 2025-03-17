@@ -22,6 +22,7 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
     email: "",
     phone: "",
   });
+
   const [errors, setErrors] = useState({});
   const [showVerifyEmail, setShowVerifyEmail] = useState(false); 
   const [registeredEmail, setRegisteredEmail] = useState(""); 
@@ -98,6 +99,15 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
     e.target.value = inputValue;
   };
 
+  const handleNameChange = (e) => {
+    const { value } = e.target;
+    const filteredValue = value.replace(/[^a-zA-Z\s]/g, "");
+    setFormData({ ...formData, name: filteredValue });
+    if (errors.name) {
+      setErrors({ ...errors, name: "" });
+    }
+  };
+
   return (
     <>
     {showVerifyEmail ? (
@@ -114,7 +124,8 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
               id="name"
               label="Name"
               value={formData.name}
-              onChange={handleInputChange}
+              // onChange={handleInputChange}
+              onChange={handleNameChange}  
               error={errors.name}
               placeholder=" "
             />

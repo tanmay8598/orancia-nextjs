@@ -50,7 +50,7 @@ const Category = ({ categories }) => {
             //   <p>No Category available</p>
             // ) : (
             firstCategory && (
-              <Checkbox label={firstCategory.name} defaultChecked />
+              <Checkbox label={firstCategory.name} defaultChecked disabled />
             )
             // )
           }
