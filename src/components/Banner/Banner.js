@@ -41,13 +41,12 @@ const Banner = ({ initialBanner = [] }) => {
     }
   };
 
-
-
   const handleClick = (item) => {
-    if (item.product) {
-      router.push(`/product/${item.product}`);
-    } else if (item.category) {
-      router.push(`/category/${item.category}`);
+  
+    if (item?.product) {
+      router.push(`/product/${item?.product}`);
+    } else if (item?.category) {
+      router.push(`/category/${item?.category}`);
     }
   };
 
@@ -61,9 +60,8 @@ const Banner = ({ initialBanner = [] }) => {
   );
 
   return (
-    <div className="relative w-full">
+    <div className=" hidden md:block relative w-full">
       <Head>
-
         {/* Preconnect to AWS S3 bucket */}
         <link
           rel="preconnect"

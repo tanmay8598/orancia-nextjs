@@ -4,7 +4,7 @@ import MarqueeChild from "./MarqueeChild";
 const Marquees = () => {
   return (
     <>
-      <Marquee className="gap-3">
+      <Marquee className="gap-3  mb-0 pb-0">
         <MarqueeChild title="◉ No Sulphates" />
         <MarqueeChild title="◉ No Phthalates" />
         <MarqueeChild title="◉ No Parabens" />

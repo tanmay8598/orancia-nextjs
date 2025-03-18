@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 
-
 const MyProfile = () => {
   const { user, logIn } = useAuth();
   const [name, setName] = useState(user?.name || "");
@@ -12,32 +11,29 @@ const MyProfile = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
-
-
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
+    useState(false);
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
     if (password !== confirmPassword) {
       toast.error("Passwords do not match. Please try again.");
       return;
     }
-    const response = await apiClient.post('/user/update-profile', {
+    const response = await apiClient.post("/user/update-profile", {
       id: user.id,
       name,
       email,
-      password
-    })
-
+      password,
+    });
 
     if (response.ok) {
-      logIn(response.data.token)
-      toast.success('Profile updated');
-      setConfirmPassword("")
-      setPassword("")
+      logIn(response.data.token);
+      toast.success("Profile updated");
+      setConfirmPassword("");
+      setPassword("");
     } else {
-      toast.warning('Error retry');
+      toast.warning("Error retry");
     }
   };
 
@@ -67,7 +63,7 @@ const MyProfile = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              // required
+                // required
               />
             </div>
             <div className="mb-4">
@@ -84,74 +80,73 @@ const MyProfile = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              // required
+                // required
               />
             </div>
             <div className="relative">
-
-            <div className="mb-4">
-              <label
-                htmlFor="password"
-                className="block text-gray-700 font-medium mb-2"
-              >
-                Update Password
-              </label>
-              <input
-                // type="password"
-                id="password"
-                name="password"
-                value={password}
-                type={isPasswordVisible ? "text" : "password"}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              // required
-              />
-               <button
-                type="button"
-                className="absolute top-14 right-0 pr-3 transform -translate-y-1/2 flex items-center text-sm leading-5"
-                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-              >
-                {isPasswordVisible ? (
-                  <BiSolidHide className="text-lg" />
-                ) : (
-                  <BiSolidShow className="text-lg" />
-                )}
-              </button>
-            </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="password"
+                  className="block text-gray-700 font-medium mb-2"
+                >
+                  Update Password
+                </label>
+                <input
+                  // type="password"
+                  id="password"
+                  name="password"
+                  value={password}
+                  type={isPasswordVisible ? "text" : "password"}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  // required
+                />
+                <button
+                  type="button"
+                  className="absolute top-14 right-0 pr-3 transform -translate-y-1/2 flex items-center text-sm leading-5"
+                  onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                >
+                  {isPasswordVisible ? (
+                    <BiSolidHide className="text-lg" />
+                  ) : (
+                    <BiSolidShow className="text-lg" />
+                  )}
+                </button>
+              </div>
             </div>
             <div className="relative">
+              <div className="mb-4">
+                <label
+                  htmlFor="password"
+                  className="block text-gray-700 font-medium mb-2"
+                >
+                  Confirm Password
+                </label>
+                <input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  value={confirmPassword}
+                  type={isConfirmPasswordVisible ? "text" : "password"}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  // required
+                />
+                <button
+                  type="button"
+                  className="absolute top-14 right-0 pr-3 transform -translate-y-1/2 flex items-center text-sm leading-5"
+                  onClick={() =>
+                    setIsConfirmPasswordVisible(!isConfirmPasswordVisible)
+                  }
+                >
+                  {isConfirmPasswordVisible ? (
+                    <BiSolidHide className="text-lg" />
+                  ) : (
+                    <BiSolidShow className="text-lg" />
+                  )}
+                </button>
+              </div>
+            </div>
 
-            <div className="mb-4">
-              <label
-                htmlFor="password"
-                className="block text-gray-700 font-medium mb-2"
-              >
-                Update Password
-              </label>
-              <input
-               
-                id="confirmPassword"
-                name="confirmPassword"
-                value={confirmPassword}
-                type={isConfirmPasswordVisible ? "text" : "password"}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              // required
-              />
-               <button
-                type="button"
-                className="absolute top-14 right-0 pr-3 transform -translate-y-1/2 flex items-center text-sm leading-5"
-                onClick={() => setIsConfirmPasswordVisible(!isConfirmPasswordVisible)}
-              >
-                {isConfirmPasswordVisible ? (
-                  <BiSolidHide className="text-lg" />
-                ) : (
-                  <BiSolidShow className="text-lg" />
-                )}
-              </button>
-            </div>
-            </div>
-        
             <button
               type="submit"
               className="w-full bg-accent text-white py-2 px-4 rounded-lg hover:bg-accent-hover"
