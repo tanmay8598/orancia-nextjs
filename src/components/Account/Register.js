@@ -11,7 +11,7 @@ import { SheetHeader, SheetTitle } from "../ui/sheet";
 import LogoInformation from "./LogoInformation";
 import apiClient from "@/api/client";
 import useAuth from "@/auth/useAuth";
-import VerifyEmail from "./VerifyEmail"; 
+import VerifyEmail from "./VerifyEmail";
 
 const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
   const { logIn } = useAuth();
@@ -24,8 +24,8 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
   });
 
   const [errors, setErrors] = useState({});
-  const [showVerifyEmail, setShowVerifyEmail] = useState(false); 
-  const [registeredEmail, setRegisteredEmail] = useState(""); 
+  const [showVerifyEmail, setShowVerifyEmail] = useState(false);
+  const [registeredEmail, setRegisteredEmail] = useState("");
   const router = useRouter();
   const schema = Yup.object().shape({
     name: Yup.string()
@@ -33,8 +33,8 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
       .min(3, "Name must be at least 3 characters"),
 
     email: Yup.string()
-    .required("Email is required")
-    .email("Invalid email format"),
+      .required("Email is required")
+      .email("Invalid email format"),
     phone: Yup.string()
       .required("Phone Number is required")
       .matches(/^\d{10}$/, "Phone Number must be exactly 10 digits"),
@@ -74,8 +74,8 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
 
         if (response.ok) {
           toast.success(response.data.message);
-          setRegisteredEmail(formData.email); 
-          setShowVerifyEmail(true); 
+          setRegisteredEmail(formData.email);
+          setShowVerifyEmail(true);
 
           // setTimeout(() => {
           //   setIsOpen(false);
@@ -110,7 +110,7 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
 
   return (
     <>
-    {showVerifyEmail ? (
+      {showVerifyEmail ? (
         <VerifyEmail
           email={registeredEmail}
           setIsOpen={setShowVerifyEmail}

@@ -197,3 +197,49 @@
 .animate-shimmer {
   animation: shimmer 1.5s infinite;
 }
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensure this is higher than the navbar's z-index */
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 999; /* Slightly lower than the modal */
+}
+
+/* Zoom icon */
+.zoom-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.zoom-icon:hover {
+  opacity: 1;
+}
+
+/* Zoom effect */
+.zoomed-image {
+  transition: transform 0.3s;
+}
+
+.zoomed-image.zoomed {
+  transform: scale(1.5);
+}
