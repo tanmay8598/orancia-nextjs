@@ -20,7 +20,7 @@ const MobileBanner = ({ initialBanner = [] }) => {
   const bannerHandler = async () => {
     try {
       const { data } = await apiClient.get("variation/mobilebanner/list");
-      setBanner(data.banners);
+      setBanner(data.banner);
     } catch (error) {
       console.error("Error fetching banner data:", error);
     } finally {
