@@ -219,7 +219,7 @@ const ContactUsPage = () => {
                 <strong>Phone/Mobile:</strong> 9005345980
               </p>
               <p className="text-gray-600">
-                <strong>Email:</strong> pinakinshine@gmail.com
+                <strong>Email:</strong> support@pinakinshine.com
               </p>
             </div>
           </div>

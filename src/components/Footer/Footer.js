@@ -25,11 +25,15 @@ const Footer = () => {
         <div className="p-4 lg:p-14">
           <p className="font-medium text-2xl lg:text-3xl">Orancia.in</p>
           <p className="mt-4 text-sm">
-            Unleash Your Inner Radiance with the magic of our Premium skincare products
+            Unleash Your Inner Radiance with the magic of our Premium skincare
+            products
           </p>
           <p className="mt-4 text-sm">Social media links.</p>
           <div className="mt-1 flex gap-2">
-            <a href="https://www.facebook.com/profile.php?id=61571499286384" target="_blank">
+            <a
+              href="https://www.facebook.com/profile.php?id=61571499286384"
+              target="_blank"
+            >
               <BsFacebook className="size-6 lg:size-8" />
             </a>
             <a href="https://www.instagram.com/orancia_skin/" target="_blank">
@@ -38,7 +42,10 @@ const Footer = () => {
             <a href="https://x.com/Orancia2519" target="_blank">
               <BsTwitterX className="size-6 lg:size-8" />
             </a>
-            <a href="https://www.linkedin.com/in/orancia-skincare-321471344/" target="_blank">
+            <a
+              href="https://www.linkedin.com/in/orancia-skincare-321471344/"
+              target="_blank"
+            >
               <BsLinkedin className="size-6 lg:size-8" />
             </a>
           </div>
@@ -54,17 +61,26 @@ const Footer = () => {
               </Link>
             </li>
             <li className="mb-3">
-              <Link href="/frequently-asked/" className="normal-case font-normal">
+              <Link
+                href="/frequently-asked/"
+                className="normal-case font-normal"
+              >
                 FAQ
               </Link>
             </li>
             <li className="mb-3">
-              <Link href="/cancellation-return/" className="normal-case font-normal">
+              <Link
+                href="/cancellation-return/"
+                className="normal-case font-normal"
+              >
                 Cancellation & Return
               </Link>
             </li>
             <li className="mb-3">
-              <Link href="/shipping-delivery" className="normal-case font-normal">
+              <Link
+                href="/shipping-delivery"
+                className="normal-case font-normal"
+              >
                 Shipping & Delivery
               </Link>
             </li>
@@ -108,13 +124,14 @@ const Footer = () => {
           <div className="mt-4 text-sm">
             <div className="flex items-start mb-2">
               <MdLocationPin className="mr-2" />
-              Pinakinshine Ecom Pvt Ltd <br /> D-5/614, Vikas Khand, Gomtinagar, Lucknow
+              Pinakinshine Ecom Pvt Ltd <br /> D-5/614, Vikas Khand, Gomtinagar,
+              Lucknow
             </div>
             <div className="flex items-center mb-2">
               <MdLocalPhone className="mr-2" /> +91-9005345980
             </div>
             <div className="flex items-center mb-2">
-              <MdEmail className="mr-2" /> info@orancia.in
+              <MdEmail className="mr-2" /> support@pinakinshine.com
             </div>
           </div>
           <Image
@@ -125,7 +142,6 @@ const Footer = () => {
             className="mt-4 max-w-full"
           />
         </div>
-
 
         {/* Section 5: Certifications */}
         <div className="lg:col-span-4 flex justify-center items-center w-full p-4">
@@ -150,8 +166,6 @@ const Footer = () => {
               />
             </div>
 
-
-
             {/* AYUSH Certified */}
             <div className="w-16 h-16 rounded-full overflow-hidden relative">
               <Image
@@ -168,7 +182,11 @@ const Footer = () => {
         <div className="lg:col-span-4 flex justify-center items-center w-full p-4">
           <div className="text-sm text-center">
             Developed & Managed By{" "}
-            <a href="https://www.ixtminds.com" target="_blank" className="underline">
+            <a
+              href="https://www.ixtminds.com"
+              target="_blank"
+              className="underline"
+            >
               ixt minds
             </a>
           </div>

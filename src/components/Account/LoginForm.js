@@ -23,7 +23,7 @@ const LoginForm = ({ setIsRegistering, isOpen, setIsOpen }) => {
 
 
   const schema = Yup.object().shape({
-    email: Yup.string().required("Email is required"),
+    email: Yup.string().required("Email is required") .email("Invalid email format"),
     password: Yup.string().required("Password is required"),
   });
 
