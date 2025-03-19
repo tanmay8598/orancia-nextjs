@@ -66,22 +66,21 @@ const ContactUsPage = () => {
     }
     if (!validateEmail(formData.email))
       newErrors.email = "Please enter a valid email address.";
-  
 
     if (!validatePhone(formData.phone)) {
       newErrors.phone = "Please enter a valid 10-digit mobile number.";
     } else if (formData.phone.length !== 10) {
       newErrors.phone = "Please enter exactly 10 digits.";
     }
-  
+
     if (!formData.message) newErrors.message = "Message is required.";
 
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      const serviceId = "service_tsvacdw";
-      const templateId = "template_sbrmkhd";
-      const publicKey = "Wyitq4FDOvf7fxz2S";
+      const serviceId = "service_bemimfu";
+      const templateId = "template_mzjkisy";
+      const publicKey = "RdiwV32iaxKKxW4Hr";
 
       const templateParams = {
         from_name: formData.name,
@@ -90,8 +89,6 @@ const ContactUsPage = () => {
         to_name: "Orancia",
         message: formData.message,
       };
-
-      console.log(templateParams)
 
       emailjs
         .send(serviceId, templateId, templateParams, publicKey)
@@ -174,7 +171,7 @@ const ContactUsPage = () => {
                     onChange={handlePhoneChange}
                     className="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-primary focus:border-primary outline-none"
                     placeholder="Your Phone Number"
-                    maxLength="10" 
+                    maxLength="10"
                   />
                   {errors.phone && (
                     <p className="text-red-500 text-sm mt-1">{errors.phone}</p>

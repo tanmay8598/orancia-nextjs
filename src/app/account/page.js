@@ -5,6 +5,7 @@ import OrderPage from "@/components/Account/OrderPage";
 import React, { useState } from "react";
 import useAuth from "../../auth/useAuth";
 import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 
 const Page = () => {
   const [activeTab, setActiveTab] = useState("orders"); // Default active tab is "orders"
@@ -13,12 +14,10 @@ const Page = () => {
     setActiveTab(tab);
   };
 
-  const router = useRouter()
+  const router = useRouter();
 
   if (!user) {
-    return (
-      router.push('/')
-    )
+    return router.push("/");
   }
 
   return (
@@ -26,30 +25,35 @@ const Page = () => {
       {/* Tab navigation */}
       <div className="flex justify-center gap-10 mt-5 border-b pb-3">
         <div
-          className={`cursor-pointer ${activeTab === "orders" ? "text-blue-500" : "text-gray-500"
-            }`}
+          className={`cursor-pointer ${
+            activeTab === "orders" ? "text-blue-500" : "text-gray-500"
+          }`}
           onClick={() => handleTabClick("orders")}
         >
           Orders
         </div>
         <div
-          className={`cursor-pointer ${activeTab === "profile" ? "text-blue-500" : "text-gray-500"
-            }`}
+          className={`cursor-pointer ${
+            activeTab === "profile" ? "text-blue-500" : "text-gray-500"
+          }`}
           onClick={() => handleTabClick("profile")}
         >
           Profile
         </div>
         <div
-          className={`cursor-pointer ${activeTab === "address" ? "text-blue-500" : "text-gray-500"
-            }`}
+          className={`cursor-pointer ${
+            activeTab === "address" ? "text-blue-500" : "text-gray-500"
+          }`}
           onClick={() => handleTabClick("address")}
         >
           Address
         </div>
         <div
-          className={`cursor-pointer ${activeTab === "logout" ? "text-blue-500" : "text-gray-500"
-            }`}
+          className={`cursor-pointer ${
+            activeTab === "logout" ? "text-blue-500" : "text-gray-500"
+          }`}
           onClick={() => {
+            // toast.success("Logout success!");
             logOut();
           }}
         >
@@ -84,6 +88,7 @@ const Page = () => {
           </div>
         )}
       </div>
+      <Toaster position="bottom-right" />
     </div>
   );
 };

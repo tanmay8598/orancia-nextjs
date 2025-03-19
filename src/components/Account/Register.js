@@ -118,65 +118,75 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
         />
       ) : (
         <>
-          <LogoInformation />
-          <form onSubmit={handleSubmit}>
-            <InputField
-              id="name"
-              label="Name"
-              value={formData.name}
-              // onChange={handleInputChange}
-              onChange={handleNameChange}  
-              error={errors.name}
-              placeholder=" "
-            />
-            <InputField
-              id="email"
-              label="Email"
-              value={formData.email}
-              onChange={handleInputChange}
-              error={errors.email}
-              placeholder=" "
-            />
-            <InputField
-              id="phone"
-              label="Phone Number"
-              value={formData.phone}
-              onChange={handleInputChange}
-              error={errors.phone}
-              maxLength={10}
-              onInput={handleInputNumber}
-              placeholder=" "
-            />
-            <div className="relative">
+          <div
+            style={{
+              maxHeight: "70vh",
+              overflowY: "auto",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+            className="hide-scrollbar"
+          >
+            <LogoInformation />
+            <form onSubmit={handleSubmit}>
               <InputField
-                id="password"
-                label="Password"
-                type={isPasswordVisible ? "text" : "password"}
-                value={formData.password}
-                onChange={handleInputChange}
-                error={errors.password}
+                id="name"
+                label="Name"
+                value={formData.name}
+                // onChange={handleInputChange}
+                onChange={handleNameChange}
+                error={errors.name}
                 placeholder=" "
               />
-              <button
-                type="button"
-                className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
-                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-              >
-                {isPasswordVisible ? (
-                  <BiSolidHide className="text-lg" />
-                ) : (
-                  <BiSolidShow className="text-lg" />
-                )}
-              </button>
-            </div>
+              <InputField
+                id="email"
+                label="Email"
+                value={formData.email}
+                onChange={handleInputChange}
+                error={errors.email}
+                placeholder=" "
+              />
+              <InputField
+                id="phone"
+                label="Phone Number"
+                value={formData.phone}
+                onChange={handleInputChange}
+                error={errors.phone}
+                maxLength={10}
+                onInput={handleInputNumber}
+                placeholder=" "
+              />
+              <div className="relative">
+                <InputField
+                  id="password"
+                  label="Password"
+                  type={isPasswordVisible ? "text" : "password"}
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  error={errors.password}
+                  placeholder=" "
+                />
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                  onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                >
+                  {isPasswordVisible ? (
+                    <BiSolidHide className="text-lg" />
+                  ) : (
+                    <BiSolidShow className="text-lg" />
+                  )}
+                </button>
+              </div>
 
-            <button
-              className="bg-[#ed1d24] text-white w-full font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit"
-            >
-              Register
-            </button>
-          </form>
+              <button
+                className="bg-[#ed1d24] text-white w-full font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+              >
+                Register
+              </button>
+            </form>
+          </div>
         </>
       )}
 
@@ -186,5 +196,3 @@ const Register = ({ setIsLogin, isOpen, setIsOpen }) => {
 };
 
 export default Register;
-
-
