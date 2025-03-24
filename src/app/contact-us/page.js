@@ -78,9 +78,12 @@ const ContactUsPage = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      const serviceId = "service_bemimfu";
-      const templateId = "template_mzjkisy";
-      const publicKey = "RdiwV32iaxKKxW4Hr";
+      const serviceId = "service_klvxyli";
+      const templateId = "template_bi6kk2a";
+      const publicKey = "yUl_2BDcdBVM58rHB";
+      // const serviceId = "service_bemimfu";
+      // const templateId = "template_mzjkisy";
+      // const publicKey = "RdiwV32iaxKKxW4Hr";
 
       const templateParams = {
         from_name: formData.name,
@@ -215,11 +218,11 @@ const ContactUsPage = () => {
                 <br />
                 D-5/614, Vikas Khand 5, Gomti Nagar, Lucknow-226010
               </p>
-              <p className="text-gray-600 mb-4">
+              {/* <p className="text-gray-600 mb-4">
                 <strong>Phone/Mobile:</strong> 9005345980
-              </p>
+              </p> */}
               <p className="text-gray-600">
-                <strong>Email:</strong> support@pinakinshine.com
+                <strong>Email:</strong> info@orancia.in
               </p>
             </div>
           </div>

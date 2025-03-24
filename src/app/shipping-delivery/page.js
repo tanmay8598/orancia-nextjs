@@ -22,18 +22,12 @@ const Page = () => {
           </p>
           <ul className="list-disc ml-8 mt-2 space-y-2 text-gray-700">
             <li>
-              Phone:{" "}
-              <a href="tel:9005345980" className="text-blue-600 underline">
-                9005345980
-              </a>
-            </li>
-            <li>
               Email:{" "}
               <a
-                href="mailto:pinakinshine@gmail.com"
+                href="mailto:info@orancia.in"
                 className="text-blue-600 underline"
               >
-                pinakinshine@gmail.com
+                info@orancia.in
               </a>
             </li>
           </ul>

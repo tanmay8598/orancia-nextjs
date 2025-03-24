@@ -118,7 +118,6 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Section 4: Contact */}
         <div className="p-4 lg:p-14">
           <p className="font-medium text-xl">Contact</p>
           <div className="mt-4 text-sm">
@@ -127,11 +126,9 @@ const Footer = () => {
               Pinakinshine Ecom Pvt Ltd <br /> D-5/614, Vikas Khand, Gomtinagar,
               Lucknow
             </div>
+          
             <div className="flex items-center mb-2">
-              <MdLocalPhone className="mr-2" /> +91-9005345980
-            </div>
-            <div className="flex items-center mb-2">
-              <MdEmail className="mr-2" /> support@pinakinshine.com
+              <MdEmail className="mr-2" /> info@orancia.in
             </div>
           </div>
           <Image

@@ -39,61 +39,7 @@ const Page = () => {
           </ul>
         </section>
 
-        {/* <section>
-          <h2 className="text-xl md:text-2xl font-semibold mb-4">
-            Wrong Item Delivered
-          </h2>
-          <p className="text-gray-700 mb-4">
-            In extreme scenarios as mentioned below, we follow the given steps.
-          </p>
-          <ol className="list-decimal ml-8 mt-2 space-y-2 text-gray-700">
-            <li>
-              Raise a request for replacement of the wrong product within 3 days
-              from the date of delivery by dropping us a mail on{" "}
-              <a
-                href="mailto:pinakinshine@gmail.com"
-                className="text-blue-600 underline"
-              >
-                pinakinshine@gmail.com
-              </a>
-              . Mention your order ID and attach the pictures of the wrong
-              product you have received. You can also reach out to us on our
-              customer service hotline{" "}
-              <a href="tel:9005345980" className="text-blue-600 underline">
-                9005345980
-              </a>
-              for more guidance and further instruction.
-            </li>
-            <li>
-              Please allow us 2 business working days to review your request for
-              replacement.
-            </li>
-            <li>
-              After reviewing your request, our courier partner will be sent to
-              your location to collect the wrong product that was delivered to
-              you.
-            </li>
-            <li>
-              Once the product is collected from your location, shipped back to
-              us, and received at our location, only then will we dispatch the
-              replaced product.
-            </li>
-          </ol>
-          <p className="text-gray-700 mt-4">
-            <strong>Note:</strong>
-          </p>
-          <ul className="list-disc ml-8 mt-2 space-y-2 text-gray-700">
-            <li>
-              In case there is no reverse pick-up service available in your
-              location, we will assist with an alternative solution, which is a
-              refund.
-            </li>
-            <li>
-              We will not be able to accept your replacement/refund request if
-              it has been generated after 3 days of the delivery of the product.
-            </li>
-          </ul>
-        </section> */}
+   
 
         <section>
           <h2 className="text-xl md:text-2xl font-semibold mb-4">
@@ -103,56 +49,54 @@ const Page = () => {
             In extreme scenarios as mentioned below, we follow the given steps.
           </p>
           <ol className="list-decimal mt-2 space-y-4 text-gray-700">
-  <li className="flex flex-col md:flex-row md:items-start">
-    <span className="font-semibold mr-2 md:mr-4 text-black shrink-0">
-      Step 1:
-    </span>
-    <span>
-      Raise a request for replacement of the wrong product within 3 days from
-      the date of delivery by dropping us a mail on{" "}
-      <a
-        href="mailto:pinakinshine@gmail.com"
-        className="text-blue-600 underline"
-      >
-        pinakinshine@gmail.com
-      </a>
-      . Mention your order ID and attach the pictures of the wrong product you
-      have received. You can also reach out to us on our customer service
-      hotline{" "}
-      <a href="tel:9005345980" className="text-blue-600 underline">
-        9005345980
-      </a>{" "}
-      for more guidance and further instruction.
-    </span>
-  </li>
-  <li className="flex flex-col md:flex-row md:items-start">
-    <span className="font-semibold mr-2 md:mr-4 text-black shrink-0">
-      Step 2:
-    </span>
-    <span>
-      Please allow us 2 business working days to review your request for
-      replacement.
-    </span>
-  </li>
-  <li className="flex flex-col md:flex-row md:items-start">
-    <span className="font-semibold mr-2 md:mr-4 text-black shrink-0">
-      Step 3:
-    </span>
-    <span>
-      After reviewing your request, our courier partner will be sent to your
-      location to collect the wrong product that was delivered to you.
-    </span>
-  </li>
-  <li className="flex flex-col md:flex-row md:items-start">
-    <span className="font-semibold mr-2 md:mr-4 text-black shrink-0">
-      Step 4:
-    </span>
-    <span>
-      Once the product is collected from your location, shipped back to us, and
-      received at our location, only then will we dispatch the replaced product.
-    </span>
-  </li>
-</ol>
+            <li className="flex flex-col md:flex-row md:items-start">
+              <span className="font-semibold mr-2 md:mr-4 text-black shrink-0">
+                Step 1:
+              </span>
+              <span>
+                Raise a request for replacement of the wrong product within 3
+                days from the date of delivery by dropping us a mail on{" "}
+                <a
+                  href="mailto:pinakinshine@gmail.com"
+                  className="text-blue-600 underline"
+                >
+                  info@orancia.in
+                </a>
+                . Mention your order ID and attach the pictures of the wrong
+                product you have received.
+              
+              </span>
+            </li>
+            <li className="flex flex-col md:flex-row md:items-start">
+              <span className="font-semibold mr-2 md:mr-4 text-black shrink-0">
+                Step 2:
+              </span>
+              <span>
+                Please allow us 2 business working days to review your request
+                for replacement.
+              </span>
+            </li>
+            <li className="flex flex-col md:flex-row md:items-start">
+              <span className="font-semibold mr-2 md:mr-4 text-black shrink-0">
+                Step 3:
+              </span>
+              <span>
+                After reviewing your request, our courier partner will be sent
+                to your location to collect the wrong product that was delivered
+                to you.
+              </span>
+            </li>
+            <li className="flex flex-col md:flex-row md:items-start">
+              <span className="font-semibold mr-2 md:mr-4 text-black shrink-0">
+                Step 4:
+              </span>
+              <span>
+                Once the product is collected from your location, shipped back
+                to us, and received at our location, only then will we dispatch
+                the replaced product.
+              </span>
+            </li>
+          </ol>
 
           <p className="text-gray-700 mt-4">
             <strong>Note:</strong>
