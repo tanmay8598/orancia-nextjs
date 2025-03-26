@@ -76,6 +76,32 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
     }
   };
 
+  useEffect(() => {
+    if (formData?.pincode?.length === 6) {
+      fetchPincodeDetails(formData.pincode);
+    }
+  }, [formData.pincode]);
+
+  const fetchPincodeDetails = async (pincode) => {
+    try {
+      const response = await fetch(`https://api.postalpincode.in/pincode/${pincode}`);
+      const data = await response.json();
+
+      if (data[0].Status === "Success") {
+        const postOffice = data[0].PostOffice[0];
+        setFormData((prev) => ({
+          ...prev,
+          city: postOffice.District,
+          state: postOffice.State,
+          area: postOffice.Name,
+        }));
+      }
+    } catch (error) {
+      console.error("Error fetching pincode details:", error);
+    }
+  };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = await validate();
@@ -163,7 +189,7 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
         <div className="mb-4 grid grid-cols-2 gap-2">
           <InputField
             id="city"
-            label="city"
+            label="City"
             value={formData.city}
             onChange={handleInputChange}
             error={errors.city}
