@@ -101,6 +101,15 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
     }
   };
 
+  const handleCityInput = (e) => {
+    const onlyLetters = e.target.value.replace(/[^a-zA-Z\s]/g, ""); // Allow letters and spaces
+    setFormData({ ...formData, city: onlyLetters });
+    if (errors.city) {
+      setErrors({ ...errors, city: "" });
+    }
+  };
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -194,6 +203,7 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
             onChange={handleInputChange}
             error={errors.city}
             placeholder=" "
+            disabled={formData.pincode.length === 6}
           />
           <InputField
             id="mobileNumber"
@@ -229,6 +239,8 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
             onChange={handleInputChange}
             error={errors.area}
             placeholder=" "
+            disabled={formData.pincode.length === 6}
+            showEditButton={true}
           />
           <InputField
             id="pincode"
@@ -247,6 +259,7 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
           value={formData.state}
           onChange={handleInputChange}
           error={errors.state}
+          disabled={formData.pincode.length === 6}
         >
           <option value="">Select a state...</option>
           <option value="Andhra Pradesh">Andhra Pradesh</option>

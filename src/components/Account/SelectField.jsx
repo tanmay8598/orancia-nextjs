@@ -1,6 +1,14 @@
 import React from "react";
 
-const SelectField = ({ id, label, value, onChange, error, children }) => {
+const SelectField = ({
+  id,
+  label,
+  value,
+  onChange,
+  error,
+  children,
+  disabled = false,
+}) => {
   return (
     <div className="mb-4 relative">
       <div className="relative">
@@ -8,9 +16,12 @@ const SelectField = ({ id, label, value, onChange, error, children }) => {
           id={id}
           value={value}
           onChange={onChange}
+          disabled={disabled}
           className={`peer shadow appearance-none border ${
-            error ? "border-red-500  rounded" : "rounded"
-          } w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white`}
+            error ? "border-red-500" : "border-gray-300"
+          } rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white ${
+            disabled ? "bg-gray-100 cursor-not-allowed" : ""
+          }`}
         >
           {children}
         </select>
