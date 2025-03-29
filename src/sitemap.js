@@ -1,31 +1,45 @@
 const fs = require("fs");
-
 const { create } = require("apisauce");
-
 const { promisify } = require("util");
 
 const writeFileAsync = promisify(fs.writeFile);
-const apiClient2 = create({
+
+const apiClient = create({
   baseURL: "https://backend.orancia.in/api",
-  headers: { Accept: "application/vnd.github.v3+json" },
 });
+
 const BASE_URL = "https://orancia.in/";
 
-async function sitemap() {
-  const staticPaths = ["/", "/product"];
+async function generateSitemap() {
+  try {
+    const staticPaths = ["/", "/product", "/blog"];
+    let dynamicPaths = [];
 
-  const { data } = await apiClient2.get("product/get");
-  let dynamicPaths = data.products;
+    // Fetch Product Data
+    const productResponse = await apiClient.get("/product/get");
+    if (productResponse.ok && productResponse.data?.products) {
+      const productPaths = productResponse.data.products.map((p) => `/product/${p._id}`);
+      dynamicPaths.push(...productPaths);
+    } else {
+      console.warn("⚠️ Failed to fetch product data or invalid response");
+    }
 
-  dynamicPaths = dynamicPaths.map((post) => `/product/${post._id}`);
+    // Fetch Blog Data
+    const blogResponse = await apiClient.get("/blog/");
+    if (blogResponse.ok && blogResponse.data?.blogs) {
+      const blogPaths = blogResponse.data.blogs.map((b) => `/blog/${b._id}`);
+      dynamicPaths.push(...blogPaths);
+    } else {
+      console.warn("⚠️ Failed to fetch blog data or invalid response");
+    }
 
-  const allPaths = [...staticPaths, ...dynamicPaths];
+    const allPaths = [...staticPaths, ...dynamicPaths];
 
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${allPaths
-      .map(
-        (url) => `
+        .map(
+          (url) => `
     <url>
       <loc>${BASE_URL}${url}</loc>
       <lastmod>${new Date().toISOString()}</lastmod>
@@ -33,11 +47,21 @@ async function sitemap() {
       <priority>0.7</priority>
     </url>
   `
-      )
-      .join("")}
+        )
+        .join("")}
 </urlset>`;
 
-  await writeFileAsync("public/sitemap.xml", sitemap);
+    // Ensure 'public' directory exists
+    if (!fs.existsSync("public")) {
+      fs.mkdirSync("public");
+    }
+
+    await writeFileAsync("public/sitemap.xml", sitemap);
+    console.log("✅ Sitemap generated successfully!");
+
+  } catch (error) {
+    console.error("❌ Error generating sitemap:", error.message);
+  }
 }
 
-sitemap();
+generateSitemap();
