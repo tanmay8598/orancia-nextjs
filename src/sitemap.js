@@ -6,10 +6,10 @@ const { promisify } = require("util");
 
 const writeFileAsync = promisify(fs.writeFile);
 const apiClient2 = create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://backend.orancia.in/api",
   headers: { Accept: "application/vnd.github.v3+json" },
 });
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://orancia.in/";
 
 async function sitemap() {
   const staticPaths = ["/", "/product"];
