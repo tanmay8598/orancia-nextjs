@@ -57,13 +57,16 @@ const MyProfile = () => {
                 Update Name
               </label>
               <input
-                type="text"
+                type='text'
                 id="name"
                 name="name"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => {
+                  const onlyLetters = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+                  setName(onlyLetters);
+                }}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                // required
+              // required
               />
             </div>
             <div className="mb-4">
@@ -80,7 +83,7 @@ const MyProfile = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                // required
+              // required
               />
             </div>
             <div className="relative">
@@ -99,7 +102,7 @@ const MyProfile = () => {
                   type={isPasswordVisible ? "text" : "password"}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  // required
+                // required
                 />
                 <button
                   type="button"
@@ -129,7 +132,7 @@ const MyProfile = () => {
                   type={isConfirmPasswordVisible ? "text" : "password"}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  // required
+                // required
                 />
                 <button
                   type="button"

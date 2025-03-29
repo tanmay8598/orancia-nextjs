@@ -30,6 +30,7 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
       setFormData(existingAddress);
     }
   }, [existingAddress]);
+
   const schema = Yup.object().shape({
     address: Yup.string()
       .required("Enter Address is required")
@@ -42,7 +43,7 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
       .min(3, "Enter Street must be at least 3 characters"),
     mobileNumber: Yup.string()
       .required("Phone Number is required")
-      .matches(/^\d{10}$/, "Phone Number must be exactly 10 digits"),
+      .matches(/^[6789]\d{9}$/, "Invalid mobile number, must start with 6, 7, 8, or 9 and be 10 digits"),
     email: Yup.string()
       .required("Email is required")
       .email("Invalid email format"),
@@ -176,7 +177,7 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
     <>
       <p className="mb-4">Please fill in the fields below:</p>
       <form onSubmit={handleSubmit}>
-        <div className="mb-4 grid grid-cols-2 gap-2">
+        <div className="mb-4 lg:grid grid-cols-2 gap-2">
           <InputField
             id="address"
             label="Address"
@@ -195,7 +196,7 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
             placeholder=" "
           />
         </div>
-        <div className="mb-4 grid grid-cols-2 gap-2">
+        <div className="mb-4 lg:grid grid-cols-2 gap-2">
           <InputField
             id="city"
             label="City"
@@ -231,7 +232,7 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
           onChange={handleInputChange}
           placeholder=" "
         />
-        <div className="mb-4 grid grid-cols-2 gap-2">
+        <div className="mb-4 lg:grid grid-cols-2 gap-2">
           <InputField
             id="area"
             label="Area"
@@ -298,17 +299,6 @@ const AddressForm = ({ setIsLogin, isOpen, setIsOpen, existingAddress }) => {
           ADD A NEW ADDRESS
         </button>
       </form>
-      {/* <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      /> */}
       <Toaster position="bottom-right" />
     </>
   );

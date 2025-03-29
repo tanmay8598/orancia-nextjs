@@ -25,33 +25,29 @@ const Page = () => {
       {/* Tab navigation */}
       <div className="flex justify-center gap-10 mt-5 border-b pb-3">
         <div
-          className={`cursor-pointer ${
-            activeTab === "orders" ? "text-blue-500" : "text-gray-500"
-          }`}
+          className={`cursor-pointer ${activeTab === "orders" ? "text-blue-500" : "text-gray-500"
+            }`}
           onClick={() => handleTabClick("orders")}
         >
           Orders
         </div>
         <div
-          className={`cursor-pointer ${
-            activeTab === "profile" ? "text-blue-500" : "text-gray-500"
-          }`}
+          className={`cursor-pointer ${activeTab === "profile" ? "text-blue-500" : "text-gray-500"
+            }`}
           onClick={() => handleTabClick("profile")}
         >
           Profile
         </div>
         <div
-          className={`cursor-pointer ${
-            activeTab === "address" ? "text-blue-500" : "text-gray-500"
-          }`}
+          className={`cursor-pointer ${activeTab === "address" ? "text-blue-500" : "text-gray-500"
+            }`}
           onClick={() => handleTabClick("address")}
         >
           Address
         </div>
         <div
-          className={`cursor-pointer ${
-            activeTab === "logout" ? "text-blue-500" : "text-gray-500"
-          }`}
+          className={`cursor-pointer ${activeTab === "logout" ? "text-blue-500" : "text-gray-500"
+            }`}
           onClick={() => {
             // toast.success("Logout success!");
             logOut();
