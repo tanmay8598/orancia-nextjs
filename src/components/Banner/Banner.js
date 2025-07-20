@@ -42,7 +42,6 @@ const Banner = ({ initialBanner = [] }) => {
   };
 
   const handleClick = (item) => {
-  
     if (item?.product) {
       router.push(`/product/${item?.product}`);
     } else if (item?.category) {
@@ -65,7 +64,7 @@ const Banner = ({ initialBanner = [] }) => {
         {/* Preconnect to AWS S3 bucket */}
         <link
           rel="preconnect"
-          href="https://orancia-s3.s3.ap-south-1.amazonaws.com"
+          href="https://kadameziyarat-s3-bucket.s3.us-east-1.amazonaws.com"
           crossOrigin="anonymous"
         />
         {/* Preload the LCP image if available */}

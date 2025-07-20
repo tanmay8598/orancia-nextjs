@@ -128,7 +128,6 @@ const MenuNavbar = () => {
                               </button>
                             </li>
 
-
                             <li className="relative group px-3 py-2 cursor-pointer">
                               <button
                                 onClick={handleClick}
@@ -182,7 +181,6 @@ const MenuNavbar = () => {
                           width={24}
                           height={24}
                         />
-
                       </div>
                     ) : (
                       <div
@@ -190,7 +188,6 @@ const MenuNavbar = () => {
                         onClick={handleRedirect}
                       >
                         <FaUserCheck />
-
                       </div>
                     )}
                   </div>

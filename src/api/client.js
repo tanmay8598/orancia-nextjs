@@ -1,7 +1,7 @@
 import { create } from "apisauce";
 
 const apiClient = create({
-  baseURL: "https://backend.orancia.in/api",
+  baseURL: "http://43.204.110.180:5000/api",
   headers: { Accept: "application/vnd.github.v3+json" },
 });
 
