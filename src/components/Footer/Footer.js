@@ -23,7 +23,7 @@ const Footer = () => {
       <div className="grid grid-cols-1 lg:grid-cols-4 bg-black font-sans font-normal text-xs text-white mt-12 drop-shadow">
         {/* Section 1: Brand Info */}
         <div className="p-4 lg:p-14">
-          <p className="font-medium text-2xl lg:text-3xl">Orancia.in</p>
+          <p className="font-medium text-2xl lg:text-3xl">Orancia</p>
           <p className="mt-4 text-sm">
             Unleash Your Inner Radiance with the magic of our Premium skincare
             products
@@ -31,19 +31,25 @@ const Footer = () => {
           <p className="mt-4 text-sm">Social media links.</p>
           <div className="mt-1 flex gap-2">
             <a
-              href="https://www.facebook.com/profile.php?id=61571499286384"
+              // href="https://www.facebook.com/profile.php?id=61571499286384"
               target="_blank"
             >
               <BsFacebook className="size-6 lg:size-8" />
             </a>
-            <a href="https://www.instagram.com/orancia_skin/" target="_blank">
+            <a
+              // href="https://www.instagram.com/orancia_skin/"
+              target="_blank"
+            >
               <RiInstagramFill className="size-6 lg:size-8" />
             </a>
-            <a href="https://x.com/Orancia2519" target="_blank">
+            <a
+              // href="https://x.com/Orancia2519"
+              target="_blank"
+            >
               <BsTwitterX className="size-6 lg:size-8" />
             </a>
             <a
-              href="https://www.linkedin.com/in/orancia-skincare-321471344/"
+              // href="https://www.linkedin.com/in/orancia-skincare-321471344/"
               target="_blank"
             >
               <BsLinkedin className="size-6 lg:size-8" />
@@ -123,12 +129,11 @@ const Footer = () => {
           <div className="mt-4 text-sm">
             <div className="flex items-start mb-2">
               <MdLocationPin className="mr-2" />
-              Pinakinshine Ecom Pvt Ltd <br /> D-5/614, Vikas Khand, Gomtinagar,
-              Lucknow
+              Kathmandu, Nepal
             </div>
-          
+
             <div className="flex items-center mb-2">
-              <MdEmail className="mr-2" /> info@orancia.in
+              <MdEmail className="mr-2" /> info@orancia.com
             </div>
           </div>
           <Image
@@ -140,43 +145,8 @@ const Footer = () => {
           />
         </div>
 
-        {/* Section 5: Certifications */}
-        <div className="lg:col-span-4 flex justify-center items-center w-full p-4">
-          <div className="w-full flex flex-wrap justify-around gap-4">
-            {/* GMP Certified */}
-            <div className="w-16 h-16 rounded-full overflow-hidden relative">
-              <Image
-                src="/gmpCertified.png"
-                alt="GMP Certified"
-                fill
-                className="object-cover hover:scale-105 transition-transform"
-              />
-            </div>
-
-            {/* Made with Love */}
-            <div className="w-16 h-16 rounded-full overflow-hidden relative">
-              <Image
-                src="/mwithl.png"
-                alt="Made with Love"
-                fill
-                className="object-cover hover:scale-105 transition-transform"
-              />
-            </div>
-
-            {/* AYUSH Certified */}
-            <div className="w-16 h-16 rounded-full overflow-hidden relative">
-              <Image
-                src="/ayushwithoutbg.png"
-                alt="AYUSH Certified"
-                fill
-                className="object-cover hover:scale-105 transition-transform"
-              />
-            </div>
-          </div>
-        </div>
-
         {/* Section 6: Developed By */}
-        <div className="lg:col-span-4 flex justify-center items-center w-full p-4">
+        {/* <div className="lg:col-span-4 flex justify-center items-center w-full p-4">
           <div className="text-sm text-center">
             Developed & Managed By{" "}
             <a
@@ -187,7 +157,7 @@ const Footer = () => {
               ixt minds
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <AccountSidebar isOpen={isOpenAccount} setIsOpen={setIsOpenAccount} />

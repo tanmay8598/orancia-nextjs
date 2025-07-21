@@ -6,14 +6,12 @@ const WhoWeAre = () => {
   return (
     <section>
       <div className="mx-auto max-w-screen-3xl p-5   lg:p-10 ">
-        <h3 className="h3  text-center md:text-4xl mb-3 mt-2">
-          The Orancia Story
-        </h3>
+        <h3 className="h3  text-center md:text-4xl mb-3 mt-2">Our Story</h3>
         <h5 className="h5  text-center md:text-base mb-11 ">
-          India’s largest omnichannel beauty destination
+          Largest omnichannel beauty destination
         </h5>
 
-        <p className=" justify-normal mb-[20px] text-gray-600">
+        {/* <p className=" justify-normal mb-[20px] text-gray-600">
           Once upon a time, a young alluring enthusiast, botanist with a passion
           in her soul to become{" "}
           <span className="font-semibold italic text-black">beautypreneur</span>{" "}
@@ -47,7 +45,7 @@ const WhoWeAre = () => {
           <br />
           So come, join this journey of radiating your natural charm and delight
           yourself!
-        </p>
+        </p> */}
       </div>
     </section>
   );

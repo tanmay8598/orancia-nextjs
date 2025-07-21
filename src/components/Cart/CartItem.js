@@ -23,7 +23,6 @@ const CartItem = ({ item }) => {
     if (item.quantity < item.product?.countInStock.qty) {
       dispatch(incrementQuantity(item.product?._id));
     }
-
   };
 
   const handleDecrement = () => {
@@ -112,7 +111,7 @@ const CartItem = ({ item }) => {
                 </button>
               </div>
             </div>
-            <div>₹{total}</div>
+            <div>NPR {total}</div>
           </div>
         </div>
       </div>

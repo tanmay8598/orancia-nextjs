@@ -19,9 +19,9 @@ const OrderAddress = ({ mydata }) => {
             </div>
             <div className="mb-2">Payment Mode : {mydata?.paymentMethod}</div>
             <div className="mb-2">
-              Shipping Price : ₹{mydata?.shippingPrice}
+              Shipping Price : NPR{mydata?.shippingPrice}
             </div>
-            <div className="mb-2">Total Price : ₹{mydata?.totalPrice}</div>
+            <div className="mb-2">Total Price : NPR{mydata?.totalPrice}</div>
 
             <div className="mb-2">Tracking ID/AWB : {mydata?.wayBill}</div>
           </div>

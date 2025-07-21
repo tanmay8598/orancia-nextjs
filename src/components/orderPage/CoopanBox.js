@@ -13,7 +13,7 @@ const CoopanBox = ({ coupans }) => {
               <div className="flex-1 ml-4">
                 <p className="text-sm text-gray-600">{coupans?.name}</p>
                 <p className="text-xs text-gray-500">
-                  Any 2 eligible products at ₹{coupans?.discount}
+                  Any 2 eligible products at NPR {coupans?.discount}
                 </p>
               </div>
               <button className="text-red-500  underline">Apply</button>

@@ -14,7 +14,6 @@ import { useRouter } from "next/navigation";
 import { clear } from "@/redux/features/cart/cartSlice";
 import AccountSidebar from "@/components/Cart/AccountSidebar";
 
-
 const page = () => {
   const { user } = useAuth();
   const [isOpenAccount, setIsOpenAccount] = useState(false);
@@ -31,15 +30,14 @@ const page = () => {
   const [couponCode, setCouponCode] = useState("");
   const products = selector.cart;
 
-  console.log()
+  console.log();
 
   //razorpay
   const [Razorpay] = useRazorpay();
   const [paymentStatus, setPaymentStatus] = useState();
-  const [razorpay_payment_id, setrazorpay_payment_id] = useState()
+  const [razorpay_payment_id, setrazorpay_payment_id] = useState();
   const [uploadVisible, setUploadVisible] = useState(false);
-  const [deliveryInfo, setDeliveryInfo] = useState(true)
-
+  const [deliveryInfo, setDeliveryInfo] = useState(true);
 
   const totalValue = selector.cart.reduce((total, item) => {
     const price = item.discountedPrice || item.product?.sell_price;
@@ -55,11 +53,9 @@ const page = () => {
     setShowCoupons(!showCoupons);
   };
 
-
-
   const handlePayment = useCallback(async () => {
     if (!user) {
-      setIsOpenAccount(true)
+      setIsOpenAccount(true);
     } else {
       const result = await apiClient.get("/orders/payment", {
         total: totalValue,
@@ -75,11 +71,10 @@ const page = () => {
         image: "https://example.com/your_logo",
         order_id: result.data.id,
         handler: async (res) => {
-
           try {
             const paymentId = res.razorpay_payment_id;
             if (paymentId) {
-              setrazorpay_payment_id(paymentId)
+              setrazorpay_payment_id(paymentId);
               setPaymentStatus(true);
             }
           } catch (error) {
@@ -91,7 +86,6 @@ const page = () => {
           email: user?.email,
           contact: shippingAddress?.mobileNumber,
           name: user?.name,
-
         },
 
         theme: {
@@ -102,43 +96,45 @@ const page = () => {
       const rzpay = new Razorpay(options);
       rzpay.open();
     }
-
   }, [Razorpay, user]);
 
   useEffect(() => {
-    if (user && Object.keys(user.shippingAddress).length !== 0 && user.shippingAddress.constructor === Object) {
-
+    if (
+      user &&
+      Object.keys(user.shippingAddress).length !== 0 &&
+      user.shippingAddress.constructor === Object
+    ) {
       setShippingAddress(user.shippingAddress);
-      checkDelivery(user.shippingAddress.pincode)
+      checkDelivery(user.shippingAddress.pincode);
     }
     setIsLoading(false);
   }, [user]);
 
   const checkDelivery = async (pincode) => {
-    if (!pincode || pincode.length !== 6) return
-
+    if (!pincode || pincode.length !== 6) return;
 
     try {
       // Replace with your actual API endpoint
-      const response = await apiClient.get("/delivery/check-delivery-exist-by-pincode", { pinCode: pincode })
+      const response = await apiClient.get(
+        "/delivery/check-delivery-exist-by-pincode",
+        { pinCode: pincode }
+      );
 
-      if (response?.data?.inboundServiceExist == 'Yes') {
+      if (response?.data?.inboundServiceExist == "Yes") {
         toast.success("Delivery available!", {
           id: "transaction-success-toast",
           duration: 4000,
         });
-        setDeliveryInfo(false)
+        setDeliveryInfo(false);
       } else {
         toast.error("Delivery to your address is not available");
-
       }
     } catch (error) {
-      console.error('Failed to fetch delivery info:', error)
+      console.error("Failed to fetch delivery info:", error);
     }
-  }
+  };
 
   useEffect(() => {
-
     getCoupons();
   }, [products]);
 
@@ -215,18 +211,13 @@ const page = () => {
     }
   };
 
-
   if (isLoading) {
     return (
       <div className="h-screen">
-
         <Loader />
       </div>
-    )
-
+    );
   }
-
-
 
   const removedCoupan = (couponCode) => {
     if (appliedCoupon === couponCode) {
@@ -267,7 +258,7 @@ const page = () => {
 
     if (effectiveDiscount >= totalCartValue) {
       toast.error(
-        `Maximum discount limit for this coupon is ₹${coupon.limit}.`
+        `Maximum discount limit for this coupon is NPR${coupon.limit}.`
       );
       setDiscount(0);
       setAppliedCoupon("");
@@ -284,7 +275,6 @@ const page = () => {
     e.preventDefault();
     handleApplyCoupons(couponCode);
   };
-
 
   return (
     <>
@@ -321,7 +311,6 @@ const page = () => {
                 <p className="text-center">No address found</p>
               )}
             </div>
-
 
             <div className="mb-6">
               <button
@@ -374,35 +363,36 @@ const page = () => {
                 </div>
               </form>
 
-
               <div className="items-center border border-gray-200 p-4 mb-5 rounded-lg shadow-sm bg-white">
                 {/* Show All Coupons Button */}
-
 
                 <button
                   onClick={toggleCoupons}
                   className="bg-blue-500 text-white text-sm px-3 py-1 rounded-md w-full mb-3 hover:bg-blue-600 transition-colors duration-200"
                 >
-                  {showCoupons ? 'Hide Coupons' : 'Show All Coupons'}
+                  {showCoupons ? "Hide Coupons" : "Show All Coupons"}
                 </button>
-
 
                 {/* Coupons List */}
                 {showCoupons && (
                   <div className="mt-2">
-                    <div className="text-md font-medium text-gray-700 mb-3">All Coupons</div>
-                    {
-                      coupans?.length < 1 && (<p className="text-sm">No coupons found</p>)
-                    }
+                    <div className="text-md font-medium text-gray-700 mb-3">
+                      All Coupons
+                    </div>
+                    {coupans?.length < 1 && (
+                      <p className="text-sm">No coupons found</p>
+                    )}
                     {coupans.map((coupon, index) => (
                       <div
                         key={index}
                         className="flex items-center justify-between w-full border border-gray-300 p-3 mb-2 rounded-md shadow hover:shadow-md transition-shadow duration-200 bg-gray-50"
                       >
                         <div className="flex-1">
-                          <p className="text-sm font-semibold text-gray-700">{coupon.name}</p>
+                          <p className="text-sm font-semibold text-gray-700">
+                            {coupon.name}
+                          </p>
                           <p className="text-xs text-gray-500">
-                            {coupon.discount}% OFF, max ₹{coupon.max} OFF
+                            {coupon.discount}% OFF, max NPR{coupon.max} OFF
                           </p>
                         </div>
                         {appliedCoupon === coupon.name ? (
@@ -425,15 +415,13 @@ const page = () => {
                   </div>
                 )}
               </div>
-
-
             </div>
 
             <div className="flex my-4 justify-between items-center">
               <div className="flex-1">
                 <p className="text-sm text-gray-600">Subtotal</p>
               </div>
-              <p className="text-black font-semibold">₹ {totalValue}.00</p>
+              <p className="text-black font-semibold">NPR {totalValue}.00</p>
             </div>
 
             <div className="flex my-4 justify-between items-center">
@@ -441,7 +429,7 @@ const page = () => {
                 <p className="text-black text-2xl font-semibold">Total</p>
               </div>
               <p className="text-black text-2xl font-semibold">
-                ₹ {discountedTotal}.00
+                NPR {discountedTotal}.00
               </p>
             </div>
 
@@ -449,21 +437,22 @@ const page = () => {
               disabled={user && deliveryInfo}
               className="text-white w-full bg-primary p-2 rounded"
               onClick={handlePayment}
-
             >
               Complete transaction
             </button>
           </div>
-          {
-            user ? (
-              <AddressSidebar
-                isOpen={isOpenAccount}
-                setIsOpen={setIsOpenAccount}
-                existingAddress={shippingAddress}
-              />
-            ) : (<AccountSidebar isOpen={isOpenAccount} setIsOpen={setIsOpenAccount} />)
-          }
-
+          {user ? (
+            <AddressSidebar
+              isOpen={isOpenAccount}
+              setIsOpen={setIsOpenAccount}
+              existingAddress={shippingAddress}
+            />
+          ) : (
+            <AccountSidebar
+              isOpen={isOpenAccount}
+              setIsOpen={setIsOpenAccount}
+            />
+          )}
         </div>
       </div>
       <Toaster position="bottom-right" />

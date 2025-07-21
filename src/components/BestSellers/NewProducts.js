@@ -74,7 +74,9 @@ const NewProducts = ({ product }) => {
             </div>
           </Link>
           <div className="p-2">
-            <p className="text-sm font-medium text-left min-h-[40px]">{short}</p>
+            <p className="text-sm font-medium text-left min-h-[40px]">
+              {short}
+            </p>
             <p className="text-sm text-gray-400 font-normal  text-left">
               {product.category.name}
             </p>
@@ -91,7 +93,7 @@ const NewProducts = ({ product }) => {
               </p>
             </div>
             <div className="text-lg font-semibold  text-left mt-2">
-              ₹{product.sell_price}
+              NPR {product.sell_price}
             </div>
             {product.countInStock.qty === 0 ? (
               <div className="md:flex md:w-full md:h-14 md:justify-between mt-6">

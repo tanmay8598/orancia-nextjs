@@ -26,7 +26,6 @@ const Product = ({ product }) => {
 
   return (
     <div className="my-4">
-
       <Toaster position="bottom-right" />
       <Link className="group" href={`/product/${product.groupId}`}>
         <div className="drop-shadow-md rounded-md bg-white border-red-500 h-[300px] mb-3 p-4 overflow-hidden relative md:h-[328px]">
@@ -56,9 +55,11 @@ const Product = ({ product }) => {
         <div className="flex flex-row gap-1 mt-2 items-center">
           <div className="flex flex-row gap-1 text-white bg-green-700 p-1.5 rounded-sm">
             <FaStar color="#ffffff" size={10} />{" "}
-            <p className="text-[10px]">{product?.rating % 1 === 0
-              ? Number(product?.rating).toFixed(0)
-              : Number(product?.rating).toFixed(1)}</p>
+            <p className="text-[10px]">
+              {product?.rating % 1 === 0
+                ? Number(product?.rating).toFixed(0)
+                : Number(product?.rating).toFixed(1)}
+            </p>
           </div>
 
           <p className="text-[12px]  font-medium">
@@ -67,7 +68,7 @@ const Product = ({ product }) => {
         </div>
 
         <div className="text-lg font-semibold  text-left mt-2">
-          ₹{product.sell_price}
+          NPR {product.sell_price}
         </div>
       </Link>
       {product.countInStock.qty === 0 || product.disabled ? (
@@ -84,7 +85,6 @@ const Product = ({ product }) => {
           />
         </div>
       )}
-
     </div>
   );
 };

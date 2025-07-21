@@ -10,11 +10,11 @@ const page = () => {
         </h1>
 
         {/* Introduction */}
-        <p className="text-gray-700 mb-6">
+        {/* <p className="text-gray-700 mb-6">
           PinakinShine Ecom Pvt. Ltd. respects individual privacy and is
           committed to protecting it. Our data collection and management
           practices are outlined in our privacy policy.
-        </p>
+        </p> */}
         <p className="text-gray-700 mb-6">
           We collect information from our website when an individual visits the
           platform and registers voluntarily. This information is used for
@@ -113,7 +113,7 @@ const page = () => {
           The website and our business may be subject to changes periodically.
           We may update this Privacy Policy periodically to reflect changes in
           our practices or for other operational, legal, or regulatory reasons.
-           We encourage you to review this Privacy Policy  regularly for any
+          We encourage you to review this Privacy Policy regularly for any
           updates. If you use our site or provide us with information after we
           have updated our privacy policy, or notified you, you are agreeing to
           the privacy policy and the practices mentioned in it.

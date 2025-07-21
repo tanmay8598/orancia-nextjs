@@ -17,7 +17,7 @@ const OrderImagecard = ({ item }) => {
         </div>
         <div className="flex-1 ml-4">
           <p className="text-sm text-gray-500">
-            Price: ₹ {item.discountedPrice || item.product.sell_price}*{" "}
+            Price: NPR {item.discountedPrice || item.product.sell_price}*{" "}
             {item.quantity}
           </p>
         </div>

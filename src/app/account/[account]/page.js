@@ -22,8 +22,6 @@ const page = () => {
     }
   }, [user]);
 
-
-
   const getMyOrder = async () => {
     try {
       const response = await apiClient.get("/orders/myorders-details", {
@@ -53,8 +51,6 @@ const page = () => {
     router.push("/account/");
   };
 
-
-
   return (
     <div className="shadow-lg m-8 rounded-lg pb-4 p-6 shadow-blue-gray-300 bg-white">
       {/* Order Header Section */}
@@ -83,17 +79,27 @@ const page = () => {
           <table className="w-full border border-gray-300 text-left">
             <thead>
               <tr className="bg-gray-100 text-gray-600">
-                <th className="border border-gray-300 p-4 font-medium">Product Name</th>
-                <th className="border border-gray-300 p-4 font-medium">Product Image</th>
-                <th className="border border-gray-300 p-4 font-medium">Quantity</th>
-                <th className="border border-gray-300 p-4 font-medium">Price</th>
+                <th className="border border-gray-300 p-4 font-medium">
+                  Product Name
+                </th>
+                <th className="border border-gray-300 p-4 font-medium">
+                  Product Image
+                </th>
+                <th className="border border-gray-300 p-4 font-medium">
+                  Quantity
+                </th>
+                <th className="border border-gray-300 p-4 font-medium">
+                  Price
+                </th>
               </tr>
             </thead>
             <tbody>
               {myOrder?.orderItems?.length > 0 ? (
                 myOrder.orderItems.map((data, index) => (
                   <tr key={index} className="hover:bg-gray-50">
-                    <td className="border p-4 border-gray-300 text-gray-700">{data?.name}</td>
+                    <td className="border p-4 border-gray-300 text-gray-700">
+                      {data?.name}
+                    </td>
                     <td className="border p-4 border-gray-300">
                       <div className="flex justify-center">
                         <Image
@@ -105,13 +111,20 @@ const page = () => {
                         />
                       </div>
                     </td>
-                    <td className="border p-4 border-gray-300 text-center text-gray-700">{data?.qty}</td>
-                    <td className="border p-4 border-gray-300 text-center font-semibold text-gray-800">₹{data?.price}</td>
+                    <td className="border p-4 border-gray-300 text-center text-gray-700">
+                      {data?.qty}
+                    </td>
+                    <td className="border p-4 border-gray-300 text-center font-semibold text-gray-800">
+                      NPR{data?.price}
+                    </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="4" className="border p-4 text-center border-gray-300 text-gray-600">
+                  <td
+                    colSpan="4"
+                    className="border p-4 text-center border-gray-300 text-gray-600"
+                  >
                     No order items available
                   </td>
                 </tr>
@@ -121,7 +134,6 @@ const page = () => {
         </div>
       </div>
     </div>
-
   );
 };
 

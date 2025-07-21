@@ -55,8 +55,9 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
               </p>
             </div>
           ) : (
-            <ScrollArea 
-            className={`h-[70vh] lg:h-[70vh] xl:h-[74vh] mb-4 scroll-area-mobile`}>
+            <ScrollArea
+              className={`h-[70vh] lg:h-[70vh] xl:h-[74vh] mb-4 scroll-area-mobile`}
+            >
               {products &&
                 products.map((item, index) => (
                   <CartItem item={item} key={index} />
@@ -68,7 +69,7 @@ const CartSidebar = ({ isOpen, setIsOpen }) => {
           <div className="mt-14 sm:mb-6">
             <div className="flex justify-between font-semibold">
               <div className="uppercase  my-2 sm:mb-0 sm:pt-1">
-                ₹{totalValue}.00
+                NPR {totalValue}.00
               </div>
               <div className="mb-4 mx-2">
                 <button

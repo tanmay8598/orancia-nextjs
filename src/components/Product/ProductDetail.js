@@ -267,7 +267,7 @@ const ProductDetail = ({ productId }) => {
                                 initialTotalReviews={product?.reviews?.length}
                             />
                             <p className="text-3xl mt-2 font-medium md:hidden">
-                                ₹ {product?.sell_price}
+                                NPR  {product?.sell_price}
                             </p>
                         </div>
 
@@ -277,7 +277,7 @@ const ProductDetail = ({ productId }) => {
                                 MRP INCLUSIVE OF ALL TAXES
                             </p>
                             <p className="text-3xl mt-2 mb-2 font-semibold hidden md:block md-6 ">
-                                ₹ {product?.sell_price}
+                                NPR  {product?.sell_price}
                             </p>
 
                             <div className="mb-4 lg:w-[50%]">
@@ -428,9 +428,9 @@ const ProductDetail = ({ productId }) => {
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <del>₹ {product?.sell_price}</del>
+                                                        <del>NPR  {product?.sell_price}</del>
                                                         <div className="font-semibold">
-                                                            ₹ {discountedPrice.toFixed(2)}
+                                                            NPR  {discountedPrice.toFixed(2)}
                                                         </div>
                                                     </div>
                                                 </div>

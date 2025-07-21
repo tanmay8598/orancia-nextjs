@@ -12,7 +12,6 @@ const SearchSidebar = ({ isOpen, setIsOpen }) => {
   const [results, setResults] = useState([]);
 
   const handleSearch = async (value) => {
-
     if (value.length < 1) {
       setResults([]);
     } else {
@@ -50,7 +49,6 @@ const SearchSidebar = ({ isOpen, setIsOpen }) => {
             name="q"
             placeholder="What are you looking for?"
             onChange={(e) => handleSearch(e.target.value)}
-
           />
         </div>
         <div></div>
@@ -83,7 +81,7 @@ const SearchSidebar = ({ isOpen, setIsOpen }) => {
 
                             <div className="block p-2 ml-2 rounded-lg transition font-normal sm:text-base ease-in-out duration-300 text-black  ">
                               <div className="p-1">{result.name}</div>
-                              <div className="p-1">₹ {result.sell_price}</div>
+                              <div className="p-1">NPR {result.sell_price}</div>
                             </div>
                           </div>
                         </Link>

@@ -78,9 +78,9 @@ const ContactUsPage = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      const serviceId = "service_klvxyli";
-      const templateId = "template_bi6kk2a";
-      const publicKey = "yUl_2BDcdBVM58rHB";
+      const serviceId = "service_klvxyli2";
+      const templateId = "template_bi6kk2a2";
+      const publicKey = "yUl_2BDcdBVM58rHB2";
       // const serviceId = "service_bemimfu";
       // const templateId = "template_mzjkisy";
       // const publicKey = "RdiwV32iaxKKxW4Hr";
@@ -96,7 +96,6 @@ const ContactUsPage = () => {
       emailjs
         .send(serviceId, templateId, templateParams, publicKey)
         .then((response) => {
-          console.log("Email sent successfully!", response);
           toast.success("Email sent successfully!");
           setTimeout(() => {
             router.push("/");
@@ -210,19 +209,17 @@ const ContactUsPage = () => {
             </div>
 
             <div className="bg-white shadow-lg rounded-lg p-8">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-                PinakinShine Ecom Pvt. Ltd.
-              </h2>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-6"></h2>
               <p className="text-gray-600 mb-4">
                 <strong>Address:</strong>
                 <br />
-                D-5/614, Vikas Khand 5, Gomti Nagar, Lucknow-226010
+                Kathmandu, Nepal
               </p>
               {/* <p className="text-gray-600 mb-4">
                 <strong>Phone/Mobile:</strong> 9005345980
               </p> */}
               <p className="text-gray-600">
-                <strong>Email:</strong> info@orancia.in
+                <strong>Email:</strong> info@orancia.com
               </p>
             </div>
           </div>

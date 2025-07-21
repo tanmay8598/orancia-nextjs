@@ -18,7 +18,7 @@ const WhatClient = () => {
           {
             id: 1,
             name: "Arti Jha",
-            address: "Bengaluru",
+            address: "Kathmandu",
             image:
               "https://cdn.techinasia.com/wp-content/uploads/2015/07/indian-woman.jpg",
             message:
@@ -27,7 +27,7 @@ const WhatClient = () => {
           {
             id: 2,
             name: "Pranjal Dev",
-            address: "Lucknow",
+            address: "Pohkara",
             image:
               "https://i.pinimg.com/736x/8c/c6/a0/8cc6a0d60024ddde63f9885001c0146b.jpg",
             message:
@@ -36,7 +36,7 @@ const WhatClient = () => {
           {
             id: 3,
             name: "Kimaya Das",
-            address: "Mumbai",
+            address: "Kathmandu",
             image:
               "https://cdn2.stylecraze.com/wp-content/uploads/2013/05/Most-Beautiful-Women-In-India.jpg.webp",
             message:
@@ -44,8 +44,8 @@ const WhatClient = () => {
           },
           {
             id: 4,
-            name: "Rubina khan",
-            address: "New Delhi",
+            name: "Rubina ",
+            address: "Pokhara",
             image:
               "https://i.pinimg.com/736x/f1/4c/81/f14c813d3f9b95774557ab0e0aa71148.jpg",
             message:
@@ -69,16 +69,22 @@ const WhatClient = () => {
       {/* Mimic client testimonial card structure */}
       <div className="p-4">
         <div className="flex items-center space-x-4">
-          <div className="w-16 h-16 bg-gray-300 rounded-full animate-pulse"></div> {/* Placeholder for image */}
+          <div className="w-16 h-16 bg-gray-300 rounded-full animate-pulse"></div>{" "}
+          {/* Placeholder for image */}
           <div className="flex-1 space-y-2">
-            <div className="h-4 bg-gray-300 rounded w-3/4 animate-pulse"></div> {/* Placeholder for name */}
-            <div className="h-4 bg-gray-300 rounded w-1/2 animate-pulse"></div> {/* Placeholder for address */}
+            <div className="h-4 bg-gray-300 rounded w-3/4 animate-pulse"></div>{" "}
+            {/* Placeholder for name */}
+            <div className="h-4 bg-gray-300 rounded w-1/2 animate-pulse"></div>{" "}
+            {/* Placeholder for address */}
           </div>
         </div>
         <div className="mt-4 space-y-2">
-          <div className="h-4 bg-gray-300 rounded w-full animate-pulse"></div> {/* Placeholder for message */}
-          <div className="h-4 bg-gray-300 rounded w-5/6 animate-pulse"></div> {/* Placeholder for message */}
-          <div className="h-4 bg-gray-300 rounded w-4/6 animate-pulse"></div> {/* Placeholder for message */}
+          <div className="h-4 bg-gray-300 rounded w-full animate-pulse"></div>{" "}
+          {/* Placeholder for message */}
+          <div className="h-4 bg-gray-300 rounded w-5/6 animate-pulse"></div>{" "}
+          {/* Placeholder for message */}
+          <div className="h-4 bg-gray-300 rounded w-4/6 animate-pulse"></div>{" "}
+          {/* Placeholder for message */}
         </div>
       </div>
     </div>
@@ -108,15 +114,15 @@ const WhatClient = () => {
             >
               {loading
                 ? Array.from({ length: 3 }).map((_, index) => (
-                  <SwiperSlide key={index}>
-                    <SkeletonLoader />
-                  </SwiperSlide>
-                ))
+                    <SwiperSlide key={index}>
+                      <SkeletonLoader />
+                    </SwiperSlide>
+                  ))
                 : data.map((data, index) => (
-                  <SwiperSlide key={index}>
-                    <WhatClientSaysCard data={data} />
-                  </SwiperSlide>
-                ))}
+                    <SwiperSlide key={index}>
+                      <WhatClientSaysCard data={data} />
+                    </SwiperSlide>
+                  ))}
               <div className="flex flex-col items-center pt-[20px] pb-[20px]">
                 <h3 className="mb-2 text-center"> ...</h3>
               </div>

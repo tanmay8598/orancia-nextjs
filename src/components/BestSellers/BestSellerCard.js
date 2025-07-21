@@ -96,7 +96,8 @@ const BestSellerCard = ({ product, type, loading }) => {
       <div className="flex-col flex">
         {/* Product Image */}
         <Link className="group" href={`/product/${product.groupId}`}>
-          <div className="overflow-hidden rounded-t-lg w-full h-[180px] md:h-[250px] flex items-center justify-center bg-white aspect-[1/1]"
+          <div
+            className="overflow-hidden rounded-t-lg w-full h-[180px] md:h-[250px] flex items-center justify-center bg-white aspect-[1/1]"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
@@ -145,12 +146,11 @@ const BestSellerCard = ({ product, type, loading }) => {
             {product?.reviews?.length > 0 && (
               <p className="text-xs font-medium">({product.reviews.length})</p>
             )}
-
           </div>
 
           {/* Price */}
           <div className="text-sm md:text-lg font-semibold text-left mt-2 min-h-[24px]">
-            ₹{product.sell_price}
+            NPR {product.sell_price}
           </div>
         </div>
 

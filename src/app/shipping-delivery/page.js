@@ -24,10 +24,10 @@ const Page = () => {
             <li>
               Email:{" "}
               <a
-                href="mailto:info@orancia.in"
+                href="mailto:info@orancia.com"
                 className="text-blue-600 underline"
               >
-                info@orancia.in
+                info@orancia.com
               </a>
             </li>
           </ul>

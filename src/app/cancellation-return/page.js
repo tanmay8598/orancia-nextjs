@@ -39,8 +39,6 @@ const Page = () => {
           </ul>
         </section>
 
-   
-
         <section>
           <h2 className="text-xl md:text-2xl font-semibold mb-4">
             Wrong Item Delivered
@@ -60,11 +58,10 @@ const Page = () => {
                   href="mailto:pinakinshine@gmail.com"
                   className="text-blue-600 underline"
                 >
-                  info@orancia.in
+                  info@orancia.com
                 </a>
                 . Mention your order ID and attach the pictures of the wrong
                 product you have received.
-              
               </span>
             </li>
             <li className="flex flex-col md:flex-row md:items-start">

@@ -43,8 +43,6 @@ const RelatedProductCard = ({ product }) => {
 
   return (
     <div className="rounded-xl m-2 shadow-lg relative">
-
-
       <div className="flex-col flex">
         <Link className="group" href={`/product/${product.groupId}`}>
           <div
@@ -69,7 +67,6 @@ const RelatedProductCard = ({ product }) => {
         <div className="p-2">
           <div className="h-10">
             <p className="text-sm font-medium text-left">{short}</p>
-
           </div>
           {/* <p className="text-sm text-gray-400 font-normal text-left">
             {product.category.name}
@@ -88,7 +85,7 @@ const RelatedProductCard = ({ product }) => {
             <p className="text-xs font-medium">({product?.reviews?.length})</p>
           </div>
           <div className="text-sm md:text-lg font-semibold text-left mt-2">
-            ₹{product.sell_price}
+            NPR {product.sell_price}
           </div>
 
           {product.countInStock.qty === 0 || product.disabled ? (

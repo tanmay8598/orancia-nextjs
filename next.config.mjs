@@ -10,7 +10,9 @@ const nextConfig = {
       "i.pinimg.com",
       "cdn2.stylecraze.com",
       "restaurant-tcj.netlify.app",
-      "i.ibb.co"
+      "i.ibb.co",
+      "kadameziyarat-s3-bucket.s3.us-east-1.amazonaws.com",
+      "s3.us-east-1.amazonaws.com",
     ],
   },
   trailingSlash: true,
