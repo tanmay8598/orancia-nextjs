@@ -53,11 +53,11 @@ const MenuNavbar = () => {
     <>
       <div className="shadow-md sticky top-0 z-50 bg-white">
         <header className="relative bg-white">
-          <section className="py-2 bg-primary text-center md-py-3">
+          {/* <section className="py-2 bg-primary text-center md-py-3">
             <p className="text-white text-xs md:text-sm">
               🎁 Buy any 3 product for NPR 3000 Only!
             </p>
-          </section>
+          </section> */}
           <nav
             aria-label="Top"
             className="mx-auto max-w-7xl px-4 sm:px-2 lg:px-2 md:px-0"
