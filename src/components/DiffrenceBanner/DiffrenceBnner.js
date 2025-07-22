@@ -17,10 +17,14 @@ const DifferenceBanner = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-10">
           <div className="text-gray-700 text-sm md:text-base">
             <p>
-              Want the best solutions for your skin issues? Or want to unlock the secrets of glowing skin? Hold on—Orancia is here!
+              Want the best solutions for your skin issues? Or want to unlock
+              the secrets of glowing skin? Hold on—Glam and Glow is here!
             </p>
             <p className="mt-4">
-              Orancia is a beauty and wellness brand established in 2024. With its tagline “Unleash your inner radiance”, it aims to revolutionize the skincare journey of people with the magic of its premium products.
+              Glam and Glow is a beauty and wellness brand established in 2024.
+              With its tagline “Unleash your inner radiance”, it aims to
+              revolutionize the skincare journey of people with the magic of its
+              premium products.
             </p>
           </div>
           <div></div>
@@ -31,10 +35,19 @@ const DifferenceBanner = () => {
           <div></div>
           <div className="text-gray-700 text-sm md:text-base">
             <p>
-              Orancia believes in nurturing your skin with natural products to radiate your inner glow rather than hiding your flaws. Orancia, as a brand, targets to provide more ayurvedic solutions to your skin-related issues helping you to feel confident in your skin.
+              Glam and Glow believes in nurturing your skin with natural
+              products to radiate your inner glow rather than hiding your flaws.
+              Glam and Glow, as a brand, targets to provide more ayurvedic
+              solutions to your skin-related issues helping you to feel
+              confident in your skin.
             </p>
             <p className="mt-4">
-              Orancia’s tested product formulations are based on ancient Ayurvedic methods supported by modern technologies. They are free from toxic chemicals, parabens, phthalates, mineral oil, and petroleum and contain natural, skin-friendly ingredients that magically elevate the timeless beauty of your skin. So, why wait? Choose natural, choose Orancia!
+              Glam and Glow’s tested product formulations are based on ancient
+              Ayurvedic methods supported by modern technologies. They are free
+              from toxic chemicals, parabens, phthalates, mineral oil, and
+              petroleum and contain natural, skin-friendly ingredients that
+              magically elevate the timeless beauty of your skin. So, why wait?
+              Choose natural, choose Glam and Glow!
             </p>
           </div>
         </div>

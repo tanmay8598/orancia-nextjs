@@ -23,7 +23,7 @@ const Footer = () => {
       <div className="grid grid-cols-1 lg:grid-cols-4 bg-black font-sans font-normal text-xs text-white mt-12 drop-shadow">
         {/* Section 1: Brand Info */}
         <div className="p-4 lg:p-14">
-          <p className="font-medium text-2xl lg:text-3xl">Orancia</p>
+          <p className="font-medium text-2xl lg:text-3xl">Glam and Glow</p>
           <p className="mt-4 text-sm">
             Unleash Your Inner Radiance with the magic of our Premium skincare
             products
@@ -37,19 +37,19 @@ const Footer = () => {
               <BsFacebook className="size-6 lg:size-8" />
             </a>
             <a
-              // href="https://www.instagram.com/orancia_skin/"
+              // href="https://www.instagram.com/Glam and Glow_skin/"
               target="_blank"
             >
               <RiInstagramFill className="size-6 lg:size-8" />
             </a>
             <a
-              // href="https://x.com/Orancia2519"
+              // href="https://x.com/Glam and Glow2519"
               target="_blank"
             >
               <BsTwitterX className="size-6 lg:size-8" />
             </a>
             <a
-              // href="https://www.linkedin.com/in/orancia-skincare-321471344/"
+              // href="https://www.linkedin.com/in/Glam and Glow-skincare-321471344/"
               target="_blank"
             >
               <BsLinkedin className="size-6 lg:size-8" />
@@ -133,7 +133,7 @@ const Footer = () => {
             </div>
 
             <div className="flex items-center mb-2">
-              <MdEmail className="mr-2" /> info@orancia.com
+              <MdEmail className="mr-2" /> info@glamnglow.com
             </div>
           </div>
           <Image

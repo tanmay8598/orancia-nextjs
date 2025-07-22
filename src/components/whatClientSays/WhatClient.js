@@ -22,7 +22,7 @@ const WhatClient = () => {
             image:
               "https://cdn.techinasia.com/wp-content/uploads/2015/07/indian-woman.jpg",
             message:
-              "My hair was dull and lifeless before I started using Orancia Hair Oil. Now, it's incredibly shiny and healthy-looking",
+              "My hair was dull and lifeless before I started using Glam and Glow Hair Oil. Now, it's incredibly shiny and healthy-looking",
           },
           {
             id: 2,
@@ -31,7 +31,7 @@ const WhatClient = () => {
             image:
               "https://i.pinimg.com/736x/8c/c6/a0/8cc6a0d60024ddde63f9885001c0146b.jpg",
             message:
-              "Orancia Kumkumadi Face Oil has been a game-changer! My skin is noticeably brighter and more radiant.",
+              "Glam and Glow Kumkumadi Face Oil has been a game-changer! My skin is noticeably brighter and more radiant.",
           },
           {
             id: 3,
@@ -40,7 +40,7 @@ const WhatClient = () => {
             image:
               "https://cdn2.stylecraze.com/wp-content/uploads/2013/05/Most-Beautiful-Women-In-India.jpg.webp",
             message:
-              "I use Orancia Body Oil every day after my shower, and it's made a noticeable difference in the overall health of my skin.",
+              "I use Glam and Glow Body Oil every day after my shower, and it's made a noticeable difference in the overall health of my skin.",
           },
           {
             id: 4,
@@ -49,7 +49,7 @@ const WhatClient = () => {
             image:
               "https://i.pinimg.com/736x/f1/4c/81/f14c813d3f9b95774557ab0e0aa71148.jpg",
             message:
-              "Orancia Vitamin C Serum has helped to fade those imperfections and even out my complexion.",
+              "Glam and Glow Vitamin C Serum has helped to fade those imperfections and even out my complexion.",
           },
         ];
         setData(mockData);

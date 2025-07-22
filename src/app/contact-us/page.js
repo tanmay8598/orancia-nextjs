@@ -89,7 +89,7 @@ const ContactUsPage = () => {
         from_name: formData.name,
         user_email: formData.email,
         user_mobile: formData.phone,
-        to_name: "Orancia",
+        to_name: "Glam & Glow",
         message: formData.message,
       };
 
@@ -219,7 +219,7 @@ const ContactUsPage = () => {
                 <strong>Phone/Mobile:</strong> 9005345980
               </p> */}
               <p className="text-gray-600">
-                <strong>Email:</strong> info@orancia.com
+                <strong>Email:</strong> info@glamnglow.com
               </p>
             </div>
           </div>

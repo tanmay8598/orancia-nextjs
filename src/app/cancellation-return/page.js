@@ -23,7 +23,7 @@ const Page = () => {
             Order Return
           </h2>
           <p className="text-gray-700">
-            Orancia products are all non-returnable due to the nature of the
+            Glam & Glow products are all non-returnable due to the nature of the
             product – as they are personal care and hygiene.
           </p>
           <p className="text-gray-700 mt-4">
@@ -58,7 +58,7 @@ const Page = () => {
                   href="mailto:pinakinshine@gmail.com"
                   className="text-blue-600 underline"
                 >
-                  info@orancia.com
+                  info@glamnglow.com
                 </a>
                 . Mention your order ID and attach the pictures of the wrong
                 product you have received.

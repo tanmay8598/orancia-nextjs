@@ -24,10 +24,10 @@ const Page = () => {
             <li>
               Email:{" "}
               <a
-                href="mailto:info@orancia.com"
+                href="mailto:info@glamnglow.com"
                 className="text-blue-600 underline"
               >
-                info@orancia.com
+                info@glamnglow.com
               </a>
             </li>
           </ul>
@@ -38,8 +38,8 @@ const Page = () => {
             Payment Options
           </h2>
           <p className="text-gray-700">
-            Cash on Delivery (COD) is not available for our products. Orancia
-            only accepts prepaid orders.
+            Cash on Delivery (COD) is not available for our products. We only
+            accepts prepaid orders.
           </p>
         </section>
 

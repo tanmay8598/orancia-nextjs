@@ -13,7 +13,7 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "Orancia",
+  title: "Glam & Glow",
   description: "Premium Herbal Products",
 };
 
